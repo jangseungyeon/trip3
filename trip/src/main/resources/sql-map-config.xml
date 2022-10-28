@@ -10,9 +10,12 @@
 	<typeAliases>
 		<typeAlias alias="user"
 			type="com.springbook.biz.user.UserVO" />
+		<typeAlias alias="room" type="com.springbook.biz.room.RoomVO"></typeAlias>
+		<typeAlias alias="reservation" 			type="com.springbook.biz.reservation.ReservationVO"></typeAlias>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/user-mapping.xml" />
-
+		<mapper resource="mappings/room-mapping.xml"></mapper>
+		<mapper resource="mappings/reservation-mapping.xml"></mapper>
 	</mappers>
 </configuration>
