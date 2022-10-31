@@ -1,5 +1,9 @@
 package com.springbook.view.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,12 +108,43 @@ public class UserController {
 		return "WEB-INF/views/user_insert.jsp";
 	}
 
+
+//회원 삭제
+		@RequestMapping("/delete.do")
+		public String delete(UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {
+			vo.setUser_id((String)session.getAttribute("user_id"));
+			System.out.println("회원탈퇴 컨트롤러 입장" + vo);
+				userService.delete(vo);
+				System.out.println("쿼리문 끝나고 컨트롤러" + vo);
+				session.invalidate(); 
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+
+				out.println("<script>");
+				out.println("alert('회원 탈퇴가 완료되었습니다.')");
+				out.println("location.href='index.jsp'");
+				out.println("</script>");
+				out.flush();
+				
+				return "index.jsp";
+			} 
+
+
+
 //	회원수정
 	@RequestMapping("/user_update.do")
-	public String user_update(Model model, UserVO vo) {
+	public String user_update(Model model, UserVO vo, HttpServletResponse response) throws IOException {
 		System.out.println("컨트롤러 입장");
 		userService.update(vo);
-		System.out.println("컨트롤러 vo : " + vo);
+		System.out.println("컨트롤러 vo : " +vo);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		out.println("<script>");
+		out.println("alert('수정이 완료되었습니다..')");
+		out.println("location.href='user_info.do'");
+		out.println("</script>");
+		out.flush();
 		return "user_info.do";
 	}
 
@@ -131,9 +166,9 @@ public class UserController {
 			model.addAttribute("user_phone", vo.getUser_phone());
 			model.addAttribute("user_address1", vo.getUser_address1());
 			model.addAttribute("user_address2", vo.getUser_address2());
-			return "myinfo.jsp";
+			return "WEB-INF/views/myinfo.jsp";
 		} else {
-			return "myinfo.jsp";
+			return "index.jsp";
 		}
 	}
 

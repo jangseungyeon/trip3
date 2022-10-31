@@ -18,4 +18,9 @@ public interface ReservationService {
 	
 	//숙소 예약 총 갯수 조회
 	int totalReservationListCnt(ReservationVO rvo);
+
+
+//내가 결제한 숙소 확인
+	ReservationVO check(ReservationVO rvo);
+
 }

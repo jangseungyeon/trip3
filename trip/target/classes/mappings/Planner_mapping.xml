@@ -8,4 +8,8 @@
 	INSERT INTO PLANNER VALUES ()
 	</insert>
 
+<select id="plannerinfo" resultType="planner">
+		SELECT * FROM planner WHERE USER_ID= #{user_id}
+	</select>
+
 </mapper>

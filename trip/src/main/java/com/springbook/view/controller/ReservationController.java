@@ -30,6 +30,36 @@ public class ReservationController {
 	@Autowired
 	private ReservationService reservationService;
 	
+
+//	내 예약 확인
+	@RequestMapping("/check.do")
+	public String user_info(ReservationVO rvo, HttpSession session, Model model) {
+		System.out.println("rvo: "+rvo);
+		rvo.setUser_id((String)session.getAttribute("user_id"));
+		rvo = reservationService.check(rvo);
+		System.out.println("결제정보확인: " + rvo);
+		if (rvo != null) {
+			String user_id = rvo.getUser_id();
+			session.setAttribute("user_id", user_id);
+			model.addAttribute("res_id", rvo.getRes_id());
+			model.addAttribute("host_id", rvo.getHost_id());
+			model.addAttribute("room_id", rvo.getRoom_id());
+			model.addAttribute("room_name", rvo.getRoom_name());
+			model.addAttribute("room_img", rvo.getRoom_img());
+			model.addAttribute("pay_date", rvo.getPay_date());
+			model.addAttribute("pay_amount", rvo.getPay_amount());
+			model.addAttribute("res_num", rvo.getRes_num());
+			model.addAttribute("res_count", rvo.getRes_count());
+			model.addAttribute("res_status", rvo.getRes_status());
+			model.addAttribute("res_checkin", rvo.getRes_checkin());
+			model.addAttribute("res_checkout", rvo.getRes_checkout());
+			return "WEB-INF/views/getReservationList.jsp";
+		} else {
+			return "index.jsp";
+		}
+	}
+
+
 	//숙소 예약 등록 (숙소 상세 페이지에서 숙소 예약 => 최대한 넘겨줄수 있는 값들 다 넘겨줘야 함)
 	@RequestMapping(value="/insertReservation.do")
 	public String insertReservation(ReservationVO rvo){

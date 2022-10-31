@@ -1,0 +1,56 @@
+.info-body {
+	background-color: antiquewhite;
+}
+
+.input-form.col-md-12.mx-auto {
+    background-color: darkgray;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+
+.info-div{
+    margin-top: 110px;
+        width: 40%;
+    }
+    
+    form.info-form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+    
+input#sample6_address {
+    width: 100%;
+    border: solid 1px #ddd;
+    height: 40px;
+    border-radius: 7px;
+    margin-bottom: 3px;
+        padding: 6px 12px;
+
+}
+
+input#sample6_detailAddress {
+    border: solid 1px #ddd;
+    height: 40px;
+    border-radius: 7px;
+     width: 70%;
+         padding: 6px 12px;
+}
+input.adbtn {
+    border: solid 1px #ddd;
+    height: 40px;
+    border-radius: 7px;
+     width: 28%;
+}
+
+input#id, input#pw, input#pw2, input#name, input#phone, input#birth, input#gender, input#email {
+	border: solid 1px #ddd;
+    height: 40px;
+    border-radius: 7px;
+}
+
+.info-del-btn, button#cbtn {
+	    background-color: white;
+}
+

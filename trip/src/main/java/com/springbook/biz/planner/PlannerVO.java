@@ -48,11 +48,11 @@ public class PlannerVO {
 	public void setPlanner_end(String planner_end) {
 		this.planner_end = planner_end;
 	}
-	public String getPalnner_area() {
+	public String getPlanner_area() {
 		return planner_area;
 	}
-	public void setPalnner_area(String palnner_area) {
-		this.planner_area = palnner_area;
+	public void setPlanner_area(String planner_area) {
+		this.planner_area = planner_area;
 	}
 	public String getPlanner_title() {
 		return planner_title;

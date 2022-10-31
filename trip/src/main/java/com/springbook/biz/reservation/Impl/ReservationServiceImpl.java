@@ -38,5 +38,11 @@ public class ReservationServiceImpl implements ReservationService {
 	public int totalReservationListCnt(ReservationVO rvo) {
 		return ReservationDAO.totalReservationListCnt(rvo);
 	}
+
+@Override
+	public ReservationVO check(ReservationVO rvo) {
+		System.out.println(rvo);
+		return ReservationDAO.check(rvo);
+	}
 	
 }

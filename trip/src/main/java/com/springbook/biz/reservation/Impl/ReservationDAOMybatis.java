@@ -43,4 +43,10 @@ public class ReservationDAOMybatis {
 		System.out.println("마이바티스 숙소 예약 목록 총 개수 조회 totalReservationListCnt 기능 처리");
 		return mybatis.selectOne("ReservationDAO.totalReservationListCnt", rvo);
 	}
+
+//내가 결제한 숙소 확인
+	public ReservationVO check(ReservationVO rvo) {
+		System.out.println("마이바티스 숙소 체크");
+		return mybatis.selectOne("ReservationDAO.getReservationList", rvo);
+	}
 }

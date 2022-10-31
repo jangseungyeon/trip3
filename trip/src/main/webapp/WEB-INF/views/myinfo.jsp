@@ -5,58 +5,26 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html lang="ko">
-<head>
-<meta charset="utf-8">
-<title>내 정보 관리</title>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<%@ include file="header.jsp"%>
 
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <title>회원가입</title>
-<script>
 
-
-var formCheck1=true;
-var formCheck2=true;
-var formCheck3=true;
-var formCheck4=true;
-var formCheck5=true;
-var formCheck6=true;
-   var blank_pattern = /[*\s*]/g;
-   var special_pattern = /[\W]/gi;
-//    var phone_pattern = /^\d{4}$/;
-	var phone_pattern = /^\d{3}-\d{4}-\d{4}$/;
-//    var phone_pattern = /^010-?([0-9]{4})-?([0-9]{4})$/;
-   var birth_pattern = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-   var email_pattern = /^[a-z0-9.\-_]+@([a-z0-9-]+\.)+[a-z]{2,6}$/;
- 
-
-   
-   var formCheck=true;
-   function deletecheck(){
-   	   alert("확인");
-       var deletecheck = confirm("계정 탈퇴를 하시겠습니까?");
-          if(deletecheck){
-             var recheck=prompt("비밀번호를 입력해주세요");
-             if(recheck==${user_password}){
-                 location.href="delete.do;
-             }
-          } else{
-            alert("비밀번호가 일치하지 않습니다");
-          }
-          
-          }
-  
-   
-
-
-  
-   
-   
-</script>
 </head>
-<body class="addMember-body">
+<body class="info-body">
 <script>
+function deletecheck(){
+    var deletecheck = prompt("탈퇴를 원하시면 아래 문구를 입력해주세요.\n'회원탈퇴'");
+       if(deletecheck == "회원탈퇴"){
+         	 location.href="delete.do";
+
+       }
+       else{
+         alert("문구가 일치하지 않습니다.");
+       }
+       
+       }
+
+
 var formCheck1=true;
 var formCheck2=true;
 var formCheck3=true;
@@ -66,10 +34,12 @@ var formCheck6=true;
    var blank_pattern = /[*\s*]/g;
    var special_pattern = /[\W]/gi;
 //    var phone_pattern = /^\d{4}$/;
-	var phone_pattern = /^\d{3}-\d{4}-\d{4}$/;
+	var phone_pattern = /^\d{3}\d{4}\d{4}$/;
 //    var phone_pattern = /^010-?([0-9]{4})-?([0-9]{4})$/;
    var birth_pattern = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-   var email_pattern = /^[a-z0-9.\-_]+@([a-z0-9-]+\.)+[a-z]{2,6}$/;	  
+//    var email_pattern = /^[a-z0-9.\-_]+@([a-z0-9-]+\.)+[a-z]{2,6}$/;	 
+   var email_pattern = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;	 
+   
 
 
 // 	 우편번호 찾기  
@@ -135,7 +105,7 @@ $(function() {
     $('#phone').focusout(function() {
     
     if (phone_pattern.test($('#phone').val()) == false) {
-          $("#checkphone").html('전화번호의 형식이 올바르지 않습니다');
+          $("#checkphone").html('전화번호의 형식이 올바르지 않습니다<br>예)01012345678');
           $("#checkphone").attr('color', 'red');
           formCheck3=false;
        } else {
@@ -233,59 +203,57 @@ $(function() {
 
 
 
-	<c:set var="address" value="${UserDTO.getAddress()}" />
-	<c:set var="aarr" value="${fn:split(address,'/')}" />
 
-	<div class="container addMember-div2">
+	<div class="container info-div">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-				<h4 class="mb-3">My Info</h4>
+				<h4 class="mb-3">내 정보 수정</h4>
 				<br> <br>
 				
-				<form class="validation-form" action="user_update.do" method="post"
+				<form class="validation-form info-form" action="user_update.do" method="post"
 					name="joinform">
 
 					<div class="mb-3">
-						<label for="id">*아이디</label> <input type="text"
+						<label for="id">아이디</label> <input type="text"
 							class="form-control" name="user_id" id="id" value="${user_id}"
 							readonly>
 					</div>
 
 					<div class="mb-3">
-						<label for="pw">*비밀번호</label> <input type="password"
+						<label for="pw">비밀번호</label> <input type="password"
 							class="form-control" name="user_password" id="pw" value="${user_password}"
 							minlength="8" maxlength="16" required>
 					</div>
 
 					<div class="mb-3">
-						<label for="pw2">*비밀번호 확인</label> <input type="password"
+						<label for="pw2">비밀번호 확인</label> <input type="password"
 							class="form-control" name="user_password2" id="pw2" value="${user_password}"
 							minlength="8" maxlength="16" required> <font id="checkPw"
 							size="2">비밀번호는 8~16글자입니다</font>
 					</div>
 					<font id="checkPw" size="2"></font>
 					<div class="mb-3">
-						<label for="name">*이름</label> <input type="text"
+						<label for="name">이름</label> <input type="text"
 							class="form-control" id="name" name="user_name" value="${user_name}" required
 							>
 					</div>
 
 					<div class="mb-3">
 						<input type="text" id="sample6_postcode" name="postcode"
-							placeholder="우편번호" value="${aarr[0]}" >
+							placeholder="우편번호" value="${aarr[0]}" style="display: none"><br>
+							<input type="text" id="sample6_address" placeholder="주소"
+							name="user_address1" value="${user_address1}"><br>
+							<input type="text" id="sample6_detailAddress" placeholder="상세주소"
+							name="user_address2" value="${user_address2}" >
+							<input type="text" id="sample6_extraAddress" placeholder="참고항목" style="display: none">
 						<input type="button" class="adbtn"
-							onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
-							style="background-color: #23263b;" >
-						<br> <input type="text" id="sample6_address" placeholder="주소"
-							name="user_address1" value="${user_address1}"> <input
-							type="text" id="sample6_detailAddress" placeholder="상세주소"
-							name="user_address2" value="${user_address2}" > <input
-							type="text" id="sample6_extraAddress" placeholder="참고항목" style="display: none">
+							onclick="sample6_execDaumPostcode()" value="주소 찾기"
+							 >
 					</div>
 					<br>
 					<div class="mb-3">
 						<label for="id">연락처</label> <input type="text"
-							class="form-control" name="user_phone" id="phone" required
+							class="form-control" name="user_phone" id="phone"
 							value="${user_phone}">
 					</div>
 
@@ -313,7 +281,7 @@ $(function() {
 <!-- 						onclick="checkForm()">수정 완료</button> -->
 					<button class="btn btn-lg btn-block" type="submit" id="cbtn"
 						>수정 완료</button>
-					<button class="btn btn-lg btn-block" type="button"
+					<button class="btn btn-lg btn-block info-del-btn" type="button"
 						onclick="deletecheck()">탈퇴 하기</button>
 				</form>
 			</div>
@@ -323,9 +291,7 @@ $(function() {
 	<br>
 	<br>
 
-<script>
 
-</script>
 </body>
 
 </html>
