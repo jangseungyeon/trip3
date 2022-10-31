@@ -50,7 +50,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 						<li class="nav-item"><a class="nav-link"
 							href="user_logout.do">로그아웃</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="host_login.do">호스트</a></li>
+							href="move_to_host_login.do">호스트</a></li>
 					</ul>
 				</c:when>
 
@@ -69,11 +69,11 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 
 					<ul class="nav justify-content-end bg-success">
 						<li class="nav-item"><a class="nav-link"
-							href="user_insert.do">회원가입</a></li>
+							href="user_login.jsp">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="user.login.do">로그인</a></li>
+							href="user_login.jsp">로그인</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="host_login.jsp">호스트</a></li>
+							href="move_to_host_login.do">호스트</a></li>
 					</ul>
 				</c:otherwise>
 			</c:choose>

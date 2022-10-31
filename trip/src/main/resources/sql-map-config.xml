@@ -15,11 +15,13 @@
 			type="com.springbook.biz.room.RoomVO"></typeAlias>
 		<typeAlias alias="reservation"
 			type="com.springbook.biz.reservation.ReservationVO"></typeAlias>
+		<typeAlias alias="host" type="com.springbook.biz.host.HostVO"/>
 	</typeAliases>
 	<mappers>
 	<mapper resource="mappings/host-mapping.xml" />
 		<mapper resource="mappings/user-mapping.xml" />
 		<mapper resource="mappings/room-mapping.xml"></mapper>
 		<mapper resource="mappings/reservation-mapping.xml"></mapper>
+		<mapper resource="mappings/host-mapping.xml" />
 	</mappers>
 </configuration>

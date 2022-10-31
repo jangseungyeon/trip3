@@ -27,6 +27,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 호스트 인덱스입니다.
 <br>
 
+<button onclick="location.href='getRoomList.do'">숙박 목록 보러가기</button>
 
 </body>
 </html>

@@ -46,7 +46,7 @@ public class UserMailController {
 		//이메일의 내용이 되는 부분
 		message.setText("인증 번호 : " + key);
 		//이메일의 보내는 사람이 되는 부분(반드시 smtp설정한 이메일주소 입력, 다를 경우 인증 안됨) 예시: admin@gmail.com 등..
-		message.setFrom("wkdtmddus351@naver.com");
+		message.setFrom("tripproject@naver.com");
 		System.out.println("인증번호 값: "+key);
 		
 		sender.send(message);
