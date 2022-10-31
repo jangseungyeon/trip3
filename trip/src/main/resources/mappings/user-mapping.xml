@@ -29,4 +29,15 @@
 		SET USER_PASSWORD =#{user_password}
 		WHERE USER_ID=#{user_id}
 	</update>
+	
+	<update id="user_update">
+		UPDATE USER SET USER_PASSWORD =#{user_password}, USER_NAME=#{user_name}, USER_BIRTH=#{user_birth},
+		USER_GENDER=#{user_gender}, USER_EMAIL=#{user_email}, USER_PHONE=#{user_phone},
+		user_address1 = #{user_address1} , user_address2 = #{user_address2}
+		WHERE USER_ID=#{user_id} 
+	</update>
+	
+	<delete id="user_delete">
+	DELETE FROM USER WHERE USER_ID = #{user_id}
+	</delete>
 </mapper>

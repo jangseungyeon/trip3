@@ -9,4 +9,9 @@ public interface UserService {
 	UserVO find(UserVO vo);
 	int change(UserVO vo);
 //	UserVO logout(UserVO vo);
+UserVO info(UserVO vo);
+	
+	void update(UserVO vo);
+	
+	void delete(UserVO vo);
 }

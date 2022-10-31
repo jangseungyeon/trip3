@@ -37,8 +37,8 @@ public class HostController {
 	//호스트로그인
 	@RequestMapping("/host_login.do")
 	public String hostLogin(HostVO vo, HttpSession session) {
-		vo = hostService.login(vo);
 		System.out.println("111");
+		vo = hostService.login(vo);
 		if (vo != null) {
 			String host_id = vo.getHost_id();
 			String host_bizname = vo.getHost_bizname();

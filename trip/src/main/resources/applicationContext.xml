@@ -25,11 +25,11 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
-<!-- sqlsession객체 생성 -->
-	<bean id="sqlsession" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!-- 	sqlsession객체 생성 -->
+<bean id="sqlsession" class="org.mybatis.spring.SqlSessionFactoryBean">
 	<property name="dataSource" ref="dataSource"></property>
-	<property name="configLocation" value="classpath:sql-map-config.xml"></property>
-	</bean>
+<property name="configLocation" value="classpath:sql-map-config.xml"></property>
+</bean>
 	
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 	<constructor-arg ref="sqlsession"></constructor-arg>
@@ -55,6 +55,26 @@
 		<aop:advisor advice-ref="txAdvice"
 			pointcut-ref="txPointcut" />
 	</aop:config>
-	
+		<!-- 메일 인증시 필요 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- SMTP 서버명 설정 -->
+		<property name="host" value="smtp.naver.com" />
+		<!-- SMTP 포트 설정 -->
+		<property name="port" value="587" />
+		<!-- smtp설정한 이메일 아이디 -->
+		<property name="username" value="wkdtmddus351" />
+		<!-- smtp설정한 이메일 비밀번호입력 -->
+		<property name="password" value="y1035125" />
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="javaMailProperties" >
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+			</props>
+		</property>	
+	</bean>
 	
 </beans>

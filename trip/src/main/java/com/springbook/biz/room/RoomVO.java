@@ -6,6 +6,7 @@ public class RoomVO {
 	private String room_name;	//숙소 이름
 	private String room_addr;	//숙소 기본 주소
 	private String room_addr_detail;	//숙소 상세 주소
+	private String room_desc;
 	private String room_id;		//숙소 아이디
 	private String host_id;		//업주 아이디
 	private String room_price;	//숙소 1박 가격
@@ -24,6 +25,12 @@ public class RoomVO {
 	private MultipartFile uploadFile; // 숙소 이미지 파일 업로드할때 쓰이는 MultipartFile 변수
 	private int offset;
 	
+	public String getRoom_desc() {
+		return room_desc;
+	}
+	public void setRoom_desc(String room_desc) {
+		this.room_desc = room_desc;
+	}
 	public String getRoom_addr_detail() {
 		return room_addr_detail;
 	}

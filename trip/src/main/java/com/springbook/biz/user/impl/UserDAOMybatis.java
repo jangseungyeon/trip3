@@ -10,6 +10,23 @@ import com.springbook.biz.user.UserVO;
 public class UserDAOMybatis {
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	
+	public UserVO user_info(UserVO vo) {
+		return mybatis.selectOne("UserDAO.info",vo);
+	}
+
+	public void user_update(UserVO vo) {
+		System.out.println("===>mybatis 업데이트 기능처리");
+		mybatis.update("UserDAO.user_update", vo);
+		 System.out.println("mybatis.update(UserDAO.user_update, vo)");
+	}
+
+	public void user_delete(UserVO vo) {
+		System.out.println("===>mybatis del 기능처리");
+
+		mybatis.delete("UserDAO.user_delete", vo);
+		
+	}
 
 	public int insertUser(UserVO vo) {
 		System.out.println("insertBoard");
