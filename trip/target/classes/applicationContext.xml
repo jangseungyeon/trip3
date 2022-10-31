@@ -62,9 +62,9 @@
 		<!-- SMTP 포트 설정 -->
 		<property name="port" value="587" />
 		<!-- smtp설정한 이메일 아이디 -->
-		<property name="username" value="wkdtmddus351" />
+		<property name="username" value="tripproject" />
 		<!-- smtp설정한 이메일 비밀번호입력 -->
-		<property name="password" value="y1035125" />
+		<property name="password" value="wkdtmddus1" />
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="javaMailProperties" >
 			<props>

@@ -37,6 +37,7 @@
 	-->
 	<select id="getRoomList" resultType="room">
 		SELECT * FROM ROOM WHERE 1=1
+			<if test='host_id != null'>AND HOST_ID = #{host_id}</if>
 <!-- 		<if test='searchRoomName != null'>AND ROOM_NAME LIKE CONCAT('%',#{searchRoomName},'%')</if> -->
 <!-- 		<if test='searchRoomAddr != null'>AND ROOM_ADDR LIKE CONCAT('%',#{searchRoomAddr},'%')</if> -->
 <!-- 		<if test='searchRoomMinPrice != null and searchRoomMaxPrice != null'>AND ROOM_PRICE BETWEEN #{searchRoomMinPrice} and #{searchRoomMaxPrice}</if> -->
@@ -56,6 +57,7 @@
 	
 	<select id="totalRoomListCnt" resultType="_int">
 		SELECT COUNT(*) FROM ROOM WHERE 1=1
+			<if test='host_id != null'>AND HOST_ID = #{host_id}</if>
 <!-- 		<if test='searchRoomName != null'>AND ROOM_NAME LIKE CONCAT('%',#{searchRoomName},'%')</if> -->
 <!-- 		<if test='searchRoomAddr != null'>AND ROOM_ADDR LIKE CONCAT('%',#{searchRoomAddr},'%')</if> -->
 <!-- 		<if test='searchRoomMinPrice != null and searchRoomMaxPrice != null'>AND ROOM_PRICE BETWEEN #{searchRoomMinPrice} and #{searchRoomMaxPrice}</if> -->

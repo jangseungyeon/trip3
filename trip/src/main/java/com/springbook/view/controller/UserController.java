@@ -45,7 +45,7 @@ public class UserController {
 			return "redirect:index.jsp";
 		} else {
 			System.out.println("로그인실패");
-			return "WEB-INF/views/user_login.jsp?fail=1";
+			return "WEB-INF/views/user_login.jsp";
 		}
 
 	}
