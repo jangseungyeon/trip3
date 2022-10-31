@@ -8,7 +8,7 @@ public class PlannerVO {
 	private String room_max; // 숙소 최대 가능 인원
 	private String planner_start; // 여행 시작일
 	private String planner_end;  // 여행 종료일
-	private String palnner_area; // 여행 지역
+	private String planner_area; // 여행 지역
 	private String planner_title; // 플레너 제목
 	private String planner_day; // 여행 기간
 	
@@ -49,10 +49,10 @@ public class PlannerVO {
 		this.planner_end = planner_end;
 	}
 	public String getPalnner_area() {
-		return palnner_area;
+		return planner_area;
 	}
 	public void setPalnner_area(String palnner_area) {
-		this.palnner_area = palnner_area;
+		this.planner_area = palnner_area;
 	}
 	public String getPlanner_title() {
 		return planner_title;

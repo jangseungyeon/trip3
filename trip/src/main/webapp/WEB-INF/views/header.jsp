@@ -62,7 +62,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="#">숙소</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">플래너</a></li>
+							href="start.do">플래너</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="#">이용안내</a></li>
 					</ul>
@@ -71,7 +71,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 						<li class="nav-item"><a class="nav-link"
 							href="user_login.jsp">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="user_login.jsp">로그인</a></li>
+							href="user_loginform.do">로그인</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="move_to_host_login.do">호스트</a></li>
 					</ul>
