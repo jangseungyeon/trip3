@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="callSettersOnNulls" value="true" />
+		<setting name="returnInstanceForEmptyRow" value="true" />
+	</settings>
+	<typeAliases>
+	<typeAlias alias="host" type="com.springbook.biz.host.HostVO"/>
+		<typeAlias alias="user"
+			type="com.springbook.biz.user.UserVO" />
+		<typeAlias alias="manage"
+			type="com.springbook.biz.manage.ManageUserVO" />
+		<typeAlias alias="room"
+			type="com.springbook.biz.room.RoomVO"></typeAlias>
+		<typeAlias alias="reservation"
+			type="com.springbook.biz.reservation.ReservationVO"></typeAlias>
+	</typeAliases>
+	<mappers>
+	<mapper resource="mappings/host-mapping.xml" />
+		<mapper resource="mappings/user-mapping.xml" />
+		<mapper resource="mappings/manage-mapping.xml" />
+		<mapper resource="mappings/room-mapping.xml"></mapper>
+		<mapper resource="mappings/reservation-mapping.xml"></mapper>
+	</mappers>
+</configuration>
