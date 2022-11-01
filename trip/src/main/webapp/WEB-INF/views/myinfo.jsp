@@ -7,16 +7,39 @@
 <html lang="ko">
 <%@ include file="header.jsp"%>
 
-<title>회원가입</title>
-
+<title>정보수정</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body class="info-body">
+<script>
+//비밀번호 입력
+/* function deletecheck(){
+    var deletecheck = confirm("계정 탈퇴를 하시겠습니까?");
+       if(deletecheck){
+          var recheck=prompt("비밀번호를 입력해주세요");
+          if(recheck==${MemberDTO.getPw()}){
+             location.href="delete.member";
+          }
+      
+       else{
+         alert("비밀번호가 일치하지 않습니다");
+       }
+       } */
+
+</script>
+
 <script>
 function deletecheck(){
     var deletecheck = prompt("탈퇴를 원하시면 아래 문구를 입력해주세요.\n'회원탈퇴'");
        if(deletecheck == "회원탈퇴"){
+    	   var recheck=prompt("비밀번호를 입력해주세요");
+           if(recheck==${user_password}){
          	 location.href="delete.do";
-
+        	   
+           } else {
+          alert("비밀번호가 일치하지 않습니다");
+        }
        }
        else{
          alert("문구가 일치하지 않습니다.");
@@ -34,8 +57,8 @@ var formCheck6=true;
    var blank_pattern = /[*\s*]/g;
    var special_pattern = /[\W]/gi;
 //    var phone_pattern = /^\d{4}$/;
-	var phone_pattern = /^\d{3}\d{4}\d{4}$/;
-//    var phone_pattern = /^010-?([0-9]{4})-?([0-9]{4})$/;
+// 	var phone_pattern = /^\d{3}\d{4}\d{4}$/;
+   var phone_pattern = /^010-?([0-9]{4})-?([0-9]{4})$/;
    var birth_pattern = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 //    var email_pattern = /^[a-z0-9.\-_]+@([a-z0-9-]+\.)+[a-z]{2,6}$/;	 
    var email_pattern = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;	 
@@ -84,7 +107,7 @@ function sample6_execDaumPostcode() {
  }
  
 
-
+//형식 설정
 $(function() {
     $('#pw2,#pw')
           .focusout(
@@ -101,6 +124,7 @@ $(function() {
                    }
                 });
  });
+ 
 $(function() {
     $('#phone').focusout(function() {
     
@@ -128,6 +152,7 @@ $(function() {
        }}
     });
  });
+ 
  $(function() {
 	      $('#email').focusout(
 	            function() {
@@ -144,6 +169,7 @@ $(function() {
 	               }
 	            });
 	   });
+	   
 	   $(function() {
 		      $('#email').focus(
 		            function() {
@@ -159,58 +185,95 @@ $(function() {
 		            });
 		   });
 	   
-	     
-	   
-// 	   function checkForm() {
-// 		    if ($('#pw').val() == "") {
-// 		      $("#checkPw").html('비밀번호를 입력해주세요');
-// 		      $("#checkPw").attr('color', 'red');
-// 		   } else if ($('#name').val() == "") {
-// 		      $("#checkName").html("이름은 필수 입력창입니다");
-// 		      $("#checkName").attr('color', 'red');
-// 		   } else if ($('#phone').val() == "") {
-// 		      $("#checkPhone").html("전화번호는 필수 입력창입니다");
-// 		      $("#checkPhone").attr('color', 'red');
-// 		   } else if ($('#adderss1').val() == "") {
-// 		      $("#checkadderss").html("주소는 필수 입력창입니다");
-// 		      $("#checkadderss").attr('color', 'red');
-// 		   } else if ($('#adderss2').val() == "") {
-// 		      $("#checkadderss").html("주소는 필수 입력창입니다");
-// 		      $("#checkadderss").attr('color', 'red');
-// 		   } else if(formCheck2&&formCheck5&&formCheck6){
-// 		      $('.btn-block').attr('type', 'submit');
-<%-- 		      <%String val = request.getParameter("update");%> --%>
-<%-- 		      <%try { --%>
-<%-- 		if (val.equals("1")) {%> --%>
-// 		        alert("수정이 완료 되었습니다.");
-<%-- 		         <%} else {%> --%>
-// 		         alert("수정 프로세스에 문제가 있습니다.");   
-		            
-<%-- 		         <%} --%>
-// 		} catch (Exception e) {
-// //		          System.out.println("어딘가 문제가 있습니다. ");
-<%-- 		}%> --%>
-// 		   }else{
-// 		      alert("형식을 다시 확인해주세요.");
-// 		   }
-// 		}
+// 형식 체크 & 수정완료
+ function checkForm() {
+	    if ($('#pw').val() == "") {
+	      $("#checkPw").html('비밀번호를 입력해주세요');
+	      $("#checkPw").attr('color', 'red');
+	   } else if ($('#name').val() == "") {
+	      $("#checkName").html("이름은 필수 입력창입니다");
+	      $("#checkName").attr('color', 'red');
+	   }  else if(formCheck2&&formCheck3&&formCheck5&&formCheck6){
+// 		   document.joinform.action = "user_update.do";
+// 		   document.joinform.method = "post";
+		   document.joinform.submit();
 
+	}
+	   else{
+		      alert("형식을 다시 확인해주세요.");
+		   }
+ }
 
+// 핸드폰번호인증
 
+ var con=false;//인증
+	//휴대폰
+	$(function phonecheck() {
+		//휴대폰 번호 인증 
+		var code2 = "";
+		$("#phoneChk").click(
+				function() {
+					alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
+					var phone = $("#phone").val();
+
+					$.ajax({
+						type : "GET",
+						url : "phoneCheck.do?phone=" + phone,
+						cache : false,
+						success : function(data) {
+							if (data == "error") {
+								alert("휴대폰 번호가 올바르지 않습니다.")
+								$(".successPhoneChk").text("유효한 번호를 입력해주세요.");
+								$(".successPhoneChk").css("color", "red");
+								$("#phone").attr("autofocus", true);
+							} else {
+								$("#phone2").attr("disabled", false);
+								$("#phoneChk2").css("display", "inline-block");
+								$(".successPhoneChk").text(
+										"인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
+								$(".successPhoneChk").css("color", "green");
+								$("#phone").attr("readonly", true);
+								code2 = data;
+							}
+						}
+					});
+				});
+
+		$("#phoneChk2").click(function() {
+			if ($("#phone2").val() == code2) {
+				$(".successPhoneChk").text("인증번호가 일치합니다.");
+				$(".successPhoneChk").css("color", "green");
+				$("#phoneDoubleChk").val("true");
+				$("#phone2").attr("disabled", true);
+				$('#user_phone').val($("#phone").val());
+				con=true;
+			} else {
+				$(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
+				$(".successPhoneChk").css("color", "red");
+				$("#phoneDoubleChk").val("false");
+				$(this).attr("autofocus", true);
+			}
+		});
+
+	});
+	
+ // 인증 선택
+	function phoneconfig() {
+		$('#config1').show();
+		$('#config').hide();
+	}
 
 </script>
-
-
 
 
 
 	<div class="container info-div">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-				<h4 class="mb-3">내 정보 수정</h4>
-				<br> <br>
+				<h4 class="mb-3" style="font-size: 25px;">내 정보 수정</h4>
+				<br>
 				
-				<form class="validation-form info-form" action="user_update.do" method="post"
+				<form class="validation-form" action="user_update.do" method="post"
 					name="joinform">
 
 					<div class="mb-3">
@@ -239,6 +302,7 @@ $(function() {
 					</div>
 
 					<div class="mb-3">
+					<label for="address">주소</label>
 						<input type="text" id="sample6_postcode" name="postcode"
 							placeholder="우편번호" value="${aarr[0]}" style="display: none"><br>
 							<input type="text" id="sample6_address" placeholder="주소"
@@ -252,15 +316,20 @@ $(function() {
 					</div>
 					<br>
 					<div class="mb-3">
-						<label for="id">연락처</label> <input type="text"
-							class="form-control" name="user_phone" id="phone"
+						<label for="phone">연락처</label><br>
+						<input type="text" class="form-control" name="user_phone" id="phone"
 							value="${user_phone}">
+							<input id="phoneChk" type="button" value="인증">
+							<br><font id="checkphone" size="2"></font>
+							<input id="phone2" type="text" name="phone2" title="인증번호 입력">
+							<input id="phoneChk2" class="doubleChk" type="button" value="인증확인">
+							<span class="point successPhoneChk"></span>
 					</div>
-
-					<label for="birth">생년월일</label> <input type="text"
+					<div class="mb-3">
+					<label for="birth">생년월일</label> <input type="date"
 						class="form-control" id="birth" name="user_birth" value="${user_birth}"
 						> <font id="checkbirth" size="2"></font>
-
+					</div>
 
 					<div class="mb-3">
 						<label for="gender">성별</label> <input type="text"
@@ -279,9 +348,9 @@ $(function() {
 					<div class="mb-4"></div>
 <!-- 					<button class="btn btn-lg btn-block" type="button" id="cbtn" -->
 <!-- 						onclick="checkForm()">수정 완료</button> -->
-					<button class="btn btn-lg btn-block" type="submit" id="cbtn"
+					<button class="btn btn-lg btn-block" type="button" id="cbtn" onclick="checkForm()"
 						>수정 완료</button>
-					<button class="btn btn-lg btn-block info-del-btn" type="button"
+					<button class="btn btn-lg btn-block" type="button"
 						onclick="deletecheck()">탈퇴 하기</button>
 				</form>
 			</div>
@@ -291,7 +360,9 @@ $(function() {
 	<br>
 	<br>
 
+<script>
 
+</script>
 </body>
 
 </html>

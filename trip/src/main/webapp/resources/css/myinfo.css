@@ -8,6 +8,10 @@
     padding: 30px;
 }
 
+input#phone {
+    width: 80%;
+    display: inline-block;
+}
 
 .info-div{
     margin-top: 110px;
@@ -41,7 +45,7 @@ input.adbtn {
     border: solid 1px #ddd;
     height: 40px;
     border-radius: 7px;
-     width: 28%;
+     width: 29%;
 }
 
 input#id, input#pw, input#pw2, input#name, input#phone, input#birth, input#gender, input#email {

@@ -43,8 +43,10 @@ public class UserController {
 		if (vo != null) {
 			String user_id = vo.getUser_id();
 			String user_name = vo.getUser_name();
+			String user_password = vo.getUser_password();
 			session.setAttribute("user_id", user_id);
 			session.setAttribute("user_name", user_name);
+			session.setAttribute("user_password", user_password);
 			System.out.println("로그인성공");
 			return "redirect:index.jsp";
 		} else {
@@ -157,9 +159,10 @@ public class UserController {
 		if (vo != null) {
 			String user_id = vo.getUser_id();
 			String user_name = vo.getUser_name();
+			String user_password = vo.getUser_password();
 			session.setAttribute("user_id", user_id);
 			session.setAttribute("user_name", user_name);
-			model.addAttribute("user_password", vo.getUser_password());
+			session.setAttribute("user_password", user_password);
 			model.addAttribute("user_birth", vo.getUser_birth());
 			model.addAttribute("user_gender", vo.getUser_gender());
 			model.addAttribute("user_email", vo.getUser_email());
