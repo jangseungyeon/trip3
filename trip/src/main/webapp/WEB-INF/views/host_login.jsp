@@ -77,6 +77,7 @@
 	}
 	.host-insert-button{
 		width:40%;
+		min-width:153px;
 		height:40px;
 		position: absolute;
 		top:70%;
@@ -108,6 +109,7 @@
 		border:none;
 		font-weight:bold;
 		filter: brightness(80%);
+		cursor : pointer;
 	}
 		.host-login-text{
 		font-size: 30px;
@@ -171,6 +173,7 @@
 		color:white;
 		border:none;
 		filter: brightness(80%);
+		cursor : pointer;
 	}
 	.find-id-pw-box{
 		position:absolute;
@@ -197,12 +200,12 @@
 		font-size:30px;
 		padding:30px;	
 	}
-	.recent30, .count_host, .count_room, .count_money{
+	.recent30, .count_host, .count_room, .count_money, .count_rank_room_avg_income, .count_best_host_income{
 		color:#DC3545;
 		font-size:35px;
 	}
 	
-	/*아래로 버튼 애니메이션*/
+	/*아래로 버튼 깜빡임 애니메이션*/
 	.blinking{
 		animation:blink 0.8s ease-in-out infinite alternate;
 	}
@@ -216,17 +219,19 @@
 	}
 	
 	.contents-box{
-		min-height: 250px;
-		margin: 30px;
-		padding: 30px;
+		min-height:250px;
+		margin:30px;
+		padding:30px;
 		color:black;
 		font-size:30px;
 		padding:30px;	
-		border-style: solid;
-		border-color: #6c757d;
-
+		border-style:solid;
+		border-color:#6c757d;
+		position:relative;
 	}
-	
+	html{
+		scroll-behavior:smooth;
+	}
 	
 </style>
 
@@ -264,7 +269,19 @@ Trip에서 <span class="recent30">최근 30일</span> 기간동안<br>
 원(₩)의 수입을 얻었습니다.
 </div>
 
-<!-- 아래로 이동 버튼 -->
+<!-- div1 위치로 스크롤 -->
+<script>
+$(document).ready(function($) {
+    $(".scroll_move").click(function(event){         
+            event.preventDefault();
+            $('html,body').animate({scrollTop:$(this.hash).offset().top}, 800);
+    });
+});
+</script>
+
+
+
+
 <div style="position:relative;">
 <div class="image blinking";><br>
 <a href="#div1" class="a" id="scroll_move" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%);"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#DC3545" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
@@ -272,6 +289,10 @@ Trip에서 <span class="recent30">최근 30일</span> 기간동안<br>
 </svg></a> 
 </div>
 </div>
+
+<!-- div1 위치 -->
+<div id="div1"></div>
+
 
 <!-- 최근 30일 호스트 최고 수익 -->
 <div class="contents-box">
@@ -281,15 +302,20 @@ Trip에서 <span class="recent30">최근 30일</span> 기간동안<br>
 <!-- 최근 30일 베스트 숙소 평균 수입(롤링) -->
 <div class="contents-box">
 아울러 <span class="recent30">최근 30일간</span>
-<br>상위에 랭크된 숙소의 수입은 아래와 같습니다.
-<br>◀ 케러셀 롤링 ◀ 케러셀 롤링 ◀ 케러셀 롤링 ◀ 케러셀 롤링 ◀ 케러셀 롤링 ◀ 케러셀 롤링
-<br>이 숙소들의 평균 수입은 <span class="count_rank_room_avg_income"></span>원(₩) 입니다.</div>
+<br>상위에 랭크된 숙소들은 아래와 같으며,
+<br>
+<br>◀ ====== 케러셀 ====== ▶
+<br>
+<br>이 숙소들 수입 평균은 <span class="count_rank_room_avg_income"></span>원(₩) 입니다.</div>
 
 <!-- 이제 당신 차례입니다. -->
 <div class="contents-box">
 이제 <span class="recent30">당신 </span> 차례입니다.
 <br>Trip에 합류해 숙소를 등록하고, 돈을 벌어보세요.
-<br>이 숙소들의 평균 수입은 <span class="count_rank_room_avg_income"></span>원(₩) 입니다.</div>
+<br>
+<button class="host-insert-button" type="button" class="host" onclick="location.href='move_to_host_insert.do'">호스트 신청하기</a>
+
+</div>
 
 <% %>
 <script>
@@ -387,13 +413,7 @@ $(document).ready(function() {
 
 
 
-//스크롤 아래로 버튼 ㅎㅎ 
- $(document).ready(function($) {
-     $(".scroll_move").click(function(event){         
-             event.preventDefault();
-             $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
-     });
- });
+
  
 </script>
 

@@ -74,9 +74,34 @@ public class HostController {
 
 	// 로그아웃
 	@RequestMapping("/host_logout.do")
-	public String host_logout(HttpSession session) {
+	public String hostLogout(HttpSession session) {
 		session.invalidate();
 		return "WEB-INF/views/host_login.jsp";
 	}
+	
+	// 호스트 헤더 > 인덱스 홈으로 이동
+	@RequestMapping("/move_to_host_index.do")
+	public String moveToHostIndex() {
+		return "WEB-INF/views/host_index.jsp";
+	}
+	
+	// 호스트 헤더 > 리뷰 모아보기 페이지로 이동
+	@RequestMapping("/move_to_host_review.do")
+	public String moveToHostReview() {
+		return "WEB-INF/views/host_review_list.jsp";
+	}
+		
+	// 호스트 헤더 > 예약 현황 페이지로 이동
+	@RequestMapping("/move_to_host_reservation.do")
+	public String moveToHostReservation() {
+		return "WEB-INF/views/host_reservation_list.jsp";
+	}
+	
+	// 호스트 헤더 > 호스트 정보 수정 페이지로 이동
+	@RequestMapping("/move_to_host_update.do")
+	public String moveToHostUpdate() {
+		return "WEB-INF/views/host_update.jsp";
+	}
+	
 
 }

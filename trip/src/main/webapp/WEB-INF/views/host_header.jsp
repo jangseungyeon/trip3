@@ -28,26 +28,27 @@ String host_id = session.getAttribute("host_id") != null ? session.getAttribute(
 
 <div class="container-fluid">
 	<div class="container-fluid main-div">
-		<nav id="stNav" class="navbar  bg-success navbar-success  fixed-top">
+		<nav id="stNav" class="navbar  bg-danger navbar-danger  fixed-top">
 
 			<c:choose>
 				<c:when test='${host_id ne NULL}'>
 
-					<ul class="nav justify-content-around bg-success">
+					<ul class="nav justify-content-around bg-danger">
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="index.jsp">홈</a></li>
+							href="move_to_host_index.do">홈</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">숙소</a></li>
+							href="getRoomList.do">숙소 관리</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">플래너</a></li>
+							href="move_to_host_review.do">리뷰 모아보기</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">이용안내</a></li>
+							href="move_to_host_reservation.do">예약 현황</a></li>
 					</ul>
 
 
-					<ul class="nav justify-content-end bg-success">
-						<li class="nav-item"><a class="nav-link">${host_bizname}님 접속중</a></li>
-						<li class="nav-item"><a class="nav-link"
+					<ul class="nav justify-content-end bg-danger">
+						<li class="nav-item"><a class="nav-link text-white"
+							href="move_to_host_update.do">${host_bizname}님 접속중</a></li>
+						<li class="nav-item"><a class="nav-link text-white"
 							href="host_logout.do">로그아웃</a></li>
 					</ul>
 				</c:when>
