@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+	<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
@@ -19,6 +19,7 @@
 		 <typeAlias type="com.springbook.biz.planner.PlannerVO" alias="planner"/>
 		<typeAlias type="com.springbook.biz.planner.AreaVO" alias="area"/>
 		<typeAlias type="com.springbook.biz.planner.PlaceVO" alias="place"/>
+<typeAlias type="com.springbook.qna.QnaVO" alias="qna"></typeAlias>
 	</typeAliases>
 	<mappers>
 	<mapper resource="mappings/host-mapping.xml" />
@@ -29,6 +30,7 @@
 		<mapper resource="mappings/Area_mapping.xml"/>
 		<mapper resource="mappings/Place_mapping.xml"/>
 		<mapper resource="mappings/Planner_mapping.xml"/> 
+<mapper resource="mappings/qna_mapper.xml" />
 	</mappers>
 </configuration>
 
