@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("UTF-8");
+%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -186,7 +189,7 @@ var con=false;//인증
 	//회원가입버튼
 	function check() {
 // 		if(!idReg.test($('#user_id').val())){
-// 			alert('아이디는 영어대/소문자 0~9자리만');
+// 			alert('아이디는 영어대/소문자 6~12자리만');
 // 		}else if(!pwReg.test($('#user_password').val())){
 // 			alert('비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합');
 // 		}
@@ -216,14 +219,14 @@ var con=false;//인증
 <body>
 
 <form action="manage_userInsert.do" method="post" id="manage_userInsert">
-	<input type="text" name="user_id" id="user_id" placeholder='아이디'>
+	<input type="text" name="user_id" id="user_id" placeholder='아이디' required>
 	<button type="button" id="idCheck">아이디중복체크</button>
 	<br> <input type="password" name="user_password"
 		id="user_password" placeholder='비밀번호'><br>
 	<input type="password" name="user_passwordCheck"
 		id="user_passwordCheck" placeholder='비밀번호재확인'><br>
 	<input type="text" name="user_name" placeholder='이름'><br>
-<!-- 	<input type="hidden" name="user_phone" id="user_phone" placeholder='핸드폰'> -->
+	<input type="text" name="user_phone" id="user_phone" placeholder='핸드폰'><br>
 	<input type="text" name="user_email" id="user_email" placeholder='이메일'>
 	<button type="button" class="submitbutton" onclick="check()">회원가입</button>
 </form>

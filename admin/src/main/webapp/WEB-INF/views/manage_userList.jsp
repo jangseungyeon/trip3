@@ -34,7 +34,6 @@
 <body>
 
 	<h2>회원목록</h2>
-	<a class="btn btn-primary" href="manage_userInsertForm.do" role="button">회원가입</a>
 	<table border="1">
 		<tr>
 			<th>아이디</th>
@@ -47,6 +46,7 @@
 			<th>상세주소</th>
 			<th>상태</th>
 			<th>타입</th>
+			<th colspan="2"><a class="btn btn-primary" href="manage_userInsertForm.do" role="button">회원가입</a></th>
 		</tr>
 		<c:forEach var="i" items="${list}">
 			<tr align="center">
@@ -60,10 +60,8 @@
 				<td>${i.user_address2}</td>
 				<td>${i.user_status}</td>
 				<td>${i.user_type}</td>
-				<td><button class="btn btn-lg btn-block" type="button"
-						onclick="deletecheck()">탈퇴 하기</button></td>
-				<td><input type="button" value="수정"
-					onclick="location.href='user_info.do" /></td>
+				<td><a class="btn btn-primary" href="manage_userInfo.do?user_id=${i.user_id}" role="button">수정</a></td>
+				<td><a class="btn btn-primary" onclick="deletecheck()">탈퇴</a></td>
 					
 			</tr>
 		</c:forEach>

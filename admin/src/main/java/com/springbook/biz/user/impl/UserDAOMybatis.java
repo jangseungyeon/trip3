@@ -25,9 +25,15 @@ public class UserDAOMybatis {
 		return mybatis.insert("UserDAO.manage_userInsert", vo);
 	}
 	
+//  관리자 회원 상세 조회
+	public UserVO manage_userInfo(String user_id) {
+		return mybatis.selectOne("UserDAO.manage_userInfo", user_id);
+	}
 	
-	
-	
+//	관리자 회원 정보 수정	
+	public void manage_userUpdate(UserVO vo) {
+		mybatis.update("UserDAO.manage_userUpdate", vo);
+	}
 	
 	
 	
@@ -88,6 +94,9 @@ public class UserDAOMybatis {
 //	public UserVO user_logout(UserVO vo) {
 //		return mybatis.selectOne("UserDAO.idCheck", vo);
 //	}
+
+
+
 	
 	
 	

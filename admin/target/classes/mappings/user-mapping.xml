@@ -4,35 +4,70 @@
 
 <mapper namespace="UserDAO">
 
-<!-- 관리자용 시작 -->
-	<!-- 관리자 유저 검색 -->
+	<!-- 관리자용 시작 -->
+	<!-- 관리자 회원 조회 -->
 	<select id="manage_userList" resultType="user">
-		SELECT user_id, user_name, user_birth, user_gender, user_email, user_phone,
-		user_address1, user_address2, user_status, user_type 
-		FROM user 
-		order by user_name
+		SELECT user_id,
+		user_name, user_birth, user_gender, user_email, user_phone,
+		user_address1, user_address2, user_status, user_type
+		FROM user
+		order by
+		user_name
 	</select>
 
-	<!--  관리자 유저 등록 -->
+	<!-- 관리자 회원 등록 -->
 	<insert id="manage_userInsert">
-		INSERT INTO USER (USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL, USER_PHONE, USER_TYPE)
-		VALUES (#{user_id}, #{user_password}, #{user_name}, #{user_email}, #{user_phone}, #{user_type})
+		INSERT INTO USER (USER_ID, USER_PASSWORD, USER_NAME,
+		USER_EMAIL, USER_PHONE, USER_TYPE)
+		VALUES (#{user_id},
+		#{user_password}, #{user_name}, #{user_email}, #{user_phone},
+		#{user_type})
 	</insert>
 
-<!-- 관리자용 끝 -->
-	
-	
-	
+	<!-- 관리자 회원 상세 조회 -->
+	<select id="manage_userInfo" resultType="user">
+		SELECT *
+		FROM USER WHERE
+		USER_ID=#{user_id}
+	</select>
+	<!-- <select id="manage_userInfo" resultType="user"> -->
+	<!-- SELECT user_id, -->
+	<!-- user_name, user_birth, user_gender, user_email, user_phone, -->
+	<!-- user_address1, user_address2, user_status, user_type -->
+	<!-- FROM USER WHERE USER_ID=#{user_id} -->
+	<!-- </select> -->
 
 
+	<!-- 관리자 회원 정보 수정 -->
+	<update id="manage_userUpdate">
+		UPDATE USER
+		SET
+		USER_PASSWORD =#{user_password},
+		USER_NAME=#{user_name},
+		USER_BIRTH=#{user_birth},
+		USER_GENDER=#{user_gender},
+		USER_EMAIL=#{user_email},
+		USER_PHONE=#{user_phone},
+		USER_ADDRESS1=#{user_address1},
+		USER_ADDRESS2=#{user_address2}
+		WHERE USER_ID=#{user_id}
+	</update>
 
 
+	<!-- 관리자용 끝 -->
 
+	<update id="user_update">
+		UPDATE USER SET USER_PASSWORD =#{user_password}, USER_NAME=#{user_name}, USER_BIRTH=#{user_birth},
+		USER_GENDER=#{user_gender}, USER_EMAIL=#{user_email}, USER_PHONE=#{user_phone},
+		user_address1 = #{user_address1} , user_address2 = #{user_address2}
+		WHERE USER_ID=#{user_id} 
+	</update>
 
 	<insert id="user_insert">
-		INSERT INTO USER (USER_ID, USER_PASSWORD,
-		USER_NAME,USER_EMAIL,USER_PHONE,USER_TYPE)
-		VALUES (#{user_id}, #{user_password},
+		INSERT INTO USER (USER_ID, USER_PASSWORD, USER_NAME,
+		USER_EMAIL, USER_PHONE, USER_TYPE)
+		VALUES (#{user_id},
+		#{user_password},
 		#{user_name},#{user_email},#{user_phone},#{user_type})
 	</insert>
 
@@ -53,39 +88,20 @@
 		AND USER_TYPE = #{user_type}
 	</select>
 
+	<update id="change">
+		UPDATE USER
+		SET USER_PASSWORD =#{user_password}
+		WHERE
+		USER_ID=#{user_id}
+	</update>
+
 	<select id="info" resultType="user">
 		SELECT * FROM USER WHERE USER_ID=
 		#{user_id}
 	</select>
 
-	<!-- 관리자용 유저 검색 -->
-	<!-- <select id="manage_user" resultType="user"> -->
-	<!-- SELECT JSON_OBJECT('user_id', user_id, 'user_name', user_name, 'user_birth', 
-		user_birth, 'user_gender', user_gender, 'user_email', user_email, 'user_phone', 
-		user_phone, 'user_address1' , user_address1, 'user_address2', user_address2, 
-		'user_status', user_status, 'user_type', user_type -->
-	<!-- )FROM user -->
-	<!-- </select> -->
-
-
-
-	<update id="change">
-		UPDATE USER
-		SET USER_PASSWORD =#{user_password}
-		WHERE USER_ID=#{user_id}
-	</update>
-
-	<update id="user_update">
-		UPDATE USER SET USER_PASSWORD =#{user_password},
-		USER_NAME=#{user_name}, USER_BIRTH=#{user_birth},
-		USER_GENDER=#{user_gender}, USER_EMAIL=#{user_email},
-		USER_PHONE=#{user_phone},
-		user_address1 = #{user_address1} ,
-		user_address2 = #{user_address2}
-		WHERE USER_ID=#{user_id}
-	</update>
-
 	<delete id="user_delete">
 		DELETE FROM USER WHERE USER_ID = #{user_id}
 	</delete>
+	
 </mapper>

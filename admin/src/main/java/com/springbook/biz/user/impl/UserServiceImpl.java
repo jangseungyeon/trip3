@@ -12,21 +12,33 @@ import com.springbook.biz.user.UserVO;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAOMybatis userDAO;
-
 	
-// 관리자 회원 조회
+//	관리자 회원 조회
 	@Override
 	public List<UserVO> manage_userList() {
 		return userDAO.manage_userList();
 	}
 	
-	
-// 관리자 회원 등록	
+// 	관리자 회원 등록	
 	@Override
 	public int manage_userInsert(UserVO vo) {
 		System.out.println("회원 등록");
 		return userDAO.manage_userInsert(vo);
 	}
+	
+//  관리자 회원 상세 조회
+	@Override
+	public UserVO manage_userInfo(String user_id) {
+		return userDAO.manage_userInfo(user_id);
+	}
+
+// 	관리자 회원 정보 수정
+	@Override
+	public void manage_userUpdate(UserVO vo) {
+		userDAO.manage_userUpdate(vo);
+	}
+	
+	
 	
 	
 	
@@ -65,7 +77,6 @@ public class UserServiceImpl implements UserService {
 //	}
 	@Override
 	public UserVO info(UserVO vo) {
-		
 		return userDAO.user_info(vo);
 	}
 	
@@ -78,6 +89,8 @@ public class UserServiceImpl implements UserService {
 	public void delete(UserVO vo) {
 		userDAO.user_delete(vo);
 	}
+
+
 	
 
 }

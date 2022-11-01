@@ -26,10 +26,10 @@ public class ManageController {
 			session.setAttribute("manage_id", manage_id);
 			session.setAttribute("manage_name", manage_name);
 			System.out.println("로그인성공");
-			return "admin_index.jsp";
+			return "WEB-INF/views/admin_main.jsp";
 		} else {
 			System.out.println("로그인실패");
-			return "WEB-INF/views/manage_login.jsp";
+			return "manage_login.jsp";
 		}
 
 	}
@@ -38,7 +38,7 @@ public class ManageController {
 	@RequestMapping("/manage_logout.do")
 	public String manage_logout(HttpSession session) {
 		session.invalidate();
-		return "WEB-INF/views/manage_login.jsp";
+		return "manage_login.jsp";
 	}
 
 	
