@@ -40,7 +40,7 @@
 	<tbody>
 		<c:forEach items="${roomList}" var="room" varStatus="status">
 			<tr onclick="f_getRoom('${room.room_id}', '${room.host_id}')" style="cursor:pointer;">
-				<td>${status.index}</td>
+				<td>${status.index+1}</td>
 				<td><img src="/resources/room_img/${room.room_img}" width="150" height="150" alt="${room.room_name} 대표 이미지" title="${room.room_name} 대표 이미지"/></td>
 				<td>${room.room_name}</td>
 				<td>${room.room_addr}&nbsp;&nbsp;${room.room_addr_detail}</td>			

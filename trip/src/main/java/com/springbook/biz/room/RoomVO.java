@@ -6,7 +6,7 @@ public class RoomVO {
 	private String room_name;	//숙소 이름
 	private String room_addr;	//숙소 기본 주소
 	private String room_addr_detail;	//숙소 상세 주소
-	private String room_desc;
+	private String room_desc;	//숙소 설명
 	private String room_id;		//숙소 아이디
 	private String host_id;		//업주 아이디
 	private String room_price;	//숙소 1박 가격
@@ -22,9 +22,65 @@ public class RoomVO {
 	private String room_swpool; //숙소 수영장 보유 여부
 	private String room_likes; //숙소 좋아요(찜) 보유수
 	private String room_stars;	//숙소 별점 평균
+	private String room_min_price; //숙소 최저가
+	private String room_max_price;	//숙소 최고가
+	private String room_theme_m;//산
+	private String room_theme_s;//바다
+	private String room_theme_f;//숲
+	private String room_theme_v;//계곡
+	private String room_theme_r;//강
+	private String room_theme_c;//도시
 	private MultipartFile uploadFile; // 숙소 이미지 파일 업로드할때 쓰이는 MultipartFile 변수
 	private int offset;
 	
+	public String getRoom_theme_m() {
+		return room_theme_m;
+	}
+	public void setRoom_theme_m(String room_theme_m) {
+		this.room_theme_m = room_theme_m;
+	}
+	public String getRoom_theme_s() {
+		return room_theme_s;
+	}
+	public void setRoom_theme_s(String room_theme_s) {
+		this.room_theme_s = room_theme_s;
+	}
+	public String getRoom_theme_f() {
+		return room_theme_f;
+	}
+	public void setRoom_theme_f(String room_theme_f) {
+		this.room_theme_f = room_theme_f;
+	}
+	public String getRoom_theme_v() {
+		return room_theme_v;
+	}
+	public void setRoom_theme_v(String room_theme_v) {
+		this.room_theme_v = room_theme_v;
+	}
+	public String getRoom_theme_r() {
+		return room_theme_r;
+	}
+	public void setRoom_theme_r(String room_theme_r) {
+		this.room_theme_r = room_theme_r;
+	}
+	public String getRoom_theme_c() {
+		return room_theme_c;
+	}
+	public void setRoom_theme_c(String room_theme_c) {
+		this.room_theme_c = room_theme_c;
+	}
+	public String getRoom_min_price() {
+		return room_min_price;
+	}
+	public void setRoom_min_price(String room_min_price) {
+		this.room_min_price = room_min_price;
+	}
+	public String getRoom_max_price() {
+		return room_max_price;
+	}
+	public void setRoom_max_price(String room_max_price) {
+		this.room_max_price = room_max_price;
+	}
 	public String getRoom_desc() {
 		return room_desc;
 	}
@@ -151,14 +207,18 @@ public class RoomVO {
 	public void setRoom_stars(String room_stars) {
 		this.room_stars = room_stars;
 	}
-	
 	@Override
 	public String toString() {
-		return "RoomVO [room_name=" + room_name + ", room_id=" + room_id + ", host_id=" + host_id + ", room_price="
+		return "RoomVO [room_name=" + room_name + ", room_addr=" + room_addr + ", room_addr_detail=" + room_addr_detail
+				+ ", room_desc=" + room_desc + ", room_id=" + room_id + ", host_id=" + host_id + ", room_price="
 				+ room_price + ", room_img=" + room_img + ", room_points=" + room_points + ", room_max=" + room_max
 				+ ", room_theme=" + room_theme + ", room_cat=" + room_cat + ", room_wifi=" + room_wifi + ", room_pet="
 				+ room_pet + ", room_meal=" + room_meal + ", room_parking=" + room_parking + ", room_swpool="
-				+ room_swpool + ", room_likes=" + room_likes + ", room_stars=" + room_stars + "]";
+				+ room_swpool + ", room_likes=" + room_likes + ", room_stars=" + room_stars + ", room_min_price="
+				+ room_min_price + ", room_max_price=" + room_max_price + ", room_theme_m=" + room_theme_m
+				+ ", room_theme_s=" + room_theme_s + ", room_theme_f=" + room_theme_f + ", room_theme_v=" + room_theme_v
+				+ ", room_theme_r=" + room_theme_r + ", room_theme_c=" + room_theme_c + ", uploadFile=" + uploadFile
+				+ ", offset=" + offset + "]";
 	}
-	
+
 }

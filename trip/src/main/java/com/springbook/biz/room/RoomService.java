@@ -22,4 +22,7 @@ public interface RoomService {
 	//숙소 정보 전체 갯수 조회
 	int totalRoomListCnt(RoomVO rvo);
 	
+	//장승연 숙소검색필터
+	List<RoomVO> u_searchRoomList(RoomVO rvo);
+	
 }

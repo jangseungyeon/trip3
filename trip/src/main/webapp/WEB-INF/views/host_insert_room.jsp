@@ -188,7 +188,7 @@
 <br>
 <div>
 <input name="room_addr" type="text" id="room_addr" readonly />&nbsp;
-<input name="room_addr_detail" type="text" id="room_addr_detail" readonly />&nbsp;
+<input name="room_addr_detail" type="text" id="room_addr_detail" />&nbsp;
 <button type="button" id="room_addr_search">검색</button>
 </div>
 </div>

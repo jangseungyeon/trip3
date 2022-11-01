@@ -50,4 +50,10 @@ public class RoomDAOMybatis {
 		return mybatis.selectOne("RoomDAO.totalRoomListCnt", rvo);
 	}
 	
+	//장승연 숙소 검색필터
+    public List<RoomVO> u_searchRoomList(RoomVO rvo) {
+       System.out.println("장승연 숙소 검색 필터");
+       return mybatis.selectList("RoomDAO.ugetRoomList", rvo);
+    }
+	
 }

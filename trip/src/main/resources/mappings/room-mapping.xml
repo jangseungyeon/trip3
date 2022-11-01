@@ -28,7 +28,7 @@
 	
 	<!-- 숙소 아이디와 업주 호스트 아이디 일치하는 숙소 데이터 한 줄 끌어오기 -->
 	<select id="getRoom" resultType="room">
-		SELECT * FROM ROOM WHERE ROOM_ID=#{room_id} and HOST_ID=#{host_id}
+		SELECT * FROM ROOM WHERE ROOM_ID=#{room_id}
 	</select>
 	
 	<!-- 상세 검색 조건으로 지정한 숙소 이름, 숙소 최저 가격과 최고 가격 사이, 최대 수용 인원, 
@@ -70,4 +70,27 @@
 <!-- 		<if test='searchRoomParking == "Y"'>AND ROOM_PARKING = 'Y'</if> -->
 <!-- 		<if test='searchRoomSwpool == "Y"'>AND ROOM_SWPOOL = 'Y'</if> -->
 	</select>
+	
+	<!-- 장승연 전체검색 -->
+	<select id="ugetRoomList" resultType="room">
+		SELECT * FROM ROOM WHERE 1=1
+		<if test="room_name !=null and room_name !=''"> AND ROOM_NAME LIKE CONCAT('%',#{room_name},'%') </if>
+		<if test="room_addr !=null  and room_addr !=''"> AND ROOM_ADDR LIKE CONCAT('%',#{room_addr},'%') </if>
+		<if test="room_cat !=null and room_cat != ''"> AND ROOM_CAT =#{room_cat} </if>
+		<if test="room_min_price != null and room_max_price != null and room_min_price != '' and room_max_price != ''"> AND ROOM_PRICE BETWEEN #{room_min_price} AND #{room_max_price}
+		</if>
+		<if test="room_max !=null and room_max != ''"> AND ROOM_MAX =#{room_max} </if>
+		<if test='room_wifi == "Y"'> AND room_wifi = #{room_wifi} </if>
+		<if test='room_pet == "Y"'> AND room_pet = #{room_pet} </if>
+		<if test='room_parking == "Y"'> AND room_parking = #{room_parking} </if>
+		<if test='room_swpool == "Y"'> AND room_swpool = #{room_swpool} </if>
+        <if test="room_theme_m !=null and room_theme_m !=''"> AND room_theme  = #{room_theme_m} </if>
+        <if test="room_theme_s !=null and room_theme_s !=''"> AND room_theme  = #{room_theme_s} </if>
+        <if test="room_theme_f !=null and room_theme_f !=''"> AND room_theme  = #{room_theme_f} </if>
+        <if test="room_theme_v !=null and room_theme_v !=''"> AND room_theme  = #{room_theme_v} </if>
+        <if test="room_theme_r !=null and room_theme_r !=''"> AND room_theme  = #{room_theme_r} </if>
+        <if test="room_theme_c !=null and room_theme_c !=''"> AND room_theme  = #{room_theme_c} </if>
+         
+	</select>
+	
 </mapper>

@@ -3,6 +3,7 @@ package com.springbook.view.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -52,11 +54,14 @@ public class RoomController {
 		System.out.println("숙소 등록 시작");
 		MultipartFile uploadFile = rvo.getUploadFile();
 		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
+		//위는 테스트용, 아래는 실제 서버에 올리면 써야하는 경로 구하는 법 (컨트롤러 안에 어떤 request.getParameter가 들어가면 안됨)
+//		String realPath = request.getSession().getServletContext().getRealPath("/resources/room_img/");
 		String room_img = uploadFile.getOriginalFilename();
 		if(!uploadFile.isEmpty()) {
 			rvo.setRoom_img(room_img);
 			uploadFile.transferTo(new File(realPath + room_img));
 		}
+		rvo.setRoom_price(rvo.getRoom_price().replace(",", ""));
 		roomService.insertRoom(rvo);
 		System.out.println("숙소 등록 성공");
 		return "redirect:getRoomList.do";
@@ -70,24 +75,53 @@ public class RoomController {
 	
 	//숙소 수정 (새션에 저장한 업주 호스트 아이디와 숙소 상세 페이지의 아이디와 일치해야 수정, 그 후 숙소 목록으로 돌아감)
 	@RequestMapping(value="/updateRoom.do")
-	public String updateRoom(@ModelAttribute("room") RoomVO rvo, HttpSession session) {
+	public String updateRoom(MultipartHttpServletRequest request, @ModelAttribute("room") RoomVO rvo, HttpSession session, SessionStatus sessionStatus) throws IllegalStateException, IOException {
+		
 		System.out.println("숙소 수정 시작");
-//		if(rvo.getHost_id().equals(session.getAttribute("host_id").toString()) ) {
+		
+		RoomVO rvo_bf = null;
+		rvo_bf = new RoomVO();
+		
+		rvo_bf.setRoom_id(rvo.getRoom_id());
+		rvo_bf.setHost_id(rvo.getHost_id());
+		
+		rvo_bf = roomService.getRoom(rvo_bf);
+		
+		MultipartFile uploadFile = rvo.getUploadFile();
+		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
+		String room_img = uploadFile.getOriginalFilename();
+		
+		if(rvo.getHost_id().equals(session.getAttribute("host_id").toString()) ) {
+			if(!uploadFile.isEmpty()) {
+				if(rvo_bf.getRoom_img() != null) {
+					System.out.println("파일 삭제: " + realPath + rvo_bf.getRoom_img());
+					File f = new File(realPath + rvo_bf.getRoom_img());
+					f.delete();
+				}
+				rvo.setRoom_img(room_img);
+				uploadFile.transferTo(new File(realPath + room_img));
+			}
+			rvo.setRoom_price(rvo.getRoom_price().replace(",", ""));
 			roomService.updateRoom(rvo);
 			System.out.println("숙소 수정 성공");
-			return "getRoomList.do";
-//		} else {
-//			return "getRoom.do?error=y";
-//		}
+			sessionStatus.setComplete();
+			//세션에서 "room" model 객체 지움 (객체 관리)
+			return "redirect:getRoomList.do";
+		} else {
+			return "getRoom.do?error=y";
+		}
 	}
 	
 	//숙소 삭제 (숙소 이미지 파일 먼저 삭제 후 숙소 조회 후 가지고 온 업주 호스트 아이디와 세션의 업주 호스트 아이디가 일치하면 삭제, 그 후 숙소 목록으로 돌아감)
 	@RequestMapping(value="/deleteRoom.do")
+	//public String deleteRoom(MultipartHttpServletRequest request, RoomVO rvo, HttpSession session) throws IllegalStateException, IOException {
 	public String deleteRoom(RoomVO rvo, HttpSession session) {
 		System.out.println("숙소 삭제 시작");
 		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
+		//위는 테스트용, 아래는 실제 서버에 올리면 써야하는 경로 구하는 법 (컨트롤러 안에 어떤 request.getParameter가 들어가면 안됨)
+		//String realPath = request.getSession().getServletContext().getRealPath("/resources/room_img/");
 		rvo = roomService.getRoom(rvo);
-//		if(rvo.getHost_id().equals(session.getAttribute("host_id").toString()) ) {
+		if(rvo.getHost_id().equals(session.getAttribute("host_id").toString()) ) {
 			if(rvo.getRoom_img() != null) {
 				System.out.println("파일 삭제: " + realPath + rvo.getRoom_img());
 				File f = new File(realPath + rvo.getRoom_img());
@@ -95,10 +129,10 @@ public class RoomController {
 			}
 			roomService.deleteRoom(rvo);
 			System.out.println("숙소 삭제 성공");
-			return "getRoomList.do";
-//		} else {
-//			return "getRoom.do?error=y";
-//		}
+			return "redirect:getRoomList.do";
+		} else {
+			return "getRoom.do?error=y";
+		}
 	}
 	
 	//숙소 상세 페이지 보기
@@ -136,4 +170,24 @@ public class RoomController {
 		return "WEB-INF/views/host_room_list.jsp";
 		
 	}
+	
+	// 장승연 숙소목록
+		@RequestMapping(value = "/u_getRoomList.do")
+		public String u_getRoomList(RoomVO rvo, Model model) {
+			System.out.println("u_getRoomList" + rvo);
+			List<RoomVO> u = roomService.getRoomList(rvo);
+			System.out.println(u);
+			model.addAttribute("u_roomList", u);
+			return "WEB-INF/views/roomlist.jsp";
+		}
+
+		// 장승연 숙소검색필터
+		@RequestMapping(value = "/u_searchRoomList.do")
+		public String u_searchRoomList(RoomVO rvo, Model model) {
+			System.out.println("u_searchRoomList : " + rvo);
+			List<RoomVO> u = roomService.u_searchRoomList(rvo);
+			System.out.println(u);
+			model.addAttribute("u_roomList", u);
+			return "WEB-INF/views/roomlist.jsp";
+		}
 }

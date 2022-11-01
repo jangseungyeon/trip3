@@ -37,7 +37,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="index.jsp">홈</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">숙소</a></li>
+							href="u_getRoomList.do">숙소</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="#">플래너</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
@@ -48,19 +48,9 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 					<ul class="nav justify-content-end bg-success">
 						<li class="nav-item"><a class="nav-link">${user_name}님 접속중</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="move_to_host_login.do">호스트</a></li>
-						<li class="nav-item"><a class="nav-link"
 							href="user_logout.do">로그아웃</a></li>
-							<div class="dropdown">
-							<button type="button" class="btn btn-primary dropdown-toggle"
-								data-toggle="dropdown">내 정보</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="user_info.do">정보 수정</a>
-								<a class="dropdown-item" href="check.do">결제 목록</a>
-								<a class="dropdown-item" href="#">좋아요(like)</a>
-								<a class="dropdown-item" href="plannerinfo.do">나의 여행</a>
-							</div>
-						</div>
+						<li class="nav-item"><a class="nav-link"
+							href="move_to_host_login.do">호스트</a></li>
 					</ul>
 				</c:when>
 
@@ -70,9 +60,9 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="index.jsp">홈</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">숙소</a></li>
+							href="u_getRoomList.do">숙소</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="start.do">플래너</a></li>
+							href="#">플래너</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="#">이용안내</a></li>
 					</ul>
@@ -81,7 +71,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 						<li class="nav-item"><a class="nav-link"
 							href="user_login.jsp">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="user_loginform.do">로그인</a></li>
+							href="user_login.jsp">로그인</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="move_to_host_login.do">호스트</a></li>
 					</ul>
