@@ -4,8 +4,23 @@
 
 <mapper namespace="PlaceDAO">
 
-	<insert id="insertPlace">
-		
+	<insert id="insertPlace" parameterType="java.util.List">
+	insert into place(
+	Planner_no , user_id , planner_date , place_name , mapy , mapx , img , addr
+	) values
+	<foreach collection="list" item="i" separator=",">
+		(
+			(select max(planner_no) from planner where user_id = #{i.user_id}) , 
+			#{i.user_id} , 
+			#{i.planner_date} ,
+			#{i.place_name} ,
+			#{i.mapy} ,
+			#{i.mapx} ,
+			#{i.img} ,
+			#{i.addr} 
+			
+		)
+		</foreach>
 	</insert>
-
+	
 </mapper>

@@ -266,7 +266,7 @@ $(document).ready(function(){
 		
 	}
 	
-	function last(){
+	function last(num){
 		
 	if($(".end").val() == ""){
 			alert("날짜를 선택해주세요");
@@ -293,7 +293,7 @@ $(document).ready(function(){
 			const offset = $(".2").offset();
 			$('html, body').animate({scrollTop: offset.top}, 500);
 			return false;
-		}else if($("#numP").val() == '0'){
+		}else if($("#numP").val() == '0' && num == 20){
 			alert("인원수를 선택해주세요");
 			return false;
 		}
@@ -301,7 +301,7 @@ $(document).ready(function(){
 	}
 </script>
 <body>
-<form action="start.do" onsubmit="return last()">
+<form action="start.do" onsubmit="return last(20)">
 <div class="container px-1 px-sm-5 mx-auto 1">
 <hr id="hr1" style="float:left; transition-property: width; transition-duration: 2s; width:0%">
       <h2>&nbsp&nbsp여행 날짜를 선택해주세요</h2> <br><br><br><br>

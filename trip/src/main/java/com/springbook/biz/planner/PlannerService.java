@@ -1,7 +1,9 @@
 package com.springbook.biz.planner;
 
-public interface PlannerService {
+import java.util.List;
 
-	PlannerVO plannerinfo(PlannerVO pvo);
+public interface PlannerService {
+	void insertPlace(List<PlaceVO> List);
 	
+	void insertPlanner(PlannerVO vo);
 }

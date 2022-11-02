@@ -12,6 +12,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 </head>
 <body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
 <div id="map" style="width:600px;height:300px;"></div>
 <script>
 function area(){
@@ -20,7 +24,7 @@ function area(){
 		url:"areaNum.do",
 		type: "GET",
 		cache: false,
-			dataType: "json",
+		dataType: "json",
 		data:{"areaNum" : areanum} ,
 		success:function(data){
 			$("#h2").html(data.area_name);
@@ -37,9 +41,15 @@ function area(){
 		}
 	});
 }
-
+var inRun = '';
 function test00(tval) {
-		var page = "";
+		
+		if(inRun == true){
+			return;
+		}
+		
+		isRun = true;
+	    var page = "";
 		var pageNum = 1;
 		var keyword = "";
 		var kate = 12;
@@ -76,27 +86,31 @@ function test00(tval) {
  		datatype : "json",
  		data : {"page" : page , "pageNum" : pageNum , "keyword" : keyword , "kate" : kate , "areaNum" : areanum} ,
  		success : function(data) {
+ 			inRun = false;
  			var num = 0;
  			var str = "";
  			var str2 = "";
-			
- 				for(var i = 1; i <= data[0].date+1; i++){
+			var img = "";
+ 				
+				for(var i = 1; i <= data[0].date+1; i++){
  					str += "<option id='o"+i+"' value='"+i+"'>"+i+"일차</option>";
- 					 str2 += "<p id='p"+i+"'>DAY-"+i+"</p>"; 
  				}
-			
- 				if(!($("#p1").length > 0)){ 
- 				$("#date").append(str2)
- 				}
-			
+ 				
  			$(data).each(function(){
-			
+ 				console.log(this.firstimage == "undefined")
+ 				
+ 				if(this.firstimage == ""){
+ 					img = "./resources/img/none_img.png";
+ 				}else{
+ 				 	img = this.firstimage
+ 				}
  			console.log(this.mapx);
 				
- 			 $("#div").append("<div class='delete'> <select class='delete' id='select' onchange='test("+num+" , value)'> <option>장소선택</option>"+str+"</select><br class='delete'> <img src='"+this.firstimage+"' style='width:50px;height:50px; float: left;' class='delete'>"+
+ 			 $("#div").append("<div class='delete'> <select class='delete' id='select' onchange='test("+num+" , value)'> <option>장소선택</option>"+str+"</select><br class='delete'> <img src='"+img+"' style='width:50px;height:50px; float: left;' class='delete'>"+
  					"<a href='#' onclick='test("+num+")' id='"+num+"' class='delete' style='vertical-align:top;'>"+this.title+"</a><br class='delete'> <small id='add"+num+"' class='delete' style='vertical-align:buttom;'>"+this.addr1+"</small></div><br class='delete'>" + 
+ 					"<input  type='hidden' class='areaData"+num+" delete' value='"+this.title +"==="+ this.addr1 +"==="+ this.mapx +"==="+ this.mapy+"==="+img+"'>"+
  					"<a href='#' onclick='test()' id='x"+num+"' style='display:none;' class='delete'>"+this.mapx+"</a>" + 
- 					"<a href='#' onclick='test()' id='y"+num+"' style='display:none;' class='delete'>"+this.mapy+"</a>") 
+ 					"<a href='#' onclick='test()' id='y"+num+"' style='display:none;' class='delete'>"+this.mapy+"</a>")
  			num += 1;
  			});
  			$("#be").attr("value" , data[0].pageNum);
@@ -104,6 +118,15 @@ function test00(tval) {
  			$("#kate").attr("value", data[0].kate);
  			var kate = data[0].kate;
  		},
+ 	   beforeSend:function(){
+ 		    inRun = true;
+ 	        $('.wrap-loading').css('display', '');
+ 	    }
+
+ 	    ,complete:function(){
+ 	        $('.wrap-loading').css('display', 'none');
+ 	    }
+ 	    ,
  		error : function() {
  			//태그 추가
  			alert("실패");
@@ -129,20 +152,19 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 
 <script>
 
-
 function test(num , value) {
-   
 	  var title = $('#' + num).text();
       var addr = $('#add' + num).text();
 	  var mapy = $('#y' + num).text();
 	  var mapx = $('#x' + num).text();
-	  
+	  var arrNumber = new Array();
+	  arrNumber[0] = "start";
 	  if(!($("#p" + value).text().includes(title))){ // 장소 중복 등록 방지
 			 if($("#p" + value).children(".number").length < 3 ){
-				 $("#p" + value).append("<a class='number "+$('.number').length+"'> " +title + "<i onclick='button("+$('.number').length+")' class='"+$('.number').length+" far fa-minus-circle'></i>");  
-			  }else alert("3개까지")
-			  }else alert("중복된 장소가 존재합니다")  
-	  
+				$("#p" + value).append("<a class='number "+$('.number').length+"'> " +title + "<i onclick='button("+$('.number').length+")' class='"+$('.number').length+" bi bi-calendar2-x'></i>" + 
+				"<input class='"+$('.number').length+"' type='hidden' value='"+value+"==="+$(".areaData"+num).val()+"' name='placeTab' >");
+			 }else alert("3개까지")
+			 }else alert("중복된 장소가 존재합니다")  
      mapOption = { 
     	        center: new kakao.maps.LatLng(mapy,mapx), // 지도의 중심좌표
     	        level: 3 // 지도의 확대 레벨
@@ -183,15 +205,16 @@ function button(num){
 	  }
 }
 
+
 </script>
-<form action="#">
+<form action="testValue.do" onsubmit="return areaData()"> 
+<!-- <form action="testValue.do" method="post"> -->
 <h2 id="h2"><%= session.getAttribute("areaname") %></h2>
 <input type="hidden" id="areaNumber">
-<input type="text" name="title"  placeholder="소제목 입력 창"><br>
+<input type="text" id="title"  placeholder="소제목 입력 창"><br>
 <input type="text" placeholder="검색" id="key" value="">
 <input type="button" value="검색" onclick="test00(0)">
 <br>
-<i class="bi bi-calendar2-x"></i>
 			<select name="areaNum" onchange="area()" id="areaNum">
 			<option>지역변경</option>
 			<c:forEach items="${AreaList}" var="area" >
@@ -206,10 +229,33 @@ function button(num){
 		    <button id="kate" onclick="test00(12)" value="12" style="display:none">카테고리</button>
 			
           	<div id="div">
+          	
+<div class="wrap-loading" style="display:none">
+<div class="spinner-grow text-secondary" role="status">
+<span class="visually-hidden"></span>
+</div>
+<div class="spinner-grow text-success" role="status">
+<span class="visually-hidden"></span>
+</div>
+<div class="spinner-grow text-danger" role="status">
+<span class="visually-hidden"></span>
+</div>
+<div class="spinner-grow text-warning" role="status">
+<span class="visually-hidden"></span>
+</div>
+<div class="spinner-grow text-info" role="status">
+<span class="visually-hidden"></span>
+</div>
+<div class="spinner-grow text-light" role="status">
+<span class="visually-hidden"></span>
+</div>
+</div>
           	</div>
           	<input type="button" id="be" onclick="test00(1)" value="1">이전
           	<input type="button" id="af" onclick="test00(2)" value="1">다음 
-			
+			<% for(int i=1; i<=Integer.parseInt((String)session.getAttribute("date")) + 1; i ++){ %>
+					<p id='p<%= i %>' class="cn">DAY-<%= i %></p>
+			<% } %>
 			<div>
 			<p id="plus"></p>
 			</div>
@@ -217,7 +263,9 @@ function button(num){
 			
 			<div id="date">
 			</div>
-			<input type="submit" value="저장하기">
+			<input type="submit" value="저장">
 			</form>
+		
+
 </body>
 </html>

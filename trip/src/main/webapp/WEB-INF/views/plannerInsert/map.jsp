@@ -67,5 +67,6 @@
 			<input type="hidden" name="areaname" id="ex">
 			</div>
 			
-				
+			<!--http://www.gisdeveloper.co.kr/?p=8555  -->
+			<!-- 해당 지도는 위의 사이트를 참고하여 만들었습니다 -->			
 		

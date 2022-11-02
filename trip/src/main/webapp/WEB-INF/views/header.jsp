@@ -56,7 +56,7 @@ alert("비밀번호가 일치하지 않습니다");
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="u_getRoomList.do">숙소</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">플래너</a></li>
+							href="start.do">플래너</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="#">이용안내</a></li>
 					</ul>
@@ -89,7 +89,7 @@ alert("비밀번호가 일치하지 않습니다");
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="u_getRoomList.do">숙소</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">플래너</a></li>
+							href="start.do">플래너</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="#">이용안내</a></li>
 					</ul>

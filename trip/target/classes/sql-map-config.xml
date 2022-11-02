@@ -15,7 +15,6 @@
 			type="com.springbook.biz.room.RoomVO"></typeAlias>
 		<typeAlias alias="reservation"
 			type="com.springbook.biz.reservation.ReservationVO"></typeAlias>
-		<typeAlias alias="host" type="com.springbook.biz.host.HostVO"/>
 		 <typeAlias type="com.springbook.biz.planner.PlannerVO" alias="planner"/>
 		<typeAlias type="com.springbook.biz.planner.AreaVO" alias="area"/>
 		<typeAlias type="com.springbook.biz.planner.PlaceVO" alias="place"/>
