@@ -53,7 +53,7 @@ public class ReservationController {
 			model.addAttribute("res_status", rvo.getRes_status());
 			model.addAttribute("res_checkin", rvo.getRes_checkin());
 			model.addAttribute("res_checkout", rvo.getRes_checkout());
-			return "WEB-INF/views/getReservationList.jsp";
+			return "WEB-INF/views/myReservationList.jsp";
 		} else {
 			return "index.jsp";
 		}
@@ -166,8 +166,9 @@ public class ReservationController {
 	
 	//숙소 예약 목록 조회
 	@RequestMapping(value="/getReservationList.do")
-	public String getReservationList(ReservationVO rvo, String nowPageBtn, Model model){
-		
+	public String getReservationList(ReservationVO rvo, HttpSession session, String nowPageBtn, Model model){
+		rvo.setUser_id((String)session.getAttribute("user_id"));
+
 		System.out.println("숙소 예약 목록 조회 시작");
 		
 		System.out.println("글 목록 검색 처리");
@@ -190,7 +191,7 @@ public class ReservationController {
 		
 		model.addAttribute("paging", pvo);
 		model.addAttribute("reservationList", reservationService.getReservationList(rvo));
-		return "getReservationList.jsp";
+		return "WEB-INF/views/myReservationList.jsp";
 		
 	}
 }

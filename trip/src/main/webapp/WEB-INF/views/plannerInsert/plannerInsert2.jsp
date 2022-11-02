@@ -211,7 +211,7 @@ function button(num){
 <!-- <form action="testValue.do" method="post"> -->
 <h2 id="h2"><%= session.getAttribute("areaname") %></h2>
 <input type="hidden" id="areaNumber">
-<input type="text" id="title"  placeholder="소제목 입력 창"><br>
+<input type="text" id="title" name="title"  placeholder="소제목 입력 창"><br>
 <input type="text" placeholder="검색" id="key" value="">
 <input type="button" value="검색" onclick="test00(0)">
 <br>

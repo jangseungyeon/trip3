@@ -73,9 +73,10 @@ alert("비밀번호가 일치하지 않습니다");
 								data-toggle="dropdown">내 정보</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="javascript:void(0);" onclick="info()">정보 수정</a>
-								<a class="dropdown-item" href="check.do">결제 목록</a>
-								<a class="dropdown-item" href="getReservationList.do">좋아요(like)</a>
-								<a class="dropdown-item" href="plannerinfo.do">나의 여행</a>
+								<a class="dropdown-item" href="pointcheck.do">마일리지</a>
+								<a class="dropdown-item" href="getReservationList.do">결제 목록</a>
+								<a class="dropdown-item" href="likeslist.do">좋아요(like)</a>
+								<a class="dropdown-item" href="plannerlist.do">나의 여행</a>
 							</div>
 						</div>
 					</ul>
@@ -98,7 +99,7 @@ alert("비밀번호가 일치하지 않습니다");
 						<li class="nav-item"><a class="nav-link"
 							href="user_insert.do">회원가입</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="user_loginform.do">로그인</a></li>
+							href="user.login.do">로그인</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="move_to_host_login.do">호스트</a></li>
 					</ul>

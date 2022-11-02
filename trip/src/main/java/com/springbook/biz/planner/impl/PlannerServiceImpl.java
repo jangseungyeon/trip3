@@ -31,4 +31,9 @@ public class PlannerServiceImpl implements PlannerService{
 		return plannerDAO.plannerinfo(pvo);
 	}
 	
+	@Override
+	public List<PlannerVO> plannerlist(PlannerVO pvo) {
+		return plannerDAO.plannerList(pvo);
+	}
+	
 }

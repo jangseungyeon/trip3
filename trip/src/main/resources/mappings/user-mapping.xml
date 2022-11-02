@@ -41,7 +41,7 @@
 		WHERE USER_ID=#{user_id} 
 	</update>
 	
-	<delete id="user_delete">
-	DELETE FROM USER WHERE USER_ID = #{user_id}
-	</delete>
+	<update id="user_delete">
+	UPDATE USER SET user_status = '1' WHERE USER_ID = #{user_id}
+	</update>
 </mapper>

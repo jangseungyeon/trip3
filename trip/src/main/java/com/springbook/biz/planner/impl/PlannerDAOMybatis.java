@@ -26,6 +26,12 @@ public class PlannerDAOMybatis {
 	}
 
 	public PlannerVO plannerinfo(PlannerVO pvo) {
-		return mybatis.selectOne("PlannerDAO.plannerinfo", pvo);
+		return mybatis.selectOne("PlannerDAO.detailplanner", pvo);
 	}
+	
+	public List<PlannerVO> plannerList(PlannerVO pvo) {
+		System.out.println("다오에서 리스트 실행");
+		return mybatis.selectList("PlannerDAO.plannerinfo", pvo);
+	}
+	
 }

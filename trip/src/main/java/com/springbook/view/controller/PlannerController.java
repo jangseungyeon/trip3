@@ -77,17 +77,28 @@ public class PlannerController {
 		if (pvo != null) {
 			String user_id = pvo.getUser_id();
 			session.setAttribute("user_id", user_id);
+			model.addAttribute("planner_no", pvo.getPlanner_no());
 			model.addAttribute("room_name", pvo.getRoom_name());
 			model.addAttribute("planner_start", pvo.getPlanner_start());
 			model.addAttribute("planner_end", pvo.getPlanner_end());
 			model.addAttribute("planner_area", pvo.getPlanner_area());
 			model.addAttribute("planner_title", pvo.getPlanner_title());
 			model.addAttribute("planner_day", pvo.getPlanner_day());
-			return "WEB-INF/views/myPlanner.jsp";
+			return "WEB-INF/views/detailPlanner.jsp";
 		} else {
 			return "index.jsp";
 		}
 	}
+	
+	//리스트로 불러오기
+		@RequestMapping("/plannerlist.do")
+		public String plannerlist(PlannerVO pvo ,HttpSession session, Model model) {
+			pvo.setUser_id((String)session.getAttribute("user_id"));
+
+			List<PlannerVO> list = Service.plannerlist(pvo);
+			model.addAttribute("list", list);
+			return "WEB-INF/views/myPlanner.jsp";
+		}
 	
 	
 }

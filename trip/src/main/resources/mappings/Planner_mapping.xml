@@ -16,5 +16,9 @@
    <select id="plannerinfo" resultType="planner">
       SELECT * FROM planner WHERE USER_ID= #{user_id}
    </select>
+   
+   <select id="detailplanner" resultType="planner">
+      SELECT * FROM planner WHERE USER_ID= #{user_id} AND planner_no = #{planner_no}
+   </select>
 
 </mapper>
