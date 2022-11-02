@@ -6,4 +6,7 @@ public interface PlannerService {
 	void insertPlace(List<PlaceVO> List);
 	
 	void insertPlanner(PlannerVO vo);
+	
+	PlannerVO plannerinfo(PlannerVO pvo);
+
 }

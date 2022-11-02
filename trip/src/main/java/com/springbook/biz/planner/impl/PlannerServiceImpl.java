@@ -13,16 +13,22 @@ import com.springbook.biz.planner.PlannerVO;
 public class PlannerServiceImpl implements PlannerService{
 	
 	@Autowired
-	private PlannerDAOMybatis plannerService;
+	private PlannerDAOMybatis plannerDAO;
 	
 	@Override
 	public void insertPlace(List<PlaceVO> List) {
-		plannerService.insertPlace(List);
+		plannerDAO.insertPlace(List);
 	}
 
 	@Override
 	public void insertPlanner(PlannerVO vo) {
-		plannerService.insertPlanner(vo);
+		plannerDAO.insertPlanner(vo);
+	}
+	
+//	내가 작성한 플래너 정보 가져오기
+	@Override
+	public PlannerVO plannerinfo(PlannerVO pvo) {
+		return plannerDAO.plannerinfo(pvo);
 	}
 	
 }

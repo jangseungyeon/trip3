@@ -3,7 +3,7 @@ package com.springbook.biz.planner;
 public class PlannerVO {
 	
 	private String user_id; // 회원 아이디
-	private String Planner_no; //추가
+	private String planner_no; //추가
 	private String room_name; // 숙소명
 	private String planner_start; // 여행 시작일
 	private String planner_end;  // 여행 종료일
@@ -11,12 +11,14 @@ public class PlannerVO {
 	private String planner_title; // 플레너 제목
 	private String planner_day; // 여행 기간
 	
+
 	public String getPlanner_no() {
-		return Planner_no;
+		return planner_no;
 	}
 	public void setPlanner_no(String planner_no) {
-		Planner_no = planner_no;
+		this.planner_no = planner_no;
 	}
+	
 	public String getPlanner_area() {
 		return planner_area;
 	}

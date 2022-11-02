@@ -24,4 +24,8 @@ public class PlannerDAOMybatis {
 		System.out.println("PlannerDAOMybatis.insertPlanner 메소드 실행");
 		mybatis.insert("PlannerDAO.insertPlanner" , vo);
 	}
+
+	public PlannerVO plannerinfo(PlannerVO pvo) {
+		return mybatis.selectOne("PlannerDAO.plannerinfo", pvo);
+	}
 }
