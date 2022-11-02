@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
 	
 //  관리자 회원 상세 조회
 	@Override
-	public UserVO manage_userInfo(String user_id) {
-		return userDAO.manage_userInfo(user_id);
+	public UserVO manage_userInfo(UserVO vo) {
+		return userDAO.manage_userInfo(vo);
 	}
 
 // 	관리자 회원 정보 수정
@@ -38,59 +38,17 @@ public class UserServiceImpl implements UserService {
 		userDAO.manage_userUpdate(vo);
 	}
 	
-	
-	
-	
-	
-	
+// 	관리자 회원 삭제	
 	@Override
-	public int insert(UserVO vo) {
-		System.out.println("회원 등록");
-		return userDAO.insertUser(vo);
-		
+	public void manage_userDelete(UserVO vo) {
+		userDAO.manage_userDelete(vo);
 	}
 	
+//	아이디 체크	
 	@Override
 	public int idCheck(UserVO vo) {
 		System.out.println("11");
 		return userDAO.user_idCheck(vo);
 	}
-	@Override
-	public UserVO login(UserVO vo) {
-		System.out.println("user_login");
-		return userDAO.user_login(vo);
-	}
-	@Override
-	public UserVO find(UserVO vo) {
-		System.out.println("user_find");
-		return userDAO.user_find(vo);
-	}
-	@Override
-	public int change(UserVO vo) {
-		System.out.println("user_change");
-		return userDAO.user_change(vo);
-	}
-//	@Override
-//	public UserVO logout(UserVO vo) {
-//		System.out.println("user_logout");
-//		return userDAO.user_logout(vo);
-//	}
-	@Override
-	public UserVO info(UserVO vo) {
-		return userDAO.user_info(vo);
-	}
-	
-	@Override
-	public void update(UserVO vo) {
-		System.out.println("서비스impl");
-		userDAO.user_update(vo);
-	}
-	@Override
-	public void delete(UserVO vo) {
-		userDAO.user_delete(vo);
-	}
-
-
-	
 
 }

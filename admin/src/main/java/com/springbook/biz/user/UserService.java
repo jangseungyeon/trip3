@@ -4,7 +4,6 @@ import java.util.List;
 
 public interface UserService {
 	
-	
 //	관리자 회원 조회
 	List<UserVO> manage_userList();
 
@@ -12,32 +11,16 @@ public interface UserService {
 	int manage_userInsert(UserVO vo);
 
 //  관리자 회원 상세 조회
-	UserVO manage_userInfo(String user_id);
+	UserVO manage_userInfo(UserVO vo);
 	
 //  관리자 회원 정보 수정
 	void manage_userUpdate(UserVO vo);
 	
+// 	관리자 회원 삭제
+	void manage_userDelete(UserVO vo);
 	
-	
-	
-	int insert(UserVO vo);
-
+// 	아이디 체크	
 	int idCheck(UserVO vo);
-
-	UserVO login(UserVO vo);
-
-	UserVO find(UserVO vo);
-
-	int change(UserVO vo);
-
-//	UserVO logout(UserVO vo);
-	
-	UserVO info(UserVO vo);
-
-	void update(UserVO vo);
-
-	void delete(UserVO vo);
-
 }
 
 

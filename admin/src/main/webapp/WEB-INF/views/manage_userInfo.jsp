@@ -26,7 +26,7 @@
         $("#btnDelete").click(function(){
             // 확인 대화상자 
             if(confirm("삭제하시겠습니까?")){
-                document.manage_userInfo.action = "${path}/member/delete.do";
+                document.manage_userInfo.action = "manage_userDelete.do";
                 document.manage_userInfo.submit();
             }
         });
@@ -38,7 +38,7 @@
         <table border="1">
             <tr>
                 <td>아이디</td>
-                <td><input name="user_id" value="${UserVO.user_id}" readonly="readonly"></td>
+                <td><input name="user_id" value="${UserVO.user_id}" readonly></td>
             </tr>
             <tr>
                 <td>이름</td>
@@ -86,7 +86,6 @@
                 <td colspan="2" align="center">
                     <input type="button" value="수정" id="btnUpdate">
                     <input type="button" value="삭제" id="btnDelete">
-                    <div style="color: red;">${message}</div>
                 </td>
             </tr>
         </table>

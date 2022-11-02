@@ -12,7 +12,7 @@ import com.springbook.biz.user.UserVO;
 public class UserDAOMybatis {
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	
+
 // 	관리자 회원 조회	
 	public List<UserVO> manage_userList() {
 		System.out.println("manage_userList: ");
@@ -24,43 +24,27 @@ public class UserDAOMybatis {
 		System.out.println("manage_userInsert: " + vo);
 		return mybatis.insert("UserDAO.manage_userInsert", vo);
 	}
-	
+
 //  관리자 회원 상세 조회
-	public UserVO manage_userInfo(String user_id) {
-		return mybatis.selectOne("UserDAO.manage_userInfo", user_id);
+	public UserVO manage_userInfo(UserVO vo) {
+		System.out.println("manage_userInfo: " + vo);
+		return mybatis.selectOne("UserDAO.manage_userInfo", vo);
 	}
-	
+
 //	관리자 회원 정보 수정	
 	public void manage_userUpdate(UserVO vo) {
+		System.out.println("manage_userUpdate: " + vo);
 		mybatis.update("UserDAO.manage_userUpdate", vo);
 	}
-	
-	
-	
-	
-	public UserVO user_info(UserVO vo) {
-		return mybatis.selectOne("UserDAO.info",vo);
+
+//	관리자 회원 삭제
+	public void manage_userDelete(UserVO vo) {
+		System.out.println("manage_userDelete: ");
+		mybatis.delete("UserDAO.manage_userDelete", vo);
+
 	}
 
-	public void user_update(UserVO vo) {
-		System.out.println("===>mybatis 업데이트 기능처리");
-		mybatis.update("UserDAO.user_update", vo);
-		 System.out.println("mybatis.update(UserDAO.user_update, vo)");
-	}
-
-	public void user_delete(UserVO vo) {
-		System.out.println("===>mybatis del 기능처리");
-
-		mybatis.delete("UserDAO.user_delete", vo);
-		
-	}
-
-	public int insertUser(UserVO vo) {
-		System.out.println("insertBoard");
-		System.out.println("insertUser: " + vo);
-		return mybatis.insert("UserDAO.user_insert", vo);
-	}
-
+//  아이디 체크
 	public int user_idCheck(UserVO vo) {
 		System.out.println("user_idCheck");
 		System.out.println("idCheck: " + vo);
@@ -77,27 +61,4 @@ public class UserDAOMybatis {
 		}
 	}
 
-	public UserVO user_login(UserVO vo) {
-		System.out.println("user_login: " + vo);
-		return mybatis.selectOne("UserDAO.login", vo);
-	}
-
-	public UserVO user_find(UserVO vo) {
-		System.out.println("user_find: " + vo);
-		return mybatis.selectOne("UserDAO.find", vo);
-	}
-	
-	public int user_change(UserVO vo) {
-		System.out.println("user_change: " + vo);
-		return mybatis.update("UserDAO.change", vo);
-	}
-//	public UserVO user_logout(UserVO vo) {
-//		return mybatis.selectOne("UserDAO.idCheck", vo);
-//	}
-
-
-
-	
-	
-	
 }

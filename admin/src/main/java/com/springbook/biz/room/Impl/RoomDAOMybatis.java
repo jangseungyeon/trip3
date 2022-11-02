@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.springbook.biz.room.RoomVO;
+import com.springbook.biz.user.UserVO;
 
 @Repository
 public class RoomDAOMybatis {
@@ -14,40 +15,31 @@ public class RoomDAOMybatis {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	//숙소 등록
-	public void insertRoom(RoomVO rvo) {
-		System.out.println("마이바티스 숙소 등록 insertRoom 기능 처리");
-		mybatis.insert("RoomDAO.insertRoom", rvo);
+	// 관리자 숙소 조회
+	public List<RoomVO> manage_roomList() {
+		System.out.println("마이바티스 숙소 조회 manage_roomList 기능 처리");
+		return mybatis.selectList("RoomDAO.manage_roomList");
 	}
 	
-	//숙소 수정
-	public void updateRoom(RoomVO rvo) {
-		System.out.println("마이바티스 숙소 수정 updateRoom 기능 처리");
-		mybatis.update("RoomDAO.updateRoom", rvo);
+	// 관리자 숙소 상세 조회
+	public RoomVO manage_roomInfo(RoomVO rvo) {
+		System.out.println("마이바티스 숙소 상세 조회 manage_roomInfo: " + rvo);
+		return mybatis.selectOne("RoomDAO.manage_roomInfo", rvo);
+	}
+
+	// 관리자 숙소 수정
+	public void manage_updateRoom(RoomVO rvo) {
+		System.out.println("마이바티스 숙소 수정 manage_updateRoom 기능 처리");
+		mybatis.update("RoomDAO.manage_updateRoom", rvo);
 	}
 	
-	//숙소 삭제
-	public void deleteRoom(RoomVO rvo) {
-		System.out.println("마이바티스 숙소 삭제 deleteRoom 기능 처리");
-		mybatis.delete("RoomDAO.deleteRoom", rvo);
+	// 관리자 숙소 삭제
+	public void manage_deleteRoom(RoomVO rvo) {
+		System.out.println("마이바티스 숙소 삭제 manage_deleteRoom 기능 처리");
+		mybatis.delete("RoomDAO.manage_deleteRoom", rvo);
 	}
 	
-	//숙소 상세 조회
-	public RoomVO getRoom(RoomVO rvo) {
-		System.out.println("마이바티스 숙소 상세 조회 getRoom 기능 처리");
-		return (RoomVO) mybatis.selectOne("RoomDAO.getRoom", rvo);
-	}
 	
-	//숙소 목록 조회
-	public List<RoomVO> getRoomList(RoomVO rvo) {
-		System.out.println("마이바티스 숙소 목록 조회 getRoomList 기능 처리");
-		return mybatis.selectList("RoomDAO.getRoomList", rvo);
-	}
 	
-	//전체 숙소 목록 개수 조회
-	public int totalRoomListCnt(RoomVO rvo) {
-		System.out.println("마이바티스 전체 숙소 목록 개수 조회 totalRoomListCnt 기능 처리");
-		return mybatis.selectOne("RoomDAO.totalRoomListCnt", rvo);
-	}
 	
 }

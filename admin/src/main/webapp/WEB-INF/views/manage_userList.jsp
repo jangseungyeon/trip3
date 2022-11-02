@@ -16,19 +16,6 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-	
-<script>
-	function deletecheck() {
-		var deletecheck = prompt("탈퇴를 원하시면 아래 문구를 입력해주세요.\n'회원탈퇴'");
-		if (deletecheck == "회원탈퇴") {
-			location.href = "manage_delete.do";
-
-		} else {
-			alert("문구가 일치하지 않습니다.");
-		}
-
-	}
-</script>
 
 </head>
 <body>
@@ -46,7 +33,7 @@
 			<th>상세주소</th>
 			<th>상태</th>
 			<th>타입</th>
-			<th colspan="2"><a class="btn btn-primary" href="manage_userInsertForm.do" role="button">회원가입</a></th>
+			<th><a class="btn btn-primary" href="manage_userInsertForm.do" role="button">회원가입</a></th>
 		</tr>
 		<c:forEach var="i" items="${list}">
 			<tr align="center">
@@ -60,9 +47,7 @@
 				<td>${i.user_address2}</td>
 				<td>${i.user_status}</td>
 				<td>${i.user_type}</td>
-				<td><a class="btn btn-primary" href="manage_userInfo.do?user_id=${i.user_id}" role="button">수정</a></td>
-				<td><a class="btn btn-primary" onclick="deletecheck()">탈퇴</a></td>
-					
+				<td><a class="btn btn-danger" href="manage_userInfo.do?user_id=${i.user_id}" role="button">정보수정</a></td>
 			</tr>
 		</c:forEach>
 	</table>

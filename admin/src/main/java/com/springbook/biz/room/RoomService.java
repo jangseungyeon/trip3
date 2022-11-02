@@ -4,22 +4,20 @@ import java.util.List;
 
 public interface RoomService {
 	
-	//숙소 등록
-	void insertRoom(RoomVO rvo);
+		
+	// 관리자 숙소 조회
+	List<RoomVO> manage_roomList();
 	
-	//숙소 수정 
-	void updateRoom(RoomVO rvo);
+	// 관리자 숙소 상세 조회
+	RoomVO manage_roomInfo(RoomVO rvo);
 	
-	//숙소 삭제
-	void deleteRoom(RoomVO rvo);
+	// 관리자 숙소 수정 
+	void manage_updateRoom(RoomVO rvo);
 	
-	//숙소 상세 조회
-	RoomVO getRoom(RoomVO rvo);
+	// 관리자 숙소 삭제
+	void manage_deleteRoom(RoomVO rvo);
 	
-	//숙소 여러개 정보 리스트 조회
-	List<RoomVO> getRoomList(RoomVO rvo);
 	
-	//숙소 정보 전체 갯수 조회
-	int totalRoomListCnt(RoomVO rvo);
+
 	
 }

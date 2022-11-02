@@ -48,7 +48,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 			serverSide : false,
 			searching : true,
 			ajax : {
-				"url" : "<c:url value='/user_list.do' />",
+				"url" : "WEB-INF/views/manage_userList.do",
 				"type" : "POST",
 				"data" : function(d) {
 					d.userStatCd = "NR";
@@ -127,7 +127,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 							<ul class="nav flex-column">
 								<li class="nav-item"><a class="nav-link" href="#">상황판</a></li>
 								<li class="nav-item"><a class="nav-link" href="manage_userList.do">사용자 관리</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">숙소 관리</a></li>
+								<li class="nav-item"><a class="nav-link" href="manage_roomList.do">숙소 관리</a></li>
 								<li class="nav-item"><a class="nav-link" href="#">게시판 관리</a></li>
 								<li class="nav-item"><a class="nav-link" href="#">업주 관리</a></li>
 								<li class="nav-item"><a class="nav-link" href="#">결제 관리</a></li>
