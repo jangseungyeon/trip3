@@ -31,7 +31,7 @@ public class RoomVO {
 	private String room_theme_m;//산
 	private String room_theme_s;//바다
 	private String room_theme_f;//숲
-	private String room_theme_v;//계곡
+	private String room_theme_v;//계곡	//이 부분 31 ~ 36 줄 (산 ~ 도시) 까지는 숙소 목록 상세 검색을 위해 필요한 조건들
 	private String room_theme_r;//강
 	private String room_theme_c;//도시
 	private MultipartFile room_img_no1_multi; 

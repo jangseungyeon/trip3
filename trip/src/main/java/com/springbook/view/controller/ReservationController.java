@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.springbook.biz.common.PagingVO;
 import com.springbook.biz.reservation.ReservationService;
 import com.springbook.biz.reservation.ReservationVO;
+import com.springbook.biz.room.RoomService;
+import com.springbook.biz.room.RoomVO;
+import com.springbook.biz.user.UserService;
+import com.springbook.biz.user.UserVO;
 
 import java.util.Calendar;
 
@@ -29,6 +33,15 @@ public class ReservationController {
 
 	@Autowired
 	private ReservationService reservationService;
+	
+	//아래 숙소 예약 결제 폼 페이지로 넘어갈때 숙소 기본 정보와 유저 기본 정보를 끌고 오기 위해 
+	//RoomService형 객체와 UserService형 객체가 필요해서 사용
+	
+	@Autowired
+	private RoomService roomService;
+	
+	@Autowired
+	private UserService userService;
 	
 
 //	내 예약 확인
@@ -59,6 +72,24 @@ public class ReservationController {
 		}
 	}
 
+	//숙소 예약 결제 페이지 이동 (하면서 해당 숙소의 기본 정보 및 유저 정보 끌고 옴)
+	@RequestMapping(value="/moveInsertReservation.do") 
+	public String moveInsertReservation(RoomVO rovo, ReservationVO revo, Model model, HttpSession session) {
+		
+		model.addAttribute("room",roomService.getRoom(rovo));
+		
+		model.addAttribute("reservation", revo);
+		
+		UserVO uvo = null;
+		
+		uvo = new UserVO();
+		
+		uvo.setUser_id((String) session.getAttribute("user_id"));
+		
+		model.addAttribute("userInfo", userService.info(uvo));
+		
+		return "WEB-INF/views/user_insert_reservation.jsp";
+	}
 
 	//숙소 예약 등록 (숙소 상세 페이지에서 숙소 예약 => 최대한 넘겨줄수 있는 값들 다 넘겨줘야 함)
 	@RequestMapping(value="/insertReservation.do")

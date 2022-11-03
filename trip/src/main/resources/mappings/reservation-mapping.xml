@@ -6,10 +6,10 @@
 
 	<!-- 숙소 예약 등록 -->
 	<insert id="insertReservation">
-		INSERT INTO RESERVATION (RES_ID, USER_ID, HOST_ID, ROOM_ID, ROOM_NAME, ROOM_IMG, PAY_DATE, PAY_AMOUNT, RES_NUM, 
-		RES_COUNT, RES_STATUS, RES_CHECKIN, RES_CHECKOUT)
-		VALUES(#{res_id}, #{user_id}, #{host_id}, #{room_id}, #{room_name}, #{room_img}, #{pay_date}, #{pay_amount}, #{res_num},
-		#{res_cancel}, #{res_status}, #{res_checkin}, #{res_checkout})
+		INSERT INTO RESERVATION (USER_ID, RES_NAME, RES_TEL, RES_EMAIL, HOST_ID, ROOM_ID, ROOM_NAME, ROOM_IMG, PAY_DATE, PAY_AMOUNT, RES_NUM, 
+		RES_CHECKIN, RES_CHECKOUT)
+		VALUES(#{user_id}, #{res_name}, #{res_tel}, #{res_email}, #{host_id}, #{room_id}, #{room_name}, #{room_img}, #{pay_date}, #{pay_amount}, #{res_num},
+		#{res_checkin}, #{res_checkout})
 	</insert>
 	
 	<!-- 숙소 예약 수정 (기본적으로 예약 번호와 유저 아이디와 예약 상태가 취소 가능하다는 상태 아래 일정 조정 즉, 

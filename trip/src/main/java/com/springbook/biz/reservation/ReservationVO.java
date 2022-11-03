@@ -3,6 +3,9 @@ package com.springbook.biz.reservation;
 public class ReservationVO {
 	private String res_id;	//예약 번호
 	private String user_id;	//손님 아이디
+	private String res_name; //손님 이름
+	private String res_tel;	//손님 전화번호
+	private String res_email;	//손님 이메일
 	private String host_id;	//업주 아이디
 	private String room_id;	//숙소 아이디
 	private String room_name;	//숙소명
@@ -11,11 +14,29 @@ public class ReservationVO {
 	private String pay_amount;	//결제금액
 	private String res_num;	//예약 인원
 	private int res_count;	//변경 가능 횟수 (DB 디폴트 초기 값 3)
-	private String res_status;	//예약상태
+	private String res_status;	//예약상태 (DB 디폴트 초기 값 1)
 	private String res_checkin;	//체크인 날짜
 	private String res_checkout;	//체크아웃 날짜
 	private int offset;	//페이징 처리에서 페이지 바꿀때마다 변하는, 맨 처음부터 데이터 건너뛰는 갯수 <= pagingVO에서 조정
 	
+	public String getRes_tel() {
+		return res_tel;
+	}
+	public void setRes_tel(String res_tel) {
+		this.res_tel = res_tel;
+	}
+	public String getRes_email() {
+		return res_email;
+	}
+	public void setRes_email(String res_email) {
+		this.res_email = res_email;
+	}
+	public String getRes_name() {
+		return res_name;
+	}
+	public void setRes_name(String res_name) {
+		this.res_name = res_name;
+	}
 	public String getRoom_img() {
 		return room_img;
 	}
@@ -103,10 +124,11 @@ public class ReservationVO {
 	
 	@Override
 	public String toString() {
-		return "ReservationVO [res_id=" + res_id + ", user_id=" + user_id + ", host_id=" + host_id + ", room_id="
-				+ room_id + ", room_name=" + room_name + ", pay_date=" + pay_date + ", pay_amount=" + pay_amount
-				+ ", res_num=" + res_num + ", res_count=" + res_count + ", res_status="
-				+ res_status + ", res_checkin=" + res_checkin + ", res_checkout=" + res_checkout + "]";
+		return "ReservationVO [res_id=" + res_id + ", user_id=" + user_id + ", res_name=" + res_name + ", res_tel="
+				+ res_tel + ", res_email=" + res_email + ", host_id=" + host_id + ", room_id=" + room_id
+				+ ", room_name=" + room_name + ", room_img=" + room_img + ", pay_date=" + pay_date + ", pay_amount="
+				+ pay_amount + ", res_num=" + res_num + ", res_count=" + res_count + ", res_status=" + res_status
+				+ ", res_checkin=" + res_checkin + ", res_checkout=" + res_checkout + ", offset=" + offset + "]";
 	}
 	
 }
