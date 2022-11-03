@@ -10,9 +10,13 @@ public class RoomVO {
 	private String room_id;		//숙소 아이디
 	private String host_id;		//업주 아이디
 	private String room_price;	//숙소 1박 가격
-	private String room_img;	//숙소 이미지
+	private String room_img_no1;	//숙소 대표 이미지
+	private String room_img_no2;	//숙소 서브 이미지 1
+	private String room_img_no3;	//숙소 서브 이미지 2
+	private String room_img_no4;	//숙소 서브 이미지 3
+	private String room_img_no5;	//숙소 서브 이미지 4 
 	private String room_points;	//숙소 마일리지
-	private String room_max;	//숙소 최대인원
+	private int room_max;	//숙소 최대인원
 	private String room_theme;	//숙소 테마 (산, 바다, 산과 바다)
 	private String room_cat;	//숙소 카테고리 (펜션, 모텔, 호텔, 게스트 하우스,...)
 	private String room_wifi;	//숙소 와이파이 여부
@@ -30,7 +34,11 @@ public class RoomVO {
 	private String room_theme_v;//계곡
 	private String room_theme_r;//강
 	private String room_theme_c;//도시
-	private MultipartFile uploadFile; // 숙소 이미지 파일 업로드할때 쓰이는 MultipartFile 변수
+	private MultipartFile room_img_no1_multi; 
+	private MultipartFile room_img_no2_multi; 
+	private MultipartFile room_img_no3_multi; // 숙소 이미지 파일 업로드할때 쓰이는 MultipartFile 변수
+	private MultipartFile room_img_no4_multi; // room_img_no1 대표 이미지, 나머지 서브 이미지 4개
+	private MultipartFile room_img_no5_multi; 
 	private int offset;
 	
 	public String getRoom_theme_m() {
@@ -99,11 +107,35 @@ public class RoomVO {
 	public void setOffset(int offset) {
 		this.offset = offset;
 	}
-	public MultipartFile getUploadFile() {
-		return uploadFile;
+	public MultipartFile getRoom_img_no1_multi() {
+		return room_img_no1_multi;
 	}
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
+	public void setRoom_img_no1_multi(MultipartFile room_img_no1_multi) {
+		this.room_img_no1_multi = room_img_no1_multi;
+	}
+	public MultipartFile getRoom_img_no2_multi() {
+		return room_img_no2_multi;
+	}
+	public void setRoom_img_no2_multi(MultipartFile room_img_no2_multi) {
+		this.room_img_no2_multi = room_img_no2_multi;
+	}
+	public MultipartFile getRoom_img_no3_multi() {
+		return room_img_no3_multi;
+	}
+	public void setRoom_img_no3_multi(MultipartFile room_img_no3_multi) {
+		this.room_img_no3_multi = room_img_no3_multi;
+	}
+	public MultipartFile getRoom_img_no4_multi() {
+		return room_img_no4_multi;
+	}
+	public void setRoom_img_no4_multi(MultipartFile room_img_no4_multi) {
+		this.room_img_no4_multi = room_img_no4_multi;
+	}
+	public MultipartFile getRoom_img_no5_multi() {
+		return room_img_no5_multi;
+	}
+	public void setRoom_img_no5_multi(MultipartFile room_img_no5_multi) {
+		this.room_img_no5_multi = room_img_no5_multi;
 	}
 	public String getRoom_name() {
 		return room_name;
@@ -135,11 +167,35 @@ public class RoomVO {
 	public void setRoom_price(String room_price) {
 		this.room_price = room_price;
 	}
-	public String getRoom_img() {
-		return room_img;
+	public String getRoom_img_no1() {
+		return room_img_no1;
 	}
-	public void setRoom_img(String room_img) {
-		this.room_img = room_img;
+	public void setRoom_img_no1(String room_img_no1) {
+		this.room_img_no1 = room_img_no1;
+	}
+	public String getRoom_img_no2() {
+		return room_img_no2;
+	}
+	public void setRoom_img_no2(String room_img_no2) {
+		this.room_img_no2 = room_img_no2;
+	}
+	public String getRoom_img_no3() {
+		return room_img_no3;
+	}
+	public void setRoom_img_no3(String room_img_no3) {
+		this.room_img_no3 = room_img_no3;
+	}
+	public String getRoom_img_no4() {
+		return room_img_no4;
+	}
+	public void setRoom_img_no4(String room_img_no4) {
+		this.room_img_no4 = room_img_no4;
+	}
+	public String getRoom_img_no5() {
+		return room_img_no5;
+	}
+	public void setRoom_img_no5(String room_img_no5) {
+		this.room_img_no5 = room_img_no5;
 	}
 	public String getRoom_points() {
 		return room_points;
@@ -147,10 +203,10 @@ public class RoomVO {
 	public void setRoom_points(String room_points) {
 		this.room_points = room_points;
 	}
-	public String getRoom_max() {
+	public int getRoom_max() {
 		return room_max;
 	}
-	public void setRoom_max(String room_max) {
+	public void setRoom_max(int room_max) {
 		this.room_max = room_max;
 	}
 	public String getRoom_theme() {
@@ -207,18 +263,22 @@ public class RoomVO {
 	public void setRoom_stars(String room_stars) {
 		this.room_stars = room_stars;
 	}
+	
 	@Override
 	public String toString() {
 		return "RoomVO [room_name=" + room_name + ", room_addr=" + room_addr + ", room_addr_detail=" + room_addr_detail
 				+ ", room_desc=" + room_desc + ", room_id=" + room_id + ", host_id=" + host_id + ", room_price="
-				+ room_price + ", room_img=" + room_img + ", room_points=" + room_points + ", room_max=" + room_max
-				+ ", room_theme=" + room_theme + ", room_cat=" + room_cat + ", room_wifi=" + room_wifi + ", room_pet="
-				+ room_pet + ", room_meal=" + room_meal + ", room_parking=" + room_parking + ", room_swpool="
-				+ room_swpool + ", room_likes=" + room_likes + ", room_stars=" + room_stars + ", room_min_price="
-				+ room_min_price + ", room_max_price=" + room_max_price + ", room_theme_m=" + room_theme_m
-				+ ", room_theme_s=" + room_theme_s + ", room_theme_f=" + room_theme_f + ", room_theme_v=" + room_theme_v
-				+ ", room_theme_r=" + room_theme_r + ", room_theme_c=" + room_theme_c + ", uploadFile=" + uploadFile
-				+ ", offset=" + offset + "]";
+				+ room_price + ", room_img_no1=" + room_img_no1 + ", room_img_no2=" + room_img_no2 + ", room_img_no3="
+				+ room_img_no3 + ", room_img_no4=" + room_img_no4 + ", room_img_no5=" + room_img_no5 + ", room_points="
+				+ room_points + ", room_max=" + room_max + ", room_theme=" + room_theme + ", room_cat=" + room_cat
+				+ ", room_wifi=" + room_wifi + ", room_pet=" + room_pet + ", room_meal=" + room_meal + ", room_parking="
+				+ room_parking + ", room_swpool=" + room_swpool + ", room_likes=" + room_likes + ", room_stars="
+				+ room_stars + ", room_min_price=" + room_min_price + ", room_max_price=" + room_max_price
+				+ ", room_theme_m=" + room_theme_m + ", room_theme_s=" + room_theme_s + ", room_theme_f=" + room_theme_f
+				+ ", room_theme_v=" + room_theme_v + ", room_theme_r=" + room_theme_r + ", room_theme_c=" + room_theme_c
+				+ ", room_img_no1_multi=" + room_img_no1_multi + ", room_img_no2_multi=" + room_img_no2_multi
+				+ ", room_img_no3_multi=" + room_img_no3_multi + ", room_img_no4_multi=" + room_img_no4_multi
+				+ ", room_img_no5_multi=" + room_img_no5_multi + ", offset=" + offset + "]";
 	}
-
+	
 }

@@ -30,19 +30,69 @@
 			$(this).val($(this).val().replace(/[^0-9]/g,""));
 		});
 	});
-		
-		//타입 파일 인풋창 사진 올리면 미리보기 뜨게하는 함수
-		function readThisImg(img) {
-			if(img.files && img.files[0]){
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					document.getElementById('room_img_preview').src = e.target.result;
-				};
-				reader.readAsDataURL(img.files[0]);
-			} else {
-				document.getElementById('room_img_preview').src = "";
-			}
+	
+	//타입 파일 인풋창 사진 올리면 미리보기 뜨게하는 함수
+	function readThisMainImg(img) {
+		if(img.files && img.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('room_img_main_preview').src = e.target.result;
+			};
+			reader.readAsDataURL(img.files[0]);
+		} else {
+			document.getElementById('room_img_main_preview').src = "";
 		}
+	}
+	
+	function readThisSub1Img(img) {
+		if(img.files && img.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('room_img_sub1_preview').src = e.target.result;
+			};
+			reader.readAsDataURL(img.files[0]);
+		} else {
+			document.getElementById('room_img_sub1_preview').src = "";
+		}
+	}
+	
+	function readThisSub2Img(img) {
+		if(img.files && img.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('room_img_sub2_preview').src = e.target.result;
+			};
+			reader.readAsDataURL(img.files[0]);
+		} else {
+			document.getElementById('room_img_sub2_preview').src = "";
+		}
+	}
+	
+	function readThisSub3Img(img) {
+		if(img.files && img.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('room_img_sub3_preview').src = e.target.result;
+			};
+			reader.readAsDataURL(img.files[0]);
+		} else {
+			document.getElementById('room_img_sub3_preview').src = "";
+		}
+	}
+	
+	function readThisSub4Img(img) {
+		if(img.files && img.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('room_img_sub4_preview').src = e.target.result;
+			};
+			reader.readAsDataURL(img.files[0]);
+		} else {
+			document.getElementById('room_img_sub4_preview').src = "";
+		}
+	}
+	
+	
 </script>
 
 <style>
@@ -56,11 +106,6 @@
 /* 바다 배경사진 */
 .sea {
 	background-image:url("resources/img/beach.jpg");
-}
-
-/* 산과 바다 배경사진 */
-.mountainSea {
-	background-image:url("resources/img/mountainSea.jpg");
 }
 
 /* 숲 배경사진 */
@@ -164,6 +209,20 @@
 	text-align: center;
 }
 
+#room_img_main_div, #room_img_sub1_div, #room_img_sub2_div, #room_img_sub3_div, #room_img_sub4_div {
+	float: left;
+}
+
+#room_desc_box {
+	clear: both;
+}
+
+#room_img_preview_box {
+	display: flex;
+	justify-content: center;
+}
+
+
 </style>
 
 </head>
@@ -232,13 +291,51 @@ document.getElementById("room_addr_search").addEventListener("click", function()
 <!-- 숙박 시설 대표 이미지 등록 -->
 <div id="room_img_box">
 <div id="room_img_q">숙박시설을 잘 보여주는 대표 이미지를 등록하세요.</div>
+
 <br>
+
+<div id="room_img_preview_box">
+
+<div id="room_img_main_div">
+<img id="room_img_main_preview" alt="숙소 대표 이미지 미리보기" title="숙소 대표 이미지" width="250" height="250"/>
+<div>숙소 대표 이미지</div>
 <div>
-<img id="room_img_preview" alt="숙소 대표 이미지 미리보기" title="숙소 대표 이미지" width="250" height="250"/>
+<input name="room_img_no1_multi" type="file" id="room_img" onchange="readThisMainImg(this);" />
 </div>
-<br>
+</div>
+
+<div id="room_img_sub1_div">
+<img id="room_img_sub1_preview" alt="숙소 서브1 이미지 미리보기" title="숙소 서브1 이미지" width="250" height="250"/>
+<div>숙소 서브1 이미지</div>
 <div>
-<input name="uploadFile" type="file" id="room_img" onchange="readThisImg(this);" />
+<input name="room_img_no2_multi" type="file" id="room_img" onchange="readThisSub1Img(this);" />
+</div>
+</div>
+
+<div id="room_img_sub2_div">
+<img id="room_img_sub2_preview" alt="숙소 서브2 이미지 미리보기" title="숙소 서브2 이미지" width="250" height="250"/>
+<div>숙소 서브2 이미지</div>
+<div>
+<input name="room_img_no3_multi" type="file" id="room_img" onchange="readThisSub2Img(this);" />
+</div>
+</div>
+
+<div id="room_img_sub3_div">
+<img id="room_img_sub3_preview" alt="숙소 서브3 이미지 미리보기" title="숙소 서브3 이미지" width="250" height="250"/>
+<div>숙소 서브3 이미지</div>
+<div>
+<input name="room_img_no4_multi" type="file" id="room_img" onchange="readThisSub3Img(this);" />
+</div>
+</div>
+
+<div id="room_img_sub4_div">
+<img id="room_img_sub4_preview" alt="숙소 서브4 이미지 미리보기" title="숙소 서브4 이미지" width="250" height="250"/>
+<div>숙소 서브4 이미지</div>
+<div>
+<input name="room_img_no5_multi" type="file" id="room_img" onchange="readThisSub4Img(this);" />
+</div>
+</div>
+
 </div>
 </div>
 
@@ -272,7 +369,7 @@ document.getElementById("room_addr_search").addEventListener("click", function()
 <div id="room_max_box">
 <div id="room_max_q">숙박시설의 최대 수용 인원은 어떻게 되세요?</div>
 <div>
-<input name="room_max" type="text" id="room_max" />&nbsp;명
+<input name="room_max" type="number" id="room_max" />&nbsp;명
 </div>
 </div>
 
@@ -293,9 +390,6 @@ document.getElementById("room_addr_search").addEventListener("click", function()
 	
 	<input type="checkbox" name="room_theme" id="room_theme_sea" value="sea"/>
 	<label class="room_theme_label sea" for="room_theme_sea"></label>
-	
-	<input type="checkbox" name="room_theme" id="room_theme_mountainSea" value="mountainSea"/>
-	<label class="room_theme_label mountainSea" for="room_theme_mountainSea"></label>
 	
 	<input type="checkbox" name="room_theme" id="room_theme_forest" value="forest"/>
 	<label class="room_theme_label forest" for="room_theme_forest"></label>
@@ -364,7 +458,7 @@ document.getElementById("room_addr_search").addEventListener("click", function()
 <label for="room_meal" id="room_meal_label">조식 포함</label>
 
 <input type="checkbox" name="room_parking" id="room_parking" value="Y" />
-<label for="room_parking" id="room_meal_label">주차장</label>
+<label for="room_parking" id="room_parking_label">주차장</label>
 
 <input type="checkbox" name="room_swpool" id="room_swpool" value="Y" />
 <label for="room_swpool" id="room_swpool_label">수영장</label>
