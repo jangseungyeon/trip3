@@ -39,6 +39,16 @@
 	<select id="totalReservationListCnt" resultType="_int">
 		SELECT COUNT(*) FROM RESERVATION WHERE USER_ID = #{user_id}
 	</select>
+
+	<!-- 호스트용 내 숙소의 예약현황 조회 (현성규) -->
+	<select id="getReservationListForHost" resultType="reservation">
+		SELECT * FROM RESERVATION WHERE HOST_ID = #{host_id}
+	</select>
+	
+	<!-- 호스트용 내 숙소의 예약현황 개수 조회 (현성규) -->
+	<select id="totalReservationListcntForHost" resultType="_int">
+		SELECT COUNT(*) FROM RESERVATION WHERE HOST_ID = #{host_id}
+	</select>
 	
 
 </mapper>

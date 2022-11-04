@@ -31,5 +31,24 @@ public class HostDAOMybatis {
 	public HostVO hostLogin(HostVO vo) {
 		return mybatis.selectOne("HostDAO.hostLogin", vo);
 	}
+	
+	public int hostUpdate(HostVO vo) {
+		System.out.println("마이버티스 수정"+vo);
+		return mybatis.update("HostDAO.hostUpdate", vo);
+	}
+
+	
+	public int hostPwUpdate(HostVO vo) {
+		System.out.println("마이버티스 비밀번호 수정"+ vo);
+		return mybatis.update("HostDAO.hostPwUpdate", vo);
+	}
+	
+	public int hostLeave(HostVO vo) {
+		return mybatis.update("HostDAO.hostLeave", vo);
+	}
+	
+	public HostVO hostInfoSelect(HostVO vo) {
+		return mybatis.selectOne("HostDAO.hostInfoSelect", vo);
+	}
 
 }

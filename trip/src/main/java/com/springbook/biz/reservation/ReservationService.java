@@ -23,4 +23,10 @@ public interface ReservationService {
 //내가 결제한 숙소 확인
 	ReservationVO check(ReservationVO rvo);
 
+	//호스트용 내 숙소 예약현황 조회 (헌성규)
+	List<ReservationVO> getReservationListForHost(ReservationVO rvo);
+
+	//호스트용 숙소 예약 총 개수 조회 (현성규)
+	int totalReservationListCntForHost(ReservationVO rvo);
+	
 }

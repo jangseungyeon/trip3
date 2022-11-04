@@ -225,4 +225,23 @@ public class ReservationController {
 			return "WEB-INF/views/my_ReservationList.jsp";
 			
 		}
+		
+		// 호스트 헤더 > 호스트용 예약현황 조회 페이지로 이동 (현성규)
+		@RequestMapping("/move_to_host_reservation.do")
+		public String getReservationListForHost(ReservationVO rvo, String nowPageBtn, Model model, HttpSession session){
+			rvo.setHost_id((String) session.getAttribute("host_id"));
+			//총 목록 수 
+			int totalPageCnt = reservationService.totalReservationListCntForHost(rvo);
+			//현재 페이지 설정 
+			int nowPage = Integer.parseInt(nowPageBtn==null || nowPageBtn.equals("") ? "1" :nowPageBtn);
+			//한페이지당 보여줄 목록 수
+			int onePageCnt = 10;
+			//한 번에 보여질 버튼 수
+			int oneBtnCnt = 5;
+			PagingVO pvo = new PagingVO(totalPageCnt, onePageCnt, nowPage, oneBtnCnt);
+			rvo.setOffset(pvo.getOffset());
+			model.addAttribute("paging", pvo);
+			model.addAttribute("reservationListForHost", reservationService.getReservationListForHost(rvo));
+			return "WEB-INF/views/host_reservation_list.jsp";
+			}
 }

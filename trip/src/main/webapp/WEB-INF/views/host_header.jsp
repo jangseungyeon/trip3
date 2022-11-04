@@ -55,7 +55,7 @@ String host_id = session.getAttribute("host_id") != null ? session.getAttribute(
 
 				<c:otherwise>
 
-					<ul class="nav justify-content-around bg-success">
+					<ul class="nav justify-content-around bg-danger">
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="index.jsp">홈</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
@@ -66,10 +66,10 @@ String host_id = session.getAttribute("host_id") != null ? session.getAttribute(
 							href="#">이용안내</a></li>
 					</ul>
 
-					<ul class="nav justify-content-end bg-success">
-						<li class="nav-item"><a class="nav-link"
+					<ul class="nav justify-content-end bg-danger">
+						<li class="nav-item"><a class="nav-link text-white"
 							href="user_login.jsp">로그인</a></li>
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link text-white"
 							href="host_login.jsp">호스트</a></li>
 					</ul>
 				</c:otherwise>

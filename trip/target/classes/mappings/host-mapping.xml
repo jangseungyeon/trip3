@@ -13,7 +13,23 @@
   </select>
   
   <select id="hostLogin" resultType="host">
-  SELECT * FROM HOST WHERE HOST_ID=#{host_id} AND HOST_PW=#{host_pw}
+  SELECT * FROM HOST WHERE HOST_ID=#{host_id} AND HOST_PW=#{host_pw} AND HOST_STATUS != 'leave'
+  </select>
+  
+  <update id="hostUpdate">
+  UPDATE HOST SET HOST_BIZNAME=#{host_bizname}, HOST_NAME=#{host_name}, HOST_BIRTH=#{host_birth}, HOST_EMAIL=#{host_email}, HOST_PHONE=#{host_phone}, HOST_ADDR1=#{host_addr1}, HOST_ADDR2=#{host_addr2}, HOST_BIZNUM=#{host_biznum}, HOST_BIZIMG=#{host_bizimg}, HOST_BANK=#{host_bank}, HOST_BANKNUM=#{host_banknum} WHERE HOST_ID=#{host_id}
+  </update>
+  
+  <update id="hostLeave">
+  UPDATE HOST SET HOST_STATUS='leave' WHERE HOST_ID=#{host_id}
+  </update>
+  
+  <update id="hostPwUpdate">
+  UPDATE HOST SET HOST_PW=#{host_pw} WHERE HOST_ID=#{host_id}
+  </update>
+  
+  <select id="hostInfoSelect" resultType="host">
+  SELECT * FROM HOST WHERE HOST_ID=#{host_id}
   </select>
   
   </mapper>

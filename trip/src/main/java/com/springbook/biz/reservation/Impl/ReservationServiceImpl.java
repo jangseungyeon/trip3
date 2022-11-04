@@ -44,5 +44,15 @@ public class ReservationServiceImpl implements ReservationService {
 		System.out.println(rvo);
 		return ReservationDAO.check(rvo);
 	}
-	
+//호스트용 내 숙소 예약현황 조회 (헌성규)
+@Override
+public List<ReservationVO> getReservationListForHost(ReservationVO rvo) {
+return ReservationDAO.getReservationListForHost(rvo);
+}
+
+@Override
+//호스트용 내 숙소 예약현황 조회 총 개수 (현성규)
+public int totalReservationListCntForHost(ReservationVO rvo) {
+	return ReservationDAO.totalReservationListCntForHost(rvo);
+}
 }

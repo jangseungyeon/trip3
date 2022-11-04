@@ -49,4 +49,16 @@ public class ReservationDAOMybatis {
 		System.out.println("마이바티스 숙소 체크");
 		return mybatis.selectOne("ReservationDAO.getReservationList", rvo);
 	}
+	//호스트용 내 숙소 예약현황 조회 (현성규)
+	public List<ReservationVO> getReservationListForHost(ReservationVO rvo){
+		System.out.println("마이버티스"+rvo);
+		return mybatis.selectList("ReservationDAO.getReservationListForHost", rvo);
+	}
+
+	//호스트용 전체 예약 목록 개수 조회 (현성규)
+	public int totalReservationListCntForHost(ReservationVO rvo) {
+		return mybatis.selectOne("ReservationDAO.totalReservationListcntForHost", rvo);
+	}
+
+
 }
