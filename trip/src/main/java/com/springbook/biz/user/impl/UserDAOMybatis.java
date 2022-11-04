@@ -52,9 +52,10 @@ public class UserDAOMybatis {
 
 	public UserVO user_login(UserVO vo) {
 		System.out.println("user_login: " + vo);
-		return mybatis.selectOne("UserDAO.login", vo);
+		return mybatis.selectOne("UserDAO.idCheck", vo);
 	}
-
+	
+	
 	public UserVO user_find(UserVO vo) {
 		System.out.println("user_find: " + vo);
 		return mybatis.selectOne("UserDAO.find", vo);
@@ -67,4 +68,10 @@ public class UserDAOMybatis {
 //	public UserVO user_logout(UserVO vo) {
 //		return mybatis.selectOne("UserDAO.idCheck", vo);
 //	}
+	
+	public UserVO user_emailcheck(UserVO vo) {
+		System.out.println("user_emailcheck: " + vo);
+		return mybatis.selectOne("UserDAO.emailCheck", vo);
+	}
+	
 }

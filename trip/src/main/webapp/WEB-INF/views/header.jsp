@@ -27,20 +27,6 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 <link href="resources/css/style.css" rel="stylesheet">
 <link href="resources/css/myinfo.css" rel="stylesheet">
 
-<script>
-
-function info(){
-var recheck=prompt("비밀번호를 입력해주세요");
-let pw = <%=(String)session.getAttribute("user_password")%>; 
-if(recheck== pw){
-	 location.href="user_info.do";
-	   
-} else {
-alert("비밀번호가 일치하지 않습니다");
-}
-}
-</script>
-
 </head>
 
 <div class="container-fluid">
@@ -72,11 +58,11 @@ alert("비밀번호가 일치하지 않습니다");
 							<button type="button" class="btn btn-primary dropdown-toggle"
 								data-toggle="dropdown">내 정보</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="javascript:void(0);" onclick="info()">정보 수정</a>
-								<a class="dropdown-item" href="pointcheck.do">마일리지</a>
-								<a class="dropdown-item" href="getReservationList.do">결제 목록</a>
-								<a class="dropdown-item" href="likeslist.do">좋아요(like)</a>
-								<a class="dropdown-item" href="plannerlist.do">나의 여행</a>
+								<a class="dropdown-item" href="myinfo.do">정보 수정</a> <a
+									class="dropdown-item" href="pointcheck.do">마일리지</a> <a
+									class="dropdown-item" href="getReservationList.do">결제 목록</a> <a
+									class="dropdown-item" href="likeslist.do">좋아요(like)</a> <a
+									class="dropdown-item" href="plannerlist.do">나의 여행</a>
 							</div>
 						</div>
 					</ul>

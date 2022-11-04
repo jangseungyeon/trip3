@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,14 @@ import com.springbook.biz.user.UserVO;
 public class UserController {
 	@Autowired
 	private UserService userService;
-
+	
+	// 약관동의로이동
+		@RequestMapping("/step1.do")
+		public String step() {
+			System.out.println("step");
+			return "WEB-INF/views/step1.jsp";
+		}
+		
 	// 아이디중복체크
 	@RequestMapping("/user_idCheck.do")
 	@ResponseBody
@@ -36,68 +44,117 @@ public class UserController {
 	}
 
 	// 로그인
-	@RequestMapping("/user_loginform.do")
-	public String user_login(UserVO vo, HttpSession session) {
-		System.out.println("user_login" + vo);
-		vo = userService.login(vo);
-		if (vo != null) {
+		@RequestMapping("/user_loginform.do")
+		public String user_login(UserVO vo, HttpSession session) {
+			boolean pwCheck;
+			String user_password = vo.getUser_password();
+			System.out.println("user_login" + vo);
+			vo = userService.login(vo);
+			System.out.println("vo널체크"+vo);
+			if (vo != null&&vo.getUser_status().equals("0")) {
+				pwCheck = BCrypt.checkpw(user_password, vo.getUser_password());
+				System.out.println(vo.getUser_status() + pwCheck);
+				if(pwCheck) {
+					String user_id = vo.getUser_id();
+					String user_name = vo.getUser_name();
+					session.setAttribute("user_id", user_id);
+					session.setAttribute("user_name", user_name);
+					System.out.println("로그인성공");
+					return "redirect:index.jsp";
+				}else {
+					System.out.println("로그인실패");
+					return "WEB-INF/views/user_login.jsp";
+				}
+			}else if(vo==null) {
+				System.out.println("로그인실패");
+				return "WEB-INF/views/user_login.jsp";
+			}
+			else if(vo.getUser_status().equals("1")){
+				System.out.println("탈퇴회원");
+				return "WEB-INF/views/user_login.jsp";
+			}else {
+				System.out.println("로그인실패");
+				return "WEB-INF/views/user_login.jsp";
+			}
+		}
+
+		// 카카오로그인
+		@RequestMapping("/kakao_loginform.do")
+		public String kakao_login(UserVO vo, HttpSession session,HttpServletResponse response) {
+			vo.setUser_type("kakao");
+			System.out.println("kakao_login" + vo);
 			String user_id = vo.getUser_id();
 			String user_name = vo.getUser_name();
-			String user_password = vo.getUser_password();
-			session.setAttribute("user_id", user_id);
-			session.setAttribute("user_name", user_name);
-			session.setAttribute("user_password", user_password);
-			System.out.println("로그인성공");
-			return "redirect:index.jsp";
-		} else {
-			System.out.println("로그인실패");
-			return "WEB-INF/views/user_login.jsp";
+			String email=vo.getUser_email();
+			System.out.println("111");
+			if(userService.emailcheck(vo)!=null) {
+			String msg="해당이메일이 이미존재합니다";
+			System.out.println("이메일확인");
+			try {
+		        response.setContentType("text/html; charset=utf-8");
+		        PrintWriter w = response.getWriter();
+		        w.write("<script>alert('"+msg+"');history.go(-1);</script>");
+		        w.flush();
+		        w.close();
+		    } catch(Exception e) {
+		        e.printStackTrace();
+		    }
+			}
+			if (userService.login(vo) == null) {
+				System.out.println("카카오회원추가");
+				userService.insert(vo);
+				session.setAttribute("user_id", user_id);
+				session.setAttribute("user_name", user_name);
+				return "redirect:index.jsp";
+			} else if (vo.getUser_status().equals("0")) {
+				System.out.println("탈퇴회원");
+				return "redirect:index.jsp";
+			} else {
+				session.setAttribute("user_id", user_id);
+				session.setAttribute("user_name", user_name);
+				System.out.println("카카오로그인");
+				return "redirect:index.jsp";
+			}
+
 		}
-
-	}
-
-	// 카카오로그인
-	@RequestMapping("/kakao_loginform.do")
-	public String kakao_login(UserVO vo, HttpSession session) {
-		vo.setUser_type("kakao");
-		System.out.println("kakao_login" + vo);
-		String user_id = vo.getUser_id();
-		String user_name = vo.getUser_name();
-		if (userService.login(vo) == null) {
-			System.out.println("카카오회원추가");
-			userService.insert(vo);
-			session.setAttribute("user_id", user_id);
-			session.setAttribute("user_name", user_name);
-			return "redirect:index.jsp";
-		} else {
-			session.setAttribute("user_id", user_id);
-			session.setAttribute("user_name", user_name);
-			System.out.println("카카오로그인");
-			return "redirect:index.jsp";
+		
+		// 네이버로그인
+		@RequestMapping("/naver_login.do")
+		public String naver_login(UserVO vo, HttpSession session,HttpServletResponse response) {
+			String email=vo.getUser_email();
+			if(userService.emailcheck(vo)!=null) {
+			String msg="해당이메일이 이미존재합니다";
+			System.out.println("이메일확인");
+			try {
+		        response.setContentType("text/html; charset=utf-8");
+		        PrintWriter w = response.getWriter();
+		        w.write("<script>alert('"+msg+"');history.go(-1);</script>");
+		        w.flush();
+		        w.close();
+		    } catch(Exception e) {
+		        e.printStackTrace();
+		    }
+			}
+			vo.setUser_type("naver");
+			System.out.println("네이버로그인" + vo);
+			String user_id = vo.getUser_id();
+			String user_name = vo.getUser_name();
+			if (userService.login(vo) == null) {
+				System.out.println("네이버회원추가");
+				userService.insert(vo);
+				session.setAttribute("user_id", user_id);
+				session.setAttribute("user_name", user_name);
+				return "redirect:index.jsp";
+			} else if (vo.getUser_status().equals("0")) {
+				System.out.println("탈퇴회원");
+				return "redirect:index.jsp";
+			} else {
+				System.out.println("네이버로그인");
+				session.setAttribute("user_id", user_id);
+				session.setAttribute("user_name", user_name);
+				return "redirect:index.jsp";
+			}
 		}
-
-	}
-
-	// 네이버로그인
-	@RequestMapping("/naver_login.do")
-	public String naver_login(UserVO vo, HttpSession session) {
-		vo.setUser_type("naver");
-		System.out.println("네이버로그인" + vo);
-		String user_id = vo.getUser_id();
-		String user_name = vo.getUser_name();
-		if (userService.login(vo) == null) {
-			System.out.println("네이버회원추가");
-			userService.insert(vo);
-			session.setAttribute("user_id", user_id);
-			session.setAttribute("user_name", user_name);
-			return "redirect:index.jsp";
-		} else {
-			System.out.println("네이버로그인");
-			session.setAttribute("user_id", user_id);
-			session.setAttribute("user_name", user_name);
-			return "redirect:index.jsp";
-		}
-	}
 
 	
 
@@ -150,6 +207,27 @@ public class UserController {
 		return "user_info.do";
 	}
 
+	//내 정보 갈때 비밀번호 치기
+//	@RequestMapping("/myinfogo.do")
+//	public String myinfogo(UserVO vo, HttpSession session) {
+//		System.out.println(vo);
+//		vo.setUser_id((String) session.getAttribute("user_id"));
+//		String pw =vo.getUser_password();
+//		boolean pwCheck;
+//		vo = userService.info(vo);
+//		String user_password = vo.getUser_password();
+//		System.out.println("여기까지만 찍힘");
+//		System.out.println("이건 왜 안찍혀"+user_password+pw);
+//		pwCheck=BCrypt.checkpw(user_password,pw);
+//		System.out.println(pwCheck);
+//		return "user_info.do";
+//	}
+	@RequestMapping("/myinfo.do")
+	public String myinfogo(UserVO vo, HttpSession session) {
+		
+		return "WEB-INF/views/my_info.jsp";
+	}
+	
 //	내 정보 확인
 	@RequestMapping("/user_info.do")
 	public String user_info(UserVO vo, HttpSession session, Model model) {
@@ -169,25 +247,41 @@ public class UserController {
 			model.addAttribute("user_phone", vo.getUser_phone());
 			model.addAttribute("user_address1", vo.getUser_address1());
 			model.addAttribute("user_address2", vo.getUser_address2());
-			return "WEB-INF/views/myinfo.jsp";
+			return "WEB-INF/views/my_info.jsp";
 		} else {
 			return "index.jsp";
 		}
 	}
 
 	// 회원추가
-	@RequestMapping("/user_insertform.do")
-	public String user_insert(UserVO vo) {
-		System.out.println("isnsertuser");
-		vo.setUser_type("own");
-		int insert = userService.insert(vo);
-		if (insert == 0) {
-			return "redirect:index.jsp";
-		} else {
-			return "redirect:index.jsp";
-		}
+		@RequestMapping("/user_insertform.do")
+		public String user_insert(UserVO vo,HttpServletResponse response) {
+			String email=vo.getUser_email();
+			if(userService.emailcheck(vo)!=null) {
+			String msg="해당이메일이 이미존재합니다";
+			System.out.println("이메일확인");
+			try {
+		        response.setContentType("text/html; charset=utf-8");
+		        PrintWriter w = response.getWriter();
+		        w.write("<script>alert('"+msg+"');location.href='WEB-INF/views/user_insert.jsp';</script>");
+		        w.flush();
+		        w.close();
+		    } catch(Exception e) {
+		        e.printStackTrace();
+		    }
+			}
+			String pw = BCrypt.hashpw(vo.getUser_password(), BCrypt.gensalt());
+			System.out.println("isnsertuser" + pw);
+			vo.setUser_type("own");
+			vo.setUser_password(pw);
+			int insert = userService.insert(vo);
+			if (insert == 0) {
+				return "redirect:index.jsp";
+			} else {
+				return "redirect:index.jsp";
+			}
 
-	}
+		}
 
 	// 로그아웃
 	@RequestMapping("/user_logout.do")
@@ -250,5 +344,7 @@ public class UserController {
 		System.out.println("변경여부:" + a);
 		return "WEB-INF/views/user_pwfind.jsp";
 	}
+	
+
 
 }

@@ -97,7 +97,7 @@ public class PlannerController {
 
 			List<PlannerVO> list = Service.plannerlist(pvo);
 			model.addAttribute("list", list);
-			return "WEB-INF/views/myPlanner.jsp";
+			return "WEB-INF/views/my_Planner.jsp";
 		}
 	
 	

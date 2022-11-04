@@ -12,34 +12,18 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body class="info-body">
-<script>
-//비밀번호 입력
-/* function deletecheck(){
-    var deletecheck = confirm("계정 탈퇴를 하시겠습니까?");
-       if(deletecheck){
-          var recheck=prompt("비밀번호를 입력해주세요");
-          if(recheck==${MemberDTO.getPw()}){
-             location.href="delete.member";
-          }
-      
-       else{
-         alert("비밀번호가 일치하지 않습니다");
-       }
-       } */
-
-</script>
 
 <script>
+$(function(){
+	if(check==null)
+		{var check1 = prompt("비밀번호를 입력해주세요");
+		$(".checkuser_password").val(check1);
+		}
+});
 function deletecheck(){
     var deletecheck = prompt("탈퇴를 원하시면 아래 문구를 입력해주세요.\n'회원탈퇴'");
        if(deletecheck == "회원탈퇴"){
-    	   var recheck=prompt("비밀번호를 입력해주세요");
-           if(recheck==${user_password}){
-         	 location.href="delete.do";
-        	   
-           } else {
-          alert("비밀번호가 일치하지 않습니다");
-        }
+    	  
        }
        else{
          alert("문구가 일치하지 않습니다.");
@@ -214,7 +198,7 @@ $(function() {
 		$("#phoneChk").click(
 				function() {
 					alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
-					var phone = $("#phone").val();
+// 					var phone = $("#phone").val();
 
 					$.ajax({
 						type : "GET",
@@ -321,9 +305,11 @@ $(function() {
 							value="${user_phone}">
 							<input id="phoneChk" type="button" value="인증">
 							<br><font id="checkphone" size="2"></font>
+							<div id="config1" style="display: none">
 							<input id="phone2" type="text" name="phone2" title="인증번호 입력">
 							<input id="phoneChk2" class="doubleChk" type="button" value="인증확인">
 							<span class="point successPhoneChk"></span>
+							</div>
 					</div>
 					<div class="mb-3">
 					<label for="birth">생년월일</label> <input type="date"
@@ -359,10 +345,9 @@ $(function() {
 
 	<br>
 	<br>
-
-<script>
-
-</script>
+<form action="" method="post">
+<input type='hidden' name="user_password" class="checkuser_password">
+</form>
 </body>
 
 </html>

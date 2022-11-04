@@ -171,11 +171,12 @@
 String subid;//보여질아이디
 String sub;//별처리될아이디
 int length;//보여질갯수
+
 	if (pullid != null) {
 		 length = pullid.length() / 2;
 		subid=pullid.substring(0,length);
 	%>
-	<%=subid%><%for(int i=0;i<length;i++){%>*<%} %>
+	<%=subid%><%for(int i=0;i<pullid.length()-length;i++){%>*<%} %>
 	<%
 	}
 	%>

@@ -57,4 +57,9 @@ public class UserServiceImpl implements UserService {
 	public void delete(UserVO vo) {
 		userDAO.user_delete(vo);
 	}
+	
+	@Override
+	public UserVO emailcheck(UserVO vo) {
+		return userDAO.user_emailcheck(vo);
+	}
 }

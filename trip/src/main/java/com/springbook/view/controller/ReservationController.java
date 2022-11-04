@@ -66,7 +66,7 @@ public class ReservationController {
 			model.addAttribute("res_status", rvo.getRes_status());
 			model.addAttribute("res_checkin", rvo.getRes_checkin());
 			model.addAttribute("res_checkout", rvo.getRes_checkout());
-			return "WEB-INF/views/myReservationList.jsp";
+			return "WEB-INF/views/my_ReservationList.jsp";
 		} else {
 			return "index.jsp";
 		}
@@ -196,33 +196,33 @@ public class ReservationController {
 	}
 	
 	//숙소 예약 목록 조회
-	@RequestMapping(value="/getReservationList.do")
-	public String getReservationList(ReservationVO rvo, HttpSession session, String nowPageBtn, Model model){
-		rvo.setUser_id((String)session.getAttribute("user_id"));
+		@RequestMapping(value="/getReservationList.do")
+		public String getReservationList(ReservationVO rvo, HttpSession session, String nowPageBtn, Model model){
+			rvo.setUser_id((String)session.getAttribute("user_id"));
 
-		System.out.println("숙소 예약 목록 조회 시작");
-		
-		System.out.println("글 목록 검색 처리");
-		
-		//총 목록 수 
-		int totalPageCnt = reservationService.totalReservationListCnt(rvo);
-		
-		//현재 페이지 설정 
-		int nowPage = Integer.parseInt(nowPageBtn==null || nowPageBtn.equals("") ? "1" :nowPageBtn);
-		System.out.println("totalPageCnt: "+totalPageCnt +", nowPage: "+nowPage);
-		
-		//한페이지당 보여줄 목록 수
-		int onePageCnt = 10;
-		
-		//한 번에 보여질 버튼 수
-		int oneBtnCnt = 5;
-		
-		PagingVO pvo = new PagingVO(totalPageCnt, onePageCnt, nowPage, oneBtnCnt);
-		rvo.setOffset(pvo.getOffset());
-		
-		model.addAttribute("paging", pvo);
-		model.addAttribute("reservationList", reservationService.getReservationList(rvo));
-		return "WEB-INF/views/myReservationList.jsp";
-		
-	}
+			System.out.println("숙소 예약 목록 조회 시작");
+			
+			System.out.println("글 목록 검색 처리");
+			
+			//총 목록 수 
+			int totalPageCnt = reservationService.totalReservationListCnt(rvo);
+			
+			//현재 페이지 설정 
+			int nowPage = Integer.parseInt(nowPageBtn==null || nowPageBtn.equals("") ? "1" :nowPageBtn);
+			System.out.println("totalPageCnt: "+totalPageCnt +", nowPage: "+nowPage);
+			
+			//한페이지당 보여줄 목록 수
+			int onePageCnt = 10;
+			
+			//한 번에 보여질 버튼 수
+			int oneBtnCnt = 5;
+			
+			PagingVO pvo = new PagingVO(totalPageCnt, onePageCnt, nowPage, oneBtnCnt);
+			rvo.setOffset(pvo.getOffset());
+			
+			model.addAttribute("paging", pvo);
+			model.addAttribute("reservationList", reservationService.getReservationList(rvo));
+			return "WEB-INF/views/my_ReservationList.jsp";
+			
+		}
 }

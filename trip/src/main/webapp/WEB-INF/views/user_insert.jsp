@@ -19,11 +19,48 @@ alert("계정생성에 실패했습니다");
 <% 
 	
 } %>
-var idReg = /^[A-za-z0-9]{6,12}$/g;   // 아이디
-var pwReg = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;  // 비밀번호 
+// var idReg = /^[A-Za-z]{1}[A-Za-z0-9_]{5,11}$/g;   // 아이디
+var idReg = /^([a-z | A-Z]{1})([A-Za-z0-9\_]{5,11})$/;   // 아이디
+//영어 대소문자 1글자 뒤에는 영어대소문자숫자_까지5~11글자
+var pwReg =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+//영어 대소문자 특수문자 숫자 포함 8에서 16글자
+var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;//이메일
 var passwordCheck = false;//비밀번호재확인
 var idCheck = false;//아이디 중복체크
 var con=false;//인증
+var idReg1=false;//아이디형식
+var pwReg1=false;//비번형식
+var emailRegex1=false;//이메일형식
+//아이디 형식 설정
+$(function() {
+    $('#user_id').focusout(function() {
+                   if (idReg.test($('#user_id').val()) == false)  {
+                      $("#checkid").html('형식을 일치시켜주세요');
+                      $("#checkid").attr('color', 'red');
+                      idReg1=false;
+                   } else{
+                      $("#checkid").html('');
+                      idReg1=true;
+
+                   }
+                });
+ });
+ 
+//비번 형식 설정
+$(function() {
+    $('#user_password').focusout(function() {
+                   if (pwReg.test($('#user_password').val()) == false)  {
+                      $("#checkpw").html('형식을 일치시켜주세요');
+                      $("#checkpw").attr('color', 'red');
+                      pwReg1=false;
+                   } else{
+                      $("#checkpw").html('');
+                      pwReg1=true;
+
+                   }
+                });
+ });
+ 
 	//휴대폰
 	$(function() {
 		//휴대폰 번호 인증 
@@ -68,72 +105,12 @@ var con=false;//인증
 				$(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
 				$(".successPhoneChk").css("color", "red");
 				$("#phoneDoubleChk").val("false");
+				$("#phone").attr("readonly", false);
 				$(this).attr("autofocus", true);
 			}
 		});
 
 	});
-	
-	
-	$(function() {
-		var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-		var email = $("#email");
-		$("#sendMail").on("click", function() {
-			if (email == "") {
-				alert("이메일을 입력하지 않았습니다.");
-			} else {
-				if (!(emailRegex.test(email.val()))) {
-					alert("이메일 입력이 제대로 되지 않았습니다.");
-					return false;
-				}
-				$.ajax({
-					type : 'POST',
-					url : 'email_Send',
-					data : {
-						email : email.val()
-					},
-					success : function(data) {
-						if (data == 'ok') {
-							alert("인증번호를 발송했습니다.");
-							$("#emailCheck").removeAttr("disabled");
-						} else {
-							alert("인증번호가 발송되지 않았습니다.");
-						}
-					},
-					error : function(request, status) {
-						alert("오류가 발생했습니다.");
-					}
-				});
-			}
-		});
-	});
-//이메일인증
-	function emailCheck() {
-		var emailCheck = $("#emailCheck").val();
-		if (emailCheck == "") {
-			alert("인증번호를 입력하지 않았습니다.");
-		} else {
-			$.ajax({
-				type : 'POST',
-				url : 'email_Check',
-				data : {
-					emailCheck : emailCheck
-				},
-				success : function(data) {
-					if (data == true) {
-						alert("인증되었습니다.");
-// 						$('#user_email').val($("#email").val());
-						con=true;
-					} else {
-						alert("인증번호가 일치하지 않습니다.");
-					}
-				},
-				error : function(request, status) {
-					alert("오류가 발생했습니다.");
-				}
-			});
-		}
-	}
 	
 	
 	
@@ -185,41 +162,33 @@ var con=false;//인증
 
 	//회원가입버튼
 	function check() {
-// 		if(!idReg.test($('#user_id').val())){
-// 			alert('아이디는 영어대/소문자 0~9자리만');
-// 		}else if(!pwReg.test($('#user_password').val())){
-// 			alert('비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합');
-// 		}
-// 		else if (idCheck == false) {
-// 			alert("아이디중복체크하세요");
-// 		}
-// 		else if (passwordCheck == false) {
-// 			alert("비밀번호재확인필요");
+// 		if(idReg1==false){
+// 			$('#user_id').focus();
+// 		}else if(pwReg1==false){
+// 			$('#user_password').focus();
 // 		}else if(con==false){
-// 			alert("인증필요");
-// 		}else{
+// 			alert("본인인증을 완료해주세요");
+// 		}else if(idCheck==false){
+// 			alert("아이디중복체크를 완료해주세요");
+// 		}
+// 		else{
 			$('#user_insert').submit();
 // 		}
 
 	}
-	//인증선택
-	function emailconfig() {
-		$('#config').show();
-		$('#config1').hide();
-	}
-	function phoneconfig() {
-		$('#config1').show();
-		$('#config').hide();
-	}
+	
 </script>
 </head>
 <body>
 
-<form action="user_insert.do" method="post" id="user_insert">
+<form action="user_insertform.do" method="post" id="user_insert">
 	<input type="text" name="user_id" id="user_id" placeholder='아이디'>
+	<font id="checkid" size="2"></font>
 	<button type="button" id="idCheck">아이디중복체크</button>
 	<br> <input type="password" name="user_password"
-		id="user_password" placeholder='비밀번호'><br>
+		id="user_password" placeholder='비밀번호'>
+		<font id="checkpw" size="2"></font>
+		<br>
 	<input type="password" name="user_passwordCheck"
 		id="user_passwordCheck" placeholder='비밀번호재확인'><br>
 	<input type="text" name="user_name" placeholder='이름'><br>
@@ -227,15 +196,13 @@ var con=false;//인증
 	<input type="text" name="user_email" id="user_email" placeholder='이메일'>
 	<button type="button" class="submitbutton" onclick="check()">회원가입</button>
 </form>
-<button type="button" id="phoneconfig" onclick="phoneconfig()">전화번호 인증하기</button>
 
 
-<div id="config1" style="display: none">
-	<input id="phone" type="text" name="phone" title="전화번호 입력" /> <span
-		id="phoneChk" class="doubleChk">인증번호 보내기</span> <br /> <input
-		id="phone2" type="text" name="phone2" title="인증번호 입력" disabled /> <span
-		id="phoneChk2" class="doubleChk">인증확인</span> <span
-		class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span> <input
+
+<div id="config1">
+	<input id="phone" type="text" name="phone" title="전화번호 입력" /> <button type="button" id="phoneChk" class="doubleChk">인증번호 보내기</button> <br /> <input
+		id="phone2" type="text" name="phone2" title="인증번호 입력" disabled /> 
+		<button type="button" id="phoneChk2" class="doubleChk">인증확인</button> <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span> <input
 		type="hidden" id="phoneDoubleChk" />
 </div>
 

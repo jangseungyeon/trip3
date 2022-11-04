@@ -18,6 +18,7 @@
 		 <typeAlias type="com.springbook.biz.planner.PlannerVO" alias="planner"/>
 		<typeAlias type="com.springbook.biz.planner.AreaVO" alias="area"/>
 		<typeAlias type="com.springbook.biz.planner.PlaceVO" alias="place"/>
+				<typeAlias type="com.springbook.biz.planner.LikeVO" alias="like"/>
 	</typeAliases>
 	<mappers>
 	<mapper resource="mappings/host-mapping.xml" />
@@ -28,6 +29,7 @@
 		<mapper resource="mappings/Area_mapping.xml"/>
 		<mapper resource="mappings/Place_mapping.xml"/>
 		<mapper resource="mappings/Planner_mapping.xml"/> 
+				<mapper resource="mappings/Like_mapping.xml"/>
 	</mappers>
 </configuration>
 
