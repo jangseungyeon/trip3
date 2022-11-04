@@ -47,7 +47,6 @@ public class UserServiceImpl implements UserService {
 //	아이디 체크	
 	@Override
 	public int idCheck(UserVO vo) {
-		System.out.println("11");
 		return userDAO.user_idCheck(vo);
 	}
 

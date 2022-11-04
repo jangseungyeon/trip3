@@ -52,7 +52,7 @@
 				<td>${i.room_id}</td>
 				<td>${i.host_id}</td>
 				<td>${i.room_price}</td>
-				<td>${i.room_img}</td>
+				<td>${i.room_img_no1}</td>
 				<td>${i.room_points}</td>
 				<td>${i.room_max}</td>
 				<td>${i.room_theme}</td>

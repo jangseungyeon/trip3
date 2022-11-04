@@ -1,19 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="HostDAO">
-  
-  <insert id="hostInsert">
-  INSERT INTO HOST(HOST_ID,HOST_BIZNAME,HOST_PW,HOST_NAME,HOST_BIRTH,HOST_EMAIL,HOST_PHONE,HOST_ADDR1,HOST_ADDR2,HOST_STATUS,HOST_BIZNUM,HOST_BIZIMG,HOST_BANK,HOST_BANKNUM)VALUES(#{host_id},#{host_bizname},#{host_pw},#{host_name},#{host_birth},#{host_email},#{host_phone},#{host_addr1},#{host_addr2},#{host_status},#{host_biznum},#{host_bizimg},#{host_bank},#{host_banknum});
-  </insert>
-  
-  <select id="hostIdCheck" resultType="host">
-  SELECT * FROM HOST WHERE HOST_ID=#{host_id}
-  </select>
-  
-  <select id="hostLogin" resultType="host">
-  SELECT * FROM HOST WHERE HOST_ID=#{host_id} AND HOST_PW=#{host_pw}
-  </select>
-  
-  </mapper>
+
+<mapper namespace="HostDAO">
+
+	<!-- 관리자용 시작 -->
+	<!-- 관리자 업주 조회 -->
+	<select id="manage_hostList" resultType="host">
+		SELECT *
+		FROM host
+		order
+		by
+		host_bizname
+	</select>
+
+	<!-- 관리자 업주 등록 -->
+	<insert id="manage_hostInsert">
+		INSERT INTO
+		HOST(HOST_ID,HOST_BIZNAME,HOST_PW,HOST_NAME,HOST_BIRTH,HOST_EMAIL,HOST_PHONE,HOST_ADDR1,HOST_ADDR2,HOST_STATUS,HOST_BIZNUM,HOST_BIZIMG,HOST_BANK,HOST_BANKNUM)
+		VALUES(#{host_id},#{host_bizname},#{host_pw},#{host_name},#{host_birth},#{host_email},#{host_phone},#{host_addr1},#{host_addr2},#{host_status},#{host_biznum},#{host_bizimg},#{host_bank},#{host_banknum});
+	</insert>
+
+	<!-- 관리자 업주 상세 조회 -->
+	<select id="manage_hostInfo" resultType="host">
+		SELECT *
+		FROM HOST WHERE
+		HOST_ID=#{host_id}
+	</select>
+	<!-- <select id="manage_userInfo" resultType="user"> -->
+	<!-- SELECT user_id, -->
+	<!-- user_name, user_birth, user_gender, user_email, user_phone, -->
+	<!-- user_address1, user_address2, user_status, user_type -->
+	<!-- FROM USER WHERE USER_ID=#{user_id} -->
+	<!-- </select> -->
+
+
+	<!-- 관리자 업주 정보 수정 -->
+	<update id="manage_hostUpdate">
+		UPDATE HOST SET
+		HOST_BIZNAME =#{host_bizname},
+		HOST_NAME=#{host_name},
+		HOST_BIRTH=#{host_birth},
+		HOST_EMAIL=#{host_email},
+		HOST_PHONE=#{host_phone},
+		HOST_ADDR1=#{host_addr1},
+		HOST_ADDR2=#{host_addr2},
+		HOST_STATUS=#{host_status},
+		HOST_BIZNUM=#{host_biznum},
+		HOST_BIZIMG=#{host_bizimg},
+		HOST_BANK=#{host_bank},
+		HOST_BANKNUM=#{host_banknum}
+		WHERE
+		HOST_ID=#{host_id}
+	</update>
+
+	<!-- 관리자 업주 삭제 -->
+	<delete id="manage_hostDelete">
+		DELETE FROM HOST WHERE HOST_ID = #{host_id}
+	</delete>
+
+	<!-- 관리자용 끝 -->
+
+
+
+	<!-- 아이디 체크 -->
+	<select id="idCheck" resultType="host">
+		SELECT * FROM HOST WHERE
+		HOST_ID=#{host_id}
+	</select>
+
+
+</mapper>

@@ -51,10 +51,10 @@ public class RoomController {
 
 	// 관리자 숙소 조회
 	@RequestMapping(value = "/manage_roomList.do")
-	public String manage_roomList(Model model) {
+	public String manage_roomList(RoomVO rvo, Model model) {
 
 		System.out.println("숙소 목록 검색 시작");
-		List<RoomVO> list = roomService.manage_roomList();
+		List<RoomVO> list = roomService.manage_roomList(rvo);
 		model.addAttribute("list", list);
 		System.out.println("숙소 목록 출력 시작");
 
@@ -67,7 +67,7 @@ public class RoomController {
 		System.out.println("숙소 상세 보기 시작");
 		model.addAttribute("RoomVO", roomService.manage_roomInfo(rvo));
 		System.out.println("숙소 상세 보기 성공");
-		
+
 		return "WEB-INF/views/manage_roomInfo.jsp";
 	}
 
@@ -75,13 +75,10 @@ public class RoomController {
 	@RequestMapping(value = "/manage_updateRoom.do")
 	public String manage_updateRoom(@ModelAttribute RoomVO rvo, HttpSession session) {
 		System.out.println("숙소 수정 시작");
-//			if(rvo.getHost_id().equals(session.getAttribute("host_id").toString()) ) {
 		roomService.manage_updateRoom(rvo);
 		System.out.println("숙소 수정 성공");
+
 		return "manage_roomList.do";
-//			} else {
-//				return "getRoom.do?error=y";
-//			}
 	}
 
 	// 관리자 숙소 삭제 (숙소 이미지 파일 먼저 삭제 후 숙소 조회 후 가지고 온 업주 호스트 아이디와 세션의 업주 호스트 아이디가 일치하면
@@ -89,32 +86,47 @@ public class RoomController {
 	@RequestMapping(value = "/manage_deleteRoom.do")
 	public String manage_deleteRoom(RoomVO rvo, HttpSession session) {
 		System.out.println("숙소 삭제 시작");
-		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
-//		rvo = roomService.manage_roomInfo(rvo);
-//			if(rvo.getHost_id().equals(session.getAttribute("host_id").toString()) ) {
-		if (rvo.getRoom_img() != null) {
-			System.out.println("파일 삭제: " + realPath + rvo.getRoom_img());
-			File f = new File(realPath + rvo.getRoom_img());
-			f.delete();
-		}
-		roomService.manage_deleteRoom(rvo);
-		System.out.println("숙소 삭제 성공");
-		return "manage_roomList.do";
-//			} else {
-//				return "getRoom.do?error=y";
+//		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
+		// 위는 테스트용, 아래는 실제 서버에 올리면 써야하는 경로 구하는 법 (컨트롤러 안에 어떤 request.getParameter가 들어가면
+		// 안됨)
+		// String realPath =
+		// request.getSession().getServletContext().getRealPath("/resources/room_img/");
+
+		roomService.manage_roomList(rvo);
+
+		// 숙소 이미지 모두 삭제
+//		if (rvo.getHost_id().equals(session.getAttribute("host_id").toString())) {
+//			if (rvo.getRoom_img_no1() != null) {
+//				System.out.println("파일 삭제: " + realPath + rvo.getRoom_img_no1());
+//				File f = new File(realPath + rvo.getRoom_img_no1());
+//				f.delete();
 //			}
+//			if (rvo.getRoom_img_no2() != null) {
+//				System.out.println("파일 삭제: " + realPath + rvo.getRoom_img_no2());
+//				File f = new File(realPath + rvo.getRoom_img_no2());
+//				f.delete();
+//			}
+//			if (rvo.getRoom_img_no3() != null) {
+//				System.out.println("파일 삭제: " + realPath + rvo.getRoom_img_no3());
+//				File f = new File(realPath + rvo.getRoom_img_no3());
+//				f.delete();
+//			}
+//			if (rvo.getRoom_img_no4() != null) {
+//				System.out.println("파일 삭제: " + realPath + rvo.getRoom_img_no4());
+//				File f = new File(realPath + rvo.getRoom_img_no4());
+//				f.delete();
+//			}
+//			if (rvo.getRoom_img_no5() != null) {
+//				System.out.println("파일 삭제: " + realPath + rvo.getRoom_img_no5());
+//				File f = new File(realPath + rvo.getRoom_img_no5());
+//				f.delete();
+//			}
+			roomService.manage_deleteRoom(rvo);
+			System.out.println("숙소 삭제 성공");
+			return "manage_roomList.do";
+//		} else {
+//			return "manage_roomList.do?error=y";
+//		}
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

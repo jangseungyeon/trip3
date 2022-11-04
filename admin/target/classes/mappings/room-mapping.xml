@@ -25,9 +25,7 @@
 	
 		<!-- 관리자 숙소 상세 조회 -->
 	<select id="manage_roomInfo" resultType="room">
-		SELECT *
-		FROM ROOM WHERE
-		HOST_ID=#{host_id}
+		SELECT * FROM ROOM WHERE HOST_ID=#{host_id}
 	</select>
 	
 		<!-- 관리자 숙소 수정 -->
@@ -36,7 +34,7 @@
 		UPDATE ROOM SET
 		ROOM_NAME=#{room_name}, ROOM_ADDR=#{room_addr}, ROOM_ADDR_DETAIL=#{room_addr_detail}, 
 		ROOM_DESC=#{room_desc}, ROOM_ID=#{room_id}, HOST_ID=#{host_id},
-		ROOM_PRICE=#{room_price}, ROOM_IMG=#{room_img}, ROOM_POINTS=#{room_points},
+		ROOM_PRICE=#{room_price}, ROOM_IMG_NO1=#{room_img_no1}, ROOM_POINTS=#{room_points},
 		ROOM_MAX=#{room_max}, ROOM_THEME=#{room_theme}, 
 		ROOM_CAT=#{room_cat}, ROOM_WIFI=#{room_wifi}, ROOM_PET=#{room_pet}, 
 		ROOM_MEAL=#{room_meal}, ROOM_PARKING=#{room_parking}, ROOM_SWPOOL=#{room_swpool}, 
@@ -68,7 +66,7 @@
 	<!-- 숙소 아이디와 업주 호스트 아이디 모두가 일치하는 경우 숙소 수정 -->
 	<update id="updateRoom">
 		UPDATE ROOM SET
-		ROOM_NAME=#{room_name}, ROOM_ADDR=#{room_addr}, ROOM_ADDR_DETAIL=#{room_addr_detail}, ROOM_DESC=#{room_desc}, ROOM_PRICE=#{room_price}, ROOM_IMG=#{room_img}, ROOM_POINTS=#{room_points}, ROOM_MAX=#{room_max},
+		ROOM_NAME=#{room_name}, ROOM_ADDR=#{room_addr}, ROOM_ADDR_DETAIL=#{room_addr_detail}, ROOM_DESC=#{room_desc}, ROOM_PRICE=#{room_price}, ROOM_IMG_NO1=#{room_img_no1}, ROOM_POINTS=#{room_points}, ROOM_MAX=#{room_max},
 		ROOM_THEME=#{room_theme}, ROOM_CAT=#{room_cat}, ROOM_WIFI=#{room_wifi}, ROOM_PET=#{room_pet}, ROOM_MEAL=#{room_meal}, ROOM_PARKING=#{room_parking},
 		ROOM_SWPOOL=#{room_swpool}, ROOM_LIKES=#{room_likes}, ROOM_STARS=#{room_stars} 
 		WHERE ROOM_ID=#{room_id} and HOST_ID=#{host_id}

@@ -38,7 +38,7 @@
         <table border="1">
             <tr>
                 <td>아이디</td>
-                <td><input name="user_id" value="${UserVO.user_id}" readonly></td>
+                <td><input name="user_id" value="${UserVO.user_id}"></td>
             </tr>
             <tr>
                 <td>이름</td>

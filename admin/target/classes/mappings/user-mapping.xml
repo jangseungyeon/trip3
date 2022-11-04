@@ -4,7 +4,7 @@
 
 <mapper namespace="UserDAO">
 
-	<!-- 관리자용 시작 -->
+<!-- 관리자용 시작 -->
 	<!-- 관리자 회원 조회 -->
 	<select id="manage_userList" resultType="user">
 		SELECT user_id,
@@ -49,59 +49,22 @@
 		USER_EMAIL=#{user_email},
 		USER_PHONE=#{user_phone},
 		USER_ADDRESS1=#{user_address1},
-		USER_ADDRESS2=#{user_address2}
+		USER_ADDRESS2=#{user_address2},
+		USER_STATUS=#{user_status}
 		WHERE USER_ID=#{user_id}
 	</update>
 
+	<!-- 관리자 회원 삭제 -->
+	<delete id="manage_userDelete">
+		DELETE FROM USER WHERE USER_ID = #{user_id}
+	</delete>
 
-	<!-- 관리자용 끝 -->
+<!-- 관리자용 끝 -->
 
-	<update id="user_update">
-		UPDATE USER SET USER_PASSWORD =#{user_password}, USER_NAME=#{user_name}, USER_BIRTH=#{user_birth},
-		USER_GENDER=#{user_gender}, USER_EMAIL=#{user_email}, USER_PHONE=#{user_phone},
-		user_address1 = #{user_address1} , user_address2 = #{user_address2}
-		WHERE USER_ID=#{user_id} 
-	</update>
-
-	<insert id="user_insert">
-		INSERT INTO USER (USER_ID, USER_PASSWORD, USER_NAME,
-		USER_EMAIL, USER_PHONE, USER_TYPE)
-		VALUES (#{user_id},
-		#{user_password},
-		#{user_name},#{user_email},#{user_phone},#{user_type})
-	</insert>
-
+	<!-- 아이디 체크 -->
 	<select id="idCheck" resultType="user">
 		SELECT * FROM USER WHERE
 		USER_ID= #{user_id}
 	</select>
-
-	<select id="login" resultType="user">
-		SELECT * FROM USER WHERE USER_ID=
-		#{user_id} AND USER_PASSWORD=#{user_password}
-	</select>
-
-	<select id="find" resultType="user">
-		SELECT * FROM USER WHERE 1=1
-		<if test="find == 'phone' "> AND USER_PHONE = #{user_phone} </if>
-		<if test="find == 'email' "> AND USER_EMAIL = #{user_email}</if>
-		AND USER_TYPE = #{user_type}
-	</select>
-
-	<update id="change">
-		UPDATE USER
-		SET USER_PASSWORD =#{user_password}
-		WHERE
-		USER_ID=#{user_id}
-	</update>
-
-	<select id="info" resultType="user">
-		SELECT * FROM USER WHERE USER_ID=
-		#{user_id}
-	</select>
-
-	<delete id="user_delete">
-		DELETE FROM USER WHERE USER_ID = #{user_id}
-	</delete>
 	
 </mapper>

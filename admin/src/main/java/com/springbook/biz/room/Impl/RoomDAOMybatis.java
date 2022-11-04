@@ -16,7 +16,7 @@ public class RoomDAOMybatis {
 	private SqlSessionTemplate mybatis;
 	
 	// 관리자 숙소 조회
-	public List<RoomVO> manage_roomList() {
+	public List<RoomVO> manage_roomList(RoomVO rvo) {
 		System.out.println("마이바티스 숙소 조회 manage_roomList 기능 처리");
 		return mybatis.selectList("RoomDAO.manage_roomList");
 	}

@@ -17,8 +17,8 @@ public class RoomServiceImpl implements RoomService {
 	
 	// 관리자 숙소 조회
 	@Override
-	public List<RoomVO> manage_roomList() {
-		return roomDAO.manage_roomList();
+	public List<RoomVO> manage_roomList(RoomVO rvo) {
+		return roomDAO.manage_roomList(rvo);
 	}
 	
 	// 관리자 숙소 상세 조회

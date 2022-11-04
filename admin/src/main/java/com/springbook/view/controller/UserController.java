@@ -1,10 +1,7 @@
 package com.springbook.view.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,47 +53,28 @@ public class UserController {
 		return "WEB-INF/views/manage_userInfo.jsp";
 	}
 
-	//	관리자 회원 정보 수정
+	// 관리자 회원 정보 수정
 	@RequestMapping("/manage_userUpdate.do")
 	public String manage_userUpdate(@ModelAttribute UserVO vo, HttpSession session) {
 		System.out.println("컨트롤러 입장");
 		userService.manage_userUpdate(vo);
 		System.out.println("컨트롤러 vo : " + vo);
-		
-		
-//		response.setContentType("text/html; charset=UTF-8");
-//		PrintWriter out = response.getWriter();
-//
-//		out.println("<script>");
-//		out.println("alert('수정이 완료되었습니다..')");
-//		out.println("location.href='manage_userInfo.do'");
-//		out.println("</script>");
-//		out.flush();
 
-		return "WEB-INF/views/manage_userInfo.jsp";
+		return "manage_userList.do";
 	}
 
-	//	관리자 회원 삭제
+	// 관리자 회원 삭제
 	@RequestMapping("/manage_userDelete.do")
-	public String manage_userDelete(UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {
-		vo.setUser_id((String) session.getAttribute("user_id"));
+	public String manage_userDelete(UserVO vo, HttpSession session) {
 		System.out.println("회원탈퇴 컨트롤러 입장" + vo);
 		userService.manage_userDelete(vo);
 		System.out.println("쿼리문 끝나고 컨트롤러" + vo);
 		session.invalidate();
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
 
-		out.println("<script>");
-		out.println("alert('회원 탈퇴가 완료되었습니다.')");
-		out.println("location.href='manage_userInfo.do'");
-		out.println("</script>");
-		out.flush();
-
-		return "manage_userInfo.do";
+		return "manage_userList.do";
 	}
-	
-	// 	아이디중복체크
+
+	// 아이디중복체크
 	@RequestMapping("/user_idCheck.do")
 	@ResponseBody
 	public int user_idCheck(UserVO vo) {
