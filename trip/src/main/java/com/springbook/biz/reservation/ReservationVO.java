@@ -3,6 +3,8 @@ package com.springbook.biz.reservation;
 public class ReservationVO {
 	private String res_id;	//예약 번호
 	private String user_id;	//손님 아이디
+	private String imp_uid;
+	private String merchant_uid;
 	private String res_name; //손님 이름
 	private String res_tel;	//손님 전화번호
 	private String res_email;	//손님 이메일
@@ -19,6 +21,18 @@ public class ReservationVO {
 	private String res_checkout;	//체크아웃 날짜
 	private int offset;	//페이징 처리에서 페이지 바꿀때마다 변하는, 맨 처음부터 데이터 건너뛰는 갯수 <= pagingVO에서 조정
 	
+	public String getImp_id() {
+		return imp_uid;
+	}
+	public void setImp_uid(String imp_uid) {
+		this.imp_uid = imp_uid;
+	}
+	public String getMerchant_uid() {
+		return merchant_uid;
+	}
+	public void setMerchant_uid(String merchant_uid) {
+		this.merchant_uid = merchant_uid;
+	}
 	public String getRes_tel() {
 		return res_tel;
 	}
@@ -124,11 +138,12 @@ public class ReservationVO {
 	
 	@Override
 	public String toString() {
-		return "ReservationVO [res_id=" + res_id + ", user_id=" + user_id + ", res_name=" + res_name + ", res_tel="
-				+ res_tel + ", res_email=" + res_email + ", host_id=" + host_id + ", room_id=" + room_id
-				+ ", room_name=" + room_name + ", room_img=" + room_img + ", pay_date=" + pay_date + ", pay_amount="
-				+ pay_amount + ", res_num=" + res_num + ", res_count=" + res_count + ", res_status=" + res_status
-				+ ", res_checkin=" + res_checkin + ", res_checkout=" + res_checkout + ", offset=" + offset + "]";
+		return "ReservationVO [res_id=" + res_id + ", user_id=" + user_id + ", imp_uid=" + imp_uid + ", merchant_uid="
+				+ merchant_uid + ", res_name=" + res_name + ", res_tel=" + res_tel + ", res_email=" + res_email
+				+ ", host_id=" + host_id + ", room_id=" + room_id + ", room_name=" + room_name + ", room_img="
+				+ room_img + ", pay_date=" + pay_date + ", pay_amount=" + pay_amount + ", res_num=" + res_num
+				+ ", res_count=" + res_count + ", res_status=" + res_status + ", res_checkin=" + res_checkin
+				+ ", res_checkout=" + res_checkout + ", offset=" + offset + "]";
 	}
 	
 }

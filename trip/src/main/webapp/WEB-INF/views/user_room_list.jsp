@@ -86,7 +86,7 @@
 			<td>${u_roomList[i].room_name}</td>
 <%-- 			<td>${fn:split(${u_roomList[i].room_addr},' ')}</td> --%>
 			<td>${u_roomList[i].room_price}원</td>
-			<td><img src="/resources/room_img/${u_roomList[i].room_img_no1}" width="200" height="200" /></td>
+			<td><img src="resources/room_img/${u_roomList[i].room_img_no1}" width="200" height="200" /></td>
 		</tr>
 	</c:forEach>
 	</table>

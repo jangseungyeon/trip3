@@ -377,7 +377,7 @@
 			<div id="room_img_preview_box">
 				
 				<div id="room_img_main_div">
-				<img id="room_img_main_preview" src="/resources/room_img/${room.room_img_no1}" alt="숙소 대표 이미지 미리보기" title="숙소 대표 이미지" width="250" height="250"/>
+				<img id="room_img_main_preview" src="resources/room_img/${room.room_img_no1}" alt="숙소 대표 이미지 미리보기" title="숙소 대표 이미지" width="250" height="250"/>
 				<div>숙소 대표 이미지</div>
 				<div>
 				<input name="room_img_no1_multi" type="file" id="room_img" onchange="readThisMainImg(this);" />
@@ -385,7 +385,7 @@
 				</div>
 				
 				<div id="room_img_sub1_div">
-				<img id="room_img_sub1_preview" src="/resources/room_img/${room.room_img_no2}" alt="숙소 서브1 이미지 미리보기" title="숙소 서브1 이미지" width="250" height="250"/>
+				<img id="room_img_sub1_preview" src="resources/room_img/${room.room_img_no2}" alt="숙소 서브1 이미지 미리보기" title="숙소 서브1 이미지" width="250" height="250"/>
 				<div>숙소 서브1 이미지</div>
 				<div>
 				<input name="room_img_no2_multi" type="file" id="room_img" onchange="readThisSub1Img(this);" />
@@ -393,7 +393,7 @@
 				</div>
 
 				<div id="room_img_sub2_div">
-				<img id="room_img_sub2_preview" src="/resources/room_img/${room.room_img_no3}" alt="숙소 서브2 이미지 미리보기" title="숙소 서브2 이미지" width="250" height="250"/>
+				<img id="room_img_sub2_preview" src="resources/room_img/${room.room_img_no3}" alt="숙소 서브2 이미지 미리보기" title="숙소 서브2 이미지" width="250" height="250"/>
 				<div>숙소 서브2 이미지</div>
 				<div>
 				<input name="room_img_no3_multi" type="file" id="room_img" onchange="readThisSub2Img(this);" />
@@ -401,7 +401,7 @@
 				</div>
 
 				<div id="room_img_sub3_div">
-				<img id="room_img_sub3_preview" src="/resources/room_img/${room.room_img_no4}" alt="숙소 서브3 이미지 미리보기" title="숙소 서브3 이미지" width="250" height="250"/>
+				<img id="room_img_sub3_preview" src="resources/room_img/${room.room_img_no4}" alt="숙소 서브3 이미지 미리보기" title="숙소 서브3 이미지" width="250" height="250"/>
 				<div>숙소 서브3 이미지</div>
 				<div>
 				<input name="room_img_no4_multi" type="file" id="room_img" onchange="readThisSub3Img(this);" />
@@ -409,7 +409,7 @@
 				</div>
 
 				<div id="room_img_sub4_div">
-				<img id="room_img_sub4_preview" src="/resources/room_img/${room.room_img_no5}" alt="숙소 서브4 이미지 미리보기" title="숙소 서브4 이미지" width="250" height="250"/>
+				<img id="room_img_sub4_preview" src="resources/room_img/${room.room_img_no5}" alt="숙소 서브4 이미지 미리보기" title="숙소 서브4 이미지" width="250" height="250"/>
 				<div>숙소 서브4 이미지</div>
 				<div>
 				<input name="room_img_no5_multi" type="file" id="room_img" onchange="readThisSub4Img(this);" />

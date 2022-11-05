@@ -55,7 +55,7 @@ function f_moveInsertRes() {
 		var price_result = oneNightPrice * (peopleValue - 2) + oneNightPrice;
 	}
 	
-	location.href = "moveInsertReservation.do?room_id=" + "${u_room.room_id}" + "&res_checkin=" 
+	location.href = "pay.do?room_id=" + "${u_room.room_id}" + "&res_checkin=" 
 			+ checkInValue + "&res_checkout=" + checkOutValue + "&res_num=" + peopleValue + "&pay_amount=" + price_result;
 }
 
@@ -75,18 +75,18 @@ function f_moveInsertRes() {
 	<div id="u_room_img_box">
 	
 	<div id="u_room_img_main">
-	<img src="/resources/room_img/${u_room.room_img_no1}" alt="숙소 대표 이미지" title="숙소 대표 이미지" width="350" height="400" />
+	<img src="resources/room_img/${u_room.room_img_no1}" alt="숙소 대표 이미지" title="숙소 대표 이미지" width="350" height="400" />
 	</div>
 	
 	<div id="u_room_img_subs">
 	<div id="u_room_img_subs1">
-	<img src="/resources/room_img/${u_room.room_img_no2}" alt="숙소 서브1 이미지" title="숙소 서브1 이미지" width="200" height="250" />
-	<img src="/resources/room_img/${u_room.room_img_no3}" alt="숙소 서브2 이미지" title="숙소 서브2 이미지" width="200" height="250" />
+	<img src="resources/room_img/${u_room.room_img_no2}" alt="숙소 서브1 이미지" title="숙소 서브1 이미지" width="200" height="250" />
+	<img src="resources/room_img/${u_room.room_img_no3}" alt="숙소 서브2 이미지" title="숙소 서브2 이미지" width="200" height="250" />
 	</div>
 	
 	<div id="u_room_img_subs2">
-	<img src="/resources/room_img/${u_room.room_img_no4}" alt="숙소 서브3 이미지" title="숙소 서브3 이미지" width="200" height="250" />
-	<img src="/resources/room_img/${u_room.room_img_no5}" alt="숙소 서브4 이미지" title="숙소 서브4 이미지" width="200" height="250" />
+	<img src="resources/room_img/${u_room.room_img_no4}" alt="숙소 서브3 이미지" title="숙소 서브3 이미지" width="200" height="250" />
+	<img src="resources/room_img/${u_room.room_img_no5}" alt="숙소 서브4 이미지" title="숙소 서브4 이미지" width="200" height="250" />
 	</div>
 	</div>
 	
@@ -126,6 +126,8 @@ function f_moveInsertRes() {
 	
 	<div id="u_room_conditions">
 	
+	<!-- https://iconmonstr.com/ -->
+	
 	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 
 	10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.894 14.992c.485-.514 1.154-.832 1.894-.832s1.408.318 1.894.832l-1.894 
 	2.008-1.894-2.008zm-.874-.927c.709-.751 1.688-1.215 2.768-1.215s2.059.465 2.768 1.216l1.164-1.236c-1.006-1.067-2.396-1.727-3.932-1.727s-2.926.66-3.932 1.727l1.164 1.235zm-2.038-2.163c1.23-1.304 
@@ -151,6 +153,8 @@ function f_moveInsertRes() {
 	0-.5.223-.5.499s.224.5.5.5h7c.276 0 .5-.224.5-.5s-.224-.499-.5-.499h-7zm-4.5-.501c0 .828.672 1.5 1.5 1.5s1.5-.672 1.5-1.5-.672-1.5-1.5-1.5-1.5.671-1.5 1.5zm-1.298-6.5h-2.202c-.276 0-.5.224-.5.5v.511c0 .793.926.989 1.616.989l1.086-2zm19.006 4.001h-1.511c.474.89.803 1.655.803 2.972 0 1.673-1.355 3.028-3.026 3.028h-11.948c-1.671 
 	0-3.026-1.355-3.026-3.028 0-1.641.506-2.421 1.184-3.678 1.041.206 3.967.705 7.816.705.877 0 1.728-.029 2.532-.076-1.203-.217-2.227-.933-2.859-1.929-2.895-.023-5.237-.339-6.478-.55.382-.686.779-1.386 1.184-2.061.67-1.117.852-1.149 1.39-1.246 1.011-.181 1.984-.272 3.231-.302v-2.002c-1.382.031-2.451.132-3.585.335-1.381.248-1.965.875-2.751 
 	2.187-.981 1.637-1.913 3.382-2.684 4.812-.687 1.273-.98 2.411-.98 3.805 0 1.318.42 2.415 1 3.817v2.209c0 .553.448 1.002 1 1.002h1.5c.552 0 1-.449 1-1.001v-1h13v1c0 .552.448 1.001 1 1.001h1.5c.552 0 1-.449 1-1.001v-2.209c.58-1.403 1-2.499 1-3.817 0-1.109-.196-2.058-.618-3.041-.221.035-.443.068-.674.068z"/></svg>
+	
+	<!-- https://iconify.design/ -->
 	
 	<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M2 18c2.22-1 4.44-2 6.67-2c2.22 0 4.44 2 6.66 2c2.23 0 4.45-2 
 	6.67-2v3c-2.22 0-4.44 2-6.67 2c-2.22 0-4.44-2-6.66-2c-2.23 0-4.45 1-6.67 2v-3m6.67-5c-.78 0-1.55.12-2.32.32l4.92-3.44l-1.04-1.24c-.14-.17-.23-.4-.23-.64c0-.34.17-.65.44-.83l5.72-4l1.15 1.63l-4.84 3.39l5.23 
