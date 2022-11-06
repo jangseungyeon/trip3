@@ -10,6 +10,63 @@
 <%@ include file="header.jsp"%>
 
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- jQuery CDN --->
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<script>
+function f_getPayInfo(mid) {
+	$.ajax({
+		url : "payamount",
+		data : {"mid": mid},
+		method : "GET",
+		contentType : 'application/json; charset=UTF-8',
+		success : function(val){
+			console.log(val);
+			$("#PayInfos").empty();
+			if(val.msg!=null){
+				alert(val.msg + "\n관리자에게 문의하십시오.");
+			}else{
+				$("#PayInfos").append("고유ID: "+val.imp_uid);
+				$("#PayInfos").append("<br>상점 거래ID: "+val.merchant_uid);
+				$("#PayInfos").append("<br>주문상품: "+val.name);
+				$("#PayInfos").append("<br>주문자: "+val.buyer_name);
+				$("#PayInfos").append("<br>결제금액: "+val.amount);
+			}
+		},
+		error :  function(request, status){
+			alert("목록 가져오기를 할 수 없습니다.");
+			}
+		});
+}
+
+function f_cancelPay(mid, fmIndex){
+	$.ajax({
+		url : "paycan",
+		data : {"mid": mid},
+		method : "POST",
+		success : function(val){
+			console.log(val);
+			if(val==1) {
+				alert("취소 완료");
+				f_cancelRes(fmIndex)
+			} else {
+				alert("취소 실패\n이미 취소되었거나 잘못된 정보입니다.");
+			}
+		},
+		error :  function(request, status){
+			alert("취소가 실패하였습니다.");
+		}
+	});
+}
+
+function f_cancelRes(fmIndex){
+	let frm = document.getElementsByName(fmIndex)[0];
+	frm.action = "cancelReservation.do";
+	frm.method = "post";
+	frm.submit();
+}
+</script>
+
 
 </head>
 <body>
@@ -36,9 +93,9 @@
       </tr>
     </thead>
     <tbody>
-<c:forEach var="i" items="${reservationList}">
+<c:forEach var="i" items="${reservationList}" varStatus="status">
 			<tr align="center">
-			<td><img style="width: 300px;" src="resources/img/${i.room_img}"></td>
+			<td><img style="width: 300px;" src="resources/room_img/${i.room_img}"></td>
 				<td>${i.res_id}</td>
 				<td>${i.room_name}</td>
 				<td>${i.pay_date}</td>
@@ -48,10 +105,18 @@
 				<td>${i.res_status}</td>
 				<td>${i.res_checkin}</td>
 				<td id="checkout">${i.res_checkout}</td>
-				<td id="daybefore"><button>결제 취소</button></td>
+				<td id="PayInfos"></td>
+				<td id="daybefore"><button onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제 취소</button></td>
+				<td><button onclick="f_getPayInfo('${i.merchant_uid}')">결제 정보 보기</button></td>
 				<td id="dayafter" style="display: none"><button>리뷰 쓰기</button></td>
 			</tr>
 			<br>
+			<form name="resCancelfm_${status.index}">
+			<input type="hidden" name="user_id" value="${user_id}" />
+			<input type="hidden" name="res_id" value="${i.res_id}" />
+			<input type="hidden" name="imp_uid" id="${i.imp_uid}_${status.index}" value="${i.imp_uid}" />
+			<input type="hidden" name="merchant_uid" id="${i.merchant_uid}_${status.index}" value="${i.merchant_uid}" />
+			</form>
 		</c:forEach>
 		    </tbody>
   </table><br><br>

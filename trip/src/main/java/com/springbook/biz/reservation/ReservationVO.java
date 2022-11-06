@@ -3,8 +3,8 @@ package com.springbook.biz.reservation;
 public class ReservationVO {
 	private String res_id;	//예약 번호
 	private String user_id;	//손님 아이디
-	private String imp_uid;
-	private String merchant_uid;
+	private String imp_uid;	//결제 고유 ID
+	private String merchant_uid;	//상점가 ID (merchant_지금시간)
 	private String res_name; //손님 이름
 	private String res_tel;	//손님 전화번호
 	private String res_email;	//손님 이메일
@@ -19,9 +19,24 @@ public class ReservationVO {
 	private String res_status;	//예약상태 (DB 디폴트 초기 값 1)
 	private String res_checkin;	//체크인 날짜
 	private String res_checkout;	//체크아웃 날짜
+	private String res_ci3_ok = "true";		//오늘 날짜 기준으로 계산 결과 체크인 날짜 3일 이상 => 예약 가능 기준점 변수
+	private String res_co_ok = "false";		//오늘 날짜 기준으로 계산 결과 체크아웃 날짜보다 경과 => 리뷰 쓰기 가능 기준점 변수
 	private int offset;	//페이징 처리에서 페이지 바꿀때마다 변하는, 맨 처음부터 데이터 건너뛰는 갯수 <= pagingVO에서 조정
 	
-	public String getImp_id() {
+	
+	public String Res_ci3_ok() {
+		return res_ci3_ok;
+	}
+	public void setRes_ci3_ok(String res_ci3_ok) {
+		this.res_ci3_ok = res_ci3_ok;
+	}
+	public String Res_co_ok() {
+		return res_co_ok;
+	}
+	public void setRes_co_ok(String res_co_ok) {
+		this.res_co_ok = res_co_ok;
+	}
+	public String getImp_uid() {
 		return imp_uid;
 	}
 	public void setImp_uid(String imp_uid) {
@@ -143,7 +158,8 @@ public class ReservationVO {
 				+ ", host_id=" + host_id + ", room_id=" + room_id + ", room_name=" + room_name + ", room_img="
 				+ room_img + ", pay_date=" + pay_date + ", pay_amount=" + pay_amount + ", res_num=" + res_num
 				+ ", res_count=" + res_count + ", res_status=" + res_status + ", res_checkin=" + res_checkin
-				+ ", res_checkout=" + res_checkout + ", offset=" + offset + "]";
+				+ ", res_checkout=" + res_checkout + ", res_ci3_ok=" + res_ci3_ok + ", res_co_ok=" + res_co_ok
+				+ ", offset=" + offset + "]";
 	}
 	
 }

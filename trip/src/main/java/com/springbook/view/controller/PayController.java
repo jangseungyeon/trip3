@@ -187,7 +187,10 @@ public class PayController {
 			String token = getImportToken();
 			setHackCheck(amount, mid, token);
 			
+			System.out.println("숙소 예약 등록 시작");
+			System.out.println(rvo);
 			reservationService.insertReservation(rvo);
+			System.out.println("숙소 예약 등록 성공");
 			
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("text/html; charset=utf-8");
@@ -210,7 +213,7 @@ public class PayController {
 			return "WEB-INF/views/user_pay_complete.jsp";
 		}
 
-		// 아임포트 imp_id, merchant_id 일치하면 모든 목록 반환
+		// 아임포트 merchant_id 일치하면 모든 목록 반환
 		// https://api.iamport.kr/#/ 참고, ready(미결제), paid(결제완료), failed(결제실패), cancelled(환불취소) 넣으면 조건별로 검색 가능
 	@RequestMapping(value = "/payamount")
 	@ResponseBody
@@ -221,7 +224,7 @@ public class PayController {
 		System.out.println("mid값: " + mid);
 		Map<String, String> map = new HashMap<String, String>();
 		HttpClient client = HttpClientBuilder.create().build();
-		HttpGet get = new HttpGet(IMPORT_PAYMENTINFO_URL + mid + "/-paid");
+		HttpGet get = new HttpGet(IMPORT_PAYMENTINFO_URL + mid + "/paid");
 		get.setHeader("Authorization", token);
 		try {
 			HttpResponse res = client.execute(get);

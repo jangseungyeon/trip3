@@ -6,6 +6,7 @@ public class RoomVO {
 	private String room_name;	//숙소 이름
 	private String room_addr;	//숙소 기본 주소
 	private String room_addr_detail;	//숙소 상세 주소
+	private String room_area;	//숙소 지역
 	private String room_desc;	//숙소 설명
 	private String room_id;		//숙소 아이디
 	private String host_id;		//업주 아이디
@@ -16,7 +17,7 @@ public class RoomVO {
 	private String room_img_no4;	//숙소 서브 이미지 3
 	private String room_img_no5;	//숙소 서브 이미지 4 
 	private String room_points;	//숙소 마일리지
-	private int room_max;	//숙소 최대인원
+	private String room_max;	//숙소 최대인원
 	private String room_theme;	//숙소 테마 (산, 바다, 산과 바다)
 	private String room_cat;	//숙소 카테고리 (펜션, 모텔, 호텔, 게스트 하우스,...)
 	private String room_wifi;	//숙소 와이파이 여부
@@ -41,6 +42,12 @@ public class RoomVO {
 	private MultipartFile room_img_no5_multi; 
 	private int offset;
 	
+	public String getRoom_area() {
+		return room_area;
+	}
+	public void setRoom_area(String room_area) {
+		this.room_area = room_area;
+	}
 	public String getRoom_theme_m() {
 		return room_theme_m;
 	}
@@ -203,10 +210,10 @@ public class RoomVO {
 	public void setRoom_points(String room_points) {
 		this.room_points = room_points;
 	}
-	public int getRoom_max() {
+	public String getRoom_max() {
 		return room_max;
 	}
-	public void setRoom_max(int room_max) {
+	public void setRoom_max(String room_max) {
 		this.room_max = room_max;
 	}
 	public String getRoom_theme() {
@@ -267,18 +274,19 @@ public class RoomVO {
 	@Override
 	public String toString() {
 		return "RoomVO [room_name=" + room_name + ", room_addr=" + room_addr + ", room_addr_detail=" + room_addr_detail
-				+ ", room_desc=" + room_desc + ", room_id=" + room_id + ", host_id=" + host_id + ", room_price="
-				+ room_price + ", room_img_no1=" + room_img_no1 + ", room_img_no2=" + room_img_no2 + ", room_img_no3="
-				+ room_img_no3 + ", room_img_no4=" + room_img_no4 + ", room_img_no5=" + room_img_no5 + ", room_points="
-				+ room_points + ", room_max=" + room_max + ", room_theme=" + room_theme + ", room_cat=" + room_cat
-				+ ", room_wifi=" + room_wifi + ", room_pet=" + room_pet + ", room_meal=" + room_meal + ", room_parking="
-				+ room_parking + ", room_swpool=" + room_swpool + ", room_likes=" + room_likes + ", room_stars="
-				+ room_stars + ", room_min_price=" + room_min_price + ", room_max_price=" + room_max_price
-				+ ", room_theme_m=" + room_theme_m + ", room_theme_s=" + room_theme_s + ", room_theme_f=" + room_theme_f
-				+ ", room_theme_v=" + room_theme_v + ", room_theme_r=" + room_theme_r + ", room_theme_c=" + room_theme_c
-				+ ", room_img_no1_multi=" + room_img_no1_multi + ", room_img_no2_multi=" + room_img_no2_multi
-				+ ", room_img_no3_multi=" + room_img_no3_multi + ", room_img_no4_multi=" + room_img_no4_multi
-				+ ", room_img_no5_multi=" + room_img_no5_multi + ", offset=" + offset + "]";
+				+ ", room_area=" + room_area + ", room_desc=" + room_desc + ", room_id=" + room_id + ", host_id="
+				+ host_id + ", room_price=" + room_price + ", room_img_no1=" + room_img_no1 + ", room_img_no2="
+				+ room_img_no2 + ", room_img_no3=" + room_img_no3 + ", room_img_no4=" + room_img_no4 + ", room_img_no5="
+				+ room_img_no5 + ", room_points=" + room_points + ", room_max=" + room_max + ", room_theme="
+				+ room_theme + ", room_cat=" + room_cat + ", room_wifi=" + room_wifi + ", room_pet=" + room_pet
+				+ ", room_meal=" + room_meal + ", room_parking=" + room_parking + ", room_swpool=" + room_swpool
+				+ ", room_likes=" + room_likes + ", room_stars=" + room_stars + ", room_min_price=" + room_min_price
+				+ ", room_max_price=" + room_max_price + ", room_theme_m=" + room_theme_m + ", room_theme_s="
+				+ room_theme_s + ", room_theme_f=" + room_theme_f + ", room_theme_v=" + room_theme_v + ", room_theme_r="
+				+ room_theme_r + ", room_theme_c=" + room_theme_c + ", room_img_no1_multi=" + room_img_no1_multi
+				+ ", room_img_no2_multi=" + room_img_no2_multi + ", room_img_no3_multi=" + room_img_no3_multi
+				+ ", room_img_no4_multi=" + room_img_no4_multi + ", room_img_no5_multi=" + room_img_no5_multi
+				+ ", offset=" + offset + "]";
 	}
 	
 }

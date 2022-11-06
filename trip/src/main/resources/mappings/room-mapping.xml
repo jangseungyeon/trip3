@@ -37,17 +37,6 @@
 	<select id="getRoomList" resultType="room">
 		SELECT * FROM ROOM WHERE 1=1
 			<if test='host_id != null'>AND HOST_ID = #{host_id}</if>
-<!-- 		<if test='searchRoomName != null'>AND ROOM_NAME LIKE CONCAT('%',#{searchRoomName},'%')</if> -->
-<!-- 		<if test='searchRoomAddr != null'>AND ROOM_ADDR LIKE CONCAT('%',#{searchRoomAddr},'%')</if> -->
-<!-- 		<if test='searchRoomMinPrice != null and searchRoomMaxPrice != null'>AND ROOM_PRICE BETWEEN #{searchRoomMinPrice} and #{searchRoomMaxPrice}</if> -->
-<!-- 		<if test='searchRoomMax != null'>AND ROOM_MAX &lt;= #{searchRoomMax}</if> -->
-<!-- 		<if test='searchRoomTheme == "mountain" or searchRoomTheme == "sea" or searchRoomTheme == "mountainSea"'>AND ROOM_CAT LIKE CONCAT('%',#{searchRoomTheme},'%')</if> -->
-<!-- 		<if test='searchRoomCat != null'>AND ROOM_CAT = #{searchRoomCat}</if> -->
-<!-- 		<if test='searchRoomWIFI == "Y"'>AND ROOM_WIFI = 'Y'</if> -->
-<!-- 		<if test='searchRoomPet == "Y"'>AND ROOM_PET = 'Y'</if> -->
-<!-- 		<if test='searchRoomMeal == "Y"'>AND ROOM_MEAL = 'Y'</if> -->
-<!-- 		<if test='searchRoomParking == "Y"'>AND ROOM_PARKING = 'Y'</if> -->
-<!-- 		<if test='searchRoomSwpool == "Y"'>AND ROOM_SWPOOL = 'Y'</if> -->
 <!-- 		ORDER BY SEQ DESC  -->
 <!-- 		LIMIT 10 OFFSET #{offset} -->
 	</select>
@@ -57,17 +46,6 @@
 	<select id="totalRoomListCnt" resultType="_int">
 		SELECT COUNT(*) FROM ROOM WHERE 1=1
 			<if test='host_id != null'>AND HOST_ID = #{host_id}</if>
-<!-- 		<if test='searchRoomName != null'>AND ROOM_NAME LIKE CONCAT('%',#{searchRoomName},'%')</if> -->
-<!-- 		<if test='searchRoomAddr != null'>AND ROOM_ADDR LIKE CONCAT('%',#{searchRoomAddr},'%')</if> -->
-<!-- 		<if test='searchRoomMinPrice != null and searchRoomMaxPrice != null'>AND ROOM_PRICE BETWEEN #{searchRoomMinPrice} and #{searchRoomMaxPrice}</if> -->
-<!-- 		<if test='searchRoomMax != null'>AND ROOM_MAX &lt;= #{searchRoomMax}</if> -->
-<!-- 		<if test='searchRoomTheme == "mountain" or searchRoomTheme == "sea" or searchRoomTheme == "mountainSea"'>AND ROOM_CAT LIKE CONCAT('%',#{searchRoomTheme},'%')</if> -->
-<!-- 		<if test='searchRoomCat != null'>AND ROOM_CAT = #{searchRoomCat}</if> -->
-<!-- 		<if test='searchRoomWIFI == "Y"'>AND ROOM_WIFI = 'Y'</if> -->
-<!-- 		<if test='searchRoomPet == "Y"'>AND ROOM_PET = 'Y'</if> -->
-<!-- 		<if test='searchRoomMeal == "Y"'>AND ROOM_MEAL = 'Y'</if> -->
-<!-- 		<if test='searchRoomParking == "Y"'>AND ROOM_PARKING = 'Y'</if> -->
-<!-- 		<if test='searchRoomSwpool == "Y"'>AND ROOM_SWPOOL = 'Y'</if> -->
 	</select>
 	
 	<!-- 장승연 전체검색 -->
@@ -78,7 +56,7 @@
 		<if test="room_cat !=null and room_cat != ''"> AND ROOM_CAT =#{room_cat} </if>
 		<if test="room_min_price != null and room_max_price != null and room_min_price != '' and room_max_price != ''"> AND ROOM_PRICE BETWEEN #{room_min_price} AND #{room_max_price}
 		</if>
-		<if test="room_max !=null and room_max != ''"> AND ROOM_MAX =#{room_max} </if>
+		<if test="room_max !=null and room_max != ''"> AND ROOM_MAX &lt;= #{room_max} </if>
 		<if test='room_wifi == "Y"'> AND room_wifi = #{room_wifi} </if>
 		<if test='room_pet == "Y"'> AND room_pet = #{room_pet} </if>
 		<if test='room_parking == "Y"'> AND room_parking = #{room_parking} </if>

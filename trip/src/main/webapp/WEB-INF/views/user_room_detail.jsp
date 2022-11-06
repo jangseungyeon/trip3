@@ -40,6 +40,16 @@ function f_moveInsertRes() {
 	
 	checkOutValue = $(checkOut).val();
 	
+	var checkInValue_arr = checkInValue.split("-");
+	
+	var checkOutValue_arr = checkOutValue.split("-");
+	
+	checkInValue = new Date(checkInValue_arr[0], checkInValue_arr[1], checkInValue_arr[2]);
+	
+	checkOutValue = new Date(checkOutValue_arr[0], checkOutValue_arr[1], checkOutValue_arr[2]);
+	
+	var period = ( checkOutValue.getTime() - checkInValue.getTime() ) / (1000*60*60*24);
+	
 	peopleValue = $(people).val();
 	
 	oneNightPrice = parseInt(oneNightPrice);
@@ -48,12 +58,16 @@ function f_moveInsertRes() {
 	
 	if(peopleValue <= 2) {
 		
-		var price_result = oneNightPrice;
+		var price_result = oneNightPrice * period;
 		
 	} else {
 		
-		var price_result = oneNightPrice * (peopleValue - 2) + oneNightPrice;
+		var price_result = (oneNightPrice * (peopleValue - 2) + oneNightPrice) * period;
 	}
+	
+	checkInValue = $(checkIn).val();
+	
+	checkOutValue = $(checkOut).val();
 	
 	location.href = "pay.do?room_id=" + "${u_room.room_id}" + "&res_checkin=" 
 			+ checkInValue + "&res_checkout=" + checkOutValue + "&res_num=" + peopleValue + "&pay_amount=" + price_result;

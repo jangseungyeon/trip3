@@ -61,6 +61,11 @@ public class RoomController {
 	@RequestMapping(value="/insertRoom.do")
 	public String insertRoom(MultipartHttpServletRequest request, RoomVO rvo) throws IllegalStateException, IOException {
 		System.out.println("숙소 등록 시작");
+		
+		String room_area = rvo.getRoom_addr().split(" ")[0];
+		
+		rvo.setRoom_area(room_area);
+		
 		MultipartFile uploadFile1 = rvo.getRoom_img_no1_multi();
 		MultipartFile uploadFile2 = rvo.getRoom_img_no2_multi();
 		MultipartFile uploadFile3 = rvo.getRoom_img_no3_multi();
@@ -194,8 +199,6 @@ public class RoomController {
 			rvo.setRoom_price(rvo.getRoom_price().replace(",", ""));
 			roomService.updateRoom(rvo);
 			System.out.println("숙소 수정 성공");
-			sessionStatus.setComplete();
-			//세션에서 "room" model 객체 지움 (객체 관리)
 			return "redirect:getRoomList.do";
 		} else {
 			return "getRoom.do?error=y";
@@ -286,7 +289,7 @@ public class RoomController {
 
 	}
 
-	// 장승연 숙소목록
+	// 장승연 회원용 숙소목록
 	@RequestMapping(value="/u_getRoomList.do")
 	public String u_getRoomList(RoomVO rvo, Model model) {
 		System.out.println("u_getRoomList: " + rvo);
@@ -296,7 +299,7 @@ public class RoomController {
 		return "WEB-INF/views/user_room_list.jsp";
 	}
 
-	// 장승연 숙소검색필터
+	// 장승연 회원용 숙소검색필터
 	@RequestMapping(value = "/u_searchRoomList.do")
 	public String u_searchRoomList(RoomVO rvo, Model model) {
 		System.out.println("u_searchRoomList: " + rvo);
@@ -306,7 +309,7 @@ public class RoomController {
 		return "WEB-INF/views/user_room_list.jsp";
 	}
 	
-	// 윤상호 숙소 상세페이지 이동
+	//회원용 숙소 상세페이지 이동
 	@RequestMapping(value="/u_getRoom.do")
 	public String u_getRoom(RoomVO rvo, Model model) {
 		System.out.println("u_getRoom: " + rvo);
