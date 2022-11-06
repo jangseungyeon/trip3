@@ -278,7 +278,7 @@ document.getElementById("room_addr_search").addEventListener("click", function()
 
 <!-- 숙박 시설 1박당 가격 등록 -->
 <div id="room_price_box">
-<div id="room_price_q">1박당 가격은 어떻게 되세요?</div>
+<div id="room_price_q">1박당 가격은 어떻게 되세요? (2인 기준)</div>
 <br>
 <div>
 <input name="room_price" type="text" id="room_price" />&nbsp;원
@@ -468,6 +468,9 @@ document.getElementById("room_addr_search").addEventListener("click", function()
 
 <br>
 <br>
+
+<input type="hidden" name="room_likes" id="room_likes" value="0" />
+<input type="hidden" name="room_stars" id="room_stars" value="0" />
 
 <button type="submit">숙소 등록하기</button>
 

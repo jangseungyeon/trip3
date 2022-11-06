@@ -29,7 +29,7 @@ public class RoomController {
 	@Autowired
 	private RoomService roomService;
 
-	//업주용 숙박 목록, 업주용 숙박 상세 페이지 제목 라벨링
+	//(호스트) 업주용 숙박 목록, 업주용 숙박 상세 페이지 제목 라벨링
 	@ModelAttribute("roomListHeadMap")
 	public Map<String, String> searchroomListHeadMap() {
 		Map<String, String> roomListHeadMap = new HashMap<String, String>();
@@ -50,13 +50,13 @@ public class RoomController {
 		return roomListHeadMap;
 	}
 	
-	//업주용 숙소 등록 폼 페이지 이동
+	//(호스트) 업주용 숙소 등록 폼 페이지 이동
 	@RequestMapping(value="/moveInsertRoom.do")
 	public String moveInsertRoom() {
 		return "WEB-INF/views/host_insert_room.jsp";
 	}
 
-	// 숙소 등록 (숙소 이미지를 같이 받아야 하기에 Multipart 라이브러리 도입, 숙소 이미지는 webapp 아래 img 폴더에 저장,
+	// (호스트) 숙소 등록 (숙소 이미지를 같이 받아야 하기에 Multipart 라이브러리 도입, 숙소 이미지는 webapp 아래 img 폴더에 저장,
 	// 등록 완료되면 숙소 리스트 페이지로 이동)
 	@RequestMapping(value="/insertRoom.do")
 	public String insertRoom(MultipartHttpServletRequest request, RoomVO rvo) throws IllegalStateException, IOException {
@@ -112,7 +112,7 @@ public class RoomController {
 		return "redirect:getRoomList.do";
 		}
 		
-	//숙소 수정 (새션에 저장한 업주 호스트 아이디와 숙소 상세 페이지의 아이디와 일치해야 수정, 그 후 숙소 목록으로 돌아감)
+	//(호스트) 숙소 수정 (새션에 저장한 업주 호스트 아이디와 숙소 상세 페이지의 아이디와 일치해야 수정, 그 후 숙소 목록으로 돌아감)
 	@RequestMapping(value="/updateRoom.do")
 	public String updateRoom(MultipartHttpServletRequest request, @ModelAttribute("room") RoomVO rvo, HttpSession session, SessionStatus sessionStatus) throws IllegalStateException, IOException {
 		
@@ -205,7 +205,7 @@ public class RoomController {
 		}
 	}
 
-	// 숙소 삭제 (숙소 이미지 파일 먼저 삭제 후 숙소 조회 후 가지고 온 업주 호스트 아이디와 세션의 업주 호스트 아이디가 일치하면 삭제, 
+	//(호스트) 숙소 삭제 (숙소 이미지 파일 먼저 삭제 후 숙소 조회 후 가지고 온 업주 호스트 아이디와 세션의 업주 호스트 아이디가 일치하면 삭제, 
 	// 그 후 숙소 목록으로 돌아감)
 	@RequestMapping(value = "/deleteRoom.do")
 	// public String deleteRoom(MultipartHttpServletRequest request, RoomVO rvo,
@@ -253,7 +253,7 @@ public class RoomController {
 		}
 	}
 
-	// 업주용 숙소 상세 페이지 보기
+	//(호스트) 업주용 숙소 상세 페이지 보기
 	@RequestMapping(value = "/getRoom.do")
 	public String getRoom(RoomVO rvo, Model model) {
 		System.out.println("숙소 상세 보기 시작");
@@ -262,7 +262,7 @@ public class RoomController {
 		return "WEB-INF/views/host_room_detail.jsp";
 	}
 
-	// 업주용 숙소 목록
+	//(호스트) 업주용 숙소 목록
 	@RequestMapping(value = "/getRoomList.do")
 	public String getRoomList(RoomVO rvo, String nowPageBtn, Model model, HttpSession session) {
 
@@ -289,7 +289,7 @@ public class RoomController {
 
 	}
 
-	// 장승연 회원용 숙소목록
+	//(회원) 장승연 회원용 숙소목록
 	@RequestMapping(value="/u_getRoomList.do")
 	public String u_getRoomList(RoomVO rvo, Model model) {
 		System.out.println("u_getRoomList: " + rvo);
@@ -299,7 +299,7 @@ public class RoomController {
 		return "WEB-INF/views/user_room_list.jsp";
 	}
 
-	// 장승연 회원용 숙소검색필터
+	//(회원) 장승연 회원용 숙소검색필터
 	@RequestMapping(value = "/u_searchRoomList.do")
 	public String u_searchRoomList(RoomVO rvo, Model model) {
 		System.out.println("u_searchRoomList: " + rvo);
@@ -309,7 +309,7 @@ public class RoomController {
 		return "WEB-INF/views/user_room_list.jsp";
 	}
 	
-	//회원용 숙소 상세페이지 이동
+	//(회원) 회원용 숙소 상세페이지 이동
 	@RequestMapping(value="/u_getRoom.do")
 	public String u_getRoom(RoomVO rvo, Model model) {
 		System.out.println("u_getRoom: " + rvo);

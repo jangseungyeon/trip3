@@ -4,25 +4,25 @@ import java.util.List;
 
 public interface RoomService {
 	
-	//숙소 등록
+	//(업주) 숙소 등록
 	void insertRoom(RoomVO rvo);
 	
-	//숙소 수정 
+	//(업주) 숙소 수정 
 	void updateRoom(RoomVO rvo);
 	
-	//숙소 삭제
+	//(업주) 숙소 삭제
 	void deleteRoom(RoomVO rvo);
 	
-	//숙소 상세 조회
+	//(업주, 회원) 숙소 상세 조회
 	RoomVO getRoom(RoomVO rvo);
 	
-	//숙소 여러개 정보 리스트 조회
+	//(업주, 회원) 숙소 여러개 정보 리스트 조회
 	List<RoomVO> getRoomList(RoomVO rvo);
 	
-	//숙소 정보 전체 갯수 조회
+	//(업주, 회원) 숙소 정보 전체 갯수 조회
 	int totalRoomListCnt(RoomVO rvo);
 	
-	//장승연 숙소검색필터
+	//(회원) 장승연 숙소검색필터
 	List<RoomVO> u_searchRoomList(RoomVO rvo);
 	
 }

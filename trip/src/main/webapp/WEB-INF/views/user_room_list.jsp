@@ -26,8 +26,8 @@
 	<form action="u_searchRoomList.do" name="searchRoomfrm" method="post">
 		<input class="search_room" type="text" placeholder="검색창" name="room_name">
 		<br> 
-		<label for="room_addr">지역</label>
-		<select name="room_addr" id="room_addr">
+		<label for="room_area">지역</label>
+		<select name="room_area" id="room_area">
 			<option value="">전국</option>
 			<option>서울</option>
 			<option>경기</option>

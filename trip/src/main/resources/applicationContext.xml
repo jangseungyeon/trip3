@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 	
 	<context:component-scan base-package="com.springbook.biz"></context:component-scan>
-<!-- 	<bean id="deptvo" class="com.springbook.biz.member.DeptVO"/> -->
+	
 	<!-- DataSource 설정 -->
 	<context:property-placeholder location="classpath:config/database.properties"/>
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -25,17 +25,15 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
-<!-- 	sqlsession객체 생성 -->
-<bean id="sqlsession" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<!-- 	sqlsession객체 생성 -->
+	<bean id="sqlsession" class="org.mybatis.spring.SqlSessionFactoryBean">
 	<property name="dataSource" ref="dataSource"></property>
-<property name="configLocation" value="classpath:sql-map-config.xml"></property>
-</bean>
+	<property name="configLocation" value="classpath:sql-map-config.xml"></property>
+	</bean>
 	
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 	<constructor-arg ref="sqlsession"></constructor-arg>
 	</bean>
-	
-	
 	
 	<!-- Transaction 설정 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -55,6 +53,7 @@
 		<aop:advisor advice-ref="txAdvice"
 			pointcut-ref="txPointcut" />
 	</aop:config>
+	
 		<!-- 메일 인증시 필요 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<!-- SMTP 서버명 설정 -->

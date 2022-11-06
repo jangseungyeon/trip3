@@ -14,7 +14,17 @@
 
 let today = new Date();
 
-let dateFormat = today.getFullYear() + '/' + ( (today.getMonth()+1) < 9 ? "0" + (today.getMonth()+1) : (today.getMonth()+1) )+  '/' + ( (today.getDate()) < 9 ? "0" + (today.getDate()) : (today.getDate()) ) +  " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+let dateFormat = today.getFullYear() + '/'; 
+
+dateFormat += ( (today.getMonth()+1) <= 9 ? "0" + (today.getMonth()+1) : (today.getMonth()+1) ) + '/';
+
+dateFormat += ( (today.getDate()) <= 9 ? "0" + (today.getDate()) : (today.getDate()) ) +  " "; 
+
+dateFormat += ( (today.getHours()) <= 9 ? "0" + (today.getHours()) : (today.getHours()) ) + ":"; 
+
+dateFormat += ( (today.getMinutes()) <= 9 ? "0" + (today.getMinutes()) : (today.getMinutes()) ) + ":"; 
+
+dateFormat += ( (today.getSeconds()) <= 9 ? "0" + (today.getSeconds()) : (today.getSeconds()) );
 
 var chk = false;
 

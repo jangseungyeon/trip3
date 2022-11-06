@@ -4,31 +4,39 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
+	
 		<setting name="callSettersOnNulls" value="true" />
 		<setting name="returnInstanceForEmptyRow" value="true" />
+		
 	</settings>
+	
 	<typeAliases>
-	<typeAlias alias="host" type="com.springbook.biz.host.HostVO"/>
+	
+		<typeAlias alias="host" type="com.springbook.biz.host.HostVO"/>
 		<typeAlias alias="user" type="com.springbook.biz.user.UserVO" />
-		<typeAlias alias="room" type="com.springbook.biz.room.RoomVO"></typeAlias>
-		<typeAlias alias="reservation" type="com.springbook.biz.reservation.ReservationVO"></typeAlias>
-		 <typeAlias type="com.springbook.biz.planner.PlannerVO" alias="planner"/>
-		<typeAlias type="com.springbook.biz.planner.AreaVO" alias="area"/>
-		<typeAlias type="com.springbook.biz.planner.PlaceVO" alias="place"/>
-		<typeAlias type="com.springbook.biz.planner.LikeVO" alias="like"/>
-		<typeAlias type="com.springbook.biz.review.ReviewVO" alias="review"/>
+		<typeAlias alias="room" type="com.springbook.biz.room.RoomVO" />
+		<typeAlias alias="reservation" type="com.springbook.biz.reservation.ReservationVO" />
+		<typeAlias alias="planner" type="com.springbook.biz.planner.PlannerVO" />
+		<typeAlias alias="area" type="com.springbook.biz.planner.AreaVO" />
+		<typeAlias alias="place" type="com.springbook.biz.planner.PlaceVO" />
+		<typeAlias alias="like" type="com.springbook.biz.planner.LikeVO" />
+		<typeAlias alias="review" type="com.springbook.biz.review.ReviewVO" />
+		
 	</typeAliases>
+	
 	<mappers>
-	<mapper resource="mappings/host-mapping.xml" />
-		<mapper resource="mappings/user-mapping.xml" />
-		<mapper resource="mappings/room-mapping.xml"></mapper>
-		<mapper resource="mappings/reservation-mapping.xml"></mapper>
+	
 		<mapper resource="mappings/host-mapping.xml" />
-		<mapper resource="mappings/Area_mapping.xml"/>
-		<mapper resource="mappings/Place_mapping.xml"/>
-		<mapper resource="mappings/Planner_mapping.xml"/> 
-		<mapper resource="mappings/Like_mapping.xml"/>
-		<mapper resource="mappings/review-mapping.xml"/>
+		<mapper resource="mappings/user-mapping.xml" />
+		<mapper resource="mappings/room-mapping.xml" />
+		<mapper resource="mappings/reservation-mapping.xml" />
+		<mapper resource="mappings/host-mapping.xml" />
+		<mapper resource="mappings/Area_mapping.xml" />
+		<mapper resource="mappings/Place_mapping.xml" />
+		<mapper resource="mappings/Planner_mapping.xml" /> 
+		<mapper resource="mappings/Like_mapping.xml" />
+		<mapper resource="mappings/review-mapping.xml" />
+		
 	</mappers>
 </configuration>
 
