@@ -13,34 +13,142 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <!-- jQuery library -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<% ArrayList<RoomVO> u = (ArrayList<RoomVO>)request.getAttribute("u_roomList"); %>
 <script>
 
 	function f_getRoom(room_id) {
 		location.href="u_getRoom.do?room_id=" + room_id;
 	}
+	
+	$(function(){
+		
+		$("#room_area").val("${rvo.room_area}");
+		$("#room_cat").val("${rvo.room_cat}");
+		
+		var room_themes = '${rvo.room_theme}';
+		
+		if(room_themes.includes(",")){
+			
+			room_themes_arr = room_themes.split(",");
+			
+			var room_themes_arr = new Array();
+			
+			for (var i = 0; i < room_themes_arr.length; i++) {
+				
+				if (room_themes_arr[i] == 'mountain') {
+					
+					$("#room_theme_mountain").prop("checked", true);
+				}
+
+				if (room_themes_arr[i] == 'sea') {
+					$("#room_theme_sea").prop("checked", true);
+				}
+
+				if (room_themes_arr[i] == "forest") {
+					$("#room_theme_forest").prop("checked", true);
+				}
+
+				if (room_themes_arr[i] == "valley") {
+					$("#room_theme_valley").prop("checked", true);
+				}
+
+				if (room_themes_arr[i] == "river") {
+					$("#room_theme_river").prop("checked", true);
+				}
+
+				if (room_themes_arr[i] == "city") {
+					$("#room_theme_city").prop("checked", true);
+				}
+			}
+			
+		} else {
+			
+			var room_theme = '${rvo.room_theme}';
+			
+			if (room_theme == 'mountain') {
+				$("#room_theme_mountain").prop("checked", true);
+			}
+
+			if (room_theme == 'sea') {
+				$("#room_theme_sea").prop("checked", true);
+			}
+
+			if (room_theme == "forest") {
+				$("#room_theme_forest").prop("checked", true);
+			}
+
+			if (room_theme == "valley") {
+				$("#room_theme_valley").prop("checked", true);
+			}
+
+			if (room_theme == "river") {
+				$("#room_theme_river").prop("checked", true);
+			}
+
+			if (room_theme == "city") {
+				$("#room_theme_city").prop("checked", true);
+			}
+			
+		}
+		
+		var room_conditions_wifi = '${rvo.room_wifi}';
+		
+		var room_conditions_pet = '${rvo.room_pet}';
+		
+		var room_conditions_meal = '${rvo.room_meal}';
+		
+		var room_conditions_parking = '${rvo.room_parking}';
+		
+		var room_conditions_swpool = '${rvo.room_swpool}';
+		
+		if(room_conditions_wifi == "Y") {
+			$("#room_wifi").prop("checked", true);
+		}
+		
+		if(room_conditions_pet == "Y") {
+			$("#room_pet").prop("checked", true);
+		}
+		
+		if(room_conditions_meal == "Y") {
+			$("#room_meal").prop("checked", true);
+		}
+		
+		if(room_conditions_parking == "Y") {
+			$("#room_parking").prop("checked", true);
+		}
+		
+		if(room_conditions_swpool == "Y") {
+			$("#room_swpool").prop("checked", true);
+		}
+	});
 
 </script>
 
 </head>
 <body>
-	<form action="u_searchRoomList.do" name="searchRoomfrm" method="post">
-		<input class="search_room" type="text" placeholder="검색창" name="room_name">
+	<form name="searchRoomfrm" action="u_searchRoomList.do" method="post" id="u_searchfrm">
+		<input class="search_room" type="text" placeholder="숙소 이름 검색창" name="room_name" value="${rvo.room_name}">
 		<br> 
 		<label for="room_area">지역</label>
 		<select name="room_area" id="room_area">
 			<option value="">전국</option>
-			<option>서울</option>
-			<option>경기</option>
-			<option>인천</option>
-			<option>충북</option>
-			<option>충남</option>
-			<option>경남</option>
-			<option>경북</option>
-			<option>대구</option>
-			<option>전북</option>
-			<option>전남</option>
-			<option>강원</option>
-			<option>제주특별자치도</option>
+			<option value="서울">서울</option>
+			<option value="경기">경기</option>
+			<option value="인천">인천</option>
+			<option value="충북">충북</option>
+			<option value="충남">충남</option>
+			<option value="경북">경북</option>
+			<option value="경남">경남</option>
+			<option value="부산">부산</option>
+			<option value="광주">광주</option>
+			<option value="대전">대전</option>
+			<option value="울산">울산</option>
+			<option value="대구">대구</option>
+			<option value="전북">전북</option>
+			<option value="전남">전남</option>
+			<option value="강원">강원</option>
+			<option value="세종특별자치시">세종특별자치시</option>
+			<option value="제주특별자치도">제주특별자치도</option>
 		</select>
 		<br>
 		<label for="room_cat">카테고리</label>
@@ -55,11 +163,11 @@
 		<br> 
 		<label for="room_min_price">최소금액</label>
 <!-- 		<input type="range" name="room_min_price" id="room_min_price" min="0" max="500" step="10" oninput="document.getElementById('min_price').innerHTML=(this.value % 10000)+'만원'" value="0"><span id="min_price"></span><br> -->
-		<input type="text" name=room_min_price" value=""/>
+		<input type="text" name="room_min_price" value="${rvo.room_min_price}"/>
 		<label for="room_max_price">최대금액</label>
 <!-- 		<input type="range" name="room_max_price" id="room_min_price" min="0" max="500" step="10" oninput="document.getElementById('max_price').innerHTML=(this.value % 10000) +'만원'" value="5000000"><span id="max_price"></span><br> -->
-		<input type="text" name=room_max_price" value=""/>
-		 <input type="text" name="room_max" id="room_max" placeholder="최대인원" value="">
+		<input type="text" name="room_max_price" value="${rvo.room_max_price}"/>
+		 <input type="text" name="room_max" id="room_max" placeholder="최대인원" value="${rvo.room_max}">
 		 <br>
 		 <input type="checkbox" id="room_wifi" name="room_wifi" value="Y">
 		 <label for="room_wifi">와이파이</label>
@@ -76,16 +184,16 @@
 		<input type="checkbox" id="room_swpool" name="room_swpool" value="Y">
 		<label for="room_swpool">수영장포함</label>
 		<br>
-		 <input type="checkbox" name="room_theme_m" value="mountain">산
-		 <input type="checkbox" name="room_theme_s" value="sea">바다
-		 <input type="checkbox" name="room_theme_f" value="forest">숲
-		 <input type="checkbox" name="room_theme_v" value="valley">계곡
-		 <input type="checkbox" name="room_theme_r" value="river">강
-		 <input type="checkbox" name="room_theme_c" value="city">도시
+		 <input type="checkbox" name="room_theme" value="mountain" id="room_theme_mountain">산
+		 <input type="checkbox" name="room_theme" value="sea" id="room_theme_sea">바다
+		 <input type="checkbox" name="room_theme" value="forest" id="room_theme_forest">숲
+		 <input type="checkbox" name="room_theme" value="valley" id="room_theme_valley">계곡
+		 <input type="checkbox" name="room_theme" value="river" id="room_theme_river">강
+		 <input type="checkbox" name="room_theme" value="city" id="room_theme_city">도시
 		<br>
-		<button>검색</button>
+		<button type="submit">검색</button>
 	</form>
-	<% ArrayList<RoomVO> u = (ArrayList<RoomVO>)request.getAttribute("u_roomList"); %>
+	
 	<%if(u.size() != 0) { %>
 	<h1>숙소</h1>
 	<table>

@@ -62,7 +62,7 @@ function f_moveInsertRes() {
 		
 	} else {
 		
-		var price_result = (oneNightPrice * (peopleValue - 2) + oneNightPrice) * period;
+		var price_result = (oneNightPrice * period) + 10000 * (peopleValue - 2);
 	}
 	
 	checkInValue = $(checkIn).val();

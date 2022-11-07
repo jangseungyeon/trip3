@@ -26,7 +26,7 @@ public class ReservationDAOMybatis {
 		mybatis.update("ReservationDAO.updateReservationGet", rvo);
 	}
 	
-	//(회원) 숙소 예약 수정 Post 요청 수정 폼 페이지 제출 기준 (똑같은 기간의 일정 변경, 예약자 기본정보 수정, 인수 추가만 가능)
+	//(회원) 숙소 예약 수정 Post 요청 수정 폼 페이지 제출 기준 (예약자 기본정보 수정)
 	public void updateReservationPost(ReservationVO rvo) {
 		System.out.println("마이바티스 숙소 예약 수정 updateReservationPost 기능 처리");
 		mybatis.update("ReservationDAO.updateReservationPost", rvo);

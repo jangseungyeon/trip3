@@ -15,7 +15,6 @@ public class ReservationVO {
 	private String pay_date;	//결제 날짜
 	private String pay_amount;	//결제금액
 	private String res_num;	//예약 인원
-	private int res_count;	//변경 가능 횟수 (DB 디폴트 초기 값 3)
 	//수정 폼으로 예약 수정/변경할때마다 카운트 감소 (0되면 이제 변경 불가)
 	private String res_status;	//예약상태 (DB 디폴트 초기 값 1)
 	//예약 상태 "1" = 예약 변경 가능, "2" = 예약 변경 불가능, "3" = 예약 취소, "4" = 리뷰 쓰기 가능
@@ -81,12 +80,6 @@ public class ReservationVO {
 	}
 	public void setOffset(int offset) {
 		this.offset = offset;
-	}
-	public int getRes_count() {
-		return res_count;
-	}
-	public void setRes_count(int res_count) {
-		this.res_count = res_count;
 	}
 	public String getRes_id() {
 		return res_id;
@@ -161,7 +154,7 @@ public class ReservationVO {
 				+ merchant_uid + ", res_name=" + res_name + ", res_tel=" + res_tel + ", res_email=" + res_email
 				+ ", host_id=" + host_id + ", room_id=" + room_id + ", room_name=" + room_name + ", room_img="
 				+ room_img + ", pay_date=" + pay_date + ", pay_amount=" + pay_amount + ", res_num=" + res_num
-				+ ", res_count=" + res_count + ", res_status=" + res_status + ", res_checkin=" + res_checkin
+				+ ", res_status=" + res_status + ", res_checkin=" + res_checkin
 				+ ", res_checkout=" + res_checkout + ", res_ci3_ok=" + res_ci3_ok + ", res_co_ok=" + res_co_ok
 				+ ", offset=" + offset + "]";
 	}

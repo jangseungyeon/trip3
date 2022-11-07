@@ -51,19 +51,19 @@ public class RoomDAOMybatis {
 	}
 	
 	//(회원) 장승연 숙소 검색필터
-    public List<RoomVO> u_searchRoomList(RoomVO rvo) {
-       System.out.println("장승연 숙소 검색 필터");
-       return mybatis.selectList("RoomDAO.ugetRoomList", rvo);
-    }
+    	public List<RoomVO> u_searchRoomList(RoomVO rvo) {
+      		System.out.println("장승연 숙소 검색 필터");
+      		return mybatis.selectList("RoomDAO.ugetRoomList", rvo);
+	}
     
-    public List<RoomVO> mainRoomList(){
-    	System.out.println("mainRoomList 메소드 실행");
-    	return mybatis.selectList("RoomDAO.mainRoomList");
-    }
+    	public List<RoomVO> mainRoomList(){
+    		System.out.println("mainRoomList 메소드 실행");
+    		return mybatis.selectList("RoomDAO.mainRoomList");
+   	}
     
-    public List<RoomVO> mainRoomThemeList(RoomVO vo){
-    	System.out.println("mainRoomList 메소드 실행");
-    	return mybatis.selectList("RoomDAO.mainRoomThemeList" , vo);
-    }
+    	public List<RoomVO> mainRoomThemeList(RoomVO vo){
+    		System.out.println("mainRoomList 메소드 실행");
+    		return mybatis.selectList("RoomDAO.mainRoomThemeList" , vo);
+    	}
 	
 }

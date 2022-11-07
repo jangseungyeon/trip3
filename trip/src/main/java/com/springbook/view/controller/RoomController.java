@@ -294,19 +294,20 @@ public class RoomController {
 	@RequestMapping(value="/u_getRoomList.do")
 	public String u_getRoomList(RoomVO rvo, Model model) {
 		System.out.println("u_getRoomList: " + rvo);
-		List<RoomVO> u_list = roomService.getRoomList(rvo);
+		List<RoomVO> u_list = roomService.u_getRoomList(rvo);
 		System.out.println(u_list);
 		model.addAttribute("u_roomList", u_list);
 		return "WEB-INF/views/user_room_list.jsp";
 	}
-
-	//(회원) 장승연 회원용 숙소검색필터
-	@RequestMapping(value = "/u_searchRoomList.do")
+	
+	//(회원) 장승연 회원용 숙소 검색 필터
+	@RequestMapping(value="/u_searchRoomList.do")
 	public String u_searchRoomList(RoomVO rvo, Model model) {
-		System.out.println("u_searchRoomList: " + rvo);
+		System.out.println("u_getRoomList: " + rvo);
 		List<RoomVO> u_list = roomService.u_searchRoomList(rvo);
 		System.out.println(u_list);
 		model.addAttribute("u_roomList", u_list);
+		model.addAttribute("rvo", rvo);
 		return "WEB-INF/views/user_room_list.jsp";
 	}
 	

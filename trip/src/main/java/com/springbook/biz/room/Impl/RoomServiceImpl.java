@@ -59,6 +59,12 @@ public class RoomServiceImpl implements RoomService {
 		return roomDAO.totalRoomListCnt(rvo);
 	}
 	
+	//(회원) 장승연 숙소 목록
+	@Override
+	public List<RoomVO> u_getRoomList(RoomVO rvo) {
+		return roomDAO.getRoomList(rvo);
+	}
+	
 	//(회원) 장승연 숙소 검색필터
 	@Override
 	public List<RoomVO> u_searchRoomList(RoomVO rvo) {

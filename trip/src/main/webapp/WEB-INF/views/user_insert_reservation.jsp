@@ -173,7 +173,7 @@ $(document).ready(function(){
 		
 		이메일: <input id="res_email_ipt" name="res_email" type="text" value="${userInfo.user_email}" />
 		
-		금액: <input id="res_pay_amount_ipt" name="pay_amount" type="number" value="${reservation.pay_amount}" />
+		금액: <input id="res_pay_amount_ipt" name="pay_amount" type="text" value="${reservation.pay_amount}" />
 		
 		체크인 날짜: <input id="res_checkin_ipt" name="res_checkin" type="text" value="${reservation.res_checkin}" readonly />
 		

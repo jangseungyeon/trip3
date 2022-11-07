@@ -10,7 +10,7 @@ public interface ReservationService {
 	//(회원) 숙소 예약 수정 GET 요청 마이페이지-예약현황 이동 기준 (조회일 기준으로 예약 변경 가능/예약 변경 불가능/예약 취소/리뷰 쓰기 가능 업데이트)
 	void updateReservationGet(ReservationVO rvo);
 	
-	//(회원) 숙소 예약 수정 Post 요청 수정 폼 페이지 제출 기준 (일정 변경, 예약자 기본정보 수정, 인수 추가등)
+	//(회원) 숙소 예약 수정 Post 요청 수정 폼 페이지 제출 기준 (예약자 기본정보 수정)
 	void updateReservationPost(ReservationVO rvo);
 	
 	//(회원) 숙소 예약 결제 취소 (예약 상태를 "3"으로 변경)
