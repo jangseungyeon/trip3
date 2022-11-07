@@ -1,46 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="header.jsp"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>Insert title here</title>
-<meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-	name='viewport' />
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<!-- Popper JS -->
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<!--     Fonts and icons     -->
-<link
-	href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
-	rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-
-<!-- CSS Files -->
-<link href="resources/assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="resources/assets/css/light-bootstrap-dashboard.css?v=2.0.0 "
-	rel="stylesheet" />
-
+<meta charset="utf-8" />
+<title>Admin Dashboard</title>
 </head>
+
 <body>
 	<div class="wrapper">
-		<div class="sidebar" data-color="blue"
-			data-image="resources/assets/img/sidebar-5.jpg">
+		<div class="sidebar" data-color="blue">
 			<!-- data-color="purple | blue | green | orange | red" -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
@@ -63,15 +35,15 @@
 							정보
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_gesiList.do"> <i
-							class="nc-icon nc-single-copy-04"></i>게시글 정보
+						href="manage_boardList.do"> <i
+							class="nc-icon nc-single-copy-04"></i>게시판 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="manage_planList.do"> <i class="nc-icon nc-map-big"></i>플래너
 							정보
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_statList.do"> <i class="nc-icon nc-money-coins"></i>운영
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
 							정보
 					</a></li>
 				</ul>
@@ -103,7 +75,8 @@
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">Account</span>
+									<span class="no-icon">${manage_id}님
+								접속중</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log
@@ -153,8 +126,10 @@
 					</table>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 
 </body>
+<%@ include file="footer.jsp"%>
 </html>

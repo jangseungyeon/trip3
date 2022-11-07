@@ -12,7 +12,7 @@
 
 <body>
 	<div class="wrapper">
-		<div class="sidebar" data-color="orange">
+		<div class="sidebar" data-color="green">
 			<!-- data-color="purple | blue | green | orange | red" -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
@@ -26,7 +26,7 @@
 						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
 							정보
 					</a></li>
-					<li class="nav-item active"><a class="nav-link"
+					<li class="nav-item"><a class="nav-link"
 						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
 							정보
 					</a></li>
@@ -42,7 +42,7 @@
 						href="manage_planList.do"> <i class="nc-icon nc-map-big"></i>플래너
 							정보
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item active"><a class="nav-link"
 						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
 							정보
 					</a></li>
@@ -75,7 +75,7 @@
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">${manage_id}님
+							<span class="no-icon">${manage_id}님
 								접속중</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
@@ -90,59 +90,56 @@
 
 			<div class="content">
 				<div class="container-fluid">
-
-					<h2>숙소목록</h2>
+					<h2>예약목록</h2>
 					<table border="1">
 						<tr>
+							<th>예약번호</th>
+							<th>회원아이디</th>
+							<th>imp_uid</th>
+							<th>merchant_uid</th>
 							<th>이름</th>
-							<th>주소</th>
-							<th>상세주소</th>
-							<th>설명</th>
-							<th>숙소 아이디</th>
-							<th>업주 아이디</th>
-							<th>가격</th>
+							<th>전화번호</th>
+							<th>이메일</th>
+							<th>업주아이디</th>
+							<th>숙소아이디</th>
+							<th>숙소명</th>
 							<th>이미지</th>
-							<th>마일리지</th>
-							<th>최대인원</th>
-							<th>테마</th>
-							<th>카테고리</th>
-							<th>와이파이</th>
-							<th>동물</th>
-							<th>조식</th>
-							<th>주차</th>
-							<th>수영</th>
-							<th>좋아요</th>
-							<th>별점</th>
+							<th>결제일자</th>
+							<th>결제금액</th>
+							<th>예약인원</th>
+							<th>변경가능횟수</th>
+							<th>예약상태</th>
+							<th>체크인</th>
+							<th>체크아웃</th>
 						</tr>
 						<c:forEach var="i" items="${list}">
 							<tr align="center">
-								<td>${i.room_name}</td>
-								<td>${i.room_addr}</td>
-								<td>${i.room_addr_detail}</td>
-								<td>${i.room_desc}</td>
-								<td>${i.room_id}</td>
+								<td>${i.res_id}</td>
+								<td>${i.user_id}</td>
+								<td>${i.imp_uid}</td>
+								<td>${i.merchant_uid}</td>
+								<td>${i.res_name}</td>
+								<td>${i.res_tel}</td>
+								<td>${i.res_email}</td>
 								<td>${i.host_id}</td>
-								<td>${i.room_price}</td>
-								<td>${i.room_img_no1}</td>
-								<td>${i.room_points}</td>
-								<td>${i.room_max}</td>
-								<td>${i.room_theme}</td>
-								<td>${i.room_cat}</td>
-								<td>${i.room_wifi}</td>
-								<td>${i.room_pet}</td>
-								<td>${i.room_meal}</td>
-								<td>${i.room_parking}</td>
-								<td>${i.room_swpool}</td>
-								<td>${i.room_likes}</td>
-								<td>${i.room_stars}</td>
+								<td>${i.room_id}</td>
+								<td>${i.room_name}</td>
+								<td>${i.room_img}</td>
+								<td>${i.pay_date}</td>
+								<td>${i.pay_amount}</td>
+								<td>${i.res_num}</td>
+								<td>${i.res_count}</td>
+								<td>${i.res_status}</td>
+								<td>${i.res_checkin}</td>
+								<td>${i.res_checkout}</td>
 								<td><a class="btn btn-danger"
-									href="manage_roomInfo.do?host_id=${i.host_id}" role="button">정보수정</a></td>
+									href="manage_reservInfo.do?res_id=${i.res_id}" role="button">예약수정</a></td>
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
 			</div>
-			
+		
 		</div>
 	</div>
 

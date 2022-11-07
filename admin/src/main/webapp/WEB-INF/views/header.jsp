@@ -2,14 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-String user_id = session.getAttribute("user_id") != null ? session.getAttribute("user_id").toString() : "";
+String manage_id = session.getAttribute("manage_id") != null ? session.getAttribute("manage_id").toString() : "";
 %>
 <!DOCTYPE html>
+<html lang="ko">
 <head>
-<title>header</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -23,78 +20,23 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<link href="resources/css/style.css" rel="stylesheet">
-<link href="resources/css/myinfo.css" rel="stylesheet">
+<!--     Fonts and icons     -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
+<!-- CSS Files -->
+<link href="resources/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'name='viewport' />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>header</title>
+<link rel="apple-touch-icon" sizes="76x76" href="resources/assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="resources/assets/img/favicon.ico">
 </head>
+<body>
 
-<div class="container-fluid">
-	<div class="container-fluid main-div">
-		<nav id="stNav" class="navbar  bg-success navbar-success  fixed-top">
-
-			<c:choose>
-				<c:when test='${user_id ne NULL}'>
-
-					<ul class="nav justify-content-around bg-success">
-						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="index.jsp">홈</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">숙소</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">플래너</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">이용안내</a></li>
-					</ul>
-
-
-					<ul class="nav justify-content-end bg-success">
-						<li class="nav-item"><a class="nav-link">${user_name}님
-								접속중</a></li>
-						<!-- 						<li class="nav-item"><a class="nav-link" -->
-						<!-- 							href="user_info.do">내 정보</a></li> -->
-						<li class="nav-item"><a class="nav-link" href="host_login.do">호스트</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="user_logout.do">로그아웃</a></li>
-						<div class="dropdown">
-							<button type="button" class="btn btn-primary dropdown-toggle"
-								data-toggle="dropdown">내 정보</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="user_info.do">정보 수정</a>
-								<a class="dropdown-item" href="#">결제 목록</a>
-								<a class="dropdown-item" href="#">좋아요(like)</a>
-								<a class="dropdown-item" href="#">나의 여행</a>
-							</div>
-						</div>
-
-
-					</ul>
-				</c:when>
-
-				<c:otherwise>
-
-					<ul class="nav justify-content-around bg-success">
-						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="index.jsp">홈</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">숙소</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">플래너</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="#">이용안내</a></li>
-					</ul>
-
-					<ul class="nav justify-content-end bg-success">
-						<li class="nav-item"><a class="nav-link"
-							href="user_login.jsp">회원가입</a></li>
-						<li class="nav-item"><a class="nav-link" href="user_login.do">로그인</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="host_login.jsp">호스트</a></li>
-					</ul>
-				</c:otherwise>
-			</c:choose>
-		</nav>
-	</div>
-</div>
+</body>
+</html>

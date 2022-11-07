@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.springbook.biz.room.RoomService;
 import com.springbook.biz.room.RoomVO;
-import com.springbook.biz.user.UserVO;
 
 @Service("roomService")
 public class RoomServiceImpl implements RoomService {

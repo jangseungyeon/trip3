@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="header.jsp"%>
 
 <!DOCTYPE html>
@@ -75,8 +76,7 @@
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">${manage_id}님
-								접속중</span>
+									<span class="no-icon">${manage_id}님 접속중</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log
@@ -91,58 +91,35 @@
 			<div class="content">
 				<div class="container-fluid">
 
-					<h2>숙소목록</h2>
+					<h2>게시글목록</h2>
 					<table border="1">
 						<tr>
-							<th>이름</th>
-							<th>주소</th>
-							<th>상세주소</th>
-							<th>설명</th>
-							<th>숙소 아이디</th>
-							<th>업주 아이디</th>
-							<th>가격</th>
-							<th>이미지</th>
-							<th>마일리지</th>
-							<th>최대인원</th>
-							<th>테마</th>
-							<th>카테고리</th>
-							<th>와이파이</th>
-							<th>동물</th>
-							<th>조식</th>
-							<th>주차</th>
-							<th>수영</th>
-							<th>좋아요</th>
-							<th>별점</th>
+							<th>번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>수정일</th>
+							<th><a class="btn btn-primary"
+								href="manage_boardInsertForm.do" role="button">글작성</a></th>
 						</tr>
 						<c:forEach var="i" items="${list}">
 							<tr align="center">
-								<td>${i.room_name}</td>
-								<td>${i.room_addr}</td>
-								<td>${i.room_addr_detail}</td>
-								<td>${i.room_desc}</td>
-								<td>${i.room_id}</td>
-								<td>${i.host_id}</td>
-								<td>${i.room_price}</td>
-								<td>${i.room_img_no1}</td>
-								<td>${i.room_points}</td>
-								<td>${i.room_max}</td>
-								<td>${i.room_theme}</td>
-								<td>${i.room_cat}</td>
-								<td>${i.room_wifi}</td>
-								<td>${i.room_pet}</td>
-								<td>${i.room_meal}</td>
-								<td>${i.room_parking}</td>
-								<td>${i.room_swpool}</td>
-								<td>${i.room_likes}</td>
-								<td>${i.room_stars}</td>
+								<td><c:out value="${board.bno}" /></td>
+								<td><c:out value="${board.title }" /></td>
+								<td><c:out value="${board.content}" /></td>
+								<td><c:out value="${board.writer}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${board.regdate}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd"
+										value="${board.updateDate }" /></td>
 								<td><a class="btn btn-danger"
-									href="manage_roomInfo.do?host_id=${i.host_id}" role="button">정보수정</a></td>
+									href="manage_boardInfo.do?user_id=${i.user_id}" role="button">글수정</a></td>
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 

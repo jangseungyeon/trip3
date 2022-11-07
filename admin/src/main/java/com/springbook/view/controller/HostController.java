@@ -33,7 +33,7 @@ public class HostController {
 
 	// 관리자 회원 가입 폼 이동
 	@RequestMapping("/manage_hostInsertForm.do")
-	public String boardWriteForm(ModelAndView mv) {
+	public String manage_hostInsertForm(ModelAndView mv) {
 		return "WEB-INF/views/manage_hostInsert.jsp";
 	}
 
