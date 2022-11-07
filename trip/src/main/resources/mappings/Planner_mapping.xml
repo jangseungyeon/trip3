@@ -4,14 +4,14 @@
 
 <mapper namespace="PlannerDAO">
 
-      <insert id="insertPlanner" >
-      INSERT INTO PLANNER (
-      USER_ID , ROOM_NAME , PLANNER_START , PLANNER_END , PLANNER_AREA , PLANNER_TITLE , PLANNER_DAY
-      ) VALUES (
-      #{user_id} , #{room_name} , #{planner_start} ,#{planner_end} 
-      ,#{planner_area} ,#{planner_title} ,#{planner_day}
-      )
-   </insert>
+     	<insert id="insertPlanner" >
+		INSERT INTO PLANNER (
+		USER_ID , ROOM_NAME , PLANNER_START , PLANNER_END , PLANNER_AREA , PLANNER_TITLE , PLANNER_DAY , PLANNER_SHOW
+		) VALUES (
+		#{user_id} , #{room_name} , #{planner_start} ,#{planner_end} 
+		,#{planner_area} ,#{planner_title} ,#{planner_day} , #{planner_show}
+		)
+	</insert>
 
    <select id="plannerinfo" resultType="planner">
       SELECT * FROM planner WHERE USER_ID= #{user_id}
@@ -20,5 +20,18 @@
    <select id="detailplanner" resultType="planner">
       SELECT * FROM planner WHERE USER_ID= #{user_id} AND planner_no = #{planner_no}
    </select>
+   
+     <select id="plannerPage" resultType="planner">
+      SELECT * FROM PLANNER WHERE PLANNER_SHOW = 'Y'
+   </select>
+   
+   	<select id="mainPlannerList" resultType="planner">
+	SELECT * FROM PLANNER WHERE PLANNER_SHOW = 'Y' ORDER BY PLANNER_LIKE DESC LIMIT 3
+	</select>
+	
+	<delete id="deletePlanner">
+	DELETE FROM PLANNER WHERE PLANNER_NO = #{planner_no}
+	</delete>
+   
 
 </mapper>

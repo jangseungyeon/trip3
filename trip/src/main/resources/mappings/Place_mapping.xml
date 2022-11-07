@@ -23,4 +23,11 @@
 		</foreach>
 	</insert>
 	
+	<select id="getPlace" resultType="place">
+	SELECT *FROM PLACE WHERE PLANNER_NO = #{planner_no};
+	</select>
+	
+	<delete id="deletePlace">
+	DELETE FROM PLACE WHERE PLANNER_NO = #{planner_no}
+	</delete>
 </mapper>

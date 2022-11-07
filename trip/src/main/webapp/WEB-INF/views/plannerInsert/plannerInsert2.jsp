@@ -12,11 +12,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 </head>
 <body>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
-<div id="map" style="width:600px;height:300px;"></div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<div id="map" style="width:800px;height:200px;"></div>
 <script>
 function area(){
 	var areanum = $("#areaNum").val();
@@ -205,17 +203,26 @@ function button(num){
 	  }
 }
 
+function show(){
+	if($("#test").html() == "비공개"){
+		$("#test").html('전체공개');
+		$("#show_c").val('Y');
+	}else if($("#test").html() == "전체공개"){
+		$("#test").html('비공개');
+		$("#show_c").val('N');
+	}
+}
 
 </script>
-<form action="testValue.do" onsubmit="return areaData()"> 
+<form action="testValue.do"> 
 <!-- <form action="testValue.do" method="post"> -->
 <h2 id="h2"><%= session.getAttribute("areaname") %></h2>
 <input type="hidden" id="areaNumber">
-<input type="text" id="title" name="title"  placeholder="소제목 입력 창"><br>
+<input type="text" id="title"  placeholder="소제목 입력 창" name="planner_title"><br>
 <input type="text" placeholder="검색" id="key" value="">
 <input type="button" value="검색" onclick="test00(0)">
 <br>
-			<select name="areaNum" onchange="area()" id="areaNum">
+			<select name="areaNum" onchange="area()" id="areaNum">  
 			<option>지역변경</option>
 			<c:forEach items="${AreaList}" var="area" >
 			<option value="${area.area_num}">${area.area_name}</option>
@@ -260,10 +267,15 @@ function button(num){
 			<p id="plus"></p>
 			</div>
 			<a class="number" style="display:none">중복방지용 태그</a>
-			
 			<div id="date">
 			</div>
 			<input type="submit" value="저장">
+			공개설정
+			<div class="form-check form-switch">
+  			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+  			<input type="hidden" value="N" name="planner_show" id="show_c">
+  			<label class="form-check-label" for="flexSwitchCheckDefault" onclick="show()" id="test">비공개</label>
+			</div>
 			</form>
 		
 

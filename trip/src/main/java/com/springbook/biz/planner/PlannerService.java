@@ -12,5 +12,15 @@ public interface PlannerService {
 
 	// 플래너 목록 조회
 	List<PlannerVO> plannerlist(PlannerVO pvo);
+	
+	List<PlaceVO> getPlace(PlaceVO place);
+	
+	List<PlannerVO> plannerPage();
+	
+	List<PlannerVO> mainPlannerList();
+	
+	void deltePlanner(PlannerVO vo);
+	
+	void deletePlace(PlaceVO vo);
 
 }

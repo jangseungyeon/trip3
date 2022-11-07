@@ -25,4 +25,10 @@ public interface RoomService {
 	//(회원) 장승연 숙소검색필터
 	List<RoomVO> u_searchRoomList(RoomVO rvo);
 	
+	//메인페이지 숙소 검색
+	List<RoomVO> mainRoomList();
+	
+	//메인페이지 숙소 상세 검색
+	List<RoomVO> mainRoomThemeList(RoomVO vo);
+	
 }

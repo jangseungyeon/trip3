@@ -65,4 +65,15 @@ public class RoomServiceImpl implements RoomService {
 		return roomDAO.u_searchRoomList(rvo);
 	}
 	
+	//메인 페이지 숙소 리스트
+	@Override
+	public List<RoomVO> mainRoomList() {
+		return roomDAO.mainRoomList();
+	}
+
+	@Override
+	public List<RoomVO> mainRoomThemeList(RoomVO vo) {
+		return roomDAO.mainRoomThemeList(vo);
+	}
+	
 }

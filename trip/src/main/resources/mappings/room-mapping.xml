@@ -78,5 +78,12 @@
 <!-- 		LIMIT 10 OFFSET #{offset} -->
 	</select>
 	
+	<select id="mainRoomList" resultType="room"> 
+	SELECT * FROM ROOM ORDER BY ROOM_LIKES DESC LIMIT 8;
+	</select>
+	
+	<select id="mainRoomThemeList" resultType="room"> 
+	SELECT * FROM ROOM WHERE ROOM_CAT = #{room_theme} ORDER BY ROOM_LIKES DESC LIMIT 8;
+	</select>
 	
 </mapper>

@@ -29,4 +29,6 @@ public class PlaceDAOMybatis {
 		System.out.println("PlaceDAOMybatis.get Area Num 메소드 실행");
 		return (AreaVO) mybatis.selectOne("AreaDAO.getAreaNum" , vo);
 	}
+	
+
 }

@@ -1,4 +1,3 @@
-
-<%@ include file="WEB-INF/views/main.jsp"%>
+<% response.sendRedirect("./main.do");%>
 
 

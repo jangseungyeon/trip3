@@ -6,22 +6,22 @@
 
 	<insert id="likeinsert">
 	INSERT INTO LIKES 
-	(LIKE_TYPE , LIKE_ID , USER_ID , LIKE_NO )
+	(LIKE_TYPE , LIKE_ID , USER_ID , LIKE_NO)
 	VALUES
-	(1 , 'PLANNER' , 'USER' , '10' )
+	('1' , #{like_id} , #{user_id} , #{like_no})
 	</insert>
 	
 	<update id="likeupdate">
 	UPDATE LIKES SET
-	LIKE_COUNT = (SELECT MAX(LIKE_COUNT) FROM LIKES WHERE LIKE_TYPE = 1 AND LIKE_ID='PLANNER' AND LIKE_NO='10') 
+	LIKE_COUNT = (SELECT MAX(LIKE_COUNT) FROM LIKES WHERE LIKE_TYPE = 1 AND LIKE_ID=#{like_id} AND LIKE_NO=#{like_no}) 
 	<if test="status  == 'like'"> + </if>
 	<if test="status  == 'unlike'"> - </if>
 	1
-	WHERE LIKE_TYPE = 1 AND LIKE_ID='PLANNER' AND LIKE_NO='10'
+	WHERE LIKE_TYPE = 1 AND LIKE_ID=#{like_id} AND LIKE_NO=#{like_no}
 	</update>
 	
 	<delete id="likedelete">
-	DELETE FROM LIKES WHERE LIKE_TYPE = 1 AND LIKE_ID = 'PLANNER' AND USER_ID = 'USER' AND LIKE_NO = '10'
+	DELETE FROM LIKES WHERE LIKE_TYPE = 1 AND LIKE_ID = #{like_id} AND USER_ID = #{user_id} AND LIKE_NO = #{like_no}
 	</delete>
 	
 	<select id="likelist" resultType="like">

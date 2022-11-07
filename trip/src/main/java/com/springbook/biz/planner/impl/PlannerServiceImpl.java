@@ -36,4 +36,30 @@ public class PlannerServiceImpl implements PlannerService{
 		return plannerDAO.plannerList(pvo);
 	}
 	
+	@Override
+	public List<PlaceVO> getPlace(PlaceVO place) {
+		return plannerDAO.getPlace(place);
+	}
+
+	@Override
+	public List<PlannerVO> plannerPage() {
+		return plannerDAO.plannerPage();
+	}
+	
+	@Override
+	public List<PlannerVO> mainPlannerList() {
+		return plannerDAO.mainPlannerList();
+	}
+
+	@Override
+	public void deltePlanner(PlannerVO vo) {
+		plannerDAO.deletePlanner(vo);
+	}
+
+	@Override
+	public void deletePlace(PlaceVO vo) {
+		plannerDAO.deletePlace(vo);
+	}
+	
+	
 }

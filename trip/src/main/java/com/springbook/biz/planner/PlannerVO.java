@@ -10,8 +10,24 @@ public class PlannerVO {
 	private String planner_area; // 여행 지역
 	private String planner_title; // 플레너 제목
 	private String planner_day; // 여행 기간
+	private int planner_like;
+	private String planner_show;
 	
-
+	
+	
+	
+	public String getPlanner_show() {
+		return planner_show;
+	}
+	public void setPlanner_show(String planner_show) {
+		this.planner_show = planner_show;
+	}
+	public int getPlanner_like() {
+		return planner_like;
+	}
+	public void setPlanner_like(int planner_like) {
+		this.planner_like = planner_like;
+	}
 	public String getPlanner_no() {
 		return planner_no;
 	}

@@ -229,33 +229,9 @@ keyframes visible { 0%{
 
 100
 
-
-
-
-
-
 %
 {
-opacity
-
-
-
-
-
-
-:
-
-
-
-
-
-
-1
-
-
-
-
-;
+opacity:1;
 }
 }
 
@@ -496,153 +472,113 @@ img {
 			slideWidth : 600
 		});
 	});
+	
+	   function thema(th){
+		var theme = th;
+		$.ajax({
+			url:"mainRoomThemeList.do",
+			type: "POST",
+			cache: false,
+			dataType: "json",
+			data:{"theme" : theme} ,
+			success:function(data){
+					for(var i = 0; i <= 8; i++){
+						if(data.length >= i+1){
+							$(".name"+i).html(data[i].room_name);
+							$(".img"+i).html(data[i].room_img);
+							$(".price"+i).html(data[i].room_price);
+							$(".price"+i).append("<div class='card-content-hashtag'>지역위치입니다</div>");
+						}else{
+							
+						$(".name"+i).html("없음");
+						$(".img"+i).html("없음");
+						$(".price"+i).html("없음");
+						$(".price"+i).append("<div class='card-content-hashtag'>지역위치입니다</div>");
+						}
+					}
+			},
+			error : function(e){
+				alert(e);
+			}
+		});
+	
+		};
+	
 </script>
 
 </head>
 
 <body>
-
-	<div class="container-fluid">
-
-		<div class="container-fluid_ss">
-			<div class="row">
-				<div class="col-6">
-				<br><br>
-					<!-- 메인 검색창 -->
-					<div class="input-group">
-						<form name="" action="서 치 액 션.do " method="post"
-							class="form-search">
-							<div class="input-group">
-								<input class="form-control" placeholder="어디로 가볼까요?" />
-								<button class="btn btn-success" type="button">Search</button>
-							</div>
-						</form>
-						
-					</div>
-					<br><br><br><br><br>
-								
-								<h1 style="text-align: center;">
-								대충 느낌있는 상세 검색
-								</h1>
-				</div>
-
-				<div class="col-6">
-					<div><br><br><br>
-						<div class="bxslider">
-							<div>
-								  <a href=""><img src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png" title="서울로 가요"></a>
-							</div>
-							<div>
-								  <a href=""><img src="resources/img/Light of Baekhakbong Peak.png" title="부산으로 가요"></a>
-							</div>
-							<div>
-								  <a href=""><img src="resources/img/Colorful Skywalk.png" title="제주도로 가요"></a>
-							</div>
-						</div><br>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-
-		<!-- 
-		Carousel 시작
-		<div id="mainpic" class="carousel slide" data-bs-ride="carousel">
-
-			Indicators/dots
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#mainpic" data-bs-slide-to="0"
-					class="active"></button>
-				<button type="button" data-bs-target="#mainpic" data-bs-slide-to="1"></button>
-				<button type="button" data-bs-target="#mainpic" data-bs-slide-to="2"></button>
-			</div>
-
-			The slideshow/carousel
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="resources/img/Colorful Skywalk.png"
-						alt="Colorful Skywalk" width="100">
-					<div class="carousel-caption">
-						<h3>Los Angeles</h3>
-						<p>We had such a great time in LA!</p>
-						<button class="btn btn-success" type="button">구매하기</button>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<img src="resources/img/Light of Baekhakbong Peak.png"
-						alt="Light of Baekhakbong Peak" width="100">
-					<div class="carousel-caption">
-						<h3>Chicago</h3>
-						<p>Thank you, Chicago!</p>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<img
-						src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-						alt="Winter Wonderland_Donggung Palace & Wolji Pond" width="100">
-					<div class="carousel-caption">
-						<h3>New York</h3>
-						<p>We love the Big Apple!</p>
-					</div>
-				</div>
-			</div>
-
-
-
-
-			Left and right controls/icons
-			<button class="carousel-control-prev" type="button"
-				data-bs-target="#mainpic" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon"></span>
-			</button>
-			<button class="carousel-control-next" type="button"
-				data-bs-target="#mainpic" data-bs-slide="next">
-				<span class="carousel-control-next-icon"></span>
-			</button>
-		</div>
-		Carousel 끝 -->
+<div style="margin-top:100px">
+      <img src="resources/img/KakaoTalk_20221104_005719548.jpg" style="width: 600px; margin-left: 150px;">
+     <div style="display:inline-block; margin-left:150px; vertical-align: middle;"> 
+     <a style="font-size: 40px;">숙소 예매와 플레너 작성을 한번에</a><br>
+     <a style="font-size: 40px;">tripONplan에서 함께 하세요</a><br>
+     </div> <br></div>
+     
+   <h2 style="text-align: center; margin-top:140px"><a href="#page1">아래로</a></h2>
 
 		<!-- 이달의 테마 시작 -->
+		<p id="page1"></p><br><br>
 		<div class="month-thema">
 			<h2 style="text-align: center;">이달의 테마</h2>
 			<ul class="ch-grid">
 				<li>
-					<div class="ch-item ch-img-1">
+					<div class="ch-item ch-img-1" onclick="thema('mountain')">
 						<div class="ch-info">
-							<h3>눈과 함께하는</h3>
+							<h3>산</h3>
 							<p>
-								눈이다<a href=""></a>
+								<a>산</a>
 							</p>
 						</div>
 					</div>
 				</li>
 				<li>
-					<div class="ch-item ch-img-2">
+					<div class="ch-item ch-img-2" onclick="thema('sea')">
 						<div class="ch-info">
-							<h3>단풍과 함께하는</h3>
+							<h3>바다</h3>
 							<p>
-								단풍이다<a href=""></a>
+								<a>바다</a>
 							</p>
 						</div>
 					</div>
 				</li>
 				<li>
-					<div class="ch-item ch-img-3">
+					<div class="ch-item ch-img-3" onclick="thema('valley')">
 						<div class="ch-info">
-							<h3>파란 하늘과 함께하는</h3>
+							<h3>계곡</h3>
 							<p>
-								하늘이다<a href=""></a>
+								<a>계곡</a>
 							</p>
 						</div>
 					</div>
 				</li>
 				<li>
-					<div class="ch-item ch-img-4">
+					<div class="ch-item ch-img-4" onclick="thema('city')">
 						<div class="ch-info">
-							<h3>눈과 함께하는</h3>
+							<h3>도시</h3>
 							<p>
-								눈이다<a href=""></a>
+								<a>도시</a>
+							</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="ch-item ch-img-4" onclick="thema('river')">
+						<div class="ch-info">
+							<h3>강</h3>
+							<p>
+								<a>강</a>
+							</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="ch-item ch-img-4" onclick="thema('forest')">
+						<div class="ch-info">
+							<h3>숲</h3>
+							<p>
+								<a>숲</a>
 							</p>
 						</div>
 					</div>
@@ -653,33 +589,7 @@ img {
 
 		<!--  테마 시작 -->
 		<div class="container-fluid mt-3">
-			<div>
-				<h2 style="text-align: center;">테마별 선택하기</h2>
-			</div>
-
-			<!-- 탭 -->
-			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-				<li class="nav-item" role="presentation">
-					<button class="nav-link active" id="pills-thema1-tab"
-						data-bs-toggle="pill" data-bs-target="#pills-thema1" type="button"
-						role="tab" aria-controls="pills-thema1" aria-selected="true">테마1</button>
-				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="pills-thema2-tab"
-						data-bs-toggle="pill" data-bs-target="#pills-thema2" type="button"
-						role="tab" aria-controls="pills-thema2" aria-selected="false">테마2</button>
-				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="pills-thema3-tab"
-						data-bs-toggle="pill" data-bs-target="#pills-thema3" type="button"
-						role="tab" aria-controls="pills-thema3" aria-selected="false">테마3</button>
-				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="pills-thema4-tab"
-						data-bs-toggle="pill" data-bs-target="#pills-thema4" type="button"
-						role="tab" aria-controls="pills-thema4" aria-selected="false">테마4</button>
-				</li>
-			</ul>
+			
 
 			<div class="tab-content" id="pills-tabContent">
 
@@ -688,9 +598,10 @@ img {
 					role="tabpanel" aria-labelledby="pills-thema1-tab">
 
 					<div class="container">
+					<div id="cardList">
 						<div class="cards">
-
-							<div class="card">
+						<c:forEach items="${roomList}" var="room" varStatus="status">
+					<div class="card" id="${status.index}">
 								<div class="overlay">
 									<button type="button" class="btn btn-outline-light">장바구니
 										담기</button>
@@ -702,1112 +613,21 @@ img {
 									<div class="heart" style="height: 10px; width: 10px;"></div>
 								</div>
 								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
+									<img class="img${status.index}" <%-- src="${room.room_img}" --%>>
 								</div>
 								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
+									<div class="name name${status.index}" >
+										${room.room_name}
 									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
+									<div class="price price${status.index}" >
+										${room.room_price}
+										<div class="card-content-hashtag">지역위치입니다</div>
 									</div>
 								</div>
 							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
+					</c:forEach>
+							
 						</div>
-					</div>
-				</div>
-
-				<!-- 테마1 끝 -->
-
-				<!-- 테마2 시작 -->
-				<div class="tab-pane fade" id="pills-thema2" role="tabpanel"
-					aria-labelledby="pills-thema2-tab">
-
-					<div class="container">
-						<div class="cards">
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Colorful Skywalk.png" alt="부산 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Colorful Skywalk.png" alt="부산 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Colorful Skywalk.png" alt="부산 호텔 이미지">>
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Colorful Skywalk.png" alt="부산 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Colorful Skywalk.png" alt="부산 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Colorful Skywalk.png" alt="부산 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Colorful Skywalk.png" alt="부산 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Colorful Skywalk.png" alt="부산 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Colorful Skywalk.png" alt="부산 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Colorful Skywalk.png" alt="부산 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-				<!-- 테마2 끝 -->
-
-				<!-- 테마3 시작-->
-				<div class="tab-pane fade" id="pills-thema3" role="tabpanel"
-					aria-labelledby="pills-thema3-tab">
-
-					<div class="container">
-						<div class="cards">
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img
-										src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img
-										src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img
-										src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img
-										src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img
-										src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img
-										src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img
-										src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img
-										src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img
-										src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img
-										src="resources/img/Winter Wonderland_Donggung Palace & Wolji Pond.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-				<!-- 테마3 끝 -->
-
-				<!-- 테마4 시작-->
-				<div class="tab-pane fade" id="pills-thema4" role="tabpanel"
-					aria-labelledby="pills-thema4-tab">
-
-					<div class="container">
-						<div class="cards">
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="overlay">
-									<button type="button" class="btn btn-outline-light">장바구니
-										담기</button>
-									<br>
-									<button type="button" class="btn btn-outline-light">숙소
-										상세보기</button>
-								</div>
-								<div class="head">
-									<div class="heart" style="height: 10px; width: 10px;"></div>
-								</div>
-								<div class="image">
-									<img src="resources/img/Light of Baekhakbong Peak.png"
-										alt="경기 호텔 이미지">
-								</div>
-								<div class="details">
-									<div class="name">
-										경기 호텔
-										<div class="description">정말 좋음</div>
-									</div>
-									<div class="price">
-										&#8361; 50,000
-										<div class="card-content-hashtag">#경기 #숙소</div>
-									</div>
-								</div>
-							</div>
-
-
 						</div>
 					</div>
 				</div>
@@ -1817,10 +637,9 @@ img {
 		</div>
 		<!-- 테마 끝 -->
 
-
 		<!-- 연결고리 시작 -->
 		<div class="container-fluid mt-3">
-			<h1 class="main-h1">숙박과 플래너 연결고리</h1>
+			<h1 class="main-h1"><a href="#page2">아래로</a></h1>
 		</div>
 		<!-- 연결고리 끝 -->
 		<div id="map" style="width: 100%; height: 350px;"></div>
@@ -1828,92 +647,27 @@ img {
 
 
 
-
+	<p id="page2"></p>
 		<div class="review">
-			<h1>여행 후기</h1>
+			<h1 style="text-align: center;">플레너</h1><br><br>
 			<ul class="cards_review">
+			<c:forEach items="${plannerList}" var="planner" end="2">
 				<li class="cards_review_item">
 					<div class="card_review">
 						<div class="card_image">
-							<img src="resources/img/Colorful Skywalk.png">
+							<img src="">
 						</div>
 						<div class="card_review_content">
-							<h2 class="card_review_title">서울 여행 후기</h2>
-							<p class="card_review_text">역시 서울이 최고</p>
+							<h2 class="card_review_title" id="Ptitle_${status}">${planner.planner_title}</h2>
+							<p class="card_review_text"></p>
 							<button class="btn card_review_btn">후기 보기</button>
 						</div>
 					</div>
 				</li>
-				<li class="cards_review_item">
-					<div class="card_review">
-						<div class="card_image">
-							<img src="resources/img/Light of Baekhakbong Peak.png">
-						</div>
-						<div class="card_review_content">
-							<h2 class="card_review_title">서울 여행 후기</h2>
-							<p class="card_review_text">역시 서울이 최고</p>
-							<button class="btn card_review_btn">후기 보기</button>
-						</div>
-					</div>
-				</li>
-				<li class="cards_review_item">
-					<div class="card_review">
-						<div class="card_image">
-							<img src="resources/img/Colorful Skywalk.png">
-						</div>
-						<div class="card_review_content">
-							<h2 class="card_review_title">서울 여행 후기</h2>
-							<p class="card_review_text">역시 서울이 최고</p>
-							<button class="btn card_review_btn">후기 보기</button>
-						</div>
-					</div>
-				</li>
-				<li class="cards_review_item">
-					<div class="card_review">
-						<div class="card_image">
-							<img src="resources/img/Light of Baekhakbong Peak.png">
-						</div>
-						<div class="card_review_content">
-							<h2 class="card_review_title">서울 여행 후기</h2>
-							<p class="card_review_text">역시 서울이 최고</p>
-							<button class="btn card_review_btn">후기 보기</button>
-						</div>
-					</div>
-				</li>
-				<li class="cards_review_item">
-					<div class="card_review">
-						<div class="card_image">
-							<img src="resources/img/Colorful Skywalk.png">
-						</div>
-						<div class="card_review_content">
-							<h2 class="card_review_title">서울 여행 후기</h2>
-							<p class="card_review_text">역시 서울이 최고</p>
-							<button class="btn card_review_btn">후기 보기</button>
-						</div>
-					</div>
-				</li>
-				<li class="cards_review_item">
-					<div class="card_review">
-						<div class="card_image">
-							<img src="resources/img/Light of Baekhakbong Peak.png">
-						</div>
-						<div class="card_review_content">
-							<h2 class="card_review_title">서울 여행 후기</h2>
-							<p class="card_review_text">역시 서울이 최고</p>
-							<button class="btn card_review_btn">후기 보기</button>
-						</div>
-					</div>
-				</li>
+			</c:forEach>
 			</ul>
 
 		</div>
-
-
-
-
-
-
-
-	</div>
+<a href="plannerlist.do?page=Y">모든 여행 일정 보기</a>
 </body>
 </html>

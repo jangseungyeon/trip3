@@ -1,19 +1,25 @@
 package com.springbook.biz.planner;
 
 public class LikeVO {
-	private int like_type;
+	private String like_type;
 	private String like_id; 
 	private String user_id;
-	private String like_no;
+	private int like_no;
 	private int like_count;
 	private String status;
 	
 	private String planner_title; // 플레너 제목
 	
-	private String room_img;		//숙소 이미지 파일명
+	private String room_img;	//숙소 이미지 파일명
 	private String room_name;	//숙소명
 	
 	
+	@Override
+	public String toString() {
+		return "LikeVO [like_type=" + like_type + ", like_id=" + like_id + ", user_id=" + user_id + ", like_no="
+				+ like_no + ", like_count=" + like_count + ", status=" + status + ", planner_title=" + planner_title
+				+ ", room_img=" + room_img + ", room_name=" + room_name + "]";
+	}
 	public String getRoom_img() {
 		return room_img;
 	}
@@ -38,10 +44,10 @@ public class LikeVO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getLike_type() {
+	public String getLike_type() {
 		return like_type;
 	}
-	public void setLike_type(int like_type) {
+	public void setLike_type(String like_type) {
 		this.like_type = like_type;
 	}
 	public String getLike_id() {
@@ -57,10 +63,10 @@ public class LikeVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public String getLike_no() {
+	public int getLike_no() {
 		return like_no;
 	}
-	public void setLike_no(String like_no) {
+	public void setLike_no(int like_no) {
 		this.like_no = like_no;
 	}
 	public int getLike_count() {

@@ -42,7 +42,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="u_getRoomList.do">숙소</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="start.do">플래너</a></li>
+							href="start.do">일정 만들기</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="#">이용안내</a></li>
 					</ul>
@@ -76,7 +76,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="u_getRoomList.do">숙소</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="start.do">플래너</a></li>
+							href="start.do">일정 만들기</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="#">이용안내</a></li>
 					</ul>

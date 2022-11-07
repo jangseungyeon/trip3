@@ -25,7 +25,10 @@ public class LikeController {
 	@ResponseBody
 	@RequestMapping(value = "/Like.do")
 	public void LikeCheck(@RequestParam(value = "type") int type, @RequestParam(value = "status") String status,
-			LikeVO vo) {
+			LikeVO vo , String like_id , String like_no , HttpSession session) {
+		vo.setLike_id(like_id);
+		vo.setUser_id((String)session.getAttribute("user_id"));
+		vo.setLike_no(Integer.parseInt(like_no));
 		if (status.equals("like")) {
 			vo.setStatus(status);
 			Service.likeinsert(vo);
@@ -35,6 +38,7 @@ public class LikeController {
 			Service.likeupdate(vo);
 			Service.likedalete(vo);
 		}
+		System.out.println(vo);
 	}
 
 	// 마이페이지 좋아요

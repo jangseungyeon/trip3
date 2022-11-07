@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -317,5 +318,13 @@ public class RoomController {
 		System.out.println(u_room);
 		model.addAttribute("u_room", u_room);
 		return "WEB-INF/views/user_room_detail.jsp";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/mainRoomThemeList.do")
+	public List<RoomVO> mainRoomThemeList(RoomVO vo , String theme , Model model) {
+		vo.setRoom_theme(theme);
+		model.addAttribute("size", roomService.mainRoomThemeList(vo).size());
+		return roomService.mainRoomThemeList(vo);
 	}
 }
