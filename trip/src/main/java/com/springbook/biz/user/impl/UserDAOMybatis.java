@@ -69,9 +69,4 @@ public class UserDAOMybatis {
 //		return mybatis.selectOne("UserDAO.idCheck", vo);
 //	}
 	
-	public UserVO user_emailcheck(UserVO vo) {
-		System.out.println("user_emailcheck: " + vo);
-		return mybatis.selectOne("UserDAO.emailCheck", vo);
-	}
-	
 }

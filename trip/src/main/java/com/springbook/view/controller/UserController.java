@@ -50,56 +50,40 @@ public class UserController {
 			String user_password = vo.getUser_password();
 			System.out.println("user_login" + vo);
 			vo = userService.login(vo);
-			System.out.println("vo널체크"+vo);
-			if (vo != null&&vo.getUser_status().equals("0")) {
+			System.out.println("vo널체크" + vo);
+			if (vo != null && vo.getUser_status().equals("0")) {
+				System.out.println("암호화비교");
 				pwCheck = BCrypt.checkpw(user_password, vo.getUser_password());
 				System.out.println(vo.getUser_status() + pwCheck);
-				if(pwCheck) {
+				if (pwCheck) {
 					String user_id = vo.getUser_id();
 					String user_name = vo.getUser_name();
 					session.setAttribute("user_id", user_id);
 					session.setAttribute("user_name", user_name);
 					System.out.println("로그인성공");
 					return "redirect:index.jsp";
-				}else {
+				} else {
 					System.out.println("로그인실패");
 					return "WEB-INF/views/user_login.jsp";
 				}
-			}else if(vo==null) {
+			} else if (vo == null) {
 				System.out.println("로그인실패");
 				return "WEB-INF/views/user_login.jsp";
-			}
-			else if(vo.getUser_status().equals("1")){
+			} else if (vo.getUser_status().equals("1")) {
 				System.out.println("탈퇴회원");
 				return "WEB-INF/views/user_login.jsp";
-			}else {
+			} else {
 				System.out.println("로그인실패");
 				return "WEB-INF/views/user_login.jsp";
 			}
 		}
-
 		// 카카오로그인
 		@RequestMapping("/kakao_loginform.do")
-		public String kakao_login(UserVO vo, HttpSession session,HttpServletResponse response) {
+		public String kakao_login(UserVO vo, HttpSession session, HttpServletResponse response) {
 			vo.setUser_type("kakao");
 			System.out.println("kakao_login" + vo);
 			String user_id = vo.getUser_id();
 			String user_name = vo.getUser_name();
-			String email=vo.getUser_email();
-			System.out.println("111");
-			if(userService.emailcheck(vo)!=null) {
-			String msg="해당이메일이 이미존재합니다";
-			System.out.println("이메일확인");
-			try {
-		        response.setContentType("text/html; charset=utf-8");
-		        PrintWriter w = response.getWriter();
-		        w.write("<script>alert('"+msg+"');history.go(-1);</script>");
-		        w.flush();
-		        w.close();
-		    } catch(Exception e) {
-		        e.printStackTrace();
-		    }
-			}
 			if (userService.login(vo) == null) {
 				System.out.println("카카오회원추가");
 				userService.insert(vo);
@@ -117,24 +101,9 @@ public class UserController {
 			}
 
 		}
-		
 		// 네이버로그인
 		@RequestMapping("/naver_login.do")
-		public String naver_login(UserVO vo, HttpSession session,HttpServletResponse response) {
-			String email=vo.getUser_email();
-			if(userService.emailcheck(vo)!=null) {
-			String msg="해당이메일이 이미존재합니다";
-			System.out.println("이메일확인");
-			try {
-		        response.setContentType("text/html; charset=utf-8");
-		        PrintWriter w = response.getWriter();
-		        w.write("<script>alert('"+msg+"');history.go(-1);</script>");
-		        w.flush();
-		        w.close();
-		    } catch(Exception e) {
-		        e.printStackTrace();
-		    }
-			}
+		public String naver_login(UserVO vo, HttpSession session, HttpServletResponse response) {
 			vo.setUser_type("naver");
 			System.out.println("네이버로그인" + vo);
 			String user_id = vo.getUser_id();
@@ -155,6 +124,7 @@ public class UserController {
 				return "redirect:index.jsp";
 			}
 		}
+
 
 	
 
@@ -255,21 +225,7 @@ public class UserController {
 
 	// 회원추가
 		@RequestMapping("/user_insertform.do")
-		public String user_insert(UserVO vo,HttpServletResponse response) {
-			String email=vo.getUser_email();
-			if(userService.emailcheck(vo)!=null) {
-			String msg="해당이메일이 이미존재합니다";
-			System.out.println("이메일확인");
-			try {
-		        response.setContentType("text/html; charset=utf-8");
-		        PrintWriter w = response.getWriter();
-		        w.write("<script>alert('"+msg+"');location.href='WEB-INF/views/user_insert.jsp';</script>");
-		        w.flush();
-		        w.close();
-		    } catch(Exception e) {
-		        e.printStackTrace();
-		    }
-			}
+		public String user_insert(UserVO vo, HttpServletResponse response) {
 			String pw = BCrypt.hashpw(vo.getUser_password(), BCrypt.gensalt());
 			System.out.println("isnsertuser" + pw);
 			vo.setUser_type("own");
@@ -336,15 +292,14 @@ public class UserController {
 
 	}
 	// 비밀번호 변경하기
+		@RequestMapping("/user_change.do")
+		public String user_change(UserVO vo, Model model) {
+			String pw = BCrypt.hashpw(vo.getUser_password(), BCrypt.gensalt());
+			vo.setUser_password(pw);
+			System.out.println("비밀번호변경" + vo);
+			int a = userService.change(vo);
+			System.out.println("변경여부:" + a);
+			return "WEB-INF/views/user_pwfind.jsp";
+		}
 
-	@RequestMapping("/user_change.do")
-	public String user_change(UserVO vo, Model model) {
-		System.out.println("비밀번호변경" + vo);
-		int a = userService.change(vo);
-		System.out.println("변경여부:" + a);
-		return "WEB-INF/views/user_pwfind.jsp";
 	}
-	
-
-
-}

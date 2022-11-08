@@ -53,7 +53,6 @@ public class ReservationController {
 			model.addAttribute("pay_date", rvo.getPay_date());
 			model.addAttribute("pay_amount", rvo.getPay_amount());
 			model.addAttribute("res_num", rvo.getRes_num());
-			model.addAttribute("res_count", rvo.getRes_count());
 			model.addAttribute("res_status", rvo.getRes_status());
 			model.addAttribute("res_checkin", rvo.getRes_checkin());
 			model.addAttribute("res_checkout", rvo.getRes_checkout());

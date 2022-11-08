@@ -15,5 +15,5 @@ UserVO info(UserVO vo);
 	
 	void delete(UserVO vo);
 	
-	UserVO emailcheck(UserVO vo);
+	
 }
