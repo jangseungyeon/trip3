@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FaqDAO">
+
+	<!-- 관리자용 시작 -->
+	<!-- 관리자 공지 조회 -->
+	<select id="manage_faqList" resultType="faq">
+		SELECT *
+		FROM FAQ
+		ORDER
+		BY
+		FAQ_NO
+		DESC
+	</select>
+
+	<!-- 관리자 공지 등록 -->
+	<insert id="manage_faqInsert">
+		INSERT INTO
+		FAQ (FAQ_NO, FAQ_TITLE, FAQ_REGDATE, FAQ_MANAGE_ID, FAQ_CONTENT, FAQ_VIEWS)
+		VALUES(#{faq_no},#{faq_title},#{faq_regdate},#{faq_manage_id},#{faq_content},#{faq_views});
+	</insert>
+
+	<!-- 관리자 공지 상세 조회 -->
+	<select id="manage_faqInfo" resultType="faq">
+		SELECT *
+		FROM FAQ WHERE
+		FAQ_NO=#{faq_no}
+	</select>
+
+	<!-- 관리자 공지 수정 -->
+	<update id="manage_faqUpdate">
+		UPDATE FAQ 
+		SET
+		FAQ_TITLE=#{faq_title},
+		FAQ_REGDATE=#{faq_regdate},
+		FAQ_MANAGE_ID=#{faq_manage_id},
+		FAQ_CONTENT=#{faq_content},
+		FAQ_VIEWS=#{faq_views}
+		WHERE FAQ_NO=#{faq_no}
+	</update>
+
+	<!-- 관리자 공지 삭제 -->
+	<delete id="manage_faqDelete">
+		DELETE FROM FAQ WHERE FAQ_NO = #{faq_no}
+	</delete>
+
+	<!-- 관리자용 끝 -->
+
+</mapper>

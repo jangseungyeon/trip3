@@ -18,6 +18,8 @@
 			type="com.springbook.biz.room.RoomVO"></typeAlias>
 		<typeAlias alias="reservation"
 			type="com.springbook.biz.reservation.ReservationVO"></typeAlias>
+		<typeAlias alias="faq"
+			type="com.springbook.biz.faq.FaqVO"></typeAlias>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/host-mapping.xml" />
@@ -25,5 +27,6 @@
 		<mapper resource="mappings/manage-mapping.xml" />
 		<mapper resource="mappings/room-mapping.xml"></mapper>
 		<mapper resource="mappings/reservation-mapping.xml"></mapper>
+		<mapper resource="mappings/faq-mapping.xml"></mapper>
 	</mappers>
 </configuration>

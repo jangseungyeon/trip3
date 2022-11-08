@@ -97,14 +97,6 @@ public class ReservationController {
 		
 		return "manage_reservList.do";
 	}
-
-	
-	
-	
-	
-	
-	
-	
 	
 //	내 예약 확인
 	@RequestMapping("/check.do")

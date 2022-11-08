@@ -1,18 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.springbook.biz.host.HostVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="header.jsp"%>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-<meta charset="utf-8" />
-<title>Admin Dashboard</title>
-</head>
 
-<body>
+<title>공지 상세</title>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+</head>
+<body class="info-body">
+	<script>
+		$(document).ready(function() {
+			$("#btnUpdate").click(function() {
+				// 확인 대화상자    
+				if (confirm("수정하시겠습니까?")) {
+					document.manage_faqInfo.action = "manage_faqUpdate.do";
+					document.manage_faqInfo.submit();
+				}
+			});
+		});
+		$(document).ready(function() {
+			$("#btnDelete").click(function() {
+				// 확인 대화상자 
+				if (confirm("삭제하시겠습니까?")) {
+					document.manage_faqInfo.action = "manage_faqDelete.do";
+					document.manage_faqInfo.submit();
+				}
+			});
+		});
+	</script>
+
 	<div class="wrapper">
-		<div class="sidebar" data-color="blue">
+		<div class="sidebar" data-color="green">
 			<!-- data-color="purple | blue | green | orange | red" -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
@@ -22,7 +45,7 @@
 					<li class="nav-item"><a class="nav-link" href="manage_main.do">
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
-					<li class="nav-item active"><a class="nav-link"
+					<li class="nav-item"><a class="nav-link"
 						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
 							정보
 					</a></li>
@@ -30,7 +53,7 @@
 						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
 							정보
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item active"><a class="nav-link"
 						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
 							정보
 					</a></li>
@@ -89,46 +112,63 @@
 
 			<div class="content">
 				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card strpied-tabled-with-hover">
+								<div class="card-header ">
+									<h4 class="card-title">공지 사항</h4>
+								</div>
+								<div class="card-body table-full-width table-responsive">
+									<form name="manage_faqInfo" method="post">
+										<table class="table table-hover table-striped">
+											<thead>
+												<tr>
+													<td>번호</td>
+													<td><input name="faq_no" value="${FaqVO.faq_no}"
+														readonly></td>
+												</tr>
+												<tr>
+													<td>제목</td>
+													<td><input name="faq_title"
+														value="${FaqVO.faq_title}"></td>
+												</tr>
+												<tr>
+													<td>내용</td>
+													<td><input name="faq_content"
+														value="${FaqVO.faq_content}"></td>
+												</tr>
+												<tr>
+													<td>작성일</td>
+													<td><input name="faq_regdate"
+														value="${FaqVO.faq_regdate}"></td>
+												</tr>
+												<tr>
+													<td>작성자</td>
+													<td><input name="faq_manage_id"
+														value="${FaqVO.faq_manage_id}"></td>
+												</tr>
+												<tr>
+													<td>조회수</td>
+													<td><input name="faq_views"
+														value="${FaqVO.faq_views}"></td>
+												</tr>
 
-					<h3>회원목록</h3>
-					<table border="1">
-						<tr>
-							<th>아이디</th>
-							<th>이름</th>
-							<th>생일</th>
-							<th>성별</th>
-							<th>이메일</th>
-							<th>전화번호</th>
-							<th>주소</th>
-							<th>상세주소</th>
-							<th>상태</th>
-							<th>타입</th>
-							<th><a class="btn btn-primary"
-								href="manage_userInsertForm.do" role="button">회원가입</a></th>
-						</tr>
-						<c:forEach var="i" items="${list}">
-							<tr align="center">
-								<td>${i.user_id}</td>
-								<td>${i.user_name}</td>
-								<td>${i.user_birth}</td>
-								<td>${i.user_gender}</td>
-								<td>${i.user_email}</td>
-								<td>${i.user_phone}</td>
-								<td>${i.user_address1}</td>
-								<td>${i.user_address2}</td>
-								<td>${i.user_status}</td>
-								<td>${i.user_type}</td>
-								<td><a class="btn btn-danger"
-									href="manage_userInfo.do?user_id=${i.user_id}" role="button">정보수정</a></td>
-							</tr>
-						</c:forEach>
-					</table>
+												<tr>
+													<td colspan="2" align="center"><input type="button"
+														value="수정" id="btnUpdate"> <input type="button"
+														value="삭제" id="btnDelete"></td>
+												</tr>
+										</table>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
 	</div>
-
 </body>
 <%@ include file="footer.jsp"%>
 </html>

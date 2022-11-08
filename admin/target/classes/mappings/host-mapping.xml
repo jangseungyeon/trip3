@@ -27,13 +27,6 @@
 		FROM HOST WHERE
 		HOST_ID=#{host_id}
 	</select>
-	<!-- <select id="manage_userInfo" resultType="user"> -->
-	<!-- SELECT user_id, -->
-	<!-- user_name, user_birth, user_gender, user_email, user_phone, -->
-	<!-- user_address1, user_address2, user_status, user_type -->
-	<!-- FROM USER WHERE USER_ID=#{user_id} -->
-	<!-- </select> -->
-
 
 	<!-- 관리자 업주 관리 수정 -->
 	<update id="manage_hostUpdate">

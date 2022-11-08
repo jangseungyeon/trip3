@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +42,8 @@ public class UserController {
 	@RequestMapping("/manage_userInsert.do")
 	public String manage_userInsert(@ModelAttribute UserVO vo) {
 		System.out.println("manage_userInsert");
+		String pw = BCrypt.hashpw(vo.getUser_password(), BCrypt.gensalt());
+		vo.setUser_password(pw);
 		vo.setUser_type("own");
 		userService.manage_userInsert(vo);
 		return "redirect:manage_userList.do";
@@ -57,6 +60,8 @@ public class UserController {
 	@RequestMapping("/manage_userUpdate.do")
 	public String manage_userUpdate(@ModelAttribute UserVO vo, HttpSession session) {
 		System.out.println("컨트롤러 입장");
+		String pw = BCrypt.hashpw(vo.getUser_password(), BCrypt.gensalt());
+		vo.setUser_password(pw);
 		userService.manage_userUpdate(vo);
 		System.out.println("컨트롤러 vo : " + vo);
 

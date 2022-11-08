@@ -31,12 +31,7 @@
 	<update id="manage_reservUpdate">
 		UPDATE RESERVATION
 		SET 
-		
-		RES_CHECKIN = #{res_checkin}, RES_CHECKOUT = #{res_checkout}, RES_COUNT=#{res_count}-1, RES_STATUS = #{res_status} 
-		
-		
-		
-		
+		RES_STATUS = 1 
 		WHERE RES_ID = #{res_id} AND USER_ID = #{user_id}
 	</update>
 

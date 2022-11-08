@@ -35,8 +35,8 @@
 							정보
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_boardList.do"> <i
-							class="nc-icon nc-single-copy-04"></i>게시판 관리
+						href="manage_faqList.do"> <i
+							class="nc-icon nc-single-copy-04"></i>공지사항 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="manage_planList.do"> <i class="nc-icon nc-map-big"></i>플래너

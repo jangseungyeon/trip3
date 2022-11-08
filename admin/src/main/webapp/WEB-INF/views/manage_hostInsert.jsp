@@ -9,14 +9,6 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="utf-8">
 <title>업주가입</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	
 <%if (request.getParameter("manage_hostInsert") != null) {%>
@@ -238,8 +230,8 @@ request.setCharacterEncoding("UTF-8");
 							정보
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_boardList.do"> <i
-							class="nc-icon nc-single-copy-04"></i>게시판 관리
+						href="manage_faqList.do"> <i
+							class="nc-icon nc-single-copy-04"></i>공지사항 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="manage_planList.do"> <i class="nc-icon nc-map-big"></i>플래너

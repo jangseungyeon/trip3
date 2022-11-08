@@ -10,24 +10,58 @@
 
 <title>정보 수정</title>
 <script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 </head>
 <body class="info-body">
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$("#btnUpdate")
-									.click(
-											function() {
-												// 확인 대화상자    
-												if (confirm("수정하시겠습니까?")) {
-													document.manage_reservInfo.action = "manage_reservUpdate.do";
-													document.manage_reservInfo
-															.submit();
-												}
-											});
-						});
+		function a() {
+			document.manage_reservInfo.action = "manage_reservUpdate.do";
+			document.manage_reservInfo.submit();
+		};
+
+		function cancelPay(mid) {
+			// 현재: 2021-03-24
+			var now = new Date();
+
+			// 파라미터로 받을 수 있음. 편의상 현재날짜로 대체
+			var date = "${ReservationVO.res_checkin}";
+			var date_arr = date.split("-");
+
+			var year = now.getFullYear(); // 연도
+			var month = now.getMonth() + 1; // 월    
+			var day = now.getDate(); // 일
+
+			var stDate = new Date(date_arr[0], date_arr[1], date_arr[2]);
+			var endDate = new Date(year, month, day);
+
+			var btMs = stDate.getTime() - endDate.getTime();
+			var btDay = btMs / (1000 * 60 * 60 * 24);
+
+			console.log("일수 차이는?? " + btDay);
+			if (btDay >= 3) {
+				$.ajax({
+					url : "paycan",
+					data : {
+						"mid" : mid
+					},
+					method : "POST",
+					success : function(val) {
+						console.log(val);
+						if (val == 1) {
+							alert("취소 완료");
+							a();
+						} else {
+							alert("취소 실패\n이미 취소되었거나 잘못된 정보입니다.");
+						}
+					},
+					error : function(request, status) {
+						alert("취소가 실패하였습니다.");
+					}
+				});
+			} else {
+				alert("환불불가");
+			}
+		}
 		$(document)
 				.ready(
 						function() {
@@ -43,6 +77,7 @@
 											});
 						});
 	</script>
+
 
 	<div class="wrapper">
 		<div class="sidebar" data-color="green">
@@ -68,8 +103,8 @@
 							정보
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_boardList.do"> <i
-							class="nc-icon nc-single-copy-04"></i>게시판 관리
+						href="manage_faqList.do"> <i
+							class="nc-icon nc-single-copy-04"></i>공지사항 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="manage_planList.do"> <i class="nc-icon nc-map-big"></i>플래너
@@ -210,8 +245,10 @@
 							</tr>
 
 							<tr>
-								<td colspan="2" align="center"><input type="button"
-									value="수정" id="btnUpdate"> <input type="button"
+								<td colspan="2" align="center">
+								<input type="button" value="환불" id="btnUpdate"
+									onclick="cancelPay('${ReservationVO.merchant_uid}')">
+									<input type="button"
 									value="삭제" id="btnDelete"></td>
 							</tr>
 						</table>

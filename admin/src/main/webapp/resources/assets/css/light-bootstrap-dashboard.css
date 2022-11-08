@@ -1757,6 +1757,12 @@ fieldset[disabled] .form-control {
     background-color: #fc727a;
 }
 
+
+
+
+
+
+
 .table .radio,
 .table .checkbox {
     position: relative;
@@ -1781,6 +1787,9 @@ fieldset[disabled] .form-control {
 .table>tfoot>tr>td {
     padding: 12px 8px;
     vertical-align: middle;
+    
+    /* 테이블에서 한글 세로줄로 나오는거 방지 */
+/*     white-space: nowrap; */
 }
 
 .table>thead>tr>th {
@@ -1792,7 +1801,7 @@ fieldset[disabled] .form-control {
     padding-bottom: 5px;
     border-top: none !important;
     border-bottom: none;
-    text-align: left !important;
+    text-align: center; !important;
 }
 
 .table .td-actions .btn {

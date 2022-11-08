@@ -22,7 +22,7 @@
 					<li class="nav-item"><a class="nav-link" href="manage_main.do">
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
-					<li class="nav-item active"><a class="nav-link"
+					<li class="nav-item"><a class="nav-link"
 						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
 							정보
 					</a></li>
@@ -34,7 +34,7 @@
 						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
 							정보
 					</a></li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item active"><a class="nav-link"
 						href="manage_faqList.do"> <i
 							class="nc-icon nc-single-copy-04"></i>공지사항 관리
 					</a></li>
@@ -90,36 +90,26 @@
 			<div class="content">
 				<div class="container-fluid">
 
-					<h3>회원목록</h3>
+					<h3>공지목록</h3>
 					<table border="1">
 						<tr>
-							<th>아이디</th>
-							<th>이름</th>
-							<th>생일</th>
-							<th>성별</th>
-							<th>이메일</th>
-							<th>전화번호</th>
-							<th>주소</th>
-							<th>상세주소</th>
-							<th>상태</th>
-							<th>타입</th>
+							<th>번호</th>
+							<th>제목</th>
+							<th>작성일</th>
+							<th>작성자</th>
+							<th>조회수</th>
 							<th><a class="btn btn-primary"
-								href="manage_userInsertForm.do" role="button">회원가입</a></th>
+								href="manage_faqInsertForm.do" role="button">공지등록</a></th>
 						</tr>
 						<c:forEach var="i" items="${list}">
 							<tr align="center">
-								<td>${i.user_id}</td>
-								<td>${i.user_name}</td>
-								<td>${i.user_birth}</td>
-								<td>${i.user_gender}</td>
-								<td>${i.user_email}</td>
-								<td>${i.user_phone}</td>
-								<td>${i.user_address1}</td>
-								<td>${i.user_address2}</td>
-								<td>${i.user_status}</td>
-								<td>${i.user_type}</td>
+								<td>${i.faq_no}</td>
+								<td>${i.faq_title}</td>
+								<td>${i.faq_regdate}</td>
+								<td>${i.faq_manage_id}</td>
+								<td>${i.faq_views}</td>
 								<td><a class="btn btn-danger"
-									href="manage_userInfo.do?user_id=${i.user_id}" role="button">정보수정</a></td>
+									href="manage_faqInfo.do?faq_no=${i.faq_no}" role="button">공지상세</a></td>
 							</tr>
 						</c:forEach>
 					</table>
