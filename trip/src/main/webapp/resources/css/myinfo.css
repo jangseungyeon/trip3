@@ -8,7 +8,7 @@
     padding: 30px;
 }
 
-input#phone {
+.info-phone {
     width: 80%;
     display: inline-block;
 }

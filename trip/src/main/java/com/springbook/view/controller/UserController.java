@@ -77,6 +77,7 @@ public class UserController {
 				return "WEB-INF/views/user_login.jsp";
 			}
 		}
+		
 		// 카카오로그인
 		@RequestMapping("/kakao_loginform.do")
 		public String kakao_login(UserVO vo, HttpSession session, HttpServletResponse response) {
@@ -178,24 +179,25 @@ public class UserController {
 	}
 
 	//내 정보 갈때 비밀번호 치기
-//	@RequestMapping("/myinfogo.do")
-//	public String myinfogo(UserVO vo, HttpSession session) {
-//		System.out.println(vo);
-//		vo.setUser_id((String) session.getAttribute("user_id"));
-//		String pw =vo.getUser_password();
-//		boolean pwCheck;
-//		vo = userService.info(vo);
-//		String user_password = vo.getUser_password();
-//		System.out.println("여기까지만 찍힘");
-//		System.out.println("이건 왜 안찍혀"+user_password+pw);
-//		pwCheck=BCrypt.checkpw(user_password,pw);
-//		System.out.println(pwCheck);
-//		return "user_info.do";
-//	}
-	@RequestMapping("/myinfo.do")
+	@RequestMapping("/myinfogo.do")
 	public String myinfogo(UserVO vo, HttpSession session) {
-		
-		return "WEB-INF/views/my_info.jsp";
+		vo.setUser_id((String) session.getAttribute("user_id"));
+		String pw =vo.getUser_password();
+		boolean pwCheck;
+		vo = userService.info(vo);
+		String user_password = vo.getUser_password();
+		pwCheck=BCrypt.checkpw(pw,user_password);
+		System.out.println(pwCheck);
+		if(pwCheck) {
+		return "user_info.do";
+		}else {
+			return "WEB-INF/views/my_Check.jsp";
+		}
+	}
+	
+	@RequestMapping("/myinfo.do")
+	public String mycheck(UserVO vo, HttpSession session) {
+		return "WEB-INF/views/my_Check.jsp";
 	}
 	
 //	내 정보 확인
@@ -207,10 +209,9 @@ public class UserController {
 		if (vo != null) {
 			String user_id = vo.getUser_id();
 			String user_name = vo.getUser_name();
-			String user_password = vo.getUser_password();
 			session.setAttribute("user_id", user_id);
 			session.setAttribute("user_name", user_name);
-			session.setAttribute("user_password", user_password);
+			model.addAttribute("user_password", vo.getUser_password());
 			model.addAttribute("user_birth", vo.getUser_birth());
 			model.addAttribute("user_gender", vo.getUser_gender());
 			model.addAttribute("user_email", vo.getUser_email());

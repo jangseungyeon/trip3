@@ -17,6 +17,10 @@
 		SELECT * FROM USER WHERE USER_ID= #{user_id} AND USER_PASSWORD=#{user_password}
 	</select>
 	
+	<select id="emailCheck" resultType="user">
+         SELECT * FROM USER WHERE USER_EMAIL= #{user_email}
+   </select>
+	
 	<select id="find" resultType="user">
 		SELECT * FROM USER WHERE 1=1
 		<if test="find == 'phone' "> AND USER_PHONE = #{user_phone} </if>

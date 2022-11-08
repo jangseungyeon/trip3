@@ -84,7 +84,6 @@ function f_cancelRes(fmIndex){
          <th>결제날짜</th>
           <th>결제금액</th>
           <th>예약인원</th>
-          <th>변경 가능 횟수</th>
           <th>예약상태</th>
           <th>체크인 날짜</th>
           <th>체크아웃 날짜</th>
@@ -101,14 +100,14 @@ function f_cancelRes(fmIndex){
 				<td>${i.pay_date}</td>
 				<td>${i.pay_amount}</td>
 				<td>${i.res_num}</td>
-				<td>${i.res_count}</td>
-				<td>${i.res_status}</td>
+				<td class="status">${i.res_status}</td>
 				<td>${i.res_checkin}</td>
 				<td id="checkout">${i.res_checkout}</td>
 				<td id="PayInfos"></td>
-				<td id="daybefore"><button onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제 취소</button></td>
+				<td id="daybefore${status.index}"><button onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제 취소</button></td>
+				<td id="dayafter${status.index}" style="display: none"><button>리뷰 쓰기</button></td>
+				<td id="ing${status.index}" style="display: none"><button>사용중인 숙소</button></td>
 				<td><button onclick="f_getPayInfo('${i.merchant_uid}')">결제 정보 보기</button></td>
-				<td id="dayafter" style="display: none"><button>리뷰 쓰기</button></td>
 			</tr>
 			<br>
 			<form name="resCancelfm_${status.index}">
@@ -142,47 +141,29 @@ function f_cancelRes(fmIndex){
   <!-- 반복처리할 태그 끝 -->
   </div><br><br>
   <script>
-// var now = new Date();
-// /* console.log(now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate()); */
-// function rowClick(){
-// var table = document.getElementById("re_table");
-// console.log(table);
-// var rowList = table.rows;
-// console.log(rowList);
-// for(i=1; i<rowList.length; i++){
-// 	var row = rowList[i];
-// 	var str = "";
-	
-// 	row.onclick= function(){
-// 		return function(){
-// 			var one = this.cells[9].innerHTML;
-// 			console.log(one);
+  $(function() {
+		var tdArr = $("#re_table td.status");
+		var i = 0;
+		$.each(tdArr, function(i, v){
+			var status = $(v).text();
+				
+			if($(v).text() == 2) {
+				$("#daybefore" + i).hide();
+				$("#dayafter" + i).hide();
+				$("#ing" + i).show();
+			} else if($(v).text() == 3) {
+				$("#daybefore" + i).hide();
+				$("#dayafter" + i).hide();
+			} else if($(v).text() == 4){
+				$("#daybefore" + i).hide();
+				$("#dayafter" + i).show();
+			}
 			
+		i = i + 1;
 			
-			
-// 			str = "체크"+one;
-// 			document.querySelector('p').innerText = str;
-// 		};
-// 	}(row);
-	
-// }
-// }
-// window.onload = rowClick();
-
-
-
-
-var now = new Date();
-var day = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate();
-var checkout = $("#checkout").val();
-console.log(day);
-// if(){}
-
-$(function() {
-	console.log($("#re_table").find("td:eq(9)").text());
-	$('#dayafter').show();
-	$('#daybefore').hide();
-});
+		});
+		
+	});
 </script>
 </body>
 </html>

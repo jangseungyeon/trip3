@@ -41,12 +41,7 @@ public class LikeController {
 		System.out.println(vo);
 	}
 
-	// 마이페이지 좋아요
-//	@RequestMapping("/likeslist.do")
-//	public String likeslist() {
-//		System.out.println("Like페이지로이동");
-//		return "WEB-INF/views/my_likes.jsp";
-//	}
+
 
 	//좋아요 누른 리스트로 불러오기(숙소)
 		@RequestMapping("/likeslist.do")
