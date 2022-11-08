@@ -3,6 +3,7 @@
 <%@page import="com.springbook.biz.room.RoomVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ include file="header.jsp"%>
 
 <!doctype html>
 <html lang="ko">
@@ -13,110 +14,212 @@
 </head>
 <body class="info-body">
 	<script>
-    $(document).ready(function(){
-        $("#btnUpdate").click(function(){
-            // 확인 대화상자    
-            if(confirm("수정하시겠습니까?")){
-                document.manage_reservInfo.action = "manage_reservUpdate.do";
-                document.manage_reservInfo.submit();
-            }
-        });
-    });
-    $(document).ready(function(){
-        $("#btnDelete").click(function(){
-            // 확인 대화상자 
-            if(confirm("삭제하시겠습니까?")){
-                document.manage_reservInfo.action = "manage_reservDelete.do";
-                document.manage_reservInfo.submit();
-            }
-        });
-    });
-</script>
+		$(document)
+				.ready(
+						function() {
+							$("#btnUpdate")
+									.click(
+											function() {
+												// 확인 대화상자    
+												if (confirm("수정하시겠습니까?")) {
+													document.manage_reservInfo.action = "manage_reservUpdate.do";
+													document.manage_reservInfo
+															.submit();
+												}
+											});
+						});
+		$(document)
+				.ready(
+						function() {
+							$("#btnDelete")
+									.click(
+											function() {
+												// 확인 대화상자 
+												if (confirm("삭제하시겠습니까?")) {
+													document.manage_reservInfo.action = "manage_reservDelete.do";
+													document.manage_reservInfo
+															.submit();
+												}
+											});
+						});
+	</script>
 
- <h2>회원정보 상세</h2>
-    <form name="manage_reservInfo" method="post">
-        <table border="1">
-            <tr>
-                <td>예약번호</td>
-                <td><input name="res_id" value="${ReservationVO.res_id}"></td>
-            </tr>
-            <tr>
-                <td>회원아이디</td>
-                <td><input name="user_id" value="${ReservationVO.user_id}"></td>
-            </tr>
-            <tr>
-                <td>imp_uid</td>
-                <td><input name="imp_uid" value="${ReservationVO.imp_uid}"></td>
-            </tr>
-            <tr>
-                <td>merchant_uid</td>
-                <td><input name="merchant_uid" value="${ReservationVO.merchant_uid}"></td>
-            </tr>
-            <tr>
-                <td>이름</td>
-                <td><input name="res_name" value="${ReservationVO.res_name}"></td>
-            </tr>
-            <tr>
-                <td>전화번호</td>
-                <td><input name="res_tel" value="${ReservationVO.res_tel}"></td>
-            </tr>
-            <tr>
-                <td>이메일</td>
-                <td><input name="res_email" value="${ReservationVO.res_email}"></td>
-            </tr>
-            <tr>
-                <td>업주아이디</td>
-                <td><input name="host_id" value="${ReservationVO.host_id}"></td>
-            </tr>
-            <tr>
-                <td>숙소아이디</td>
-                <td><input name="room_id" value="${ReservationVO.room_id}"></td>
-            </tr>
-            <tr>
-                <td>숙소명</td>
-                <td><input name="room_name" value="${ReservationVO.room_name}"></td>
-            </tr>
-            <tr>
-                <td>이미지</td>
-                <td><input name="room_img" value="${ReservationVO.room_img}"></td>
-            </tr>
-            <tr>
-                <td>결제일자</td>
-                <td><input name="pay_date" value="${ReservationVO.pay_date}"></td>
-            </tr>
-            <tr>
-                <td>결제금액</td>
-                <td><input name="pay_amount" value="${ReservationVO.pay_amount}"></td>
-            </tr>
-            <tr>
-                <td>예약인원</td>
-                <td><input name="res_num" value="${ReservationVO.res_num}"></td>
-            </tr>
-            <tr>
-                <td>변경가능횟수</td>
-                <td><input name="res_count" value="${ReservationVO.res_count}"></td>
-            </tr>
-            <tr>
-                <td>예약상태</td>
-                <td><input name="res_status" value="${ReservationVO.res_status}"></td>
-            </tr>
-            <tr>
-                <td>체크인</td>
-                <td><input name="res_checkin" value="${ReservationVO.res_checkin}"></td>
-            </tr>
-            <tr>
-                <td>체크아웃</td>
-                <td><input name="res_checkout" value="${ReservationVO.res_checkout}"></td>
-            </tr>
-            
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="button" value="수정" id="btnUpdate">
-                    <input type="button" value="삭제" id="btnDelete">
-                </td>
-            </tr>
-        </table>
-    </form>
+	<div class="wrapper">
+		<div class="sidebar" data-color="green">
+			<!-- data-color="purple | blue | green | orange | red" -->
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="#" class="simple-text"> Trip 3.0 </a>
+				</div>
+				<ul class="nav">
+					<li class="nav-item"><a class="nav-link" href="manage_main.do">
+							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
+							정보
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
+							정보
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+							정보
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manage_boardList.do"> <i
+							class="nc-icon nc-single-copy-04"></i>게시판 관리
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manage_planList.do"> <i class="nc-icon nc-map-big"></i>플래너
+							정보
+					</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
+							정보
+					</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="main-panel">
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#pablo"> Dashboard </a>
+					<button href="" class="navbar-toggler navbar-toggler-right"
+						type="button" data-toggle="collapse"
+						aria-controls="navigation-index" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-bar burger-lines"></span> <span
+							class="navbar-toggler-bar burger-lines"></span> <span
+							class="navbar-toggler-bar burger-lines"></span>
+					</button>
+					<div class="collapse navbar-collapse justify-content-end"
+						id="navigation">
+						<ul class="nav navbar-nav mr-auto">
+							<li class="nav-item"><a href="#" class="nav-link"
+								data-toggle="dropdown"> <span class="d-lg-none">Dashboard</span>
+							</a></li>
+							<li class="nav-item"><a href="#" class="nav-link"> <i
+									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span>
+							</a></li>
+						</ul>
+
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item"><a class="nav-link" href="#pablo">
+									<span class="no-icon">${manage_id}님 접속중</span>
+							</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="manage_logout.do"> <span class="no-icon">Log
+										out</span>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!-- End Navbar -->
+
+			<div class="content">
+				<div class="container-fluid">
+					<h2>회원정보 상세</h2>
+					<form name="manage_reservInfo" method="post">
+						<table border="1">
+							<tr>
+								<td>예약번호</td>
+								<td><input name="res_id" value="${ReservationVO.res_id}"></td>
+							</tr>
+							<tr>
+								<td>회원아이디</td>
+								<td><input name="user_id" value="${ReservationVO.user_id}"></td>
+							</tr>
+							<tr>
+								<td>imp_uid</td>
+								<td><input name="imp_uid" value="${ReservationVO.imp_uid}"></td>
+							</tr>
+							<tr>
+								<td>merchant_uid</td>
+								<td><input name="merchant_uid"
+									value="${ReservationVO.merchant_uid}"></td>
+							</tr>
+							<tr>
+								<td>이름</td>
+								<td><input name="res_name"
+									value="${ReservationVO.res_name}"></td>
+							</tr>
+							<tr>
+								<td>전화번호</td>
+								<td><input name="res_tel" value="${ReservationVO.res_tel}"></td>
+							</tr>
+							<tr>
+								<td>이메일</td>
+								<td><input name="res_email"
+									value="${ReservationVO.res_email}"></td>
+							</tr>
+							<tr>
+								<td>업주아이디</td>
+								<td><input name="host_id" value="${ReservationVO.host_id}"></td>
+							</tr>
+							<tr>
+								<td>숙소아이디</td>
+								<td><input name="room_id" value="${ReservationVO.room_id}"></td>
+							</tr>
+							<tr>
+								<td>숙소명</td>
+								<td><input name="room_name"
+									value="${ReservationVO.room_name}"></td>
+							</tr>
+							<tr>
+								<td>이미지</td>
+								<td><input name="room_img"
+									value="${ReservationVO.room_img}"></td>
+							</tr>
+							<tr>
+								<td>결제일자</td>
+								<td><input name="pay_date"
+									value="${ReservationVO.pay_date}"></td>
+							</tr>
+							<tr>
+								<td>결제금액</td>
+								<td><input name="pay_amount"
+									value="${ReservationVO.pay_amount}"></td>
+							</tr>
+							<tr>
+								<td>예약인원</td>
+								<td><input name="res_num" value="${ReservationVO.res_num}"></td>
+							</tr>
+							<tr>
+								<td>변경가능횟수</td>
+								<td><input name="res_count"
+									value="${ReservationVO.res_count}"></td>
+							</tr>
+							<tr>
+								<td>예약상태</td>
+								<td><input name="res_status"
+									value="${ReservationVO.res_status}"></td>
+							</tr>
+							<tr>
+								<td>체크인</td>
+								<td><input name="res_checkin"
+									value="${ReservationVO.res_checkin}"></td>
+							</tr>
+							<tr>
+								<td>체크아웃</td>
+								<td><input name="res_checkout"
+									value="${ReservationVO.res_checkout}"></td>
+							</tr>
+
+							<tr>
+								<td colspan="2" align="center"><input type="button"
+									value="수정" id="btnUpdate"> <input type="button"
+									value="삭제" id="btnDelete"></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
-
+<%@ include file="footer.jsp"%>
 </html>

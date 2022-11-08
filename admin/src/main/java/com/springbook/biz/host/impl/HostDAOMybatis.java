@@ -31,7 +31,7 @@ public class HostDAOMybatis {
 		return mybatis.selectOne("HostDAO.manage_hostInfo", vo);
 	}
 
-//	관리자 업주 정보 수정	
+//	관리자 업주 관리 수정	
 	public void manage_hostUpdate(HostVO vo) {
 		System.out.println("manage_hostUpdate: " + vo);
 		mybatis.update("HostDAO.manage_hostUpdate", vo);

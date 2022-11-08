@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="header.jsp"%>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
@@ -17,16 +18,15 @@ request.setCharacterEncoding("UTF-8");
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-<%if(request.getParameter("manage_hostInsert")!=null){%>
-alert("계정생성에 실패했습니다");
-<% 
 	
-} %>
-var idReg = /^[A-za-z0-9]{6,12}$/g;   // 아이디
-var pwReg = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;  // 비밀번호 
-var passwordCheck = false;//비밀번호재확인
-var idCheck = false;//아이디 중복체크
-var con=false;//인증
+<%if (request.getParameter("manage_hostInsert") != null) {%>
+	alert("계정생성에 실패했습니다");
+<%}%>
+	var idReg = /^[A-za-z0-9]{6,12}$/g; // 아이디
+	var pwReg = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/; // 비밀번호 
+	var passwordCheck = false;//비밀번호재확인
+	var idCheck = false;//아이디 중복체크
+	var con = false;//인증
 	//휴대폰
 	$(function() {
 		//휴대폰 번호 인증 
@@ -66,7 +66,7 @@ var con=false;//인증
 				$("#phoneDoubleChk").val("true");
 				$("#phone2").attr("disabled", true);
 				$('#host_phone').val($("#phone").val());
-				con=true;
+				con = true;
 			} else {
 				$(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
 				$(".successPhoneChk").css("color", "red");
@@ -76,8 +76,7 @@ var con=false;//인증
 		});
 
 	});
-	
-	
+
 	$(function() {
 		var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 		var email = $("#email");
@@ -110,7 +109,7 @@ var con=false;//인증
 			}
 		});
 	});
-//이메일인증
+	//이메일인증
 	function emailCheck() {
 		var emailCheck = $("#emailCheck").val();
 		if (emailCheck == "") {
@@ -125,8 +124,8 @@ var con=false;//인증
 				success : function(data) {
 					if (data == true) {
 						alert("인증되었습니다.");
-// 						$('#host_email').val($("#email").val());
-						con=true;
+						// 						$('#host_email').val($("#email").val());
+						con = true;
 					} else {
 						alert("인증번호가 일치하지 않습니다.");
 					}
@@ -137,9 +136,7 @@ var con=false;//인증
 			});
 		}
 	}
-	
-	
-	
+
 	// 비밀번호 재확인
 	$(function() {
 		$('#host_passwordCheck').focusout(function() {
@@ -155,31 +152,31 @@ var con=false;//인증
 	// 	아이디 중복체크
 	$(function() {
 		$('#idCheck').click(function() {
-			if($('#host_id').val()!=''){
-				
-			$.ajax({
-				url : "host_idCheck.do",
-				type : "post",
-				data : {
-					host_id : $('#host_id').val()
-				},
-				cache : false,
-				success : function(result) {
-					console.log(result);
-					if (result == 0) {
-						alert("아이디사용가능");
-						idCheck = true;
-					} else if (result == 1) {
-						alert("아이디존재");
-					} else {
-						alert("그외");
+			if ($('#host_id').val() != '') {
+
+				$.ajax({
+					url : "host_idCheck.do",
+					type : "post",
+					data : {
+						host_id : $('#host_id').val()
+					},
+					cache : false,
+					success : function(result) {
+						console.log(result);
+						if (result == 0) {
+							alert("아이디사용가능");
+							idCheck = true;
+						} else if (result == 1) {
+							alert("아이디존재");
+						} else {
+							alert("그외");
+						}
+					},
+					error : function() {
+						alert("서버요청실패");
 					}
-				},
-				error : function() {
-					alert("서버요청실패");
-				}
-			});
-			}else{
+				});
+			} else {
 				alert("아이디에 공백불가");
 			}
 
@@ -188,61 +185,145 @@ var con=false;//인증
 
 	//회원가입버튼
 	function check() {
-// 		if(!idReg.test($('#host_id').val())){
-// 			alert('아이디는 영어대/소문자 6~12자리만');
-// 		}else if(!pwReg.test($('#host_password').val())){
-// 			alert('비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합');
-// 		}
-// 		else if (idCheck == false) {
-// 			alert("아이디중복체크하세요");
-// 		}
-// 		else if (passwordCheck == false) {
-// 			alert("비밀번호재확인필요");
-// 		}else if(con==false){
-// 			alert("인증필요");
-// 		}else{
-			$('#manage_hostInsert').submit();
-// 		}
+		// 		if(!idReg.test($('#host_id').val())){
+		// 			alert('아이디는 영어대/소문자 6~12자리만');
+		// 		}else if(!pwReg.test($('#host_password').val())){
+		// 			alert('비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합');
+		// 		}
+		// 		else if (idCheck == false) {
+		// 			alert("아이디중복체크하세요");
+		// 		}
+		// 		else if (passwordCheck == false) {
+		// 			alert("비밀번호재확인필요");
+		// 		}else if(con==false){
+		// 			alert("인증필요");
+		// 		}else{
+		$('#manage_hostInsert').submit();
+		// 		}
 
 	}
-// 	//인증선택
-// 	function emailconfig() {
-// 		$('#config').show();
-// 		$('#config1').hide();
-// 	}
-// 	function phoneconfig() {
-// 		$('#config1').show();
-// 		$('#config').hide();
-// 	}
+	// 	//인증선택
+	// 	function emailconfig() {
+	// 		$('#config').show();
+	// 		$('#config1').hide();
+	// 	}
+	// 	function phoneconfig() {
+	// 		$('#config1').show();
+	// 		$('#config').hide();
+	// 	}
 </script>
 </head>
 <body>
+	<div class="wrapper">
+		<div class="sidebar" data-color="green">
+			<!-- data-color="purple | blue | green | orange | red" -->
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="#" class="simple-text"> Trip 3.0 </a>
+				</div>
+				<ul class="nav">
+					<li class="nav-item"><a class="nav-link" href="manage_main.do">
+							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
+							정보
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
+							정보
+					</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+							정보
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manage_boardList.do"> <i
+							class="nc-icon nc-single-copy-04"></i>게시판 관리
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manage_planList.do"> <i class="nc-icon nc-map-big"></i>플래너
+							정보
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
+							정보
+					</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="main-panel">
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#pablo"> Dashboard </a>
+					<button href="" class="navbar-toggler navbar-toggler-right"
+						type="button" data-toggle="collapse"
+						aria-controls="navigation-index" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-bar burger-lines"></span> <span
+							class="navbar-toggler-bar burger-lines"></span> <span
+							class="navbar-toggler-bar burger-lines"></span>
+					</button>
+					<div class="collapse navbar-collapse justify-content-end"
+						id="navigation">
+						<ul class="nav navbar-nav mr-auto">
+							<li class="nav-item"><a href="#" class="nav-link"
+								data-toggle="dropdown"> <span class="d-lg-none">Dashboard</span>
+							</a></li>
+							<li class="nav-item"><a href="#" class="nav-link"> <i
+									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span>
+							</a></li>
+						</ul>
 
-<form action="manage_hostInsert.do" method="post" id="manage_hostInsert">
-	<input type="text" name="host_id" id="host_id" placeholder='아이디' required>
-	<button type="button" id="idCheck">아이디중복체크</button>
-	<br> <input type="password" name="host_password"
-		id="host_password" placeholder='비밀번호'><br>
-	<input type="password" name="host_passwordCheck"
-		id="host_passwordCheck" placeholder='비밀번호재확인'><br>
-	<input type="text" name="host_name" placeholder='이름'><br>
-	<input type="text" name="host_phone" id="host_phone" placeholder='핸드폰'><br>
-	<input type="text" name="host_email" id="host_email" placeholder='이메일'>
-	<button type="button" class="submitbutton" onclick="check()">업주가입</button>
-</form>
-<!-- <button type="button" id="phoneconfig" onclick="phoneconfig()">전화번호 인증하기</button> -->
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item"><a class="nav-link" href="#pablo">
+									<span class="no-icon">${manage_id}님 접속중</span>
+							</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="manage_logout.do"> <span class="no-icon">Log
+										out</span>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!-- End Navbar -->
+
+			<div class="content">
+				<div class="container-fluid">
+					<h3>업주가입</h3>
+					<form action="manage_hostInsert.do" method="post"
+						id="manage_hostInsert">
+						<input type="text" name="host_id" id="host_id" placeholder='아이디'
+							required>
+						<button type="button" id="idCheck">아이디중복체크</button>
+						<br> <input type="password" name="host_password"
+							id="host_password" placeholder='비밀번호'><br> <input
+							type="password" name="host_passwordCheck" id="host_passwordCheck"
+							placeholder='비밀번호재확인'><br> <input type="text"
+							name="host_name" placeholder='이름'><br> <input
+							type="text" name="host_phone" id="host_phone" placeholder='핸드폰'><br>
+						<input type="text" name="host_email" id="host_email"
+							placeholder='이메일'>
+						<button type="button" class="submitbutton" onclick="check()">업주가입</button>
+					</form>
+					<!-- <button type="button" id="phoneconfig" onclick="phoneconfig()">전화번호 인증하기</button> -->
 
 
-<!-- <div id="config1" style="display: none"> -->
-<!-- 	<input id="phone" type="text" name="phone" title="전화번호 입력" /> <span -->
-<!-- 		id="phoneChk" class="doubleChk">인증번호 보내기</span> <br /> <input -->
-<!-- 		id="phone2" type="text" name="phone2" title="인증번호 입력" disabled /> <span -->
-<!-- 		id="phoneChk2" class="doubleChk">인증확인</span> <span -->
-<!-- 		class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span> <input -->
-<!-- 		type="hidden" id="phoneDoubleChk" /> -->
-<!-- </div> -->
+					<!-- <div id="config1" style="display: none"> -->
+					<!-- 	<input id="phone" type="text" name="phone" title="전화번호 입력" /> <span -->
+					<!-- 		id="phoneChk" class="doubleChk">인증번호 보내기</span> <br /> <input -->
+					<!-- 		id="phone2" type="text" name="phone2" title="인증번호 입력" disabled /> <span -->
+					<!-- 		id="phoneChk2" class="doubleChk">인증확인</span> <span -->
+					<!-- 		class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span> <input -->
+					<!-- 		type="hidden" id="phoneDoubleChk" /> -->
+					<!-- </div> -->
 
-
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
-
+<%@ include file="footer.jsp"%>
 </html>

@@ -90,39 +90,50 @@
 
 			<div class="content">
 				<div class="container-fluid">
-
-					<h2>게시글목록</h2>
-					<table border="1">
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>수정일</th>
-							<th><a class="btn btn-primary"
-								href="manage_boardInsertForm.do" role="button">글작성</a></th>
-						</tr>
-						<c:forEach var="i" items="${list}">
-							<tr align="center">
-								<td><c:out value="${board.bno}" /></td>
-								<td><c:out value="${board.title }" /></td>
-								<td><c:out value="${board.content}" /></td>
-								<td><c:out value="${board.writer}" /></td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd"
-										value="${board.regdate}" /></td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd"
-										value="${board.updateDate }" /></td>
-								<td><a class="btn btn-danger"
-									href="manage_boardInfo.do?user_id=${i.user_id}" role="button">글수정</a></td>
-							</tr>
-						</c:forEach>
-					</table>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card strpied-tabled-with-hover">
+								<div class="card-header ">
+									<h4 class="card-title">게시글 목록</h4>
+								</div>
+								<div class="card-body table-full-width table-responsive">
+									<table class="table table-hover table-striped">
+										<thead>
+											<tr>
+												<th>번호</th>
+												<th>제목</th>
+												<th>작성자</th>
+												<th>작성일</th>
+												<th>수정일</th>
+												<th><a class="btn btn-primary"
+													href="manage_boardInsertForm.do" role="button">글작성</a></th>
+											</tr>
+											<c:forEach var="i" items="${list}">
+												<tr align="center">
+													<td><c:out value="${board.bno}" /></td>
+													<td><c:out value="${board.title }" /></td>
+													<td><c:out value="${board.content}" /></td>
+													<td><c:out value="${board.writer}" /></td>
+													<td><fmt:formatDate pattern="yyyy-MM-dd"
+															value="${board.regdate}" /></td>
+													<td><fmt:formatDate pattern="yyyy-MM-dd"
+															value="${board.updateDate }" /></td>
+													<td><a class="btn btn-danger"
+														href="manage_boardInfo.do?user_id=${i.user_id}"
+														role="button">글수정</a></td>
+												</tr>
+											</c:forEach>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
+
 		</div>
 	</div>
-
 </body>
 <%@ include file="footer.jsp"%>
 </html>

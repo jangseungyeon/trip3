@@ -90,7 +90,7 @@
 
 			<div class="content">
 				<div class="container-fluid">
-					<h2>예약목록</h2>
+					<h3>예약목록</h3>
 					<table border="1">
 						<tr>
 							<th>예약번호</th>

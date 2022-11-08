@@ -32,7 +32,7 @@ public class HostServiceImpl implements HostService {
 		return hostDAO.manage_hostInfo(vo);
 	}
 
-// 관리자 업주 정보 수정
+// 관리자 업주 관리 수정
 	@Override
 	public void manage_hostUpdate(HostVO vo) {
 		hostDAO.manage_hostUpdate(vo);

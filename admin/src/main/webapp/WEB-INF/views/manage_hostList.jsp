@@ -75,8 +75,7 @@
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">${manage_id}님
-								접속중</span>
+									<span class="no-icon">${manage_id}님 접속중</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log
@@ -90,51 +89,65 @@
 
 			<div class="content">
 				<div class="container-fluid">
-					<h2>업주목록</h2>
-					<table border="1">
-						<tr>
-							<th>아이디</th>
-							<th>업소명</th>
-							<th>이름</th>
-							<th>생년월일</th>
-							<th>이메일</th>
-							<th>전화번호</th>
-							<th>주소</th>
-							<th>상세주소</th>
-							<th>상태</th>
-							<th>사업자번호</th>
-							<th>이미지</th>
-							<th>은행</th>
-							<th>계좌번호</th>
-							<th><a class="btn btn-primary"
-								href="manage_hostInsertForm.do" role="button">업주가입</a></th>
-						</tr>
-						<c:forEach var="i" items="${list}">
-							<tr align="center">
-								<td>${i.host_id}</td>
-								<td>${i.host_bizname}</td>
-								<td>${i.host_name}</td>
-								<td>${i.host_birth}</td>
-								<td>${i.host_email}</td>
-								<td>${i.host_phone}</td>
-								<td>${i.host_addr1}</td>
-								<td>${i.host_addr2}</td>
-								<td>${i.host_status}</td>
-								<td>${i.host_biznum}</td>
-								<td>${i.host_bizimg}</td>
-								<td>${i.host_bank}</td>
-								<td>${i.host_banknum}</td>
-								<td><a class="btn btn-danger"
-									href="manage_hostInfo.do?host_id=${i.host_id}" role="button">정보수정</a></td>
-							</tr>
-						</c:forEach>
-					</table>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card strpied-tabled-with-hover">
+								<div class="card-header ">
+									<h4 class="card-title">업주 목록</h4>
+								</div>
+								<div class="card-body table-full-width table-responsive">
+									<table class="table table-hover table-striped">
+										<thead>
+											<tr>
+												<th>아이디</th>
+												<th>업소명</th>
+												<th>이름</th>
+												<th>생년월일</th>
+												<th>이메일</th>
+												<th>전화번호</th>
+												<th>주소</th>
+												<th>상세</th>
+												<th>상태</th>
+												<th>사업자번호</th>
+												<th>이미지</th>
+												<th>은행</th>
+												<th>계좌번호</th>
+												<th><a class="btn btn-primary"
+													href="manage_hostInsertForm.do" role="button">업주가입</a></th>
+											</tr>
+										</thead>
+										<c:forEach var="i" items="${list}">
+											<tbody>
+												<tr>
+													<td>${i.host_id}</td>
+													<td>${i.host_bizname}</td>
+													<td>${i.host_name}</td>
+													<td>${i.host_birth}</td>
+													<td>${i.host_email}</td>
+													<td>${i.host_phone}</td>
+													<td>${i.host_addr1}</td>
+													<td>${i.host_addr2}</td>
+													<td>${i.host_status}</td>
+													<td>${i.host_biznum}</td>
+													<td>${i.host_bizimg}</td>
+													<td>${i.host_bank}</td>
+													<td>${i.host_banknum}</td>
+													<td><a class="btn btn-danger"
+														href="manage_hostInfo.do?host_id=${i.host_id}"
+														role="button">정보수정</a></td>
+												</tr>
+											</tbody>
+										</c:forEach>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
-
 </body>
 <%@ include file="footer.jsp"%>
 </html>

@@ -91,7 +91,7 @@
 			<div class="content">
 				<div class="container-fluid">
 
-					<h2>숙소목록</h2>
+					<h3>숙소목록</h3>
 					<table border="1">
 						<tr>
 							<th>이름</th>

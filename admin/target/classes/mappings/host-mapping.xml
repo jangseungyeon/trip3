@@ -35,7 +35,7 @@
 	<!-- </select> -->
 
 
-	<!-- 관리자 업주 정보 수정 -->
+	<!-- 관리자 업주 관리 수정 -->
 	<update id="manage_hostUpdate">
 		UPDATE HOST SET
 		HOST_BIZNAME =#{host_bizname},

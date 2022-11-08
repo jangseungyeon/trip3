@@ -75,8 +75,7 @@
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">${manage_id}님
-								접속중</span>
+									<span class="no-icon">${manage_id}님 접속중</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log
@@ -91,7 +90,7 @@
 			<div class="content">
 				<div class="container-fluid">
 
-					<h2>회원목록</h2>
+					<h3>회원목록</h3>
 					<table border="1">
 						<tr>
 							<th>아이디</th>
@@ -126,8 +125,8 @@
 					</table>
 				</div>
 			</div>
-			
 		</div>
+
 	</div>
 
 </body>
