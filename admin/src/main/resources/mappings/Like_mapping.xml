@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LikeDAO">
+
+	<insert id="likeinsert">
+	INSERT INTO LIKES 
+	(LIKE_TYPE , LIKE_ID , USER_ID , LIKE_NO)
+	VALUES
+	('1' , #{like_id} , #{user_id} , #{like_no})
+	</insert>
+	
+	<update id="likeupdate">
+	UPDATE LIKES SET
+	LIKE_COUNT = (SELECT MAX(LIKE_COUNT) FROM LIKES WHERE LIKE_TYPE = 1 AND LIKE_ID=#{like_id} AND LIKE_NO=#{like_no}) 
+	<if test="status  == 'like'"> + </if>
+	<if test="status  == 'unlike'"> - </if>
+	1
+	WHERE LIKE_TYPE = 1 AND LIKE_ID=#{like_id} AND LIKE_NO=#{like_no}
+	</update>
+	
+	<delete id="likedelete">
+	DELETE FROM LIKES WHERE LIKE_TYPE = 1 AND LIKE_ID = #{like_id} AND USER_ID = #{user_id} AND LIKE_NO = #{like_no}
+	</delete>
+	
+	<select id="likelist" resultType="like">
+SELECT * FROM likes lt JOIN room rt ON lt.like_no = rt.ROOM_ID WHERE lt.user_id = #{user_id} AND lt.like_type = 2
+</select>
+	
+	<select id="likelist2" resultType="like">
+SELECT * FROM likes lt JOIN planner pt ON lt.like_no = pt.planner_no
+WHERE lt.user_id = #{user_id} AND lt.like_type = 1
+</select>
+
+</mapper>

@@ -51,7 +51,7 @@ request.setCharacterEncoding("UTF-8");
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_planList.do"> <i class="nc-icon nc-map-big"></i>플래너
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
 							정보
 					</a></li>
 					<li class="nav-item"><a class="nav-link"

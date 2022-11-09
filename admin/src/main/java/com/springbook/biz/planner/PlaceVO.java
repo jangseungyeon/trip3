@@ -1,16 +1,21 @@
 package com.springbook.biz.planner;
 
 public class PlaceVO {
-	private String Planner_no;
+	
+	private String planner_no;
 	private String user_id;
 	private String planner_date;
-	private String place;
-	private String place_memo;
+	private String place_name;
+	private String mapy;
+	private String mapx;
+	private String img;
+	private String addr;
+	
 	public String getPlanner_no() {
-		return Planner_no;
+		return planner_no;
 	}
 	public void setPlanner_no(String planner_no) {
-		Planner_no = planner_no;
+		this.planner_no = planner_no;
 	}
 	public String getUser_id() {
 		return user_id;
@@ -24,18 +29,45 @@ public class PlaceVO {
 	public void setPlanner_date(String planner_date) {
 		this.planner_date = planner_date;
 	}
-	public String getPlace() {
-		return place;
+	public String getPlace_name() {
+		return place_name;
 	}
-	public void setPlace(String place) {
-		this.place = place;
+	public void setPlace_name(String place_name) {
+		this.place_name = place_name;
 	}
-	public String getPlace_memo() {
-		return place_memo;
+	public String getMapy() {
+		return mapy;
 	}
-	public void setPlace_memo(String place_memo) {
-		this.place_memo = place_memo;
+	public void setMapy(String mapy) {
+		this.mapy = mapy;
 	}
+	public String getMapx() {
+		return mapx;
+	}
+	public void setMapx(String mapx) {
+		this.mapx = mapx;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	
+	@Override
+	public String toString() {
+		return "PlaceVO [planner_no=" + planner_no + ", user_id=" + user_id + ", planner_date=" + planner_date
+				+ ", place_name=" + place_name + ", mapy=" + mapy + ", mapx=" + mapx + ", img=" + img + ", addr=" + addr + "]";
+	}
+	
+	
+	
 	
 	
 }

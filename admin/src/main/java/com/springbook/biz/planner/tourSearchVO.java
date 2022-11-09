@@ -9,8 +9,22 @@ public class tourSearchVO {
 	private String firstimage;
 	private int pageNum = 1;
 	private String keyword = "";
+	private int kate = 12;
+	private int date = 0;
 	
 	
+	public int getDate() {
+		return date;
+	}
+	public void setDate(int date) {
+		this.date = date;
+	}
+	public int getKate() {
+		return kate;
+	}
+	public void setKate(int kate) {
+		this.kate = kate;
+	}
 	public String getKeyword() {
 		return keyword;
 	}

@@ -20,4 +20,14 @@ public class AreaServiceImpl implements AreaService{
 		return areaService.getAreaList();
 	}
 
+	@Override
+	public AreaVO getArea(AreaVO vo) {
+		return areaService.getArea(vo);
+	}
+	
+	@Override
+	public AreaVO getAreaNum(AreaVO vo) {
+		return areaService.getAreaNum(vo);
+	}
+
 }
