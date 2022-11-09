@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springbook.biz.planner.PlaceVO;
+import com.springbook.biz.planner.PlannerMemoVO;
 import com.springbook.biz.planner.PlannerService;
 import com.springbook.biz.planner.PlannerVO;
 
@@ -59,6 +60,11 @@ public class PlannerServiceImpl implements PlannerService{
 	@Override
 	public void deletePlace(PlaceVO vo) {
 		plannerDAO.deletePlace(vo);
+	}
+	
+	@Override
+	public void insertMemo(List<PlannerMemoVO> List) {
+		plannerDAO.insertMemo(List);
 	}
 	
 	

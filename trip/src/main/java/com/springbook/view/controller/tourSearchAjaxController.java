@@ -52,7 +52,7 @@ public class tourSearchAjaxController{
 			}
 				if(keyword.isEmpty()) {
 					apiToururl = "http://apis.data.go.kr/B551011/KorService/areaBasedList?"
-							+ "numOfRows=5"
+							+ "numOfRows=8"
 							+ "&pageNo="+pageNO
 							+ "&MobileOS=ETC"
 							+ "&MobileApp=AppTest"

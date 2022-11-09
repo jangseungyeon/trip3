@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.springbook.biz.planner.PlaceVO;
+import com.springbook.biz.planner.PlannerMemoVO;
 import com.springbook.biz.planner.PlannerVO;
 
 @Repository
@@ -58,6 +59,11 @@ public class PlannerDAOMybatis {
 	public void deletePlace(PlaceVO vo) {
 		System.out.println("deletePlace 메소드 실행");
 		mybatis.delete("PlaceDAO.deletePlace", vo);
+	}
+	
+	public void insertMemo(List<PlannerMemoVO> list) {
+		System.out.println("insertMemo 메소드 실행");
+		mybatis.insert("memoDAO.insertMemo", list);
 	}
 	
 }

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*,com.springbook.biz.planner.tourSearchVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="../header.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -11,11 +12,190 @@
 <title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 </head>
+<style>
+.number{
+    color: black;
+    text-decoration: none;
+}
+
+.placeimg{
+	border-radius:10px;
+    margin-right:15px;
+    /* margin-top:15px; */
+	width:80px;
+    height:85px;
+}
+.input {
+  width: 70%;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  resize: none;
+  height: 40px;
+  font-size: 18px;
+  padding-top: 4px;
+  border: solid #aac6b3;
+}
+.span{
+	font-weight: 600;
+    color: #444;
+    cursor: pointer;
+}
+
+.span2{
+	font-size: 18px;
+	color: #424345;
+	font-weight: 549;
+}
+
+.dele:hover{
+ color:black;
+}
+
+.dele{
+color:#808080;
+}
+
+
+</style>
 <body>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<div id="map" style="width:800px;height:200px;"></div>
+
+<div style="margin-left: 5%; margin-right: 5%;">
+
+ <form action="testValue.do" id="testValue" method="post">  
+<div class="container-fluid" style="margin-top: 3%;">
+<div class="row">
+<div class="col-sm-6" >
+<div id="map" style="width:100%;height:250px;"></div>
+<div>
+			
+          	<div id="div">
+<input type="hidden" id="areaNumber">
+       <div class="col-sm-10" style="display: inline;">
+     <div class="btn-group">
+	<select name="areaNum" onchange="area()" id="areaNum" class="form-select form-select-sm" aria-label=".form-select-sm example">  
+			<option>지역변경</option>
+			<c:forEach items="${AreaList}" var="area" >
+			<option value="${area.area_num}">${area.area_name}</option>
+			</c:forEach>
+			</select>
+			</div>
+      <input type="text" class="form-control" type="text" placeholder="검색" id="key" value="" style="width:100px; display: inline;">
+      <input type="button" value="검색" onclick="test00(0)">
+    </div>
+         <input type="button" id="12" onclick="test00(12)" value="관광지">
+			<input type="button" id="14" onclick="test00(14)" value="문화시설">
+			<input type="button" id="15" onclick="test00(15)" value="행사/공연/축제">
+			<input type="button" id="38" onclick="test00(38)" value="쇼핑">
+			<input type="button" id="39" onclick="test00(39)" value="음식점">
+		    <button id="kate" onclick="test00(12)" value="12" style="display:none">카테고리</button>
+          <div class="row">
+      <div class="col col2" style="height:500px;">
+      
+                  <div class="wrap-loading" style="text-align-last: right ; margin-top: 120px; display:none">
+                  
+<div class="spinner-grow " role="status" style="background-color: #bfe3b2;">
+<span class="visually-hidden"></span>
+</div>
+<div class="spinner-grow " role="status" style="background-color: #a1cf91;">
+<span class="visually-hidden"></span>
+</div>
+<div class="spinner-grow " role="status" style="background-color: #80c469;">
+<span class="visually-hidden"></span>
+</div>
+</div>
+      </div>
+      <div class="col col1" style="height:440px;">
+           <div class="wrap-loading" style="margin-top: 120px; display:none">
+<div class="spinner-grow " role="status" style="background-color: #bfe3b2;">
+<span class="visually-hidden"></span>
+</div>
+<div class="spinner-grow " role="status" style="background-color: #a1cf91;">
+<span class="visually-hidden"></span>
+</div>
+<div class="spinner-grow " role="status" style="background-color: #80c469;">
+<span class="visually-hidden"></span>
+</div>
+</div></div>
+    </div>
+          	</div>
+          	<div style="text-align-last: center;">
+          	<input type="hidden" id="be" value="1" >
+          	<input type="button" value="이전" onclick="test00(1)" style="display:none" class="butt btn btn-link">
+          	<input type="hidden" id="af" value="1"> 
+          	<input type="button" onclick="test00(2)" value="다음" style="display:none" class="butt btn btn-link"> 
+			</div>
+</div>
+			</div>
+<div class="col-sm-6">
+
+<!-- <form action="testValue.do" method="post"> -->
+	<div style="padding-left:30px;">
+			<div style="height:620px;">
+			<div class="form-check form-switch" style="margin-top:10px">
+  			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="show()">
+  			<input type="hidden" value="N" name="planner_show" id="show_c" onclick="show()">
+  			<label class="form-check-label" for="flexSwitchCheckDefault" id="test">비공개</label>
+			</div>
+	<textarea onkeydown="return captureReturnKey(event);" id="title"  placeholder="여행 제목을 정해주세요 (최대 40자)" name="planner_title" class="input" maxlength="40"></textarea><br>
+	<a id="h2" style="display: inline-block; margin-bottom:10px"><%= session.getAttribute("areaname") %></a>
+	<a><%= session.getAttribute("start") %> ~ <%= session.getAttribute("end") %></a>
+	<% for(int i=1; i<=Integer.parseInt((String)session.getAttribute("date")) + 1; i ++){ %>
+				<div style="height:70px;"><h5 id='p<%= i %>' class="cn"><span class="memo<%= i %>">DAY-<%= i %></span> <i class="bi bi-journal-text zoom bo<%= i %>" onclick="memo('<%= i %>')" style=" cursor: pointer; font-size' : '22px"><i class="bi bi-plus bo<%= i %>" style="font-size' : '22px"></i></i></h5>
+					<input type="hidden" value=" " name="content" id="val<%= i %>">
+					</div>	
+			<% } %>
+				<div>
+			<p id="plus"></p>
+			</div>
+			<a class="number" style="display:none">중복방지용 태그</a>
+			<div id="date">
+			</div>
+			</div>
+			<div class="form-group">
+			<div id="memo" style="font-size:20px; width:200px; height:40px"><span>DAY-</span></div>
+  <textarea class="form-control" rows="5" id="content" style="resize: none;" placeholder="메모 아이콘을 클릭하여 일자별로 메모기능을 사용해보세요!"></textarea>
+  			<div style="text-align: center; margin-top: 2%;">
+  			<input type="submit" value="임시저장">
+			<input type="button" value="숙소 둘러보기" onclick="room()">
+			</div>
+</div>
+			</div>
+			</div>
+			</form> 
 <script>
+function captureReturnKey(e) { 
+	if(e.keyCode==13 && e.srcElement.type != $("#title")) 
+	return false; 
+	}
+
+
+function submits(num){
+	//애니메이션 추가 글 등록시
+	 $(".bo"+num).animate({
+		'font-size' : '30px' ,
+		'opacity' : '0.2'
+	});  
+	  $(".bo"+num).animate({
+			'font-size' : '22px' ,
+			'opacity' : '0.05'
+		}); 
+	$(".bo"+num).css("color" , "#356c49")
+	$("#val"+num).val($("#content").val());
+}
+
+function memo(num){
+  var memo = $(".memo" + num).html();
+  $("#memo").html(memo);
+  $("#memo").append("<input type='button' onclick='submits("+num+")' value='메모등록'>");
+  $("#content").val($("#val"+num).val());
+}
+
 function area(){
 	var areanum = $("#areaNum").val();
 	$.ajax({
@@ -75,7 +255,6 @@ function test00(tval) {
 	 	if(areanum == ""){
 	 		areanum = ${Area.area_num};
 	 	}
-	 	
 	 	keyword = $('#key').val();
 		
  		$.ajax({
@@ -89,23 +268,28 @@ function test00(tval) {
  			var str = "";
  			var str2 = "";
 			var img = "";
- 				
 				for(var i = 1; i <= data[0].date+1; i++){
  					str += "<option id='o"+i+"' value='"+i+"'>"+i+"일차</option>";
  				}
- 				
+ 			
+			$(".butt").css("display" , "");
+				
  			$(data).each(function(){
- 				console.log(this.firstimage == "undefined")
- 				
+				var className = 'col1'; 
+				
+				if(num < 4){
+					className = 'col2';
+				}
+				
  				if(this.firstimage == ""){
  					img = "./resources/img/none_img.png";
  				}else{
  				 	img = this.firstimage
  				}
  			console.log(this.mapx);
-				
- 			 $("#div").append("<div class='delete'> <select class='delete' id='select' onchange='test("+num+" , value)'> <option>장소선택</option>"+str+"</select><br class='delete'> <img src='"+img+"' style='width:50px;height:50px; float: left;' class='delete'>"+
- 					"<a href='#' onclick='test("+num+")' id='"+num+"' class='delete' style='vertical-align:top;'>"+this.title+"</a><br class='delete'> <small id='add"+num+"' class='delete' style='vertical-align:buttom;'>"+this.addr1+"</small></div><br class='delete'>" + 
+
+ 			$("." + className).append("<div class='delete' style='margin-top:15px'>  <img src='"+img+"' style='width:90px;height:90px; float: left;' class='delete placeimg'>"+
+ 					"<span onclick='test("+num+")' id='"+num+"' class='delete span' style='vertical-align:top;'>"+this.title+"</span><br class='delete'> <small id='add"+num+"' class='delete' style='vertical-align:buttom;'>"+this.addr1+"</small><select class='delete form-select form-select-sm' aria-label='.form-select-sm example' id='select' onchange='test("+num+" , value)' style='width: 100px;'> <option>장소선택</option>"+str+"</select></div><br class='delete'>" + 
  					"<input  type='hidden' class='areaData"+num+" delete' value='"+this.title +"==="+ this.addr1 +"==="+ this.mapx +"==="+ this.mapy+"==="+img+"'>"+
  					"<a href='#' onclick='test()' id='x"+num+"' style='display:none;' class='delete'>"+this.mapx+"</a>" + 
  					"<a href='#' onclick='test()' id='y"+num+"' style='display:none;' class='delete'>"+this.mapy+"</a>")
@@ -126,7 +310,7 @@ function test00(tval) {
  	    }
  	    ,
  		error : function() {
- 			//태그 추가
+ 			inRun = false;
  			alert("실패");
  		}
  }); 
@@ -135,6 +319,10 @@ function test00(tval) {
 	
 }
 
+function room(){
+	$("#testValue").append("<input type='hidden' value='ok' name='roomPage'>");
+	$("#testValue").submit();
+}
 </script>
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=b96ec8a7c96b4f5663ea3d19a4bbc885"></script>
 
@@ -158,10 +346,10 @@ function test(num , value) {
 	  var arrNumber = new Array();
 	  arrNumber[0] = "start";
 	  if(!($("#p" + value).text().includes(title))){ // 장소 중복 등록 방지
-			 if($("#p" + value).children(".number").length < 3 ){
-				$("#p" + value).append("<a class='number "+$('.number').length+"'> " +title + "<i onclick='button("+$('.number').length+")' class='"+$('.number').length+" bi bi-calendar2-x'></i>" + 
-				"<input class='"+$('.number').length+"' type='hidden' value='"+value+"==="+$(".areaData"+num).val()+"' name='placeTab' >");
-			 }else alert("3개까지")
+			 if($("#p" + value).children(".number").length < 8 ){
+				$("#p" + value).append("<span class='number "+$('.number').length+" span2'> " +title + "</span> <i onclick='button("+$('.number').length+")' class='"+$('.number').length+" bi bi-x-lg dele'></i> " + 
+				"<i class='bi bi-arrow-right "+$('.number').length+"'></i><input class='"+$('.number').length+"' type='hidden' value='"+value+"==="+$(".areaData"+num).val()+"' name='placeTab' >");
+			 }else alert("장소 등록은 8개까지 가능합니다")
 			 }else alert("중복된 장소가 존재합니다")  
      mapOption = { 
     	        center: new kakao.maps.LatLng(mapy,mapx), // 지도의 중심좌표
@@ -213,71 +401,12 @@ function show(){
 	}
 }
 
-</script>
-<form action="testValue.do"> 
-<!-- <form action="testValue.do" method="post"> -->
-<h2 id="h2"><%= session.getAttribute("areaname") %></h2>
-<input type="hidden" id="areaNumber">
-<input type="text" id="title"  placeholder="소제목 입력 창" name="planner_title"><br>
-<input type="text" placeholder="검색" id="key" value="">
-<input type="button" value="검색" onclick="test00(0)">
-<br>
-			<select name="areaNum" onchange="area()" id="areaNum">  
-			<option>지역변경</option>
-			<c:forEach items="${AreaList}" var="area" >
-			<option value="${area.area_num}">${area.area_name}</option>
-			</c:forEach>
-			</select>
-			<input type="button" id="12" onclick="test00(12)" value="관광지">
-			<input type="button" id="14" onclick="test00(14)" value="문화시설">
-			<input type="button" id="15" onclick="test00(15)" value="행사/공연/축제">
-			<input type="button" id="38" onclick="test00(38)" value="쇼핑">
-			<input type="button" id="39" onclick="test00(39)" value="음식점">
-		    <button id="kate" onclick="test00(12)" value="12" style="display:none">카테고리</button>
-			
-          	<div id="div">
-          	
-<div class="wrap-loading" style="display:none">
-<div class="spinner-grow text-secondary" role="status">
-<span class="visually-hidden"></span>
-</div>
-<div class="spinner-grow text-success" role="status">
-<span class="visually-hidden"></span>
-</div>
-<div class="spinner-grow text-danger" role="status">
-<span class="visually-hidden"></span>
-</div>
-<div class="spinner-grow text-warning" role="status">
-<span class="visually-hidden"></span>
-</div>
-<div class="spinner-grow text-info" role="status">
-<span class="visually-hidden"></span>
-</div>
-<div class="spinner-grow text-light" role="status">
-<span class="visually-hidden"></span>
-</div>
-</div>
-          	</div>
-          	<input type="button" id="be" onclick="test00(1)" value="1">이전
-          	<input type="button" id="af" onclick="test00(2)" value="1">다음 
-			<% for(int i=1; i<=Integer.parseInt((String)session.getAttribute("date")) + 1; i ++){ %>
-					<p id='p<%= i %>' class="cn">DAY-<%= i %></p>
-			<% } %>
-			<div>
-			<p id="plus"></p>
-			</div>
-			<a class="number" style="display:none">중복방지용 태그</a>
-			<div id="date">
-			</div>
-			<input type="submit" value="저장">
-			공개설정
-			<div class="form-check form-switch">
-  			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-  			<input type="hidden" value="N" name="planner_show" id="show_c">
-  			<label class="form-check-label" for="flexSwitchCheckDefault" onclick="show()" id="test">비공개</label>
-			</div>
-			</form>
-		
+function room(){
+	$("#testValue").append("<input type='hidden' value='ok' name='roomPage'>");
+	$("#testValue").submit();
+}
 
+</script>
+</div>		
 </body>
 </html>

@@ -22,5 +22,7 @@ public interface PlannerService {
 	void deltePlanner(PlannerVO vo);
 	
 	void deletePlace(PlaceVO vo);
+	
+	void insertMemo(List<PlannerMemoVO> List);
 
 }

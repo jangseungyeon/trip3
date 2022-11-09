@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+      <%@ include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,7 @@ function like(num){ // num = like (좋아요 누름)  num = unlike (좋아요 �
 function update(val){
 	$("."+val).attr("readonly" , false);
 	$(".test"+val).css("display" , "none");
-	$("#update"+val+" .reg"+val).append("<button onclick=\"crud('Rupdate' , "+val+")\">저장하기</button>")
+	$("#update"+val+" .reg"+val).append("<button onclick=\"crud('Cupdate' , "+val+")\">저장하기</button>")
 }
 function deletes(val){
 	var v = val;
@@ -86,7 +87,7 @@ function deletes(val){
 function REupdate(val , test){
 	$(".RE"+val).attr("readonly" , false);
 	$(".REtest"+val).css("display" , "none");
-	$("#reply"+test+" .reg"+val).append("<button onclick=\"crud('Cupdate' , "+val+")\">저장하기</button>")
+	$("#reply"+test+" .reg"+val).append("<button onclick=\"crud('Rupdate' , "+val+")\">저장하기</button>")
 }
 function REdeletes(val){
 	var v = val;
@@ -119,6 +120,7 @@ function crud(num , number){
 	
 	if(num == 'Cinsert') {
 		url = "comment.do";
+		comment_no = 0;
 		content = $("#comment_content").val();
 	}
 	if(num == 'Rinsert') {
@@ -136,7 +138,6 @@ function crud(num , number){
 		content = $(".RE"+number).val();
 		comment_no = number;
 	}
-	
 	$.ajax({
 		url:url,
 		type: "POST",

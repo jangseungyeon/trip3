@@ -26,6 +26,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 
 <link href="resources/css/style.css" rel="stylesheet">
 <link href="resources/css/myinfo.css" rel="stylesheet">
+<link href="resources/css/my_ReservationDetail.css" rel="stylesheet">
 
 </head>
 

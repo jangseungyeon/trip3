@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springbook.biz.planner.PlaceVO;
+import com.springbook.biz.planner.PlannerMemoVO;
 import com.springbook.biz.planner.PlannerService;
 import com.springbook.biz.planner.PlannerVO;
 import com.springbook.biz.planner.ReplyVO;
@@ -43,7 +44,10 @@ public class PlannerController {
 	}
 	
 	@RequestMapping(value = "/testValue.do")
-	public String test(@RequestParam(value="placeTab", required=false) String[] arr , HttpServletRequest request , HttpSession session, PlannerVO vop) {
+	public String test(@RequestParam(value="placeTab", required=false) String[] arr , HttpServletRequest request ,
+			HttpSession session, PlannerVO vop , @RequestParam(value="content", required=false) String[] content) {
+			
+		
 			int day = Integer.parseInt((String)session.getAttribute("date")) + 1;
 			vop.setPlanner_start((String)session.getAttribute("start"));
 			vop.setPlanner_end((String)session.getAttribute("end"));
@@ -51,8 +55,8 @@ public class PlannerController {
 			vop.setRoom_name(request.getParameter("name"));
 			vop.setPlanner_area((String)session.getAttribute("areaname"));
 			vop.setPlanner_day(Integer.toString(day));
-			System.out.println(vop.getPlanner_title());
 			Service.insertPlanner(vop);
+			
 			List<PlaceVO> tourList = new ArrayList<PlaceVO>();
 			String[] tableArr = new String[6];
 			for(int i=0; i<arr.length; i++) {
@@ -69,7 +73,24 @@ public class PlannerController {
 				tourList.add(vo);
 			}
 			Service.insertPlace(tourList);
-		
+			
+			List<PlannerMemoVO> memoList = new ArrayList<PlannerMemoVO>();
+			for(int i=0; i<content.length; i++) {
+				PlannerMemoVO memo = new PlannerMemoVO();
+				memo.setUser_id((String)session.getAttribute("user_id"));
+				memo.setMemo_day(i+1);
+				memo.setMemo_content(content[i]);
+				String s = content[i].replace(" ", "");
+				if(!(s.equals(""))) {
+					memoList.add(memo);
+				}
+				System.out.println(memo);
+			}
+			Service.insertMemo(memoList);
+			
+			if(request.getParameter("roomPage") != null ) {
+				return "u_getRoomList.do";
+			}
 	 return "WEB-INF/views/main.jsp";
 	}
 	

@@ -23,6 +23,7 @@
 		<typeAlias alias="review" type="com.springbook.biz.review.ReviewVO" />
 		<typeAlias type="com.springbook.biz.planner.CommentVO" alias="comment"/>
 		<typeAlias type="com.springbook.biz.planner.ReplyVO" alias="reply"/>
+		<typeAlias type="com.springbook.biz.planner.PlannerMemoVO" alias="memo"/>
 		
 	</typeAliases>
 	
@@ -39,6 +40,7 @@
 		<mapper resource="mappings/review-mapping.xml" />
 		<mapper resource="mappings/comment_mapping.xml"/>
 		<mapper resource="mappings/reply_mapping.xml"/>
+		<mapper resource="mappings/memo_mapping.xml"/>
 		
 	</mappers>
 </configuration>

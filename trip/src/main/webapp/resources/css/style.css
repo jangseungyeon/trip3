@@ -3,7 +3,7 @@ ul.head-ul {
 	font-size: 30px;
 }
 
-.head-link {
+a.head-link {
 	color: black !important;
 	background-color: #f9fcff;
 }

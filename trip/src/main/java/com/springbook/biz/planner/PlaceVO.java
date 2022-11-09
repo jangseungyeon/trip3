@@ -2,7 +2,7 @@ package com.springbook.biz.planner;
 
 public class PlaceVO {
 	
-	private String Planner_no;
+	private String planner_no;
 	private String user_id;
 	private String planner_date;
 	private String place_name;
@@ -12,10 +12,10 @@ public class PlaceVO {
 	private String addr;
 	
 	public String getPlanner_no() {
-		return Planner_no;
+		return planner_no;
 	}
 	public void setPlanner_no(String planner_no) {
-		Planner_no = planner_no;
+		this.planner_no = planner_no;
 	}
 	public String getUser_id() {
 		return user_id;
@@ -62,7 +62,7 @@ public class PlaceVO {
 	
 	@Override
 	public String toString() {
-		return "PlaceVO [Planner_no=" + Planner_no + ", user_id=" + user_id + ", planner_date=" + planner_date
+		return "PlaceVO [planner_no=" + planner_no + ", user_id=" + user_id + ", planner_date=" + planner_date
 				+ ", place_name=" + place_name + ", mapy=" + mapy + ", mapx=" + mapx + ", img=" + img + ", addr=" + addr + "]";
 	}
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -312,6 +313,7 @@ $(document).ready(function(){
           <input type="text" class="form-control input1 input start" name="start" placeholder="시작일" readonly>
           <input type="text" class="form-control input2 input end" name="end" placeholder="종료일" readonly onchange="change()"><br>
         </div>
+        <small style="color: gray; display: block; text-align: right; padding-top:7px">일수는 최대 7일까지 선택 가능합니다</small>
       </div>
     </div>
 </div>
