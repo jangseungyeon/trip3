@@ -36,31 +36,16 @@ public class ReservationController {
 	private ReservationService reservationService;
 
 	//(회원) 	내 예약 확인
-	@RequestMapping("/check.do")
-	public String user_info(ReservationVO rvo, HttpSession session, Model model) {
-		System.out.println("rvo: "+rvo);
-		rvo.setUser_id((String)session.getAttribute("user_id"));
-		rvo = reservationService.check(rvo);
-		System.out.println("결제정보확인: " + rvo);
-		if (rvo != null) {
-			String user_id = rvo.getUser_id();
-			session.setAttribute("user_id", user_id);
-			model.addAttribute("res_id", rvo.getRes_id());
-			model.addAttribute("host_id", rvo.getHost_id());
-			model.addAttribute("room_id", rvo.getRoom_id());
-			model.addAttribute("room_name", rvo.getRoom_name());
-			model.addAttribute("room_img", rvo.getRoom_img());
-			model.addAttribute("pay_date", rvo.getPay_date());
-			model.addAttribute("pay_amount", rvo.getPay_amount());
-			model.addAttribute("res_num", rvo.getRes_num());
-			model.addAttribute("res_status", rvo.getRes_status());
-			model.addAttribute("res_checkin", rvo.getRes_checkin());
-			model.addAttribute("res_checkout", rvo.getRes_checkout());
-			return "WEB-INF/views/my_ReservationList.jsp";
-		} else {
-			return "index.jsp";
+		@RequestMapping("/check.do")
+		public String user_info(ReservationVO rvo, HttpSession session, Model model) {
+			System.out.println("rvo: "+rvo);
+			rvo.setUser_id((String)session.getAttribute("user_id"));
+			rvo = reservationService.getReservationOneDetail(rvo);
+			System.out.println("결제정보확인: " + rvo);
+			model.addAttribute("rvo", rvo);
+				return "WEB-INF/views/my_ReservationDetail.jsp";
+			
 		}
-	}
 	
 	//(회원) 숙소 예약 수정, 변경 (GET 요청, 날짜에 따라 예약 변경이 불가능하게 하거나 시간이 지나면 자동적으로 사용 완료 및 리뷰 쓰기 가능 상태로 변경하게 할때 이 수정 메소드를 타야함)
 	@GetMapping(value="/updateReservation.do")
@@ -270,6 +255,14 @@ public class ReservationController {
 		}
 	}
 		
+	//결제 상세정보에서 연락처, 이메일 수정 
+	@RequestMapping(value="/updateReservationDetail.do")
+	public String updateReservationDetail(ReservationVO rvo, HttpSession session) {
+		reservationService.updateReservationDetail(rvo);
+		return "check.do";
+	}
+	
+	
 	//(회원) 숙소 예약 삭제 (일정 크게 변경해야하기 때문에(기존 일정보다 며칠 추가하거나 삭제하거나 등등) 그래서 아예 삭제후 재등록)
 	//또한 관리자의 경우 문제가 있을시 비상상황에 예약 삭제가 가능해야함 결국 관리자도 씀
 	@RequestMapping(value="/deleteReservation.do")

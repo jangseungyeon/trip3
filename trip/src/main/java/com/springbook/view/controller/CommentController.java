@@ -51,8 +51,8 @@ public class CommentController {
 	}
 	
 	@RequestMapping("/replyupdate.do")
-	public int replyUpdate(ReplyVO vo , String reply_no , String content ) {
-		vo.setReply_no(Integer.parseInt(reply_no));
+	public int replyUpdate(ReplyVO vo , String comment_no , String content ) {
+		vo.setReply_no(Integer.parseInt(comment_no));
 		vo.setReply_content(content);
 		return service.replyUpdate(vo);
 	}

@@ -80,4 +80,9 @@ public class ReservationServiceImpl implements ReservationService {
 	public ReservationVO getReservationOneDetail(ReservationVO rvo) {
 		return ReservationDAO.getReservationOneDetail(rvo);
 	}
+	
+	@Override
+	public void updateReservationDetail(ReservationVO rvo) {
+		ReservationDAO.updateReservationDetail(rvo);
+	}
 }

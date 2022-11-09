@@ -598,10 +598,7 @@ keyboard_double_arrow_down
 		<!-- 이달의 테마 끝 -->
 
 		<!--  테마 시작 -->
-		<form id = "main-form" class="main-form">
-		아무거나
-		</form>
-		
+
 		
 		
 		

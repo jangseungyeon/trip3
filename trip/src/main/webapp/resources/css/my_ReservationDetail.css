@@ -1,0 +1,21 @@
+.resd-div {
+	margin: 10px;
+}
+
+fieldset.resd-fieldset1, fieldset.resd-fieldset2 {
+	border: 1px black solid;
+	margin : 60px;
+	margin-bottom: 40px;
+}
+
+legend.resd-legend1 {
+	margin: 10px;
+	padding-left: 15px;
+	width: 125px;
+}
+
+legend.resd-legend2 {
+	margin: 10px;
+	padding-left: 15px;
+	width: 155px;
+}

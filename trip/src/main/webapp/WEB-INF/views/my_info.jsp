@@ -201,13 +201,24 @@
 		$(function phonecheck() {
 			//휴대폰 번호 인증 
 			var code2 = "";
-			$("#phoneChk")
-					.click(
+			
+			
+			$("#phoneChk").click(
+					
+							
+								
 							function() {
+								var inputphone = document.getElementById('phone').value
+								if(phone_pattern.test(inputphone) == false){
+									alert("형식이 올바르지 않습니다.")
+								} else if(inputphone==${user_phone}){
+									alert("번호가 동일합니다.")
+								} else { 
+								
 								alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
 								$('#config1').show();
 								$('#config').hide();
-								var phone = $("#phone").val();
+// 								var phone = $("#phone").val();
 
 								$
 										.ajax({
@@ -241,7 +252,9 @@
 												}
 											}
 										});
-							});
+							}
+							}		
+					);
 
 			$("#phoneChk2").click(
 					function() {
@@ -284,8 +297,24 @@
 			$(function() {
 				var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 				var email = $("#email");
-				$("#sendMail").on("click", function() {
+				
+				
+				
+					 
 					
+// 				let myStr = '${user_email}';
+// 				myStr = myStr.replace("@", "");
+				
+				
+				
+				$("#sendMail").on("click", function() {
+					var inputemail = document.getElementById('email').value
+					alert(inputemail);
+					if(email_pattern.test(inputemail) == false){
+						alert("형식이 올바르지 않습니다.")
+					} else if(inputemail=='${user_email}'){
+						alert("메일이 동일합니다.")
+					} else { 
 					if (email == "") {
 						alert("이메일을 입력하지 않았습니다.");
 					} else {
@@ -313,7 +342,9 @@
 								alert("오류가 발생했습니다.");
 							}
 						});
-					}
+					
+					
+					}}
 				});
 			});
 

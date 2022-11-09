@@ -10,16 +10,16 @@
 <%@ include file="header.jsp"%>
 
 
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>jQuery CDN - -->
-<!-- <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-<!-- <script>
-function reservationtr(val){
-	location.href = "plannerinfo.do?planner_no="+val;
-}
-</script> -->
+ <script>
+
+</script> 
 
 <script>
+
+
 function f_getPayInfo(mid, idx) {
 	$.ajax({
 		url : "payamount",
@@ -89,6 +89,10 @@ function getPayInfoIdx(idx, val) {
 	node.appendChild(textnode5);
 	PayInfos.appendChild(node);
 }
+
+function reservationtr(val) {
+	location.href = "check.do?res_id="+val;
+};
 </script>
 
 
@@ -111,14 +115,14 @@ function getPayInfoIdx(idx, val) {
           <th>예약상태</th>
           <th>체크인 날짜</th>
           <th>체크아웃 날짜</th>
-          <th>결제 정보</th>
-          <th>결제 취소</th>
+          <th>결제</th>
           <th>결제 정보 보기</th>
+          <th>리뷰</th>
       </tr>
     </thead>
     <tbody>
 <c:forEach var="i" items="${reservationList}" varStatus="status">
-			<tr onclick="reservationtr(${i.res_id})" align="center" >
+			<tr align="center">
 			<td><img style="width: 300px;" src="resources/room_img/${i.room_img}"></td>
 				<td>${i.res_id}</td>
 				<td>${i.room_name}</td>
@@ -127,12 +131,13 @@ function getPayInfoIdx(idx, val) {
 				<td>${i.res_num}</td>
 				<td class="status">${i.res_status}</td>
 				<td>${i.res_checkin}</td>
-				<td id="checkout">${i.res_checkout}</td>
-				<td id="PayInfos${status.index}"></td>
+				<td id="checkout" class="checkout">${i.res_checkout}</td>
 				<td id="daybefore${status.index}"><button onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제 취소</button></td>
-				<td id="dayafter${status.index}" style="display: none"><button>리뷰 쓰기</button></td>
 				<td id="ing${status.index}" style="display: none"><span>취소 완료</span></td>
-				<td><button onclick="f_getPayInfo('${i.merchant_uid}','PayInfos${status.index}')">결제 정보 보기</button></td>
+				<td><button onclick="reservationtr('${i.res_id}')">상세정보</button></td>
+				<td id="dayafter${status.index}"><button >리뷰 쓰기</button></td>
+				
+<%-- 				<td><button onclick="f_getPayInfo('${i.merchant_uid}','PayInfos${status.index}')">결제 정보 보기</button></td> --%>
 			</tr>
 			<br>
 			<form name="resCancelfm_${status.index}">
@@ -165,25 +170,55 @@ function getPayInfoIdx(idx, val) {
   </c:if>
   <!-- 반복처리할 태그 끝 -->
   </div><br><br>
+  
+  
   <script>
+  
 //   예약취소
   $(function() {
 		var tdArr = $("#re_table td.status");
 		var i = 0;
+	
 		$.each(tdArr, function(i, v){
 			var status = $(v).text();
-				console.log($(v).text())
 			if($(v).text() == 1) {
 				$("#ing" + i).show();
 				$("#daybefore" + i).hide();
-				$("#dayafter" + i).hide();
-			}
+			} 
 		i = i + 1;
 		});
 	});
   
-  // 리뷰등록
-  
+  // 리뷰 쓰기
+</script>
+<script type="text/javascript">
+$(function() {
+	//오늘 날짜
+	var date = new Date();
+    var year = date.getFullYear();
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+    var today = year + "-" + month + "-" + day;
+	
+    
+	var tdArrco = $("#re_table td.checkout");
+	var x = 0;
+	$.each(tdArrco, function(x, v){
+		var checkout = $(v).text();
+			console.log("체크아웃"+$(v).text())
+			console.log(checkout < today)
+		if(checkout < today) {
+			$("#re_table td#dayafter"+x).show();
+		} else {
+			$("#re_table td#dayafter"+x).hide();
+// 			var btn_disabled = "#dayafter"+x;
+// 			var target = document.getElementById(btn_disabled);
+// 			target.disabled = true;
+		}
+			
+	x = x + 1;
+	});
+});
 </script>
 </body>
 </html>

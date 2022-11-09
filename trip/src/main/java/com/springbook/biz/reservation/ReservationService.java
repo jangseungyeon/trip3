@@ -37,4 +37,7 @@ public interface ReservationService {
 	//(회원) 예약 1건에 대해 상세 조회
 	ReservationVO getReservationOneDetail(ReservationVO rvo);
 
+	//(회원) 내 연락처, 이메일 수정
+		void updateReservationDetail(ReservationVO rvo);
+
 }

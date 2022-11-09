@@ -78,4 +78,8 @@ public class ReservationDAOMybatis {
 		return mybatis.selectOne("ReservationDAO.getReservationOneDetail", rvo);
 	}
 
+	public void updateReservationDetail(ReservationVO rvo) {
+		System.out.println("마이바티스 내정보 수정 처리");
+		mybatis.update("ReservationDAO.updateReservationDetail", rvo);
+	}
 }
