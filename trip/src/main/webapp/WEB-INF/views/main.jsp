@@ -12,7 +12,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <style>
 * {
@@ -255,8 +255,8 @@ opacity:1;
 }
 
 .ch-grid li {
-	width: 220px;
-	height: 220px;
+	width: 180px;
+	height: 180px;
 	display: inline-block;
 	margin: 20px;
 }
@@ -285,7 +285,7 @@ opacity:1;
 	border-radius: 50%;
 	position: relative;
 	cursor: default;
-	box-shadow: inset 0 0 0 0 rgba(200, 95, 66, 0.4), inset 0 0 0 16px
+	box-shadow: inset 0 0 0 0 rgba(200, 95, 66, 0.4), inset 0 0 0 5px
 		rgba(255, 255, 255, 0.6), 0 1px 2px rgba(0, 0, 0, 0.1);
 	transition: all 0.4s ease-in-out;
 }
@@ -504,19 +504,29 @@ img {
 	
 		};
 	
+		function test(){
+			document.main-form.action = "mountain.do";
+			document.main-form.method = "post";
+			document.main-form.submit();
+		}
+		
+		
 </script>
 
 </head>
 
-<body>
+<body class="main-body">
 <div style="margin-top:100px">
-      <img src="resources/img/KakaoTalk_20221104_005719548.jpg" style="width: 600px; margin-left: 150px;">
+      <img src="resources/img/mainimg.png" style="width: 600px; margin-left: 150px;">
      <div style="display:inline-block; margin-left:150px; vertical-align: middle;"> 
      <a style="font-size: 40px;">숙소 예매와 플레너 작성을 한번에</a><br>
      <a style="font-size: 40px;">tripONplan에서 함께 하세요</a><br>
      </div> <br></div>
      
-   <h2 style="text-align: center; margin-top:140px"><a href="#page1">아래로</a></h2>
+<!--      한단락 내려가는 이미지 -->
+   <h2 style="text-align: center; margin-top:140px"><a href="#page1"><span class="material-symbols-outlined main-img">
+keyboard_double_arrow_down
+</span></a></h2>
 
 		<!-- 이달의 테마 시작 -->
 		<p id="page1"></p><br><br>
@@ -524,7 +534,7 @@ img {
 			<h2 style="text-align: center;">이달의 테마</h2>
 			<ul class="ch-grid">
 				<li>
-					<div class="ch-item ch-img-1" onclick="thema('mountain')">
+					<div onclick="test1()" class="ch-item ch-img-1" onclick="thema('mountain')">
 						<div class="ch-info">
 							<h3>산</h3>
 							<p>
@@ -588,6 +598,13 @@ img {
 		<!-- 이달의 테마 끝 -->
 
 		<!--  테마 시작 -->
+		<form id = "main-form" class="main-form">
+		아무거나
+		</form>
+		
+		
+		
+		
 		<div class="container-fluid mt-3">
 			
 
@@ -639,7 +656,9 @@ img {
 
 		<!-- 연결고리 시작 -->
 		<div class="container-fluid mt-3">
-			<h1 class="main-h1"><a href="#page2">아래로</a></h1>
+			<h1 class="main-h1"><a href="#page2"><span class="material-symbols-outlined main-img">
+keyboard_double_arrow_down
+</span></a></h1>
 		</div>
 		<!-- 연결고리 끝 -->
 		<div id="map" style="width: 100%; height: 350px;"></div>

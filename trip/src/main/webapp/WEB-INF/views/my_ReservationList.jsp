@@ -10,11 +10,17 @@
 <%@ include file="header.jsp"%>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- jQuery CDN --->
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>jQuery CDN - -->
+<!-- <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script> -->
+
+<!-- <script>
+function reservationtr(val){
+	location.href = "plannerinfo.do?planner_no="+val;
+}
+</script> -->
 
 <script>
-function f_getPayInfo(mid) {
+function f_getPayInfo(mid, idx) {
 	$.ajax({
 		url : "payamount",
 		data : {"mid": mid},
@@ -22,15 +28,11 @@ function f_getPayInfo(mid) {
 		contentType : 'application/json; charset=UTF-8',
 		success : function(val){
 			console.log(val);
-			$("#PayInfos").empty();
+			getPayInfoIdx(idx, val);
 			if(val.msg!=null){
 				alert(val.msg + "\n관리자에게 문의하십시오.");
 			}else{
-				$("#PayInfos").append("고유ID: "+val.imp_uid);
-				$("#PayInfos").append("<br>상점 거래ID: "+val.merchant_uid);
-				$("#PayInfos").append("<br>주문상품: "+val.name);
-				$("#PayInfos").append("<br>주문자: "+val.buyer_name);
-				$("#PayInfos").append("<br>결제금액: "+val.amount);
+				console.log(val)
 			}
 		},
 		error :  function(request, status){
@@ -64,6 +66,28 @@ function f_cancelRes(fmIndex){
 	frm.action = "cancelReservation.do";
 	frm.method = "post";
 	frm.submit();
+};
+
+function getPayInfoIdx(idx, val) {
+	let PayInfos = document.getElementById(idx);
+	
+	while ( PayInfos.hasChildNodes() )
+	{
+		PayInfos.removeChild( PayInfos.firstChild );       
+	}
+	
+	const node = document.createElement("text");
+// 	const textnode1 = document.createTextNode("고유ID: "+val.imp_uid);
+// 	const textnode2 = document.createTextNode("\n상점 거래ID: "+val.merchant_uid);
+	const textnode3 = document.createTextNode("주문상품: "+val.name);
+	const textnode4 = document.createTextNode("주문자: "+val.buyer_name);
+	const textnode5 = document.createTextNode("결제금액: "+val.amount);
+// 	node.appendChild(textnode1);
+// 	node.appendChild(textnode2);
+	node.appendChild(textnode3);
+	node.appendChild(textnode4);
+	node.appendChild(textnode5);
+	PayInfos.appendChild(node);
 }
 </script>
 
@@ -87,13 +111,14 @@ function f_cancelRes(fmIndex){
           <th>예약상태</th>
           <th>체크인 날짜</th>
           <th>체크아웃 날짜</th>
-          <th>버튼</th>
-          
+          <th>결제 정보</th>
+          <th>결제 취소</th>
+          <th>결제 정보 보기</th>
       </tr>
     </thead>
     <tbody>
 <c:forEach var="i" items="${reservationList}" varStatus="status">
-			<tr align="center">
+			<tr onclick="reservationtr(${i.res_id})" align="center" >
 			<td><img style="width: 300px;" src="resources/room_img/${i.room_img}"></td>
 				<td>${i.res_id}</td>
 				<td>${i.room_name}</td>
@@ -103,11 +128,11 @@ function f_cancelRes(fmIndex){
 				<td class="status">${i.res_status}</td>
 				<td>${i.res_checkin}</td>
 				<td id="checkout">${i.res_checkout}</td>
-				<td id="PayInfos"></td>
+				<td id="PayInfos${status.index}"></td>
 				<td id="daybefore${status.index}"><button onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제 취소</button></td>
 				<td id="dayafter${status.index}" style="display: none"><button>리뷰 쓰기</button></td>
-				<td id="ing${status.index}" style="display: none"><button>사용중인 숙소</button></td>
-				<td><button onclick="f_getPayInfo('${i.merchant_uid}')">결제 정보 보기</button></td>
+				<td id="ing${status.index}" style="display: none"><span>취소 완료</span></td>
+				<td><button onclick="f_getPayInfo('${i.merchant_uid}','PayInfos${status.index}')">결제 정보 보기</button></td>
 			</tr>
 			<br>
 			<form name="resCancelfm_${status.index}">
@@ -141,29 +166,24 @@ function f_cancelRes(fmIndex){
   <!-- 반복처리할 태그 끝 -->
   </div><br><br>
   <script>
+//   예약취소
   $(function() {
 		var tdArr = $("#re_table td.status");
 		var i = 0;
 		$.each(tdArr, function(i, v){
 			var status = $(v).text();
-				
-			if($(v).text() == 2) {
-				$("#daybefore" + i).hide();
-				$("#dayafter" + i).hide();
+				console.log($(v).text())
+			if($(v).text() == 1) {
 				$("#ing" + i).show();
-			} else if($(v).text() == 3) {
 				$("#daybefore" + i).hide();
 				$("#dayafter" + i).hide();
-			} else if($(v).text() == 4){
-				$("#daybefore" + i).hide();
-				$("#dayafter" + i).show();
 			}
-			
 		i = i + 1;
-			
 		});
-		
 	});
+  
+  // 리뷰등록
+  
 </script>
 </body>
 </html>

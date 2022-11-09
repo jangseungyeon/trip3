@@ -31,7 +31,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 
 <div class="container-fluid">
 	<div class="container-fluid main-div">
-		<nav id="stNav" class="navbar  bg-success navbar-success  fixed-top">
+		<nav id="stNav" class="navbar header-bgc bg-success navbar-success  fixed-top">
 
 			<c:choose>
 				<c:when test='${user_id ne NULL}'>
@@ -49,18 +49,21 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 
 
 					<ul class="nav justify-content-end bg-success">
-						<li class="nav-item"><a class="nav-link">${user_name}님 접속중</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="move_to_host_login.do">호스트</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="user_logout.do">로그아웃</a></li>
-							<div class="dropdown">
-							<button type="button" class="btn btn-primary dropdown-toggle"
-								data-toggle="dropdown">내 정보</button>
-							<div class="dropdown-menu">
+						<li class="nav-item">
+						<a class="nav-link header-link2">${user_name}님 접속중</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link header-link2" href="move_to_host_login.do">호스트</a>
+						</li>
+						<li class="nav-item">
+						<a class="nav-link header-link2" href="user_logout.do">로그아웃</a>
+						</li>
+							<div id="header-mydiv" class="dropdown">
+							<button id="header-btn" type="button" class="btn btn-primary" data-toggle="dropdown">내 정보</button>
+							<div id="header-menu-div" class="dropdown-menu">
 								<a class="dropdown-item" href="myinfo.do">정보 수정</a> <a
-									class="dropdown-item" href="pointcheck.do">마일리지</a> <a
-									class="dropdown-item" href="getReservationList.do">결제 목록</a> <a
+									class="dropdown-item" href="pointcheck.do">마일리지</a>
+									<a class="dropdown-item" href="getReservationList.do">결제 목록</a> <a
 									class="dropdown-item" href="likeslist.do">좋아요(like)</a> <a
 									class="dropdown-item" href="plannerlist.do">나의 여행</a>
 							</div>
@@ -82,11 +85,11 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 					</ul>
 
 					<ul class="nav justify-content-end bg-success">
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link header-link2"
 							href="user_insert.do">회원가입</a></li>
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link header-link2"
 							href="user.login.do">로그인</a></li>
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link header-link2"
 							href="move_to_host_login.do">호스트</a></li>
 					</ul>
 				</c:otherwise>
