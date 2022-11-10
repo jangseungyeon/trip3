@@ -36,14 +36,17 @@ public class FaqServiceImpl implements FaqService {
 	@Override
 	public void manage_faqUpdate(FaqVO vo) {
 		faqDAO.manage_faqUpdate(vo);
-
 	}
 
 //	관리자 공지 삭제
 	@Override
 	public void manage_faqDelete(FaqVO vo) {
 		faqDAO.manage_faqDelete(vo);
+	}
 
+	@Override
+	public int totalFaqListCnt(FaqVO vo) {
+		return faqDAO.totalFaqListCnt(vo);
 	}
 
 }

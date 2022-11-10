@@ -124,33 +124,31 @@
 											<thead>
 												<tr>
 													<td>번호</td>
-													<td><input name="faq_no" value="${FaqVO.faq_no}"
-														readonly></td>
+													<td><input name="faq_no" value="${FaqVO.faq_no}" readonly></td>
 												</tr>
 												<tr>
 													<td>제목</td>
-													<td><input name="faq_title"
-														value="${FaqVO.faq_title}"></td>
+													<td><input name="faq_title" value="${FaqVO.faq_title}"></td>
 												</tr>
 												<tr>
 													<td>내용</td>
-													<td><input name="faq_content"
-														value="${FaqVO.faq_content}"></td>
+													<td><input name="faq_content" value="${FaqVO.faq_content}"></td>
 												</tr>
 												<tr>
 													<td>작성일</td>
-													<td><input name="faq_regdate"
-														value="${FaqVO.faq_regdate}"></td>
+													<td><input name="faq_regdate" value="${FaqVO.faq_regdate}"></td>
 												</tr>
 												<tr>
 													<td>작성자</td>
-													<td><input name="faq_manage_id"
-														value="${FaqVO.faq_manage_id}"></td>
+													<td><input name="faq_writer" value="${FaqVO.faq_writer}"></td>
 												</tr>
 												<tr>
 													<td>조회수</td>
-													<td><input name="faq_views"
-														value="${FaqVO.faq_views}"></td>
+													<td><input name="faq_cnt" value="${FaqVO.faq_cnt}"></td>
+												</tr>
+												<tr>
+													<td>파일</td>
+													<td><input name="filename" value="${FaqVO.filename}"></td>
 												</tr>
 
 												<tr>

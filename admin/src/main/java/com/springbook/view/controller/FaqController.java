@@ -1,5 +1,7 @@
 package com.springbook.view.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springbook.biz.faq.FaqService;
@@ -38,8 +41,18 @@ public class FaqController {
 
 	// 관리자 공지 등록
 	@RequestMapping("/manage_faqInsert.do")
-	public String manage_faqInsert(@ModelAttribute FaqVO vo) {
+	public String manage_faqInsert(@ModelAttribute FaqVO vo) throws IllegalStateException, IOException {
 		System.out.println("manage_faqInsert");
+		MultipartFile uplodFile = vo.getUploadFile();
+		// 상대 경로 추가 시 realPath 추가
+		// String realPath =
+		// request.getSession().getServletContext().getRealPath("/img/");
+		String realPath = "c:/swork/trip/src/main/webapp/resources/img/";
+		String fileName = uplodFile.getOriginalFilename();
+		if (!uplodFile.isEmpty()) {
+			vo.setFilename(fileName);
+			uplodFile.transferTo(new File(realPath + fileName));
+		}
 		faqService.manage_faqInsert(vo);
 		return "redirect:manage_faqList.do";
 	}

@@ -18,8 +18,8 @@
 	<!-- 관리자 공지 등록 -->
 	<insert id="manage_faqInsert">
 		INSERT INTO
-		FAQ (FAQ_NO, FAQ_TITLE, FAQ_REGDATE, FAQ_MANAGE_ID, FAQ_CONTENT, FAQ_VIEWS)
-		VALUES(#{faq_no},#{faq_title},#{faq_regdate},#{faq_manage_id},#{faq_content},#{faq_views});
+		FAQ (FAQ_NO, FAQ_TITLE, FAQ_REGDATE, FAQ_WRITER, FAQ_CONTENT, FAQ_CNT, FILENAME)
+		VALUES(#{faq_no},#{faq_title},#{faq_regdate},#{faq_writer},#{faq_content},#{faq_cnt},#{filename});
 	</insert>
 
 	<!-- 관리자 공지 상세 조회 -->
@@ -31,13 +31,14 @@
 
 	<!-- 관리자 공지 수정 -->
 	<update id="manage_faqUpdate">
-		UPDATE FAQ 
+		UPDATE FAQ
 		SET
 		FAQ_TITLE=#{faq_title},
-		FAQ_REGDATE=#{faq_regdate},
-		FAQ_MANAGE_ID=#{faq_manage_id},
+		FAQ_WRITER=#{faq_writer},
 		FAQ_CONTENT=#{faq_content},
-		FAQ_VIEWS=#{faq_views}
+		FAQ_REGDATE=#{faq_regdate},
+		FAQ_CNT=#{faq_cnt},
+		FILENAME=#{filename}
 		WHERE FAQ_NO=#{faq_no}
 	</update>
 

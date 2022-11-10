@@ -12,11 +12,12 @@ request.setCharacterEncoding("UTF-8");
 <script>
 	
 <%if (request.getParameter("manage_faqInsert") != null) {%>
-	alert("계정생성에 실패했습니다");
+	alert("공지 등록에 실패했습니다");
 <%}%>
-	//회원가입버튼
+	//공지 작성 버튼
 	function check() {
 		$('#manage_faqInsert').submit();
+		
 	}
 </script>
 
@@ -103,14 +104,15 @@ request.setCharacterEncoding("UTF-8");
 				<div class="container-fluid">
 					<h3>공지 등록</h3>
 					<form action="manage_faqInsert.do" method="post"
-						id="manage_faqInsert">
-						<input type="text" name="faq_manage_id" id="faq_id" value="manage"><br>
+						id="manage_faqInsert" enctype="multipart/form-data">
 						
+						<input type="text" name="faq_writer" id="faq_writer" value="관리자" readonly><br>
 						<!-- <input type="password" name="host_password" id="host_password" placeholder='비밀번호'><br> -->
 						<input type="date" name="faq_regdate"><br> 
-						<input type="text" name="faq_title" placeholder='제목'><br>
-						<input type="text" name="faq_content" id="faq_content" placeholder='공지사항 작성'>
-						<input type="hidden" name="faq_views" id="faq_views" value="0">
+						<input type="text" name="faq_title" placeholder='제목'><br> 
+						<input type="text" name="faq_content" id="faq_content" placeholder='내용'><br>
+						<input type="hidden" name="faq_cnt" id="faq_cnt" value="0">
+						<input type="file" name="uploadFile"><br>
 
 						<button type="button" class="submitbutton" onclick="check()">공지등록</button>
 					</form>

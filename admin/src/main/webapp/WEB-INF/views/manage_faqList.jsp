@@ -106,8 +106,8 @@
 								<td>${i.faq_no}</td>
 								<td>${i.faq_title}</td>
 								<td>${i.faq_regdate}</td>
-								<td>${i.faq_manage_id}</td>
-								<td>${i.faq_views}</td>
+								<td>${i.faq_writer}</td>
+								<td>${i.faq_cnt}</td>
 								<td><a class="btn btn-danger"
 									href="manage_faqInfo.do?faq_no=${i.faq_no}" role="button">공지상세</a></td>
 							</tr>

@@ -44,4 +44,9 @@ public class FaqDAOMybatis {
 
 	}
 
+	public int totalFaqListCnt(FaqVO vo) {
+		System.out.println("totalFaqListCnt() 기능처리");
+		return mybatis.selectOne("FaqDAO.totalFaqListCnt", vo);
+	}
+
 }

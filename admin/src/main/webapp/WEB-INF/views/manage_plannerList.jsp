@@ -107,8 +107,6 @@
 												<th>여행종료일</th>
 												<th>여행지역</th>
 												<th>여행기간</th>
-												<th><a class="btn btn-primary"
-													href="manage_plannerInsertForm.do" role="button">플레너 등록</a></th>
 											</tr>
 										</thead>
 										<c:forEach var="i" items="${list}">
