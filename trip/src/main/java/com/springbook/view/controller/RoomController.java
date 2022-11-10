@@ -20,6 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springbook.biz.common.PagingVO;
+import com.springbook.biz.planner.LikeService;
+import com.springbook.biz.planner.LikeVO;
+import com.springbook.biz.review.ReviewService;
+import com.springbook.biz.review.ReviewVO;
 import com.springbook.biz.room.RoomService;
 import com.springbook.biz.room.RoomVO;
 
@@ -29,6 +33,13 @@ public class RoomController {
 
 	@Autowired
 	private RoomService roomService;
+	
+	@Autowired
+	private LikeService Service;
+	
+	@Autowired
+	private ReviewService reviewService;
+	
 
 	//(호스트) 업주용 숙박 목록, 업주용 숙박 상세 페이지 제목 라벨링
 	@ModelAttribute("roomListHeadMap")

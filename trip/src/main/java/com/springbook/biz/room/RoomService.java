@@ -33,5 +33,8 @@ public interface RoomService {
 	
 	//메인페이지 숙소 상세 검색
 	List<RoomVO> mainRoomThemeList(RoomVO vo);
+
+	//(회원) 숙소 좋아요 등록/좋아요 해제
+	void updateLikeRoom(RoomVO rvo);
 	
 }
