@@ -54,11 +54,11 @@
 	
 	<!-- 좋아요 찜 해제했을때 발동 -->
 	<delete id="likedeleteRoom">
-		DELETE FROM LIKES WHERE LIKE_TYPE = 2 AND LIKE_ID = #{like_id} AND USER_ID = #{user_id} AND LIKE_NO = #{like_no}
+		DELETE FROM LIKES WHERE LIKE_TYPE = 2 AND LIKE_ID = #{like_id} AND USER_ID = #{user_id}
 	</delete>
 	
 	<select id="likelist" resultType="like">
-		SELECT * FROM likes lt JOIN room rt ON lt.like_no = rt.ROOM_ID WHERE lt.user_id = #{user_id} AND lt.like_type = 2
+		SELECT * FROM likes lt JOIN room rt ON lt.like_id = rt.ROOM_ID WHERE lt.user_id = #{user_id} AND lt.like_type = 2
 	</select>
 	
 	<select id="likelist2" resultType="like">

@@ -75,6 +75,7 @@ public class LikeController {
 				Service.likeinsertRoom(lvo);
 				Service.likeupdateRoom(lvo);
 				rvo.setStatus("like");
+				System.out.println(rvo);
 				roomService.updateLikeRoom(rvo);
 			} else if (status.equals("unlike")){
 				lvo.setStatus("unlike");
@@ -82,6 +83,7 @@ public class LikeController {
 				Service.likeupdateRoom(lvo);
 				Service.likedeleteRoom(lvo);
 				rvo.setStatus("unlike");
+				System.out.println(rvo);
 				roomService.updateLikeRoom(rvo);
 			}
 		}

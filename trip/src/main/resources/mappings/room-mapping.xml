@@ -72,10 +72,11 @@
 	</select>
 
 		<update id="updateLikeRoom">
-			UPDATE ROOMSET ROOM_LIKES = (SELECT MAX(ROOM_LIKES) FROM ROOM WHERE ROOM_ID = #{room_id} AND ROOM_NAME = #{room_name}) 
+			UPDATE ROOM SET ROOM_LIKES = (SELECT MAX(ROOM_LIKES) FROM ROOM WHERE ROOM_ID = #{room_id} AND ROOM_NAME = #{room_name}) 
 		<if test="status == 'like'"> + </if>
 		<if test="status == 'unlike'"> - </if>
-			WHERE ROOM_ID = #{room_id} AND ROOM_NAME = #{room_name} 
+		1 
+		WHERE ROOM_ID = #{room_id} AND ROOM_NAME = #{room_name} 
 		</update>
 	
 	<select id="mainRoomList" resultType="room"> 

@@ -49,8 +49,6 @@ String host_id = session.getAttribute("host_id") != null ? session.getAttribute(
 						<li class="nav-item"><a class="nav-link text-white"
 							href="move_to_host_update.do">${host_bizname}님 접속중</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
-							href="./index.jsp">게스트 페이지</a></li>
-						<li class="nav-item"><a class="nav-link text-white"
 							href="host_logout.do">로그아웃</a></li>
 					</ul>
 				</c:when>

@@ -21,7 +21,7 @@
 
 
 <c:choose>
-<c:when test="${reviewListForHost.size() eq '0'}">${host_id}님 등록된 숙소 리뷰가 없습니다. </c:when>
+<c:when test="${reviewListForHost.size() eq '0'}">${host_id}님 등록된 숙소 리뷰가 없습니다.ㅎㅎ </c:when>
 <c:when test="${reviewListForHost.size() ne '0'}">
 ${host_id}님 숙소의 리뷰 목록입니다.<br>
 <table>

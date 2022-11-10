@@ -338,6 +338,7 @@ public class RoomController {
 		revo.setRoom_id(u_room.getRoom_id());
 		List<ReviewVO> revo_list = reviewService.selectReviewForRoom(revo);
 		model.addAttribute("u_room", u_room);
+		System.out.println(lvo);
 		model.addAttribute("lvo", lvo);
 		model.addAttribute("revo_list", revo_list);
 		return "WEB-INF/views/user_room_detail.jsp";

@@ -187,7 +187,6 @@ function f_heart(room_id, room_name) {
 		url: "likeinsertRoom.do",
 		data: {
 			like_id : room_id,
-			like_no : room_name,
 			status: $("input[name=status]").val(),
 			room_id : room_id,
 			room_name : room_name

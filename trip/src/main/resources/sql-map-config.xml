@@ -24,7 +24,7 @@
 		<typeAlias type="com.springbook.biz.planner.CommentVO" alias="comment"/>
 		<typeAlias type="com.springbook.biz.planner.ReplyVO" alias="reply"/>
 		<typeAlias type="com.springbook.biz.planner.PlannerMemoVO" alias="memo"/>
-		<typeAlias alias="hostChart" type="com.springbook.biz.host.HostChartVO"/>
+		
 	</typeAliases>
 	
 	<mappers>

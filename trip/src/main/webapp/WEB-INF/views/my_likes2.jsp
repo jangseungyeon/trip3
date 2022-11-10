@@ -37,8 +37,8 @@
 		<table class="table table-hover">
 			<thead class="btn-primary">
 				<tr>
-					<th>숙소 사진</th>
-					<th>플레너는 작성자</th>
+					<th>플래너 제목</th>
+					<th>작성자</th>
 					<th>내 아이디 </th>
 					<th>좋아요 갯수</th>
 				</tr>

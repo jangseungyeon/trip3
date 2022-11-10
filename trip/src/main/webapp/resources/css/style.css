@@ -12,6 +12,9 @@ a.header-link2.nav-link{
 	color: black;
 }
 
+nav#stNav {
+    box-shadow: 0 2px 2px 0 rgb(200 200 200 / 14%), 0 3px 1px -2px rgb(200 200 200 / 12%), 0 1px 5px 0 rgb(200 200 200 / 20%);
+}
 #header-btn {
 	background-color: #f9fcff;
 	color: black;
@@ -33,32 +36,12 @@ a.header-link2.nav-link{
 left: -30%;
 }
 
-span.main-img {
-	    color: black;
-    font-size: 50px;
-}
-
-.main-login {
-	margin-left: auto;
-	color: #000;
-	font-size: 20px;
-}
-
-.bg-success.header-bgc {
+.bg-success, .bg-success.header-bgc {
 	background-color: #f9fcff !important;
-}
-
-nav#stNav {
-    box-shadow: 0 2px 2px 0 rgb(200 200 200 / 14%), 0 3px 1px -2px rgb(200 200 200 / 12%), 0 1px 5px 0 rgb(200 200 200 / 20%);
 }
 
 .main-body {
 	background-color: #f9fcff;
-}
-.main-div {
-	margin-top: 25px;
-	margin-bottom: 25px;
-	display: flex;
 }
 
 .head-logo {
@@ -67,54 +50,42 @@ nav#stNav {
 	font-size: 20px;
 }
 
-input#head-serch {
-	border-radius: 15px;
-	padding: 10px;
-	width: 30%;
-	height: 65px;
-	margin: 0 auto;
+.main-top-div {
+    text-align: center;
 }
 
-ul.nav.nav-tabs {
-	border: none;
-	justify-content: center;
-	font-size: 25px;
+.main-div1 {
+	color: #19558c;
+	font-size: 50px;
+    margin-bottom: 15px;
 }
 
-a.nav-link.active {
-	border: none;
+.main-div2 {
+    color: #ff8e15;
+    font-size: 70px;
+    font-weight: bold;
+/*     font-family: 'Do Hyeon', sans-serif; */
+/*     font-family: 'B612', sans-serif; */
+    font-family: 'RocknRoll One', sans-serif;
+    margin-bottom: 60px;
 }
 
-.nav-link:hover {
-	border: none;
-}
-
-div#home, div#menu1, div#menu2, div#menu3 {
-	background-color: lightgoldenrodyellow;
+.main-img-div {
 	text-align: center;
 }
 
-div.card-div {
+.main-icon-div {
 	display: inline-block;
+	width: 100px;
+	height: 100px;
+	background-color: #ff8e15;
+	border-radius: 50%;
 	margin: 20px;
+
 }
 
-.main-h1 {
-	text-align: center;
-}
-
-.header-hr1, .header-hr2 {
-	margin: 5px;
-}
-
-.header-hr2 {
-	margin-bottom: 0;
-}
-
-
-/* 플래너 관련 */
-.main-plan {
-	width: 100%;
-	height: 800px;
-	background-color: #93C5FD;
+/* 헤더부분만큼 위에서 떨어뜨리는거 */
+body {
+padding-top: 57px;
+background-color: #f9fcff;
 }

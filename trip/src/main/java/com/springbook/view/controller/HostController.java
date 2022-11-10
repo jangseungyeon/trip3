@@ -10,10 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.springbook.biz.host.HostChartVO;
 import com.springbook.biz.host.HostService;
 import com.springbook.biz.host.HostVO;
-import com.springbook.biz.reservation.ReservationService;
+import com.springbook.biz.reservation.ReservationVO;
 
 @Controller
 public class HostController {
@@ -42,18 +41,13 @@ public class HostController {
 	@RequestMapping("/host_id_check.do")
 	@ResponseBody
 	public int hostIdCheck(HostVO vo) {
-		System.out.println(vo);
 		return hostService.idCheck(vo);
 	}
 
 	// 호스트 로그인 페이지로 이동
 	@RequestMapping("/move_to_host_login.do")
-	public String moveToHostLogin(HostVO vo, HttpSession session) {
-		if (session.getAttribute("host_id") != null) {
-			return "move_to_host_index.do";
-		} else {
+	public String moveToHostLogin() {
 		return "WEB-INF/views/host_login.jsp";
-		}
 	}
 
 	// 호스트 로그인
@@ -65,7 +59,7 @@ public class HostController {
 			String host_bizname = vo.getHost_bizname();
 			session.setAttribute("host_id", host_id);
 			session.setAttribute("host_bizname", host_bizname);
-			return "move_to_host_index.do";
+			return "WEB-INF/views/host_index.jsp";
 		} else {
 			return "WEB-INF/views/host_login.jsp?fail=1";
 		}
@@ -90,14 +84,9 @@ public class HostController {
 		return "WEB-INF/views/host_login.jsp";
 	}
 	
-	// 호스트 헤더 > 인덱스 홈으로 이동, 이동할 때 차트 데이터(최근 14일 매출) 가져오기
+	// 호스트 헤더 > 인덱스 홈으로 이동
 	@RequestMapping("/move_to_host_index.do")
-	public String moveToHostIndex(HostChartVO vo, Model model, HttpSession session) {
-		vo.setHost_id((String) session.getAttribute("host_id"));
-		List<HostChartVO> listvo = hostService.hostIndexChartSelect(vo);
-		List<HostChartVO> listvo2 = hostService.hostIndexChart2Select(vo);
-		model.addAttribute("hostIndexChartSelect", listvo);
-		model.addAttribute("hostIndexChart2Select", listvo2);
+	public String moveToHostIndex() {
 		return "WEB-INF/views/host_index.jsp";
 	}
 	
@@ -172,38 +161,6 @@ public class HostController {
 		return "WEB-INF/views/host_leave_success.jsp";
 	}
 	
-	// 호스트 아이디 찾기 폼
-	@RequestMapping("/host_find_id_form.do")
-	public String host_find_id(HostVO vo, Model model) {
-		vo = hostService.hostFind(vo);
-		System.out.println("찾은결과: " + vo);
-		if (vo != null) {
-			model.addAttribute("host", vo.getHost_id());
-			return "WEB-INF/views/host_find_id.jsp";
-		} else {
-			return "WEB-INF/views/host_find_id.jsp";
-		}
-
-	}
-	
-	// 호스트 비밀번호 찾기 폼
-	@RequestMapping("/host_find_pw_form.do")
-	public String host_find_pw(HostVO vo, Model model) {
-		vo = hostService.hostFind(vo);
-		if (vo != null) {
-			model.addAttribute("host", vo.getHost_id());
-			return "WEB-INF/views/host_find_pw.jsp";
-		} else {
-			return "WEB-INF/views/host_find_pw.jsp";
-		}
-	}
-	
-	// 호스트 비밀번호 변경하기
-	@RequestMapping("/host_change.do")
-	public String host_change(HostVO vo, Model model) {
-		int a = hostService.change(vo);
-		return "WEB-INF/views/host_find_pw.jsp";
-	}
 
 
 }

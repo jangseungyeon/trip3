@@ -251,9 +251,9 @@
 <input class="login-button" type="submit" value="호스트 로그인"><br>
 </form>
 <div class="find-id-pw-box">
-<a class="find-id-pw" href="move_to_host_find_id.do">아이디 찾기</a>
+<a class="find-id-pw" href="아이디 찾기.do">아이디 찾기</a>
 <span class="find-id-pw">&nbsp;&nbsp; | &nbsp;&nbsp;</span> 
-<a class="find-id-pw" href="move_to_host_find_pw.do">비밀번호 찾기</a>
+<a class="find-id-pw" href="비밀번호 찾기.do">비밀번호 찾기</a>
 </div>
 </div>
 </div>
