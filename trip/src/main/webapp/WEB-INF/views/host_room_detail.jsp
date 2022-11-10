@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>숙소 상세 페이지</title>
 
 <script
@@ -33,7 +34,17 @@
 
 			document.getElementById("hostRoomDetailfrm").submit();
 		} else {
+			
 			alert("수정을 취소하셨습니다.");
+			
+			document.getElementById("updateRoom").innerText = "수정하기";
+			
+			document.getElementById("updateRoom").removeAttribute("onclick");
+			
+			document.getElementById("updateRoom").setAttribute("onclick", "f_roomUpdateGo()");
+			
+			$('input').attr("disabled", true);
+			
 			return;
 		}
 	}

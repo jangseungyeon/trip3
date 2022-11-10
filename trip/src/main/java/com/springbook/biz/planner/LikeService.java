@@ -9,6 +9,14 @@ public interface LikeService {
 	void likeupdate(LikeVO vo);
 	
 	void likedalete(LikeVO vo);
+
+	void likeinsertRoom(LikeVO vo);
+	
+	void likeupdateRoom(LikeVO vo);
+	
+	void likedeleteRoom(LikeVO vo);
+	
+	LikeVO likeselectRoom(LikeVO vo);
 	
 	//좋아요 리스트로 불러오기(호텔)
 	List<LikeVO> likeslist(LikeVO lvo);

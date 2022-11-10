@@ -16,14 +16,14 @@ public class ReservationVO {
 	private String pay_amount;	//결제금액
 	private String res_num;	//예약 인원
 	//수정 폼으로 예약 수정/변경할때마다 카운트 감소 (0되면 이제 변경 불가)
-	private String res_status;	//예약상태 (DB 디폴트 초기 값 1)
-	//예약 상태 "1" = 예약 변경 가능, "2" = 예약 변경 불가능, "3" = 예약 취소, "4" = 리뷰 쓰기 가능
+	private String res_status = "0";	//예약상태 (DB 디폴트 초기 값 0)
+	//예약 상태 "0" = 예약 변경 가능, "1" = 예약 변경 불가능
 	private String res_checkin;	//체크인 날짜
 	private String res_checkout;	//체크아웃 날짜
 	private String res_ci3_ok = "true";		//오늘 날짜 기준으로 계산 결과 체크인 날짜 3일 이상 => 예약 가능 기준점 변수
-	//res_ci3_ok true일때 예약 변경 가능 ("1"), false일때 예약 변경 불가능 ("2")
+	//res_ci3_ok true일때 예약 변경 가능, false일때 예약 변경 불가능
 	private String res_co_ok = "false";		//오늘 날짜 기준으로 계산 결과 체크아웃 날짜보다 경과 => 리뷰 쓰기 가능 기준점 변수
-	//res_co_ok false일때 리뷰 쓰기 불가능 ("2") true일때 리뷰 쓰기 가능 ("4")
+	//res_co_ok false일때 리뷰 쓰기 불가능, true일때 리뷰 쓰기 가능
 	private int offset;	//페이징 처리에서 페이지 바꿀때마다 변하는, 맨 처음부터 데이터 건너뛰는 갯수 <= pagingVO에서 조정
 	
 	

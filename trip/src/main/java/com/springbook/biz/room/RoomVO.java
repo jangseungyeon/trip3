@@ -35,7 +35,15 @@ public class RoomVO {
 	private MultipartFile room_img_no4_multi; // room_img_no1 대표 이미지, 나머지 서브 이미지 4개
 	private MultipartFile room_img_no5_multi; 
 	private int offset;
+	private String status; //좋아요 +1 할지 -1할지 결정하는 기준점 변수
 	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getRoom_area() {
 		return room_area;
 	}
@@ -228,7 +236,6 @@ public class RoomVO {
 	public void setRoom_stars(String room_stars) {
 		this.room_stars = room_stars;
 	}
-	
 	@Override
 	public String toString() {
 		return "RoomVO [room_name=" + room_name + ", room_addr=" + room_addr + ", room_addr_detail=" + room_addr_detail
@@ -242,7 +249,8 @@ public class RoomVO {
 				+ ", room_max_price=" + room_max_price + ", room_img_no1_multi=" + room_img_no1_multi
 				+ ", room_img_no2_multi=" + room_img_no2_multi + ", room_img_no3_multi=" + room_img_no3_multi
 				+ ", room_img_no4_multi=" + room_img_no4_multi + ", room_img_no5_multi=" + room_img_no5_multi
-				+ ", offset=" + offset + "]";
+				+ ", offset=" + offset + ", status=" + status + "]";
 	}
+	
 	
 }

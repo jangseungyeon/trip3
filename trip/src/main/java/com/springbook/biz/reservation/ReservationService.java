@@ -2,6 +2,8 @@ package com.springbook.biz.reservation;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface ReservationService {
 	
 	//(회원) 숙소 예약 등록
@@ -38,6 +40,6 @@ public interface ReservationService {
 	ReservationVO getReservationOneDetail(ReservationVO rvo);
 
 	//(회원) 내 연락처, 이메일 수정
-		void updateReservationDetail(ReservationVO rvo);
+	void updateReservationDetail(ReservationVO rvo);
 
 }

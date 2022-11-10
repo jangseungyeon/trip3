@@ -4,10 +4,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.*" %>
 <%@ page import="com.springbook.biz.room.RoomVO" %>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>숙소리스트</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -124,6 +126,10 @@
 
 </script>
 
+<style>
+
+</style>
+
 </head>
 <body>
 	<form name="searchRoomfrm" action="u_searchRoomList.do" method="post" id="u_searchfrm">
@@ -199,8 +205,15 @@
 	<table>
 	<c:forEach var="i" begin="0" end="${u_roomList.size()-1}" step="1">
 		<tr onclick="f_getRoom('${u_roomList[i].room_id}')" style="cursor: pointer;">
+			<td>
+			<div class="head">
+			<div class="heart" style="height: 10px; width: 10px;">${u_roomList[i].room_likes}</div>
+			</div>
+			</td>
+			<td>${u_roomList[i].room_stars}</td>
 			<td>${u_roomList[i].room_name}</td>
 <%-- 			<td>${fn:split(${u_roomList[i].room_addr},' ')}</td> --%>
+			<td><input type="hidden" name="status" value=""></td>
 			<td>${u_roomList[i].room_price}원</td>
 			<td><img src="resources/room_img/${u_roomList[i].room_img_no1}" width="200" height="200" /></td>
 		</tr>

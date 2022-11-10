@@ -1,15 +1,32 @@
 package com.springbook.biz.review;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ReviewVO {
 	private String review_id;
 	private String room_name;
 	private String room_id;
 	private String host_id;
+	private String user_id;
 	private String review_content;
 	private String review_img;
 	private double star_point;
 	private String write_date;
 	
+
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	private MultipartFile review_img_uploadFile;
+	
+	public MultipartFile getReview_img_uploadFile() {
+		return review_img_uploadFile;
+	}
+	public void setReview_img_uploadFile(MultipartFile review_img_uploadFile) {
+		this.review_img_uploadFile = review_img_uploadFile;
+	}
 	public String getReview_id() {
 		return review_id;
 	}
@@ -58,7 +75,11 @@ public class ReviewVO {
 	public void setWrite_date(String write_date) {
 		this.write_date = write_date;
 	}
-
-	
-	
+	@Override
+	public String toString() {
+		return "ReviewVO [review_id=" + review_id + ", room_name=" + room_name + ", room_id=" + room_id + ", host_id="
+				+ host_id + ", user_id=" + user_id + ", review_content=" + review_content + ", review_img=" + review_img
+				+ ", star_point=" + star_point + ", write_date=" + write_date + ", review_img_uploadFile="
+				+ review_img_uploadFile + "]";
+	}
 }

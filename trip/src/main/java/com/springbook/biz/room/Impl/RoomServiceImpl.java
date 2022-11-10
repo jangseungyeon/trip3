@@ -81,5 +81,11 @@ public class RoomServiceImpl implements RoomService {
 	public List<RoomVO> mainRoomThemeList(RoomVO vo) {
 		return roomDAO.mainRoomThemeList(vo);
 	}
+
+	//(회원) 숙소 좋아요 등록/좋아요 해제
+	@Override
+	public void updateLikeRoom(RoomVO rvo) {
+		roomDAO.updateLikeRoom(rvo);
+	}
 	
 }

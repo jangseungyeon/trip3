@@ -63,4 +63,25 @@ public class LikeController {
 		return "WEB-INF/views/my_likes2.jsp";
 	}
 
+		//좋아요 누른 숙소 데이터 등록 저장하기
+		@ResponseBody
+		@RequestMapping("/likeinsertRoom.do")
+		public void likeinsertRoom(@RequestParam(value = "status") String status, LikeVO lvo, RoomVO rvo, HttpSession session, Model model) {
+			if(status.equals("like")){
+				lvo.setStatus("like");
+				lvo.setUser_id((String) session.getAttribute("user_id"));
+				Service.likeinsertRoom(lvo);
+				Service.likeupdateRoom(lvo);
+				rvo.setStatus("like");
+				roomService.updateLikeRoom(rvo);
+			} else if (status.equals("unlike")){
+				lvo.setStatus("unlike");
+				lvo.setUser_id((String) session.getAttribute("user_id"));
+				Service.likeupdateRoom(lvo);
+				Service.likedeleteRoom(lvo);
+				rvo.setStatus("unlike");
+				roomService.updateLikeRoom(rvo);
+			}
+		}
+
 }

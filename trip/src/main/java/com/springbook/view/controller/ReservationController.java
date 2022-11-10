@@ -46,23 +46,122 @@ public class ReservationController {
 				return "WEB-INF/views/my_ReservationDetail.jsp";
 			
 		}
+
 	
-	//(회원) 숙소 예약 수정, 변경 (GET 요청, 날짜에 따라 예약 변경이 불가능하게 하거나 시간이 지나면 자동적으로 사용 완료 및 리뷰 쓰기 가능 상태로 변경하게 할때 이 수정 메소드를 타야함)
-	@GetMapping(value="/updateReservation.do")
-	public String updateReservation(HttpSession session) throws Exception {
+	//(회원) 숙소 예약 취소 (결제 환불 되자마자 이 컨트롤러를 탐)
+	@PostMapping(value="/cancelReservation.do")
+	public String cancelReservation(ReservationVO rvo, HttpSession session) {
+		
+		if(rvo.getUser_id().equals(session.getAttribute("user_id")) ) {
+			
+			System.out.println("숙소 예약 결제 취소 시작");
+			
+			//예약 결제 완료 "0" 초기값, 예약 결제 취소 "1"
+			
+			reservationService.updateReservationCancel(rvo);
+			
+			System.out.println("숙소 예약 결제 취소 성공");
+			
+			return "redirect:getReservationList.do";
+		} else {
+			
+			return "getReservationList.do?error=y";
+			
+		}
+	}
+
+	
+	
+	//(회원) 숙소 예약 수정, 변경(POST 요청, 미리 정해둔 예약 기간을 똑같이 가져가면서 날짜를 바꿀때 이 수정을 씀)
+	
+	//주의할것 => 반드시 이 컨트롤러 타기 이전에 예약 상세보기 같은 컨트롤러 메소드를 탐과 동시에
+	
+	//model.addAttribute("해당 예약 1건 정보를 지칭하는 키값 sessionAttributes에 지정된 키값과 동일해야함",
+	
+	//"해당 예약 1건 정보를 담은 밸류값")을
+	
+	//꼭 return 구문 직전에 넣어야 함 그래야 sessionAttributes 에러가 안남
+	
+	//(해당 에러는 sessionAttributes에 지정된 키값에 해당하는 정보가 없어서 나는것임)
+	
+	//(그래서 꼭 위 조건으로 model.addAttribute를 실행해야 세션에서 sessionAttributes로 해당하는 정보를 가지고 있음)
+	
+	
+	@PostMapping(value="/updateReservation.do")
+	public String updateReservation(@ModelAttribute("reservation") ReservationVO rvo, HttpSession session) {
+		
+		if(rvo.getUser_id().equals(session.getAttribute("user_id")) ) {
+			
+			System.out.println("숙소 예약 수정 POST 시작");
+			
+			reservationService.updateReservationPost(rvo);
+			
+			System.out.println("숙소 예약 수정 POST 성공");
+			
+			return "redirect:getReservationList.do";
+		
+		} else {
+			
+			return "getReservationList.do?error=y";
+			
+		}
+	}
+		
+	//결제 상세정보에서 연락처, 이메일 수정 
+	@RequestMapping(value="/updateReservationDetail.do")
+	public String updateReservationDetail(ReservationVO rvo, HttpSession session) {
+		reservationService.updateReservationDetail(rvo);
+		return "check.do";
+	}
+	
+	
+	//(회원) 숙소 예약 삭제 (일정 크게 변경해야하기 때문에(기존 일정보다 며칠 추가하거나 삭제하거나 등등) 그래서 아예 삭제후 재등록)
+	//또한 관리자의 경우 문제가 있을시 비상상황에 예약 삭제가 가능해야함 결국 관리자도 씀
+	@RequestMapping(value="/deleteReservation.do")
+	public String deleteReservation(ReservationVO rvo) {
+		
+		System.out.println("숙소 예약 삭제 시작");
+		
+		reservationService.deleteReservation(rvo);
+		
+		System.out.println("숙소 예약 삭제 성공");
+		
+		return "redirect:getReservationList.do";
+	}
+	
+	
+	//(회원) 주어진 아이디에만 해당하는 숙소 예약 목록 조회
+	@RequestMapping(value="/getReservationList.do")
+	public String getReservationList(ReservationVO rvo, HttpSession session, String nowPageBtn, Model model) throws Exception{
 		
 		String user_id = (String) session.getAttribute("user_id");
 		//세션에서 user_id를 긁어옴
 		
 		if(user_id != null) {
 			
-		System.out.println("숙소 예약 수정 GET 시작");
-		
-		ReservationVO rvo = null;
-		
-		rvo = new ReservationVO();
-		
 		rvo.setUser_id(user_id);
+
+		System.out.println("해당 아이디 숙소 예약 목록 조회 시작");
+			
+		System.out.println("글 목록 검색 처리");
+			
+		//총 목록 수 
+		int totalPageCnt = reservationService.totalReservationListCnt(rvo);
+			
+		//현재 페이지 설정 
+		int nowPage = Integer.parseInt(nowPageBtn==null || nowPageBtn.equals("") ? "1" :nowPageBtn);
+		System.out.println("totalPageCnt: "+totalPageCnt +", nowPage: "+nowPage);
+			
+		//한페이지당 보여줄 목록 수
+		int onePageCnt = 10;
+			
+		//한 번에 보여질 버튼 수
+		int oneBtnCnt = 5;
+			
+		PagingVO pvo = new PagingVO(totalPageCnt, onePageCnt, nowPage, oneBtnCnt);
+		rvo.setOffset(pvo.getOffset());
+			
+		model.addAttribute("paging", pvo);
 		
 		List<ReservationVO> rvo_list = reservationService.getReservationList(rvo);
 		//rvo를 유저 아이디에 해당하는 예약 목록 전체를 불러오는 메소드에 넣어 일단 user_id에 해당하는 예약 목록 불러옴
@@ -165,147 +264,35 @@ public class ReservationController {
 			
 			if (((dayDiff_toci > -3) == true) && ((dayDiff_toco < 0) == true)){
 				
-				
-				//예약 변경 가능 상태 => '1' == 예약 변경 가능, '2' == 예약 변경 불가, 
-				//'3' == 예약 취소 완료, '4' == 사용 완료 (리뷰 작성 가능)
+				//위의 조건은 체크인 3일전보다 더 시간이 지났고 체크아웃보다 지나지 않은 오늘 날짜 상태
 				
 				
-				rvo_f.setRes_status("2");
+				//res_ci3_ok => true값이면 예약 변경 가능 (기본값 true, 예약 변경 불가능이면 false)
+				//res_co_ok => false이면 리뷰 쓰기 버튼 비활성화 아직 오늘 날짜가 체크 아웃 날짜보다 지나지 않았음 (기본값 false, true면 리뷰 쓰기 버튼 기능 활성화)
+				
+				
 				rvo_f.setRes_ci3_ok("false");
-				reservationService.updateReservationGet(rvo_f);
-				
 			} 
 			
 			if ((dayDiff_toco >= 0) == true) {
-				rvo_f.setRes_status("4");
+				
+				// 체크 아웃 날짜보다 오늘 날짜가 같거나 지난 상태
+				
 				rvo_f.setRes_ci3_ok("false");
 				rvo_f.setRes_co_ok("true");
-				reservationService.updateReservationGet(rvo_f);
 				
 			}
 			
 		}
-		//위 조건들에 걸리지 않은 것들은 그냥 예약 목록 불러오는 컨트롤러를 타고
-		//걸리는것들은 모두 변경된 상태 값을 가진 상태로 변경 기준점 변수들이 그에 맞춰
-		//잡힌뒤 예약 목록 컨트롤러를 탄다.
-		return "getReservationList.do";
-		}
-		else {
+		
+		model.addAttribute("reservationList", rvo_list);
+		
+		return "WEB-INF/views/my_ReservationList.jsp";
+		
+		} else {
 			//혹여나 user_id가 없으면 (로그인 x) 메인 페이지로 이동 
 		return "main.do?error=y";
 		}
-	}
-	
-	//(회원) 숙소 예약 취소 (결제 환불 되자마자 이 컨트롤러를 탐)
-	@PostMapping(value="/cancelReservation.do")
-	public String cancelReservation(ReservationVO rvo, HttpSession session) {
-		
-		if(rvo.getUser_id().equals(session.getAttribute("user_id")) ) {
-			
-			System.out.println("숙소 예약 결제 취소 시작");
-			
-			rvo.setRes_status("3");
-			
-			reservationService.updateReservationCancel(rvo);
-			
-			System.out.println("숙소 예약 결제 취소 성공");
-			
-			return "redirect:getReservationList.do";
-		} else {
-			
-			return "getReservationList.do?error=y";
-			
-		}
-	}
-
-	
-	
-	//(회원) 숙소 예약 수정, 변경(POST 요청, 미리 정해둔 예약 기간을 똑같이 가져가면서 날짜를 바꿀때 이 수정을 씀)
-	
-	//주의할것 => 반드시 이 컨트롤러 타기 이전에 예약 상세보기 같은 컨트롤러 메소드를 탐과 동시에
-	
-	//model.addAttribute("해당 예약 1건 정보를 지칭하는 키값 sessionAttributes에 지정된 키값과 동일해야함",
-	
-	//"해당 예약 1건 정보를 담은 밸류값")을
-	
-	//꼭 return 구문 직전에 넣어야 함 그래야 sessionAttributes 에러가 안남
-	
-	//(해당 에러는 sessionAttributes에 지정된 키값에 해당하는 정보가 없어서 나는것임)
-	
-	//(그래서 꼭 위 조건으로 model.addAttribute를 실행해야 세션에서 sessionAttributes로 해당하는 정보를 가지고 있음)
-	
-	
-	@PostMapping(value="/updateReservation.do")
-	public String updateReservation(@ModelAttribute("reservation") ReservationVO rvo, HttpSession session) {
-		
-		if(rvo.getUser_id().equals(session.getAttribute("user_id")) ) {
-			
-			System.out.println("숙소 예약 수정 POST 시작");
-			
-			reservationService.updateReservationPost(rvo);
-			
-			System.out.println("숙소 예약 수정 POST 성공");
-			
-			return "redirect:getReservationList.do";
-		
-		} else {
-			
-			return "getReservationList.do?error=y";
-			
-		}
-	}
-		
-	//결제 상세정보에서 연락처, 이메일 수정 
-	@RequestMapping(value="/updateReservationDetail.do")
-	public String updateReservationDetail(ReservationVO rvo, HttpSession session) {
-		reservationService.updateReservationDetail(rvo);
-		return "check.do";
-	}
-	
-	
-	//(회원) 숙소 예약 삭제 (일정 크게 변경해야하기 때문에(기존 일정보다 며칠 추가하거나 삭제하거나 등등) 그래서 아예 삭제후 재등록)
-	//또한 관리자의 경우 문제가 있을시 비상상황에 예약 삭제가 가능해야함 결국 관리자도 씀
-	@RequestMapping(value="/deleteReservation.do")
-	public String deleteReservation(ReservationVO rvo) {
-		
-		System.out.println("숙소 예약 삭제 시작");
-		
-		reservationService.deleteReservation(rvo);
-		
-		System.out.println("숙소 예약 삭제 성공");
-		
-		return "redirect:getReservationList.do";
-	}
-	
-	//(회원) 주어진 아이디에만 해당하는 숙소 예약 목록 조회
-	@RequestMapping(value="/getReservationList.do")
-	public String getReservationList(ReservationVO rvo, HttpSession session, String nowPageBtn, Model model){
-		
-		rvo.setUser_id((String)session.getAttribute("user_id"));
-
-		System.out.println("해당 아이디 숙소 예약 목록 조회 시작");
-			
-		System.out.println("글 목록 검색 처리");
-			
-		//총 목록 수 
-		int totalPageCnt = reservationService.totalReservationListCnt(rvo);
-			
-		//현재 페이지 설정 
-		int nowPage = Integer.parseInt(nowPageBtn==null || nowPageBtn.equals("") ? "1" :nowPageBtn);
-		System.out.println("totalPageCnt: "+totalPageCnt +", nowPage: "+nowPage);
-			
-		//한페이지당 보여줄 목록 수
-		int onePageCnt = 10;
-			
-		//한 번에 보여질 버튼 수
-		int oneBtnCnt = 5;
-			
-		PagingVO pvo = new PagingVO(totalPageCnt, onePageCnt, nowPage, oneBtnCnt);
-		rvo.setOffset(pvo.getOffset());
-			
-		model.addAttribute("paging", pvo);
-		model.addAttribute("reservationList", reservationService.getReservationList(rvo));
-		return "WEB-INF/views/my_ReservationList.jsp";
 			
 	}
 		

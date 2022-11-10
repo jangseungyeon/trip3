@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.springbook.biz.planner.LikeVO;
+import com.springbook.biz.room.RoomVO;
 
 @Repository
 public class LikeDAOMybatis {
@@ -27,6 +28,26 @@ public class LikeDAOMybatis {
 	public void likedelete(LikeVO vo) {
 		System.out.println("likedelete 메소드 실행");
 		mybatis.update("LikeDAO.likedelete" , vo);
+	}
+	
+	public void likeinsertRoom(LikeVO lvo) {
+		System.out.println("likeinsertRoom 메소드 실행");
+		mybatis.insert("LikeDAO.likeinsertRoom", lvo);
+	}
+	
+	public void likeupdateRoom(LikeVO lvo) {
+		System.out.println("likeupdateRoom 메소드 실행");
+		mybatis.update("LikeDAO.likeupdateRoom", lvo);
+	}
+	
+	public LikeVO likeselectRoom(LikeVO lvo) {
+		System.out.println("likeselectRoom 메소드 실행");
+		return mybatis.selectOne("LikeDAO.likeselectRoom", lvo);
+	}
+	
+	public void likedeleteRoom(LikeVO lvo) {
+		System.out.println("likedeleteRoom 메소드 실행");
+		mybatis.delete("LikeDAO.likedeleteRoom", lvo);
 	}
 	
 	public List<LikeVO> likeslist(LikeVO lvo) {

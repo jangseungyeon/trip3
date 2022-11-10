@@ -313,11 +313,23 @@ public class RoomController {
 	
 	//(회원) 회원용 숙소 상세페이지 이동
 	@RequestMapping(value="/u_getRoom.do")
-	public String u_getRoom(RoomVO rvo, Model model) {
+	public String u_getRoom(RoomVO rvo, Model model, HttpSession session) {
 		System.out.println("u_getRoom: " + rvo);
 		RoomVO u_room = roomService.getRoom(rvo);
 		System.out.println(u_room);
+		LikeVO lvo = null;
+		ReviewVO revo = null;
+		revo = new ReviewVO();
+		lvo = new LikeVO();
+		lvo.setUser_id((String) session.getAttribute("user_id"));
+		lvo.setLike_id(u_room.getRoom_id());
+		lvo.setLike_no(u_room.getRoom_name());
+		lvo = Service.likeselectRoom(lvo);
+		revo.setRoom_id(u_room.getRoom_id());
+		List<ReviewVO> revo_list = reviewService.selectReviewForRoom(revo);
 		model.addAttribute("u_room", u_room);
+		model.addAttribute("lvo", lvo);
+		model.addAttribute("revo_list", revo_list);
 		return "WEB-INF/views/user_room_detail.jsp";
 	}
 	

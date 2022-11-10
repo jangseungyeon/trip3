@@ -149,28 +149,53 @@ public class PayController {
 	//상품결제 폼 호출
 	//숙소 예약 결제 페이지 이동 (하면서 해당 숙소의 기본 정보 및 유저 정보 끌고 옴)
 	@RequestMapping(value = "/pay.do", method = RequestMethod.GET)
-	public String pay(HttpServletRequest request, Model model, RoomVO rovo, ReservationVO revo, HttpSession session) {
+	public String pay(HttpServletRequest request, Model model, RoomVO rovo, ReservationVO revo, HttpSession session, HttpServletResponse response) throws Exception {
 		
-		System.out.println("예약 결제 폼 호출 시작");
+		String user_id = (String) session.getAttribute("user_id");
 		
-		model.addAttribute("room",roomService.getRoom(rovo));
+		if(user_id != null) {
+
+			System.out.println("예약 결제 폼 호출 시작");
+			
+			model.addAttribute("room",roomService.getRoom(rovo));
+			
+			model.addAttribute("reservation", revo);
+			
+			UserVO uvo = null;
+			
+			uvo = new UserVO();
+			
+			uvo.setUser_id(user_id);
+			
+			model.addAttribute("userInfo", userService.info(uvo));
+			
+			System.out.println("예약 결제 폼 호출 끝");
+			
+			// 값은 아임포트의 가맹점 식별코드 입력
+			model.addAttribute("impKey", "imp57061355");
+			
+			return "WEB-INF/views/user_insert_reservation.jsp";
 		
-		model.addAttribute("reservation", revo);
-		
-		UserVO uvo = null;
-		
-		uvo = new UserVO();
-		
-		uvo.setUser_id((String) session.getAttribute("user_id"));
-		
-		model.addAttribute("userInfo", userService.info(uvo));
-		
-		System.out.println("예약 결제 폼 호출 끝");
-		
-		// 값은 아임포트의 가맹점 식별코드 입력
-		model.addAttribute("impKey", "imp57061355");
-		
-		return "WEB-INF/views/user_insert_reservation.jsp";
+		} else {
+			
+			response.setContentType("text/html; charset=UTF-8");
+
+			PrintWriter out = response.getWriter();
+
+			out.println("<script>");
+			
+			out.println("alert('로그인 후 이용 가능 합니다.')");
+			
+			out.println("history.back()");
+			
+			out.println("</script>");
+			
+			out.flush();
+			
+			out.close();
+			
+			return null;
+		}
 	}
 	
 

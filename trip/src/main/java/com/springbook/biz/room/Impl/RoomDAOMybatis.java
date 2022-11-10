@@ -64,6 +64,12 @@ public class RoomDAOMybatis {
     	public List<RoomVO> mainRoomThemeList(RoomVO vo){
     		System.out.println("mainRoomList 메소드 실행");
     		return mybatis.selectList("RoomDAO.mainRoomThemeList" , vo);
-    	}
+    }
+
+		 //(회원) 숙소 좋아요 등록/좋아요 해제
+		 public void updateLikeRoom(RoomVO rvo) {
+			System.out.println("마이바티스 숙소 좋아요 등록/좋아요 해제 updateLikeRoom 기능 처리");
+			mybatis.update("RoomDAO.updateLikeRoom", rvo); 
+	}
 	
 }

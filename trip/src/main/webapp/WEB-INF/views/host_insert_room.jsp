@@ -1,16 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>   
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>업주용 숙소 등록</title>
+
+<%@ include file="host_header.jsp"%>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <script>
 	
 	$(function(){
+		
+		
+		
 		//1박당 가격 인풋창 값 넣었을때 실행되는 함수
 		$('#room_price').on('keyup', function(){
 			//숫자만, 천단위 자동 콤마 입력
@@ -18,8 +24,8 @@
 			
 			var price = parseInt($('#room_price').val() || 0);
 			
-			//마일리지 1박당 가격에 0.5%로 자동 계산
-			var result = Math.floor(price * 0.8);
+			//마일리지 1박당 가격에 10%로 자동 계산
+			var result = Math.floor(price * 0.1);
 			
 			//마일리지 인풋창에 값 넣기
 			$("#room_points").val(result);
@@ -29,7 +35,15 @@
 			//최대 인원 인풋창에 값 넣었을때 숫자만 입력
 			$(this).val($(this).val().replace(/[^0-9]/g,""));
 		});
+		
+		$(".room_img_sub_btn").click(function(){
+			
+			$(this).parent().prev().toggle();
+			
+		});	
 	});
+	
+
 	
 	//타입 파일 인풋창 사진 올리면 미리보기 뜨게하는 함수
 	function readThisMainImg(img) {
@@ -39,6 +53,7 @@
 				document.getElementById('room_img_main_preview').src = e.target.result;
 			};
 			reader.readAsDataURL(img.files[0]);
+			document.getElementById('room_img_main_preview').style.display = "block";
 		} else {
 			document.getElementById('room_img_main_preview').src = "";
 		}
@@ -51,6 +66,7 @@
 				document.getElementById('room_img_sub1_preview').src = e.target.result;
 			};
 			reader.readAsDataURL(img.files[0]);
+			document.getElementById('room_img_sub1_preview').style.display = "block";
 		} else {
 			document.getElementById('room_img_sub1_preview').src = "";
 		}
@@ -63,6 +79,7 @@
 				document.getElementById('room_img_sub2_preview').src = e.target.result;
 			};
 			reader.readAsDataURL(img.files[0]);
+			document.getElementById('room_img_sub2_preview').style.display = "block";
 		} else {
 			document.getElementById('room_img_sub2_preview').src = "";
 		}
@@ -75,6 +92,7 @@
 				document.getElementById('room_img_sub3_preview').src = e.target.result;
 			};
 			reader.readAsDataURL(img.files[0]);
+			document.getElementById('room_img_sub3_preview').style.display = "block";
 		} else {
 			document.getElementById('room_img_sub3_preview').src = "";
 		}
@@ -87,6 +105,7 @@
 				document.getElementById('room_img_sub4_preview').src = e.target.result;
 			};
 			reader.readAsDataURL(img.files[0]);
+			document.getElementById('room_img_sub4_preview').style.display = "block";
 		} else {
 			document.getElementById('room_img_sub4_preview').src = "";
 		}
@@ -97,386 +116,467 @@
 
 <style>
 
-/* 산 배경사진 */
-.mountain {
-	background-image:url("resources/img/mountain.png");
+	/*여기서부터 숙박 시설 산/바다/산과바다, 호텔/모텔/게스트하우스/민박/펜션 css 애니메이션 설정 */
+	.room_theme_box input, .room_cat_box input {
+		margin: 0;
+		padding: 0;
+		appearence: none;
+		/*appearence => 요소들의 기본 속성을 조절 가능, none으로 하면 요소 기본 속성 제거, 앞으로 변형을 위해서 적용*/
+		display: none;
+	}
 	
-}
+	.room_theme_div {
+		border-radius: 20px;
+		float: left;
+		margin: 0 auto;
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+	}
+	
+	.room_theme_label figure {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.room_theme_div figcaption {
+		width: 100%; 
+		height: 100%;
+		background-color: rgba(0,0,0,0.3);
+		text-align: center;
+	 	position: absolute;
+		top: 0;
+		left: 0;
+		color: #fff;
+		font-weight: bolder;
+		text-align: center;
+		line-height: 200px;
+		opacity: 0.9;
+		transition: 0.3s;
+		text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+	}
+	
+	.room_theme_div:hover figcaption, .room_theme_box input:checked figcaption {
+		opacity: 1;
+	}
+	
+	.room_theme_box input:active + .room_theme_label, .room_cat_box input:active + .room_cat_label {
+		opacity: 0.9;
+	}
+	
+	.room_theme_box input:checked + .room_theme_label, .room_cat_box input:checked + .room_cat_label{
+		filter:none;
+		/*찍은 사진에 필터를 적용하듯 이미지에 필터를 적용하는 역할이 이 filter css 속성, input radio가 체크되면 필터가 적용 안되게 하는것*/
+	}
 
-/* 바다 배경사진 */
-.sea {
-	background-image:url("resources/img/beach.jpg");
-}
-
-/* 숲 배경사진 */
-.forest {
-	background-image:url("resources/img/forest.jpg")
-}
-
-/* 계곡 배경사진 */
-.valley {
-	background-image:url("resources/img/valley.jpg");
-}
-
-/* 강 배경사진 */
-.river {
-	background-image:url("resources/img/river.jpg");
-}
-
-/* 도시 배경사진 */
-.city {
-	background-image:url("resources/img/city.jpg");
-}
-
-/* 호텔 배경사진 */
-.hotel {
-	background-image:url("resources/img/hotel.jpg");
-}
-
-/* 모텔 배경사진 */
-.motel {
-	background-image:url("resources/img/motel.jpg");
-}
-
-/* 게스트 하우스 배경사진 */
-.guestHouse {
-	background-image:url("resources/img/guestHouse.jpg");
-}
-
-/* 민박 배경사진 */
-.minbak {
-	background-image:url("resources/img/minbak.jpg");
-}
-
-/*펜션 배경사진 */
-.pension {
-	background-image:url("resources/img/pension.jpg");
-}
-
-/*여기서부터 숙박 시설 산/바다/산과바다, 호텔/모텔/게스트하우스/민박/펜션 css 애니메이션 설정 */
-#room_theme_box input, #room_cat_box input {
-	margin: 0;
-	padding: 0;
-	appearence: none;
-	/*appearence => 요소들의 기본 속성을 조절 가능, none으로 하면 요소 기본 속성 제거, 앞으로 변형을 위해서 적용*/
-	display: none;
-}
-
-#room_theme_box input:active + .room_theme_label, room_cat_box input:active + .room_cat_label {
-	opacity: 0.9;
-}
-
-#room_theme_box input:checked + .room_theme_label, #room_cat_box input:checked + .room_cat_label{
-	filter: none;
-	/*찍은 사진에 필터를 적용하듯 이미지에 필터를 적용하는 역할이 이 filter css 속성, input radio가 체크되면 필터가 적용 안되게 하는것*/
-}
-
-.room_theme_label, .room_cat_label {
-	/*label에 커서 포인터 속성 주고 배경 이미지는 꽉 맞게, 반복 없이 블락속성도 보유하게끔 inline-block, 필터에서 회색조+밝기80%증가+투명도30%만 적용, transition으로 천천히 바뀌는 모습 설정*/
-	text-align: center;
-	cursor: pointer;
-	background-size: contain;
-	background-repeat: no-repeat;
-	display: inline-block;
-	width: 300px;
-	height: 300px;
-	transition: all 100ms ease-in;
-	filter: brightness(1.8) grayscale(1) opacity(.3);
-}
+	.room_theme_label, .room_cat_label {
+		/*label에 커서 포인터 속성 주고 배경 이미지는 꽉 맞게, 반복 없이 블락속성도 보유하게끔 inline-block, 필터에서 회색조+밝기80%증가+투명도30%만 적용, transition으로 천천히 바뀌는 모습 설정*/
+		position: relative;
+		border-radius: 20px;
+		cursor: pointer;
+		overflow: hidden;
+		background-size: 200px 200px;
+		background-repeat: no-repeat;
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+		transition: all 100ms ease-in;
+		filter: brightness(1) grayscale(0.5) opacity(.6);
+	}
 
 	/*마우스 올렸을때 밝기20%증가로 조정 + 회색조 50% 감소 + 투명도 90프로로 증가*/
-.room_theme_label:hover, .room_cat_label:hover {
-	filter: brightness(1.2) grayscale(.5) opacity(.9);
-}
-	/*숙박시설 기반 조건들 인풋창 체크박스들 나란히 한줄에 정렬*/
-#room_condition div {
-	float: left;
-}
-
-#room_insert_form_div {
-	width: 80%;
-	margin: 20px auto;
-	text-align: center;
+	.room_theme_label:hover, .room_cat_label:hover {
+		filter: brightness(1.2) grayscale(.5) opacity(.9);
+		transform: scale(1.1);
+	}
 	
-}
+	/*여기까지가 숙박 시설 산/바다/산과바다, 호텔/모텔/게스트하우스/민박/펜션 css 애니메이션 설정 끝*/
+	
+	/*숙박시설 기반 조건들 인풋창 체크박스들 나란히 한줄에 정렬*/
+	.room_condition div {
+		float: left;
+	}
 
-#room_theme_box #room_theme_div, #room_cat_box .room_cat_div, #room_conditions_box .room_conditions_div {
-	display: flex;
-	justify-content: center;
-}
+	.room_insert_form_div {
+		margin: 50px auto;
+		text-align: center;
+	}
 
-#insertRoomForm input {
-	text-align: center;
-}
+	.insertRoomForm input {
+		text-align: center;
+	}
 
-#room_img_main_div, #room_img_sub1_div, #room_img_sub2_div, #room_img_sub3_div, #room_img_sub4_div {
-	float: left;
-}
+	.room_img_main_div, .room_img_sub1_div, .room_img_sub2_div, .room_img_sub3_div, .room_img_sub4_div {
+		float: left;
+	}
 
-#room_desc_box {
-	clear: both;
-}
-
-#room_img_preview_box {
-	display: flex;
-	justify-content: center;
-}
-
-
+	.room_desc_box, .room_cat_box {
+		clear: both;
+	}
+	
+	.img_hide {
+		display: none;
+	}
+	
+	/* 산 배경사진 */
+	.mountain {
+		background-image:url("resources/img/mountain.png");
+		
+	}
+	
+	/* 바다 배경사진 */
+	.sea {
+		background-image:url("resources/img/beach.jpg");
+	}
+	
+	/* 숲 배경사진 */
+	.forest {
+		background-image:url("resources/img/forest.jpg");
+	}
+	
+	/* 계곡 배경사진 */
+	.valley {
+		background-image:url("resources/img/valley.jpg");
+	}
+	
+	/* 강 배경사진 */
+	.river {
+		background-image:url("resources/img/river.jpg");
+	}
+	
+	/* 도시 배경사진 */
+	.city {
+		background-image:url("resources/img/city.jpg");
+	}
+	
+	/* 호텔 배경사진 */
+	.hotel {
+		background-image:url("resources/img/hotel.jpg");
+	}
+	
+	/* 모텔 배경사진 */
+	.motel {
+		background-image:url("resources/img/motel.jpg");
+	}
+	
+	/* 게스트 하우스 배경사진 */
+	.guestHouse {
+		background-image:url("resources/img/guestHouse.jpg");
+	}
+	
+	/* 민박 배경사진 */
+	.minbak {
+		background-image:url("resources/img/minbak.jpg");
+	}
+	
+	/*펜션 배경사진 */
+	.pension {
+		background-image:url("resources/img/pension.jpg");
+	}
+	
 </style>
 
 </head>
 <body>
-<div id="room_insert_form_div">
 
-<form action="insertRoom.do" method="post" enctype="multipart/form-data" id="insertRoomForm">
-
-<!-- 숙박 시설 이름 등록 -->
-<div id="room_name_box">
-<div id="room_name_q">등록하시려는 숙박시설 이름은 어떻게 되시나요?</div>
-<br>
-<div><input name="room_name" type="text" id="room_name"/></div>
-</div>
-
-<br>
-<br>
-
-<!-- 숙박 시설 주소 등록 -->
-<div id="room_addr_box">
-<div id="room_addr_q">주소는 어떻게 되시나요?</div>
-<br>
-<div>
-<input name="room_addr" type="text" id="room_addr" readonly />&nbsp;
-<input name="room_addr_detail" type="text" id="room_addr_detail" />&nbsp;
-<button type="button" id="room_addr_search">검색</button>
-</div>
-</div>
-
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-<script>
-
-document.getElementById("room_addr_search").addEventListener("click", function(){
-	//주소 입력칸을 클릭하면 주소 검색창 팝업
-	 new daum.Postcode({
-	        oncomplete: function(data) {
-				document.getElementById("room_addr").value = data.address;
-				document.querySelector("#room_addr_detail").focus();
-	        }
-	    }).open();
-	})
+	<div class="room_insert_form_div">
 	
-</script>
-
-<br>
-<br>
-
-<!-- 업주 아이디는 DB에서 혹은 세션에서 불러와서 아래 해당 input에 값으로만 세팅해놓고 안보이게 처리할것임 (hidden이라도 form 데이터 전송할때 값은 전송됨) -->
-<div id="host_id_box">
-<input name="host_id" type="hidden" id="host_id" value="${host_id}"/>
-</div>
-
-<!-- 숙박 시설 1박당 가격 등록 -->
-<div id="room_price_box">
-<div id="room_price_q">1박당 가격은 어떻게 되세요? (2인 기준)</div>
-<br>
-<div>
-<input name="room_price" type="text" id="room_price" />&nbsp;원
-</div>
-</div>
-
-<br>
-<br>
-
-<!-- 숙박 시설 대표 이미지 등록 -->
-<div id="room_img_box">
-<div id="room_img_q">숙박시설을 잘 보여주는 대표 이미지를 등록하세요.</div>
-
-<br>
-
-<div id="room_img_preview_box">
-
-<div id="room_img_main_div">
-<img id="room_img_main_preview" alt="숙소 대표 이미지 미리보기" title="숙소 대표 이미지" width="250" height="250"/>
-<div>숙소 대표 이미지</div>
-<div>
-<input name="room_img_no1_multi" type="file" id="room_img" onchange="readThisMainImg(this);" />
-</div>
-</div>
-
-<div id="room_img_sub1_div">
-<img id="room_img_sub1_preview" alt="숙소 서브1 이미지 미리보기" title="숙소 서브1 이미지" width="250" height="250"/>
-<div>숙소 서브1 이미지</div>
-<div>
-<input name="room_img_no2_multi" type="file" id="room_img" onchange="readThisSub1Img(this);" />
-</div>
-</div>
-
-<div id="room_img_sub2_div">
-<img id="room_img_sub2_preview" alt="숙소 서브2 이미지 미리보기" title="숙소 서브2 이미지" width="250" height="250"/>
-<div>숙소 서브2 이미지</div>
-<div>
-<input name="room_img_no3_multi" type="file" id="room_img" onchange="readThisSub2Img(this);" />
-</div>
-</div>
-
-<div id="room_img_sub3_div">
-<img id="room_img_sub3_preview" alt="숙소 서브3 이미지 미리보기" title="숙소 서브3 이미지" width="250" height="250"/>
-<div>숙소 서브3 이미지</div>
-<div>
-<input name="room_img_no4_multi" type="file" id="room_img" onchange="readThisSub3Img(this);" />
-</div>
-</div>
-
-<div id="room_img_sub4_div">
-<img id="room_img_sub4_preview" alt="숙소 서브4 이미지 미리보기" title="숙소 서브4 이미지" width="250" height="250"/>
-<div>숙소 서브4 이미지</div>
-<div>
-<input name="room_img_no5_multi" type="file" id="room_img" onchange="readThisSub4Img(this);" />
-</div>
-</div>
-
-</div>
-</div>
-
-<br>
-<br>
-
-<!-- 숙박 시설 소개글 & 자세한 설명 등록 -->
-
-<div id="room_desc_box">
-<div id="room_desc_q">등록하시려는 숙박시설의 소개글 및 자세한 설명을 아래에 적어주세요.</div>
-
-<textarea name="room_desc" id="room_desc" placeholder="여기에 설명을 적어주세요"></textarea>
-</div>
-
-<br>
-<br>
-
-<!-- 숙박 시설 마일리지 등록 -->
-<div id="room_points_box">
-<div id="room_points_q">저희 사이트에 등록시 숙박시설 마일리지는 다음과 같습니다. (숙박 1박당 가격의 8%)</div>
-<br>
-<div>
-<input name="room_points" type="text" id="room_points" readonly/>&nbsp;포인트
-</div>
-</div>
-
-<br>
-<br>
-
-<!-- 숙박 시설 최대 수용 인원 등록 -->
-<div id="room_max_box">
-<div id="room_max_q">숙박시설의 최대 수용 인원은 어떻게 되세요?</div>
-<div>
-<input name="room_max" type="number" id="room_max" />&nbsp;명
-</div>
-</div>
-
-<br>
-<br>
-
-<!-- 숙박 시설 테마 (산/바다/산과 바다/숲/계곡/강/도시) -->
-<div id="room_theme_box">
-
-	<div id="room_theme_q">숙박시설이 위치한 곳의 특징을 아래 사진들에서 골라 결정해주세요. (중복선택 가능)</div>
+	<h1 style="text-align: center; weight: 100%; margin: 20px auto;">숙박시설 등록</h1>
+	<hr>
 	
-	<br>
-	
-	<div class="room_theme_div">
-	
-	<input type="checkbox" name="room_theme" id="room_theme_mountain" value="mountain"/>
-	<label class="room_theme_label mountain" for="room_theme_mountain"></label>
-	
-	<input type="checkbox" name="room_theme" id="room_theme_sea" value="sea"/>
-	<label class="room_theme_label sea" for="room_theme_sea"></label>
-	
-	<input type="checkbox" name="room_theme" id="room_theme_forest" value="forest"/>
-	<label class="room_theme_label forest" for="room_theme_forest"></label>
-	
-	<input type="checkbox" name="room_theme" id="room_theme_valley" value="valley"/>
-	<label class="room_theme_label valley" for="room_theme_valley"></label>
-	
-	<input type="checkbox" name="room_theme" id="room_theme_river" value="river" />
-	<label class="room_theme_label river" for="room_theme_river"></label>
-	
-	<input type="checkbox" name="room_theme" id="room_theme_city" value="city" />
-	<label class="room_theme_label city" for="room_theme_city"></label>
+		<form action="insertRoom.do" method="post" enctype="multipart/form-data" class="insertRoomForm">
+		
+			<!-- 숙박 시설 이름 등록 -->
+			<div class="room_name_box">
+			<div class="room_name_q">등록하시려는 숙박시설 이름은 어떻게 되시나요?</div>
+			<br>
+			<div><input name="room_name" type="text" class="room_name"/></div>
+			</div>
+		
+			<br>
+			<br>
+		
+			<!-- 숙박 시설 주소 등록 -->
+			<div class="room_addr_box">
+			<div class="room_addr_q">주소는 어떻게 되시나요?</div>
+			<br>
+			<div>
+			<input name="room_addr" type="text" class="room_addr" readonly />&nbsp;
+			<input name="room_addr_detail" type="text" class="room_addr_detail" />&nbsp;
+			<button type="button" id="room_addr_search">검색</button>
+			</div>
+			</div>
+		
+			<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+			
+			<script>
+			
+			document.getElementById("room_addr_search").addEventListener("click", function(){
+				//주소 입력칸을 클릭하면 주소 검색창 팝업
+				 new daum.Postcode({
+				        oncomplete: function(data) {
+							document.getElementById("room_addr").value = data.address;
+							document.querySelector("#room_addr_detail").focus();
+				        }
+				    }).open();
+				})
+				
+			</script>
+		
+			<br>
+			<br>
+		
+			<!-- 업주 아이디는 DB에서 혹은 세션에서 불러와서 아래 해당 input에 값으로만 세팅해놓고 안보이게 처리할것임 (hidden이라도 form 데이터 전송할때 값은 전송됨) -->
+			<div id="host_id_box">
+			<input name="host_id" type="hidden" class="host_id" value="${host_id}"/>
+			</div>
+		
+			<!-- 숙박 시설 1박당 가격 등록 -->
+			<div id="room_price_box">
+			<div id="room_price_q">1박당 가격은 어떻게 되세요? (2인 기준)</div>
+			<br>
+			<div>
+			<input name="room_price" type="text" class="room_price" />&nbsp;원
+			</div>
+			</div>
+		
+			<br>
+			<br>
+		
+			<!-- 숙박 시설 대표 이미지 등록 -->
+			<div class="room_img_box">
+			<div class="room_img_q">숙박시설을 잘 보여주는 대표 이미지를 등록하세요.</div>
+			
+			<br>
+			
+			<div class="room_img_preview_box">
+			
+			<div class="room_img_main_div">
+			<img id="room_img_main_preview" alt="숙소 대표 이미지 미리보기" title="숙소 대표 이미지" width="250" height="250" src="" onerror="this.style.display='none';"/>
+			<div>숙소 대표 이미지</div>
+			<div>
+			<input name="room_img_no1_multi" type="file" id="room_img_main" onchange="readThisMainImg(this);" />
+			</div>
+			</div>
+			
+			<div class="room_img_sub1_div img_hide">
+			<img id="room_img_sub1_preview" alt="숙소 서브1 이미지 미리보기" title="숙소 서브1 이미지" width="250" height="250" src="" onerror="this.style.display='none'"/>
+			<div>숙소 서브1 이미지</div>
+			<div>
+			<input name="room_img_no2_multi" type="file" id="room_img_sub1" onchange="readThisSub1Img(this);" />
+			</div>
+			</div>
+			<div><button class="room_img_sub_btn">숙소 서브1 이미지 추가하기</button></div>
+			
+			<div class="room_img_sub2_div img_hide">
+			<img id="room_img_sub2_preview" alt="숙소 서브2 이미지 미리보기" title="숙소 서브2 이미지" width="250" height="250" src="" onerror="this.style.display='none'"/>
+			<div>숙소 서브2 이미지</div>
+			<div>
+			<input name="room_img_no3_multi" type="file" id="room_img_sub2" onchange="readThisSub2Img(this);" />
+			</div>
+			</div>
+			<div><button class="room_img_sub_btn">숙소 서브2 이미지 추가하기</button></div>
+			
+			<div class="room_img_sub3_div img_hide">
+			<img id="room_img_sub3_preview" alt="숙소 서브3 이미지 미리보기" title="숙소 서브3 이미지" width="250" height="250" src="" onerror="this.style.display='none'"/>
+			<div>숙소 서브3 이미지</div>
+			<div>
+			<input name="room_img_no4_multi" type="file" id="room_img_sub3" onchange="readThisSub3Img(this);" />
+			</div>
+			</div>
+			<div><button class="room_img_sub_btn">숙소 서브3 이미지 추가하기</button></div>
+			
+			<div class="room_img_sub4_div img_hide">
+			<img id="room_img_sub4_preview" alt="숙소 서브4 이미지 미리보기" title="숙소 서브4 이미지" width="250" height="250" src="" onerror="this.style.display='none'"/>
+			<div>숙소 서브4 이미지</div>
+			<div>
+			<input name="room_img_no5_multi" type="file" id="room_img_sub4" onchange="readThisSub4Img(this);" />
+			</div>
+			</div>
+			<div><button class="room_img_sub_btn">숙소 서브4 이미지 추가하기</button></div>
+			
+			</div>
+			</div>
+		
+			<br>
+			<br>
+		
+			<!-- 숙박 시설 소개글 & 자세한 설명 등록 -->
+			
+			<div class="room_desc_box">
+			<div class="room_desc_q">등록하시려는 숙박시설의 소개글 및 자세한 설명을 아래에 적어주세요.</div>
+			
+			<textarea name="room_desc" class="room_desc" placeholder="여기에 설명을 적어주세요"></textarea>
+			</div>
+			
+			<br>
+			<br>
+			
+			<!-- 숙박 시설 마일리지 등록 -->
+			<div class="room_points_box">
+			<div class="room_points_q">저희 사이트에 등록시 숙박시설 마일리지는 다음과 같습니다. (숙박 1박당 가격의 8%)</div>
+			<br>
+			<div>
+			<input name="room_points" type="text" id="room_points" readonly/>&nbsp;포인트
+			</div>
+			</div>
+			
+			<br>
+			<br>
+		
+			<!-- 숙박 시설 최대 수용 인원 등록 -->
+			<div class="room_max_box">
+			<div class="room_max_q">숙박시설의 최대 수용 인원은 어떻게 되세요?</div>
+			<div>
+			<input name="room_max" type="number" class="room_max" />&nbsp;명
+			</div>
+			</div>
+			
+			<br>
+			<br>
+		
+			<!-- 숙박 시설 테마 (산/바다/산과 바다/숲/계곡/강/도시) -->
+			<div class="room_theme_box">
+		
+				<div class="room_theme_q">숙박시설이 위치한 곳의 특징을 아래 사진들에서 골라 결정해주세요. (중복선택 가능)</div>
+				
+				<br>
+				
+				<div class="room_themes_div">
+				
+				<div class="room_theme_div">
+				<input type="checkbox" name="room_theme" id="room_theme_mountain" value="mountain"/>
+				<label class="room_theme_label mountain" for="room_theme_mountain">
+				<figure>
+				<figcaption>산</figcaption>
+				</figure>
+				</label>
+				</div>
+				
+				<div class="room_theme_div">
+				<input type="checkbox" name="room_theme" id="room_theme_sea" value="sea"/>
+				<label class="room_theme_label sea" for="room_theme_sea">
+				<figure>
+				<figcaption>바다</figcaption>
+				</figure>
+				</label>
+				</div>
+				
+				
+				<div class="room_theme_div">
+				
+				<input type="checkbox" name="room_theme" id="room_theme_forest" value="forest"/>
+				<label class="room_theme_label forest" for="room_theme_forest">
+				<figure>
+				<figcaption>숲</figcaption>
+				</figure>
+				</label>
+				</div>
+				
+				<div class="room_theme_div">
+				<input type="checkbox" name="room_theme" id="room_theme_valley" value="valley"/>
+				<label class="room_theme_label valley" for="room_theme_valley">
+				<figure>
+				<figcaption>계곡</figcaption>
+				</figure>
+				</label>
+				</div>
+				
+				<div class="room_theme_div">
+				<input type="checkbox" name="room_theme" id="room_theme_river" value="river" />
+				<label class="room_theme_label river" for="room_theme_river">
+				<figure>
+				<figcaption>강</figcaption>
+				</figure>
+				</label>
+				</div>
+				
+				
+				<div class="room_theme_div">
+				<input type="checkbox" name="room_theme" id="room_theme_city" value="city" />
+				<label class="room_theme_label city" for="room_theme_city">
+				<figure>
+				<figcaption>도시</figcaption>
+				</figure>
+				</label>
+				</div>
+				
+				
+				</div>
+			
+			</div>
+		
+			<br>
+			<br>
+		
+			<!-- 숙박 시설 유형 등록 -->
+			<div class="room_cat_box">
+			
+				<div class="room_cat_q">숙박 시설의 유형은 어떻게 되시나요?</div>
+				
+					<br>
+				
+				<div class="room_cat_div">
+				
+				<input type="radio" name="room_cat" id="room_cat_hotel" value="hotel" required/>
+				<label class="room_cat_label hotel" for="room_cat_hotel"></label>
+				
+				<input type="radio" name="room_cat" id="room_cat_motel" value="motel"/>
+				<label class="room_cat_label motel" for="room_cat_motel"></label>
+				
+				<input type="radio" name="room_cat" id="room_cat_guestHouse" value="guestHouse"/>
+				<label class="room_cat_label guestHouse" for="room_cat_guestHouse"></label>
+				
+				<input type="radio" name="room_cat" id="room_cat_minbak" value="minbak" />
+				<label class="room_cat_label minbak" for="room_cat_minbak"></label>
+				
+				<input type="radio" name="room_cat" id="room_cat_pension" value="pension" />
+				<label class="room_cat_label pension" for="room_cat_pension"></label>
+				
+				</div>
+			
+			</div>
+			
+			<br>
+			<br>
+		
+			<!-- 숙박 시설 조건들 체크 -->
+			<div id="room_condition_q">그 외 숙박시설이 갖추고 있는 것들을 체크해주세요.(여러개 선택 가능)</div>
+			
+			<br>
+			
+			<div class="room_conditions_box">
+			
+				<div class="room_conditions_div">
+				<input type="checkbox" name="room_wifi" id="room_wifi" value="Y" />
+				<label for="room_wifi" class="room_wifi_label">와이파이</label>
+				
+				<input type="checkbox" name="room_pet" id="room_pet" value="Y" />
+				<label for="room_pet" class="room_pet_label">애완견 동반 투숙 가능</label>
+				
+				<input type="checkbox" name="room_meal" id="room_meal" value="Y" />
+				<label for="room_meal" class="room_meal_label">조식 포함</label>
+				
+				<input type="checkbox" name="room_parking" id="room_parking" value="Y" />
+				<label for="room_parking" class="room_parking_label">주차장</label>
+				
+				<input type="checkbox" name="room_swpool" id="room_swpool" value="Y" />
+				<label for="room_swpool" class="room_swpool_label">수영장</label>
+				</div>
+				
+				</div>
+			
+			<br>
+			<br>
+		
+			<input type="hidden" name="room_likes" id="room_likes" value="0" />
+			<input type="hidden" name="room_stars" id="room_stars" value="0" />
+		
+			<button type="submit">숙소 등록하기</button>
+		
+		</form>
 	
 	</div>
-	
-</div>
-
-<br>
-<br>
-
-<!-- 숙박 시설 유형 등록 -->
-<div id="room_cat_box">
-
-<div id="room_cat_q">숙박 시설의 유형은 어떻게 되시나요?</div>
-
-	<br>
-
-<div class="room_cat_div">
-
-<input type="radio" name="room_cat" id="room_cat_hotel" value="hotel" required/>
-<label class="room_cat_label hotel" for="room_cat_hotel" id="room_cat_hotel_label"></label>
-
-<input type="radio" name="room_cat" id="room_cat_motel" value="motel"/>
-<label class="room_cat_label motel" for="room_cat_motel" id="room_cat_motel_label"></label>
-
-<input type="radio" name="room_cat" id="room_cat_guestHouse" value="guestHouse"/>
-<label class="room_cat_label guestHouse" for="room_cat_guestHouse" id="room_cat_guestHouse_label"></label>
-
-<input type="radio" name="room_cat" id="room_cat_minbak" value="minbak" />
-<label class="room_cat_label minbak" for="room_cat_minbak" id="room_cat_minbak_label"></label>
-
-<input type="radio" name="room_cat" id="room_cat_pension" value="pension" />
-<label class="room_cat_label pension" for="room_cat_pension" id="room_cat_pension_label"></label>
-</div>
-
-</div>
-
-<br>
-<br>
-
-<!-- 숙박 시설 조건들 체크 -->
-<div id="room_condition_q">그 외 숙박시설이 갖추고 있는 것들을 체크해주세요.(여러개 선택 가능)</div>
-
-<br>
-
-<div id="room_conditions_box">
-
-<div id="room_conditions_div">
-<input type="checkbox" name="room_wifi" id="room_wifi" value="Y" />
-<label for="room_wifi" id="room_wifi_label">와이파이</label>
-
-<input type="checkbox" name="room_pet" id="room_pet" value="Y" />
-<label for="room_pet" id="room_pet_label">애완견 동반 투숙 가능</label>
-
-<input type="checkbox" name="room_meal" id="room_meal" value="Y" />
-<label for="room_meal" id="room_meal_label">조식 포함</label>
-
-<input type="checkbox" name="room_parking" id="room_parking" value="Y" />
-<label for="room_parking" id="room_parking_label">주차장</label>
-
-<input type="checkbox" name="room_swpool" id="room_swpool" value="Y" />
-<label for="room_swpool" id="room_swpool_label">수영장</label>
-</div>
-
-</div>
-
-<br>
-<br>
-
-<input type="hidden" name="room_likes" id="room_likes" value="0" />
-<input type="hidden" name="room_stars" id="room_stars" value="0" />
-
-<button type="submit">숙소 등록하기</button>
-
-</form>
-
-</div>
 
 </body>
 </html>

@@ -93,6 +93,12 @@ function getPayInfoIdx(idx, val) {
 function reservationtr(val) {
 	location.href = "check.do?res_id="+val;
 };
+
+function f_move_to_insert_review(room_id) {
+	
+	location.href = "u_getRoom.do?room_id=" + room_id + "#u_room_review";
+	
+}
 </script>
 
 
@@ -135,7 +141,7 @@ function reservationtr(val) {
 				<td id="daybefore${status.index}"><button onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제 취소</button></td>
 				<td id="ing${status.index}" style="display: none"><span>취소 완료</span></td>
 				<td><button onclick="reservationtr('${i.res_id}')">상세정보</button></td>
-				<td id="dayafter${status.index}"><button >리뷰 쓰기</button></td>
+				<td id="dayafter${status.index}"><button onclick="f_move_to_insert_review('${i.room_id}')">리뷰 쓰러 가기</button></td>
 				
 <%-- 				<td><button onclick="f_getPayInfo('${i.merchant_uid}','PayInfos${status.index}')">결제 정보 보기</button></td> --%>
 			</tr>
