@@ -32,7 +32,7 @@ public class LikeController {
 			LikeVO vo , String like_id , String like_no , HttpSession session) {
 		vo.setLike_id(like_id);
 		vo.setUser_id((String)session.getAttribute("user_id"));
-		vo.setLike_no(like_no);
+		vo.setLike_no(Integer.parseInt(like_no));
 		if (status.equals("like")) {
 			vo.setStatus(status);
 			Service.likeinsert(vo);

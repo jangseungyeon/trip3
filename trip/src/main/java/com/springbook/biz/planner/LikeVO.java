@@ -4,7 +4,7 @@ public class LikeVO {
 	private int like_type;
 	private String like_id; 
 	private String user_id;
-	private String like_no;
+	private int like_no;
 	private int like_count;
 	private String status;
 	private String planner_title; // 플레너 제목
@@ -54,10 +54,11 @@ public class LikeVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public String getLike_no() {
+	
+	public int getLike_no() {
 		return like_no;
 	}
-	public void setLike_no(String like_no) {
+	public void setLike_no(int like_no) {
 		this.like_no = like_no;
 	}
 	public int getLike_count() {
