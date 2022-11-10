@@ -32,4 +32,22 @@
   SELECT * FROM HOST WHERE HOST_ID=#{host_id}
   </select>
   
+  <select id="find" resultType="host">
+  SELECT * FROM HOST WHERE 1=1
+  <if test="host_find == 'phone' ">AND HOST_PHONE = #{host_phone} </if>
+  <if test="host_find == 'email' ">AND HOST_EMAIL = #{host_email}</if>
+  </select>
+  
+  <update id="change">
+  UPDATE HOST SET HOST_PW =#{host_pw} WHERE HOST_ID=#{host_id}
+  </update>
+  
+  <select id="hostIndexChartSelect" resultType="hostChart">
+  SELECT DATE_FORMAT(PAY_DATE, '%y-%m-%d') AS chart_date, sum(PAY_AMOUNT) AS chart_sum, COUNT(*) AS chart_count FROM reservation WHERE host_id=#{host_id} AND PAY_DATE BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW() GROUP BY DATE_FORMAT(PAY_DATE, '%y-%m-%d');
+  </select>
+  
+  <select id="hostIndexChart2Select" resultType="hostChart">
+  SELECT ROOM_NAME, sum(PAY_AMOUNT) AS chart_sum2 FROM reservation WHERE host_id=#{host_id} AND pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW() GROUP BY room_name;
+  </select>
+  
   </mapper>

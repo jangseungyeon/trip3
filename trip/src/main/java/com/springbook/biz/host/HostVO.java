@@ -15,10 +15,25 @@ public class HostVO {
 	private String host_bizimg;
 	private String host_bank;
 	private String host_banknum;
+	private String host_find;
 	
 	
 	
 	
+	public String getHost_find() {
+		return host_find;
+	}
+
+
+
+
+	public void setHost_find(String host_find) {
+		this.host_find = host_find;
+	}
+
+
+
+
 	public String getHost_id() {
 		return host_id;
 	}

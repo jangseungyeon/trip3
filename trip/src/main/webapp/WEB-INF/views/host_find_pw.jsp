@@ -46,7 +46,7 @@
 				$("#phoneDoubleChk").val("true");
 				$("#phone2").attr("disabled", true);
 				$('#user_phone').val($("#phone").val());
-				$("#user_findform").attr("action", "user_pwfindform.do?find=phone");
+				$("#user_findform").attr("action", "host_find_pw_form.do?host_find=phone");
 				$('#user_findform').submit();
 
 			} else {
@@ -107,9 +107,9 @@
 				success : function(data) {
 					if (data == true) {
 						alert("인증되었습니다.");
-						$('#user_email').val($("#email").val());
-						$("#user_findform").attr("action", "user_pwfindform.do?find=email");
-						$('#user_findform').submit();
+						$('#host_email').val($("#email").val());
+						$("#host_findform").attr("action", "host_find_pw_form.do?host_find=email");
+						$('#host_findform').submit();
 					} else {
 						alert("인증번호가 일치하지 않습니다.");
 					}
@@ -133,9 +133,8 @@
 	
 	// 비밀번호 재확인
 	$(function() {
-		$('#user_passwordCheck').focusout(function() {
-			console.log($('#user_passwordCheck').val());
-			if ($('#user_passwordCheck').val() != $('#user_password').val()) {
+		$('#host_pw2').focusout(function() {
+			if ($('#host_pw').val() != $('#host_pw2').val()) {
 				alert("비밀번호재확인필요");
 
 			} else {
@@ -152,15 +151,18 @@
 	
 </head>
 <body>
-<h3>전화번호인증하기</h3>
+<h1>호스트 아이디 찾기</h1>
+
+<input type='radio' name='findPw' value='email' onclick='emailconfig()'>이메일로 찾기
+<input type='radio' name='findPw' value='phone' onclick='phoneconfig()'>휴대폰으로 찾기
+
+
 <!-- 회원찾을때 넘어가 form태그 -->
-<form action="" method="post" id="user_findform">
-	<input type="hidden" name="user_phone" id="user_phone">
-	<input type="hidden" name="user_email" id="user_email">
+<form action="" method="post" id="host_findform">
+	<input type="hidden" name="host_phone" id="host_phone">
+	<input type="hidden" name="host_email" id="host_email">
 </form>
 
-<button type="button" id="emailconfig" onclick="emailconfig()">이메일 인증하기</button>
-<button type="button" id="phoneconfig" onclick="phoneconfig()">전화번호 인증하기</button>
 
 
 <div id="config" style="display: none">
@@ -180,12 +182,12 @@
 		type="hidden" id="phoneDoubleChk" />
 </div>
 <%if(request.getAttribute("user")!=null){ %>
-<form action="user_change.do" id="pwchange" method="post">
-<input type=hidden name="user_id" id="user_id" value="${user}">
-<input type="password" name="user_password"
-		id="user_password" placeholder='비밀번호'><br>
-	<input type="password" name="user_passwordCheck"
-		id="user_passwordCheck" placeholder='비밀번호재확인'><br>
+<form action="host_change.do" id="pwchange" method="post">
+<input type=hidden name="host_id" id="host_id" value="${host_id}">
+<input type="password" name="host_pw"
+		id="host_pw" placeholder='비밀번호'><br>
+	<input type="password" name="host_pw2"
+		id="host_pw2" placeholder='비밀번호재확인'><br>
 		<button type="button" onclick="change()">변경하기</button>
 </form>
 <%} %>

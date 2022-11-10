@@ -334,7 +334,6 @@ public class RoomController {
 		lvo = new LikeVO();
 		lvo.setUser_id((String) session.getAttribute("user_id"));
 		lvo.setLike_id(u_room.getRoom_id());
-		lvo.setLike_no(u_room.getRoom_name());
 		lvo = Service.likeselectRoom(lvo);
 		revo.setRoom_id(u_room.getRoom_id());
 		List<ReviewVO> revo_list = reviewService.selectReviewForRoom(revo);

@@ -1,9 +1,12 @@
 package com.springbook.biz.host.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.springbook.biz.host.HostChartVO;
 import com.springbook.biz.host.HostVO;
 
 @Repository
@@ -17,15 +20,14 @@ public class HostDAOMybatis {
 	
 	public int hostIdCheck(HostVO vo) {
 		if(vo.getHost_id() != null || !vo.getHost_id().equals("")) {
-			vo = mybatis.selectOne("UserDAO.hostIdCheck", vo);
+			vo = mybatis.selectOne("HostDAO.hostIdCheck", vo);
 			if(vo!=null) {
 				return 1;
 			} else {
 				return 0;
 			}
-		} else {
-			return 2;
-		}
+		}return 2;
+	
 	}
 	
 	public HostVO hostLogin(HostVO vo) {
@@ -33,13 +35,11 @@ public class HostDAOMybatis {
 	}
 	
 	public int hostUpdate(HostVO vo) {
-		System.out.println("마이버티스 수정"+vo);
 		return mybatis.update("HostDAO.hostUpdate", vo);
 	}
 
 	
 	public int hostPwUpdate(HostVO vo) {
-		System.out.println("마이버티스 비밀번호 수정"+ vo);
 		return mybatis.update("HostDAO.hostPwUpdate", vo);
 	}
 	
@@ -49,6 +49,26 @@ public class HostDAOMybatis {
 	
 	public HostVO hostInfoSelect(HostVO vo) {
 		return mybatis.selectOne("HostDAO.hostInfoSelect", vo);
+	}
+	
+	public HostVO hostFind(HostVO vo) {
+		return mybatis.selectOne("HostDAO.find", vo);
+	}
+	
+	public int hostPwChange(HostVO vo) {
+		return mybatis.update("HostDAO.change", vo);
+	}
+	
+	public HostVO hostEmainCheck (HostVO vo) {
+		return mybatis.selectOne("HostDAO.emailCheck", vo);
+	}
+	
+	public List<HostChartVO> hostIndexChartSelect(HostChartVO vo){
+		return mybatis.selectList("HostDAO.hostIndexChartSelect", vo);
+	}
+	
+	public List<HostChartVO> hostIndexChart2Select(HostChartVO vo){
+		return mybatis.selectList("HostDAO.hostIndexChart2Select", vo);
 	}
 
 }
