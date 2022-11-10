@@ -57,15 +57,15 @@
 		<if test="room_name !=null and room_name !=''"> AND ROOM_NAME LIKE CONCAT('%',#{room_name},'%') </if>
 		<if test="room_area !=null and room_area !=''"> AND ROOM_AREA LIKE CONCAT('%',#{room_area},'%') </if>
 		<if test="room_cat !=null and room_cat != ''"> AND ROOM_CAT =#{room_cat} </if>
-		<if test="room_min_price != "" and room_max_price == """> AND ROOM_PRICE >= #{room_min_price}</if>
-		<if test="room_min_price == "" and room_max_price != """> AND ROOM_PRICE <= #{room_max_price}</if>
-		<if test="room_min_price != "" and room_max_price !="""> AND ROOM_PRICE BETWEEN #{room_min_price} AND #{room_max_price}</if>
-		<if test="room_max !=null and room_max != ''"> AND ROOM_MAX <= #{room_max} </if>
-		<if test="room_wifi == "Y""> AND ROOM_WIFI = #{room_wifi} </if>
-		<if test="room_pet == "Y""> AND ROOM_PET = #{room_pet} </if>
-		<if test="room_meal == "Y""> AND ROOM_MEAL = #{room_meal} </if>
-		<if test="room_parking == "Y""> AND ROOM_PARKING = #{room_parking} </if>
-		<if test="room_swpool == "Y""> AND ROOM_SWPOOL = #{room_swpool} </if>
+		<if test="room_min_price != '' and room_max_price == ''"> AND ROOM_PRICE &gt;= #{room_min_price}</if>
+		<if test="room_min_price == '' and room_max_price != ''"> AND ROOM_PRICE &lt;= #{room_max_price}</if>
+		<if test="room_min_price != '' and room_max_price !=''"> AND ROOM_PRICE BETWEEN #{room_min_price} AND #{room_max_price}</if>
+		<if test="room_max !=null and room_max != ''"> AND ROOM_MAX &lt;= #{room_max} </if>
+		<if test="room_wifi == 'Y'"> AND ROOM_WIFI = #{room_wifi} </if>
+		<if test="room_pet == 'Y'"> AND ROOM_PET = #{room_pet} </if>
+		<if test="room_meal == 'Y'"> AND ROOM_MEAL = #{room_meal} </if>
+		<if test="room_parking == 'Y'"> AND ROOM_PARKING = #{room_parking} </if>
+		<if test="room_swpool == 'Y'"> AND ROOM_SWPOOL = #{room_swpool} </if>
 		<if test="room_theme !=null and room_theme !=''"> AND ROOM_THEME LIKE CONCAT('%',#{room_theme},'%') </if>
 		<!-- ORDER BY SEQ DESC -->
 		<!-- LIMIT 10 OFFSET #{offset} -->
