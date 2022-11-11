@@ -1,8 +1,11 @@
 package com.springbook.biz.host.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springbook.biz.host.HostChartVO;
 import com.springbook.biz.host.HostService;
 import com.springbook.biz.host.HostVO;
 
@@ -44,6 +47,79 @@ public class HostServiceImpl implements HostService {
 	@Override
 	public HostVO hostInfoSelect(HostVO vo) {
 		return hostDAO.hostInfoSelect(vo);
+	}
+
+	@Override
+	public HostVO hostFind(HostVO vo) {
+		return hostDAO.hostFind(vo);
+	}
+
+	@Override
+	public int change(HostVO vo) {
+		return hostDAO.hostPwChange(vo);
+	}
+
+	@Override
+	public List<HostChartVO> hostIndexChartSelect(HostChartVO vo) {
+		return hostDAO.hostIndexChartSelect(vo);
+	}
+
+	@Override
+	public List<HostChartVO> hostIndexChart2Select(HostChartVO vo) {
+		return hostDAO.hostIndexChart2Select(vo);
+	}
+
+	@Override
+	public HostChartVO indexRoomCount(HostChartVO vo) {
+		return hostDAO.indexRoomCount(vo);
+	}
+
+	@Override
+	public HostChartVO indexReviewCount(HostChartVO vo) {
+		// TODO Auto-generated method stub
+		return hostDAO.indexReviewCount(vo);
+	}
+
+	@Override
+	public HostChartVO indexLikeCount(HostChartVO vo) {
+		// TODO Auto-generated method stub
+		return hostDAO.indexLikeCount(vo);
+	}
+
+	@Override
+	public HostChartVO indexCheckout(HostChartVO vo) {
+		// TODO Auto-generated method stub
+		return hostDAO.indexCheckout(vo);
+	}
+
+	@Override
+	public HostChartVO indexTodayCheckin(HostChartVO vo) {
+		// TODO Auto-generated method stub
+		return hostDAO.indexTodayCheckin(vo);
+	}
+
+	@Override
+	public HostChartVO indexStaying(HostChartVO vo) {
+		// TODO Auto-generated method stub
+		return hostDAO.indexStaying(vo);
+	}
+
+	@Override
+	public HostChartVO indexCheckinAble(HostChartVO vo) {
+		// TODO Auto-generated method stub
+		return hostDAO.indexCheckinAble(vo);
+	}
+
+	@Override
+	public List<HostChartVO> hostIndexRoomSelect(HostChartVO vo) {
+		// TODO Auto-generated method stub
+		return hostDAO.hostIndexRoomSelect(vo);
+	}
+
+	@Override
+	public List<HostChartVO> hostIndexChart3Select(HostChartVO vo) {
+		// TODO Auto-generated method stub
+		return hostDAO.hostIndexChart3Select(vo);
 	}
 
 

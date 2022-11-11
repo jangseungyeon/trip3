@@ -28,6 +28,8 @@
 		margin:0;
 		padding:0;
 	}
+
+	
 	.main-container{
 		width:100%;
 		height:600px;
@@ -88,6 +90,8 @@
 		font-size:15px;
 		background-color:#dc3545; /*빨간색*/
 		background-color:#007bff; /*파란색*/
+		background-color:#ff8e15; /*주황색*/
+		background:linear-gradient(to right, #ff8e15, #dc3545);
 		color:white;
 		border:none;
 		font-weight:bold;
@@ -105,12 +109,33 @@
 		font-size:15px;
 		background-color:#dc3545; /*빨간색*/
 		background-color:#007bff; /*파란색*/
+		background-color:#ff8e15; /*주황색*/
 		color:white;
 		border:none;
 		font-weight:bold;
 		filter: brightness(80%);
 		cursor : pointer;
 	}
+		.back-to-index{
+		font-size: 15px;
+		color: white !important;
+		position: absolute;
+		top: 5%;
+		right: 5%;
+		text-align: right;
+		line-height: 180%;
+		z-index: 2;
+		text-decoration: none;
+		
+	}
+		.back-to-index:hover{
+		color: white !important;
+		text-decoration: none  !important;
+		}
+		.back-to-index:link { color: white; text-decoration: none;}
+ 		.back-to-index:visited { color: white; text-decoration: none;}
+ 		.back-to-index:hover { color: white; text-decoration: none;}
+ 		
 		.host-login-text{
 		font-size: 30px;
 		color: white;
@@ -240,10 +265,11 @@
 
 <div class="main-container">
 <div class="sub-container-left">
-<h1 class="host-insert-text">Trip과 함께<br>&nbsp;&nbsp;돈을 벌어보아요.</h1>
+<h1 class="host-insert-text">tripONplan에서<br>&nbsp;&nbsp;호스트로 활동하세요.</h1>
 <button class="host-insert-button" type="button" class="host" onclick="location.href='move_to_host_insert.do'">호스트 신청하기</a>
 </div>
 <div class="sub-container-right">
+<h6 class="back-to-index"><a href="index.jsp" style="color:#ff8e15;">go to tripONplan</a></h6>
 <h1 class="host-login-text">이미 가입하셨나요?&nbsp;&nbsp;&nbsp;<br>어서오세요  :)</h1>
 <form class="login-form" action="host_login.do" method="post">
 <input class="input-id-pw" type="text" name="host_id" placeholder="아이디를 입력하세요."><br>
@@ -251,9 +277,9 @@
 <input class="login-button" type="submit" value="호스트 로그인"><br>
 </form>
 <div class="find-id-pw-box">
-<a class="find-id-pw" href="아이디 찾기.do">아이디 찾기</a>
+<a class="find-id-pw" href="move_to_host_find_id.do">아이디 찾기</a>
 <span class="find-id-pw">&nbsp;&nbsp; | &nbsp;&nbsp;</span> 
-<a class="find-id-pw" href="비밀번호 찾기.do">비밀번호 찾기</a>
+<a class="find-id-pw" href="move_to_host_find_pw.do">비밀번호 찾기</a>
 </div>
 </div>
 </div>

@@ -34,13 +34,13 @@ String host_id = session.getAttribute("host_id") != null ? session.getAttribute(
 				<c:when test='${host_id ne NULL}'>
 
 					<ul class="nav justify-content-around bg-danger">
-						<li class="nav-item"><a class="nav-link head-link text-white"
+						<li class="nav-item"><a class="nav-link text-white"
 							href="move_to_host_index.do">홈</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
+						<li class="nav-item"><a class="nav-link text-white"
 							href="getRoomList.do">숙소 관리</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
+						<li class="nav-item"><a class="nav-link text-white"
 							href="move_to_host_review.do">리뷰 모아보기</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
+						<li class="nav-item"><a class="nav-link text-white"
 							href="move_to_host_reservation.do">예약 현황</a></li>
 					</ul>
 
@@ -48,6 +48,8 @@ String host_id = session.getAttribute("host_id") != null ? session.getAttribute(
 					<ul class="nav justify-content-end bg-danger">
 						<li class="nav-item"><a class="nav-link text-white"
 							href="move_to_host_update.do">${host_bizname}님 접속중</a></li>
+						<li class="nav-item"><a class="nav-link text-white"
+							href="./index.jsp">게스트 페이지</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							href="host_logout.do">로그아웃</a></li>
 					</ul>
