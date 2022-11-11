@@ -2,7 +2,8 @@ package com.springbook.view.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.springbook.biz.common.PagingVO;
 import com.springbook.biz.faq.FaqService;
 import com.springbook.biz.faq.FaqVO;
 
@@ -22,13 +24,36 @@ public class FaqController {
 	@Autowired
 	private FaqService faqService;
 
+	@ModelAttribute("conditionMap")
+	public Map<String, String> searchConditionMap() {
+		Map<String, String> conditionMap = new HashMap<String, String>();
+		conditionMap.put("내용", "CONTENT");
+		conditionMap.put("제목", "TITLE");
+		return conditionMap;
+	}
+
 	// 관리자 공지 조회
 	@RequestMapping("/manage_faqList.do")
-	public String manage_faqList(Model model) {
+	public String manage_faqList(FaqVO vo, String nowPageBtn, Model model) {
 
-		// 서비스에서 공지 리스트 조회
-		List<FaqVO> list = faqService.manage_faqList();
-		model.addAttribute("list", list);
+		// 총 목록 수
+		int totalPageCnt = faqService.totalFaqListCnt(vo);
+
+		// 현재 페이지 설정
+		int nowPage = Integer.parseInt(nowPageBtn == null || nowPageBtn.equals("") ? "1" : nowPageBtn);
+		System.out.println("totalPageCnt : " + totalPageCnt + ", nowPage : " + nowPage);
+
+		// 한페이지당 보여줄 목록 수
+		int onePageCnt = 10;
+
+		// 한 번에 보여질 버튼 수
+		int oneBtnCnt = 5;
+
+		PagingVO pvo = new PagingVO(totalPageCnt, onePageCnt, nowPage, oneBtnCnt);
+		vo.setOffset(pvo.getOffset());
+
+		model.addAttribute("paging", pvo);
+		model.addAttribute("faqList", faqService.manage_faqList(vo));
 		System.out.println("리스트 출력");
 		return "WEB-INF/views/manage_faqList.jsp";
 	}
@@ -57,7 +82,7 @@ public class FaqController {
 		return "redirect:manage_faqList.do";
 	}
 
-	// 관리자 공지 상세 
+	// 관리자 공지 상세
 	@RequestMapping("/manage_faqInfo.do")
 	public String manage_faqInfo(FaqVO vo, Model model) {
 		model.addAttribute("FaqVO", faqService.manage_faqInfo(vo));

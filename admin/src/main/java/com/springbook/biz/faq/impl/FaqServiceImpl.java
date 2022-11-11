@@ -15,8 +15,8 @@ public class FaqServiceImpl implements FaqService {
 
 // 	관리자 공지 조회
 	@Override
-	public List<FaqVO> manage_faqList() {
-		return faqDAO.manage_faqList();
+	public List<FaqVO> manage_faqList(FaqVO vo) {
+		return faqDAO.manage_faqList(vo);
 	}
 
 //	관리자 공지 등록

@@ -13,22 +13,10 @@ public class FaqDAOMybatis {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
-// 	관리자 공지 조회	
-	public List<FaqVO> manage_faqList() {
-		System.out.println("manage_faqList: ");
-		return mybatis.selectList("FaqDAO.manage_faqList");
-	}
-
 // 	관리자 공지 등록
 	public int manage_faqInsert(FaqVO vo) {
 		System.out.println("manage_faqInsert: " + vo);
 		return mybatis.insert("FaqDAO.manage_faqInsert", vo);
-	}
-
-//  관리자 공지 상세
-	public FaqVO manage_faqInfo(FaqVO vo) {
-		System.out.println("manage_faqInfo: " + vo);
-		return mybatis.selectOne("FaqDAO.manage_faqInfo", vo);
 	}
 
 //	관리자 공지 수정	
@@ -41,9 +29,21 @@ public class FaqDAOMybatis {
 	public void manage_faqDelete(FaqVO vo) {
 		System.out.println("manage_faqDelete: ");
 		mybatis.delete("FaqDAO.manage_faqDelete", vo);
-
 	}
 
+// 	관리자 공지 조회	
+	public List<FaqVO> manage_faqList(FaqVO vo) {
+		System.out.println("manage_faqList: ");
+		return mybatis.selectList("FaqDAO.manage_faqList", vo);
+	}
+
+//  관리자 공지 상세
+	public FaqVO manage_faqInfo(FaqVO vo) {
+		System.out.println("manage_faqInfo: " + vo);
+		return mybatis.selectOne("FaqDAO.manage_faqInfo", vo);
+	}
+
+//	관리자 공지 개수
 	public int totalFaqListCnt(FaqVO vo) {
 		System.out.println("totalFaqListCnt() 기능처리");
 		return mybatis.selectOne("FaqDAO.totalFaqListCnt", vo);

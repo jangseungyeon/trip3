@@ -14,7 +14,7 @@ public interface FaqService {
 	void manage_faqDelete(FaqVO vo);
 
 //	관리자 공지 조회
-	List<FaqVO> manage_faqList();
+	List<FaqVO> manage_faqList(FaqVO vo);
 
 //  관리자 공지 상세 조회
 	FaqVO manage_faqInfo(FaqVO vo);

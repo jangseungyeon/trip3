@@ -10,14 +10,14 @@ public class FaqVO {
 	private String faq_content;
 	private String faq_regdate;
 	private int faq_cnt;
-	
+
 	private String filename;
-	
+
 	private MultipartFile uploadFile;
-	
+
 	private String searchCondition;
 	private String searchKeyword;
-	
+
 	private int offset;
 
 	public int getFaq_no() {
@@ -111,13 +111,9 @@ public class FaqVO {
 	@Override
 	public String toString() {
 		return "FaqVO [faq_no=" + faq_no + ", faq_title=" + faq_title + ", faq_writer=" + faq_writer + ", faq_content="
-				+ faq_content + ", faq_regdate=" + faq_regdate + ", faq_cnt=" + faq_cnt + ", filename="
-				+ filename + ", uploadFile=" + uploadFile + ", searchCondition=" + searchCondition
-				+ ", searchKeyword=" + searchKeyword + ", offset=" + offset + "]";
+				+ faq_content + ", faq_regdate=" + faq_regdate + ", faq_cnt=" + faq_cnt + ", filename=" + filename
+				+ ", uploadFile=" + uploadFile + ", searchCondition=" + searchCondition + ", searchKeyword="
+				+ searchKeyword + ", offset=" + offset + "]";
 	}
-	
-
-	
-	
 
 }
