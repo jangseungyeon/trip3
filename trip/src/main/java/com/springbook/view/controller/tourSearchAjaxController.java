@@ -64,7 +64,7 @@ public class tourSearchAjaxController{
 							+ "&_type=json";	
 				}else {
 					apiToururl = "http://apis.data.go.kr/B551011/KorService/searchKeyword?"
-							+ "numOfRows=5"
+							+ "numOfRows=8"
 							+ "&pageNo="+pageNO
 							+ "&MobileOS=ETC"
 							+ "&MobileApp=AppTest"

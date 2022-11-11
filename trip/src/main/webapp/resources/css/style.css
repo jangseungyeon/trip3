@@ -112,17 +112,7 @@ ul.nav.justify-content-end.bg-success {
 	display: none;
 	font-size: 17px;
 }
-span.material-symbols-outlined {
-	color: white;
-	font-size: 50px;
-}
 
-button.main-icon-div1:hover span:nth-child(1) {
-    display: none;
-}
-button.main-icon-div1:hover span:nth-child(2) {
-    display: block;
-}
 
 
 /* 헤더부분만큼 위에서 떨어뜨리는거 */

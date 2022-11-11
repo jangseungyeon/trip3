@@ -29,7 +29,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<link href="resources/css/style.css" rel="stylesheet">
+ <link href="resources/css/style.css" rel="stylesheet"> 
 <link href="resources/css/my_info.css" rel="stylesheet">
 <link href="resources/css/my_Reservation.css" rel="stylesheet">
 <link href="resources/css/my_likes.css" rel="stylesheet">

@@ -17,6 +17,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=B612:wght@700&family=Do+Hyeon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=B612:wght@700&family=Do+Hyeon&family=RocknRoll+One&display=swap');
+
+span.material-symbols-outlined {
+	color: white;
+	font-size: 50px;
+}
+
+button.main-icon-div1:hover span:nth-child(1) {
+    display: none;
+}
+button.main-icon-div1:hover span:nth-child(2) {
+    display: block;
+}
+
 </style>
 <!-- 집아이콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />

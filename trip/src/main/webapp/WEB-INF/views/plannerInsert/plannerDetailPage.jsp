@@ -138,6 +138,8 @@ function crud(num , number){
 		content = $(".RE"+number).val();
 		comment_no = number;
 	}
+	alert(content)
+	alert(comment_no)
 	$.ajax({
 		url:url,
 		type: "POST",
@@ -208,5 +210,6 @@ function crud(num , number){
 	<i class="bi bi-heart-fill unlike" onclick="like('unlike')" style="display:none"></i>
 <i class="bi bi-heart like" onclick="like('like')"></i>
 <input type="hidden" name="status" id="status">
+
 </body>
 </html>

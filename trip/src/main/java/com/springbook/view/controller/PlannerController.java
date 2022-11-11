@@ -99,7 +99,6 @@ public class PlannerController {
 	public String plannerinfo(PlannerVO pvo, HttpSession session, Model model , PlaceVO vo) {
 		pvo.setUser_id((String)session.getAttribute("user_id"));
 		pvo = Service.plannerinfo(pvo);
-		model.addAttribute("placeList" , Service.getPlace(vo));
 		System.out.println("플래너 정보: "+pvo);
 		if (pvo != null) {
 			String user_id = pvo.getUser_id();
@@ -156,6 +155,12 @@ public class PlannerController {
 			Service.deltePlanner(vo);
 			Service.deletePlace(pvo);
 			return "plannerlist.do";
+		}
+		
+		@ResponseBody
+		@RequestMapping("/placeSelect.do")
+		public List<PlaceVO> placeSelect( PlaceVO vo , String planner_no){
+			return Service.getPlace(vo);
 		}
 	
 	

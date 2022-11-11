@@ -9,10 +9,18 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 </head>
 <style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
 .number{
     color: black;
     text-decoration: none;
@@ -37,7 +45,7 @@
   height: 40px;
   font-size: 18px;
   padding-top: 4px;
-  border: solid #aac6b3;
+  border: solid #facd9e;
 }
 .span{
 	font-weight: 600;
@@ -59,7 +67,51 @@
 color:#808080;
 }
 
+input#\31 2 , input#\31 4 , input#\31 5 , input#\33 8 , input#\33 9{
+   border-radius: 20px;
+}
+.btn:focus {box-shadow: none; }
+input#\31 2:hover {
+background-color: #eef1f4;
+}
+input#\31 4:hover {
+background-color: #eef1f4;
+}
+input#\31 5:hover {
+background-color: #eef1f4;
+}
+input#\33 8:hover {
+background-color: #eef1f4;
+}
+input#\33 9:hover {
+background-color: #eef1f4;
+}
 
+.search-bar {
+  width: 220px;
+  height: 35px;
+  border-radius: 15px;
+  border: solid 1px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: left;
+  z-index: 1;
+  opacity: 1;
+  padding-bottom: 2px;
+  display: inline-block;
+}
+
+input#key {
+    border: none;
+     height: 25px;
+     width:180px; 
+     display: inline; 
+     box-shadow: none; 
+     margin-left:8px;
+     margin-top: 2px
+}
+input#key:focus {
+   outline: none;
+}
 </style>
 <body>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -76,41 +128,43 @@ color:#808080;
 			
           	<div id="div">
 <input type="hidden" id="areaNumber">
-       <div class="col-sm-10" style="display: inline;">
+       <div id="buttons" style="margin-top:2%;">
      <div class="btn-group">
-	<select name="areaNum" onchange="area()" id="areaNum" class="form-select form-select-sm" aria-label=".form-select-sm example">  
+	<select name="areaNum" onchange="area()" id="areaNum" class="form-select form-select-sm" aria-label=".form-select-sm example" style="box-shadow: none;">  
 			<option>지역변경</option>
 			<c:forEach items="${AreaList}" var="area" >
 			<option value="${area.area_num}">${area.area_name}</option>
 			</c:forEach>
 			</select>
 			</div>
-      <input type="text" class="form-control" type="text" placeholder="검색" id="key" value="" style="width:100px; display: inline;">
-      <input type="button" value="검색" onclick="test00(0)">
-    </div>
-         <input type="button" id="12" onclick="test00(12)" value="관광지">
-			<input type="button" id="14" onclick="test00(14)" value="문화시설">
-			<input type="button" id="15" onclick="test00(15)" value="행사/공연/축제">
-			<input type="button" id="38" onclick="test00(38)" value="쇼핑">
-			<input type="button" id="39" onclick="test00(39)" value="음식점">
+		<div class="search-bar">
+      <input type="text" class="search-bar__input" type="text" placeholder="검색" id="key" value="">
+      <span class="material-symbols-outlined" style="vertical-align: middle; cursor:pointer; " onclick="test00(0)">search</span></div>
+        
+         <input type="button" id="12" onclick="test00(12)" value="관광지" class="btn btn-sm test" style="border-color: #4d4d4d;color: #4d4d4d;  margin-left:8%">
+			<input type="button" id="14" onclick="test00(14)" value="문화시설" class="btn btn-sm" style="border-color: #4d4d4d;color: #4d4d4d;">
+			<input type="button" id="15" onclick="test00(15)" value="행사/공연/축제" class="btn btn-sm" style="border-color: #4d4d4d;color: #4d4d4d;">
+			<input type="button" id="38" onclick="test00(38)" value="쇼핑" class="btn btn-sm" style="border-color: #4d4d4d;color: #4d4d4d;">
+			<input type="button" id="39" onclick="test00(39)" value="음식점" class="btn btn-sm" style="border-color: #4d4d4d;color: #4d4d4d;">
 		    <button id="kate" onclick="test00(12)" value="12" style="display:none">카테고리</button>
+		     </div>
           <div class="row">
       <div class="col col2" style="height:500px;">
       
                   <div class="wrap-loading" style="text-align-last: right ; margin-top: 120px; display:none">
                   
-<div class="spinner-grow " role="status" style="background-color: #bfe3b2;">
+<div class="spinner-grow " role="status" style="background-color: #19558c;">
 <span class="visually-hidden"></span>
 </div>
-<div class="spinner-grow " role="status" style="background-color: #a1cf91;">
+<div class="spinner-grow " role="status" style="background-color: #416a8f;">
 <span class="visually-hidden"></span>
 </div>
-<div class="spinner-grow " role="status" style="background-color: #80c469;">
+<div class="spinner-grow " role="status" style="background-color: #758fa8;">
 <span class="visually-hidden"></span>
 </div>
 </div>
       </div>
-      <div class="col col1" style="height:440px;">
+      <div class="col col1" style="height:80%">
            <div class="wrap-loading" style="margin-top: 120px; display:none">
 <div class="spinner-grow " role="status" style="background-color: #bfe3b2;">
 <span class="visually-hidden"></span>
@@ -136,7 +190,7 @@ color:#808080;
 
 <!-- <form action="testValue.do" method="post"> -->
 	<div style="padding-left:30px;">
-			<div style="height:620px;">
+			<div>
 			<div class="form-check form-switch" style="margin-top:10px">
   			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="show()">
   			<input type="hidden" value="N" name="planner_show" id="show_c" onclick="show()">
@@ -159,16 +213,22 @@ color:#808080;
 			</div>
 			<div class="form-group">
 			<div id="memo" style="font-size:20px; width:200px; height:40px"><span>DAY-</span></div>
-  <textarea class="form-control" rows="5" id="content" style="resize: none;" placeholder="메모 아이콘을 클릭하여 일자별로 메모기능을 사용해보세요!"></textarea>
+  <textarea class="form-control" rows="5" id="content" style="resize: none; box-shadow: none;" placeholder="메모 아이콘을 클릭하여 일자별로 메모기능을 사용해보세요!"></textarea>
   			<div style="text-align: center; margin-top: 2%;">
-  			<input type="submit" value="임시저장">
-			<input type="button" value="숙소 둘러보기" onclick="room()">
+  			<input type="submit" value="임시저장" class="btn" style="background-color: #ff8e15; color: white;">
+			<input type="button" value="숙소 둘러보기" onclick="room()" class="btn" style="background-color: #ff8e15; color: white;">
 			</div>
 </div>
 			</div>
 			</div>
 			</form> 
 <script>
+document.addEventListener('keydown', function(event) {
+	  if (event.keyCode === 13) {
+	    event.preventDefault();
+	  };
+	}, true);
+
 function captureReturnKey(e) { 
 	if(e.keyCode==13 && e.srcElement.type != $("#title")) 
 	return false; 
@@ -178,24 +238,21 @@ function captureReturnKey(e) {
 function submits(num){
 	//애니메이션 추가 글 등록시
 	 $(".bo"+num).animate({
-		'font-size' : '30px' ,
-		'opacity' : '0.2'
+		'font-size' : '30px' 
 	});  
 	  $(".bo"+num).animate({
-			'font-size' : '22px' ,
-			'opacity' : '0.05'
+			'font-size' : '22px' 
 		}); 
-	$(".bo"+num).css("color" , "#356c49")
+	$(".bo"+num).css("color" , "#19558c")
 	$("#val"+num).val($("#content").val());
 }
 
 function memo(num){
   var memo = $(".memo" + num).html();
   $("#memo").html(memo);
-  $("#memo").append("<input type='button' onclick='submits("+num+")' value='메모등록'>");
+  $("#memo").append("<i class='bi bi-journal-text zoom' onclick='submits("+num+")' style=' cursor: pointer; font-size' : '22px'><i class='bi bi-plus' style='font-size : 22px'></i></i>");
   $("#content").val($("#val"+num).val());
 }
-
 function area(){
 	var areanum = $("#areaNum").val();
 	$.ajax({
@@ -247,6 +304,15 @@ function test00(tval) {
 			}
 			if(tval >= 12){
 				kate = tval;
+				$(".btn").css({
+					'border-color': '#4d4d4d' , 
+					'border': 'solid 1px' ,
+			    	'font-weight': ''
+				})
+				$("#"+kate).css({
+					'border': 'solid 2px' ,
+			    	'font-weight': '700'
+				})
 			}else if($("#kate").length > 0){
 				kate = $("#kate").val();
 			}
@@ -289,7 +355,7 @@ function test00(tval) {
  			console.log(this.mapx);
 
  			$("." + className).append("<div class='delete' style='margin-top:15px'>  <img src='"+img+"' style='width:90px;height:90px; float: left;' class='delete placeimg'>"+
- 					"<span onclick='test("+num+")' id='"+num+"' class='delete span' style='vertical-align:top;'>"+this.title+"</span><br class='delete'> <small id='add"+num+"' class='delete' style='vertical-align:buttom;'>"+this.addr1+"</small><select class='delete form-select form-select-sm' aria-label='.form-select-sm example' id='select' onchange='test("+num+" , value)' style='width: 100px;'> <option>장소선택</option>"+str+"</select></div><br class='delete'>" + 
+ 					"<span onclick='test("+num+")' id='"+num+"' class='delete span' style='vertical-align:top;'>"+this.title+"</span><br class='delete'> <small id='add"+num+"' class='delete' style='vertical-align:buttom;'>"+this.addr1+"</small><select class='delete form-select form-select-sm' aria-label='.form-select-sm example' id='select' onchange='test("+num+" , value)' style='width: 100px; box-shadow: none;'> <option>장소선택</option>"+str+"</select></div><br class='delete'>" + 
  					"<input  type='hidden' class='areaData"+num+" delete' value='"+this.title +"==="+ this.addr1 +"==="+ this.mapx +"==="+ this.mapy+"==="+img+"'>"+
  					"<a href='#' onclick='test()' id='x"+num+"' style='display:none;' class='delete'>"+this.mapx+"</a>" + 
  					"<a href='#' onclick='test()' id='y"+num+"' style='display:none;' class='delete'>"+this.mapy+"</a>")
