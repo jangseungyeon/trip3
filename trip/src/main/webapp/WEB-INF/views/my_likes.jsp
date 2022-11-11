@@ -38,7 +38,7 @@
 		<table class="table table-hover">
 			<thead class="btn-primary">
 				<tr>
-					<th>숙소 사진</th>
+					<th class="likes-th1">숙소 사진</th>
 					<th>숙소 이름</th>
 					<th>플레너는 작성자</th>
 					<th>내 아이디 </th>
@@ -48,7 +48,7 @@
 			<tbody>
       <c:forEach var="i" items="${list}">
 						<tr>
-						<td>${i.room_img}</td>
+						<td><img width="50%" src="resources/room_img/${i.room_img_no1}"></td>
 						<td>${i.room_name}</td>
 						<td>${i.like_id}</td>
 						<td>${i.user_id}</td>

@@ -30,8 +30,9 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <link href="resources/css/style.css" rel="stylesheet">
-<link href="resources/css/myinfo.css" rel="stylesheet">
-<link href="resources/css/my_ReservationDetail.css" rel="stylesheet">
+<link href="resources/css/my_info.css" rel="stylesheet">
+<link href="resources/css/my_Reservation.css" rel="stylesheet">
+<link href="resources/css/my_likes.css" rel="stylesheet">
 
 </head>
 
@@ -68,11 +69,10 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 							<button id="header-btn" type="button" class="btn btn-primary"
 								data-toggle="dropdown">내 정보</button>
 							<div id="header-menu-div" class="dropdown-menu">
-								<a class="dropdown-item" href="myinfo.do">정보 수정</a> <a
-									class="dropdown-item" href="pointcheck.do">마일리지</a> <a
-									class="dropdown-item" href="getReservationList.do">결제 목록</a> <a
-									class="dropdown-item" href="likeslist.do">좋아요(like)</a> <a
-									class="dropdown-item" href="plannerlist.do">나의 여행</a>
+								<a class="dropdown-item" href="myinfo.do">정보 수정</a>
+								<a class="dropdown-item" href="getReservationList.do">결제 목록</a>
+								<a class="dropdown-item" href="likeslist.do">좋아요(like)</a>
+								<a class="dropdown-item" href="plannerlist.do">나의 여행</a>
 							</div>
 						</div>
 					</ul>

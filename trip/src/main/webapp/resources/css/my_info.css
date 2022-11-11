@@ -1,5 +1,5 @@
 .info-body {
-	background-color: antiquewhite;
+	background-color: #f9fcff;
 }
 
 .input-form.col-md-12.mx-auto {
@@ -57,4 +57,53 @@ input#id, input#pw, input#pw2, input#name, input#phone, input#birth, input#gende
 .info-del-btn, button#cbtn {
 	    background-color: white;
 }
+
+/* 내정보 수정 비밀번호 체크 */
+
+.check-div1 {
+	font-size:40px;
+	background-color: #ff8e15;
+    border-radius: 15px;
+    padding: 5px 20px;
+    color: white;
+}
+
+.check-hr {
+    border: solid 1px #19558c;
+}
+
+.check-input {
+	border-radius: 15px;
+    width: 200px;
+    height: 40px;
+    border: 1px solid #aaa;
+    padding: 12px;
+}
+
+.check-btn {
+	background-color: white;
+    color: #aaa;
+    border: 1px solid #aaa;
+    border-radius: 7px;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+.check-btn:hover {
+    color: #555;	
+    border: 1px solid #555;
+}
+
+.check-pw-div {
+	text-align: center;
+}
+
+.check-form{
+	display: flex;
+    justify-content: center;
+}
+
+
 

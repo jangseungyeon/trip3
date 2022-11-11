@@ -8,14 +8,15 @@ public class LikeVO {
 	private int like_count;
 	private String status;
 	private String planner_title; // 플레너 제목
-	private String room_img;	//숙소 이미지 파일명
+	private String room_img_no1;	//숙소 이미지 파일명
 	private String room_name;	//숙소명
 
-	public String getRoom_img() {
-		return room_img;
+	
+	public String getRoom_img_no1() {
+		return room_img_no1;
 	}
-	public void setRoom_img(String room_img) {
-		this.room_img = room_img;
+	public void setRoom_img_no1(String room_img_no1) {
+		this.room_img_no1 = room_img_no1;
 	}
 	public String getRoom_name() {
 		return room_name;
@@ -72,7 +73,7 @@ public class LikeVO {
 	public String toString() {
 		return "LikeVO [like_type=" + like_type + ", like_id=" + like_id + ", user_id=" + user_id + ", like_no="
 				+ like_no + ", like_count=" + like_count + ", status=" + status + ", planner_title=" + planner_title
-				+ ", room_img=" + room_img + ", room_name=" + room_name + "]";
+				+ ", room_img=" + room_img_no1 + ", room_name=" + room_name + "]";
 	}
 	
 }

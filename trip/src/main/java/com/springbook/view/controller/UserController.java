@@ -179,21 +179,29 @@ public class UserController {
 	}
 
 	//내 정보 갈때 비밀번호 치기
-	@RequestMapping("/myinfogo.do")
-	public String myinfogo(UserVO vo, HttpSession session) {
-		vo.setUser_id((String) session.getAttribute("user_id"));
-		String pw =vo.getUser_password();
-		boolean pwCheck;
-		vo = userService.info(vo);
-		String user_password = vo.getUser_password();
-		pwCheck=BCrypt.checkpw(pw,user_password);
-		System.out.println(pwCheck);
-		if(pwCheck) {
-		return "user_info.do";
-		}else {
-			return "WEB-INF/views/my_Check.jsp";
+		@RequestMapping("/myinfogo.do")
+		public String myinfogo(UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {
+			vo.setUser_id((String) session.getAttribute("user_id"));
+			String pw =vo.getUser_password();
+			boolean pwCheck;
+			vo = userService.info(vo);
+			String user_password = vo.getUser_password();
+			pwCheck=BCrypt.checkpw(pw,user_password);
+			System.out.println(pwCheck);
+			if(pwCheck) {
+			return "user_info.do";
+			}else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+
+				out.println("<script>");
+				out.println("alert('비밀번호가 일치하지 않습니다.')");
+				out.println("location.href='myinfo.do'");
+				out.println("</script>");
+				out.flush();
+				return "WEB-INF/views/my_Check.jsp";
+			}
 		}
-	}
 	
 	@RequestMapping("/myinfo.do")
 	public String mycheck(UserVO vo, HttpSession session) {

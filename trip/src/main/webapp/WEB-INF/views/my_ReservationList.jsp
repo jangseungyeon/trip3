@@ -104,45 +104,43 @@ function f_move_to_insert_review(room_id) {
 
 </head>
 <body>
-<br>
-예약 리스트 페이지.<br>
 
-
-<div class="container-fluid">
+<br><br>
+<div class="container">
+</div>
+<div class="container">
+<div class="reslist-div1">결제한 숙소 목록</div>
+<hr class="reslist-hr">
+<div class="row list-grid-div">
   <table class="table table-hover" id="re_table">
     <thead class="btn-primary">
       <tr>
-       <th>숙소 이미지</th>
-        <th>예약번호</th>
-        <th>숙소명</th>
-         <th>결제날짜</th>
-          <th>결제금액</th>
-          <th>예약인원</th>
-          <th>예약상태</th>
-          <th>체크인 날짜</th>
-          <th>체크아웃 날짜</th>
-          <th>결제</th>
-          <th>결제 정보 보기</th>
-          <th>리뷰</th>
+       <th class="col-sm-3">숙소 이미지</th>
+        <th class="col-sm-2">숙소명</th>
+          <th class="col-sm-1">결제금액</th>
+          <th class="col-sm-1">예약인원</th>
+          <th class="col-sm-1">체크인</th>
+          <th class="col-sm-1">체크아웃</th>
+          <th class="col-sm-1">결제</th>
+          <th class="col-sm-1">상세정보</th>
+          <th class="col-sm-1">리뷰</th>
       </tr>
     </thead>
     <tbody>
 <c:forEach var="i" items="${reservationList}" varStatus="status">
 			<tr align="center">
-			<td><img style="width: 300px;" src="resources/room_img/${i.room_img}"></td>
-				<td>${i.res_id}</td>
+			<td><img style="width: 300px; height:200px" src="resources/room_img/${i.room_img}"></td>
 				<td>${i.room_name}</td>
-				<td>${i.pay_date}</td>
 				<td>${i.pay_amount}</td>
 				<td>${i.res_num}</td>
-				<td class="status">${i.res_status}</td>
+				<td style="display: none" class="status">${i.res_status}</td>
 				<td>${i.res_checkin}</td>
 				<td id="checkout" class="checkout">${i.res_checkout}</td>
-				<td id="daybefore${status.index}"><button onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제 취소</button></td>
-				<td id="ing${status.index}" style="display: none"><span>취소 완료</span></td>
-				<td><button onclick="reservationtr('${i.res_id}')">상세정보</button></td>
-				<td id="dayafter${status.index}"><button onclick="f_move_to_insert_review('${i.room_id}')">리뷰 쓰러 가기</button></td>
-				
+				<td id="daybefore${status.index}"><button class="reserlist-btn" onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제<br>취소</button></td>
+				<td id="ing${status.index}" style="display: none"><span>취소<br>완료</span></td>
+				<td><button class="reserlist-btn" onclick="reservationtr('${i.res_id}')">상세<br>정보</button></td>
+				<td id="dayafter${status.index}" class="dayafter${status.index}"><button class="reserlist-btn" onclick="f_move_to_insert_review('${i.room_id}')">리뷰<br>쓰기</button></td>
+				<td id="ing2${status.index}" style="display: none"><span>작성<br>대기</span></td>
 <%-- 				<td><button onclick="f_getPayInfo('${i.merchant_uid}','PayInfos${status.index}')">결제 정보 보기</button></td> --%>
 			</tr>
 			<br>
@@ -154,7 +152,9 @@ function f_move_to_insert_review(room_id) {
 			</form>
 		</c:forEach>
 		    </tbody>
-  </table><br><br>
+  </table>
+  <br><br>
+  </div>
   </div>
 		  <div id="btnBox">
   <!-- 반복처리할 태그 시작-->
@@ -175,7 +175,8 @@ function f_move_to_insert_review(room_id) {
   	<a class="list-btn" href ="getBoardList.do?nowPageBtn=${paging.nowPageBtn +1 }">&gt;</a>
   </c:if>
   <!-- 반복처리할 태그 끝 -->
-  </div><br><br>
+  </div><br>
+  <br>
   
   
   <script>
@@ -198,13 +199,13 @@ function f_move_to_insert_review(room_id) {
   // 리뷰 쓰기
 </script>
 <script type="text/javascript">
-$(function() {
-	//오늘 날짜
 	var date = new Date();
     var year = date.getFullYear();
     var month = ("0" + (1 + date.getMonth())).slice(-2);
     var day = ("0" + date.getDate()).slice(-2);
     var today = year + "-" + month + "-" + day;
+$(function() {
+	//오늘 날짜
 	
     
 	var tdArrco = $("#re_table td.checkout");
@@ -215,13 +216,13 @@ $(function() {
 			console.log(checkout < today)
 		if(checkout < today) {
 			$("#re_table td#dayafter"+x).show();
+
 		} else {
 			$("#re_table td#dayafter"+x).hide();
-// 			var btn_disabled = "#dayafter"+x;
-// 			var target = document.getElementById(btn_disabled);
-// 			target.disabled = true;
+			$("#ing2" + x).show();
+// 		
+
 		}
-			
 	x = x + 1;
 	});
 });

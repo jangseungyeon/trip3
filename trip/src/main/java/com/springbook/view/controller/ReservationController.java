@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -38,8 +39,8 @@ public class ReservationController {
 	//(회원) 	내 예약 확인
 		@RequestMapping("/check.do")
 		public String user_info(ReservationVO rvo, HttpSession session, Model model) {
-			System.out.println("rvo: "+rvo);
 			rvo.setUser_id((String)session.getAttribute("user_id"));
+			System.out.println("rvo: "+rvo);
 			rvo = reservationService.getReservationOneDetail(rvo);
 			System.out.println("결제정보확인: " + rvo);
 			model.addAttribute("rvo", rvo);
@@ -109,9 +110,12 @@ public class ReservationController {
 		
 	//결제 상세정보에서 연락처, 이메일 수정 
 	@RequestMapping(value="/updateReservationDetail.do")
-	public String updateReservationDetail(ReservationVO rvo, HttpSession session) {
+	public String updateReservationDetail(ReservationVO rvo, HttpSession session, HttpServletRequest request) {
+		rvo.setUser_id((String)session.getAttribute("user_id"));
+		System.out.println("수정컨트롤러" + rvo);
 		reservationService.updateReservationDetail(rvo);
-		return "check.do";
+		String referer = request.getHeader("Referer");
+	    return "redirect:"+ referer;
 	}
 	
 	
