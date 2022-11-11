@@ -6,8 +6,8 @@
 	
 	<!-- (업주) 숙소 등록 -->
 	<insert id="insertRoom">
-		INSERT INTO ROOM(ROOM_NAME, ROOM_ADDR, ROOM_ADDR_DETAIL, ROOM_AREA, ROOM_DESC, HOST_ID, ROOM_PRICE, ROOM_IMG_NO1, ROOM_IMG_NO2, ROOM_IMG_NO3, ROOM_IMG_NO4, ROOM_IMG_NO5, ROOM_POINTS, ROOM_MAX, ROOM_THEME, ROOM_CAT, ROOM_WIFI, ROOM_PET, ROOM_MEAL, ROOM_PARKING, ROOM_SWPOOL,
-		ROOM_LIKES, ROOM_STARS) VALUES(#{room_name}, #{room_addr}, #{room_addr_detail}, #{room_area}, #{room_desc}, #{host_id}, #{room_price}, #{room_img_no1}, #{room_img_no2}, #{room_img_no3}, #{room_img_no4}, #{room_img_no5}, #{room_points}, #{room_max},
+		INSERT INTO ROOM(ROOM_NAME, ROOM_ADDR, ROOM_ADDR_DETAIL, ROOM_AREA, ROOM_DESC, HOST_ID, ROOM_PRICE, ROOM_IMG_NO1, ROOM_IMG_NO2, ROOM_IMG_NO3, ROOM_IMG_NO4, ROOM_IMG_NO5, ROOM_MAX, ROOM_THEME, ROOM_CAT, ROOM_WIFI, ROOM_PET, ROOM_MEAL, ROOM_PARKING, ROOM_SWPOOL,
+		ROOM_LIKES, ROOM_STARS) VALUES(#{room_name}, #{room_addr}, #{room_addr_detail}, #{room_area}, #{room_desc}, #{host_id}, #{room_price}, #{room_img_no1}, #{room_img_no2}, #{room_img_no3}, #{room_img_no4}, #{room_img_no5}, #{room_max},
 		#{room_theme}, #{room_cat}, #{room_wifi}, #{room_pet}, #{room_meal}, #{room_parking}, #{room_swpool},
 		#{room_likes}, #{room_stars});
 	</insert>
@@ -16,7 +16,7 @@
 	<!-- (업주) 숙소 아이디와 업주 호스트 아이디 모두가 일치하는 경우 숙소 수정 -->
 	<update id="updateRoom">
 		UPDATE ROOM SET
-		ROOM_NAME=#{room_name}, ROOM_ADDR=#{room_addr}, ROOM_ADDR_DETAIL=#{room_addr_detail}, ROOM_DESC=#{room_desc}, ROOM_PRICE=#{room_price}, ROOM_IMG_NO1=#{room_img_no1}, ROOM_IMG_NO2=#{room_img_no2}, ROOM_IMG_NO3=#{room_img_no3}, ROOM_IMG_NO4=#{room_img_no4}, ROOM_IMG_NO5=#{room_img_no5}, ROOM_IMG_NO5=#{room_img_no5}, ROOM_POINTS=#{room_points}, ROOM_MAX=#{room_max},
+		ROOM_NAME=#{room_name}, ROOM_ADDR=#{room_addr}, ROOM_ADDR_DETAIL=#{room_addr_detail}, ROOM_DESC=#{room_desc}, ROOM_PRICE=#{room_price}, ROOM_IMG_NO1=#{room_img_no1}, ROOM_IMG_NO2=#{room_img_no2}, ROOM_IMG_NO3=#{room_img_no3}, ROOM_IMG_NO4=#{room_img_no4}, ROOM_IMG_NO5=#{room_img_no5}, ROOM_IMG_NO5=#{room_img_no5}, ROOM_MAX=#{room_max},
 		ROOM_THEME=#{room_theme}, ROOM_CAT=#{room_cat}, ROOM_WIFI=#{room_wifi}, ROOM_PET=#{room_pet}, ROOM_MEAL=#{room_meal}, ROOM_PARKING=#{room_parking},
 		ROOM_SWPOOL=#{room_swpool} WHERE ROOM_ID=#{room_id} and HOST_ID=#{host_id}
 	</update>
@@ -74,8 +74,7 @@
 		<update id="updateLikeRoom">
 			UPDATE ROOM SET ROOM_LIKES = (SELECT MAX(ROOM_LIKES) FROM ROOM WHERE ROOM_ID = #{room_id} AND ROOM_NAME = #{room_name}) 
 		<if test="status == 'like'"> + </if>
-		<if test="status == 'unlike'"> - </if>
-		1 
+		<if test="status == 'unlike'"> - </if> 1 
 		WHERE ROOM_ID = #{room_id} AND ROOM_NAME = #{room_name} 
 		</update>
 	

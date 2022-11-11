@@ -15,8 +15,7 @@ public class RoomVO {
 	private String room_img_no2;	//숙소 서브 이미지 1
 	private String room_img_no3;	//숙소 서브 이미지 2
 	private String room_img_no4;	//숙소 서브 이미지 3
-	private String room_img_no5;	//숙소 서브 이미지 4 
-	private String room_points;	//숙소 마일리지
+	private String room_img_no5;	//숙소 서브 이미지 4
 	private String room_max;	//숙소 최대인원
 	private String room_theme;	//숙소 테마 (산, 바다, 산과 바다)
 	private String room_cat;	//숙소 카테고리 (펜션, 모텔, 호텔, 게스트 하우스,...)
@@ -170,12 +169,6 @@ public class RoomVO {
 	public void setRoom_img_no5(String room_img_no5) {
 		this.room_img_no5 = room_img_no5;
 	}
-	public String getRoom_points() {
-		return room_points;
-	}
-	public void setRoom_points(String room_points) {
-		this.room_points = room_points;
-	}
 	public String getRoom_max() {
 		return room_max;
 	}
@@ -242,7 +235,7 @@ public class RoomVO {
 				+ ", room_area=" + room_area + ", room_desc=" + room_desc + ", room_id=" + room_id + ", host_id="
 				+ host_id + ", room_price=" + room_price + ", room_img_no1=" + room_img_no1 + ", room_img_no2="
 				+ room_img_no2 + ", room_img_no3=" + room_img_no3 + ", room_img_no4=" + room_img_no4 + ", room_img_no5="
-				+ room_img_no5 + ", room_points=" + room_points + ", room_max=" + room_max + ", room_theme="
+				+ room_img_no5 +  ", room_max=" + room_max + ", room_theme="
 				+ room_theme + ", room_cat=" + room_cat + ", room_wifi=" + room_wifi + ", room_pet=" + room_pet
 				+ ", room_meal=" + room_meal + ", room_parking=" + room_parking + ", room_swpool=" + room_swpool
 				+ ", room_likes=" + room_likes + ", room_stars=" + room_stars + ", room_min_price=" + room_min_price

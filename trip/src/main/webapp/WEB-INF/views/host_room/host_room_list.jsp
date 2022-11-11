@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>업주용 숙소 목록</title>
-<%@ include file="host_header.jsp"%>
+<%@ include file="../host_header.jsp"%>
 <script>
 	function f_getRoom(room_id, host_id) {
 		location.href="getRoom.do?room_id=" + room_id + "&host_id=" + host_id;

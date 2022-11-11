@@ -51,7 +51,6 @@ public class RoomController {
 		roomListHeadMap.put("RoomMax", "최대 수용 인원");
 		roomListHeadMap.put("RoomTheme", "숙박 시설 테마");
 		roomListHeadMap.put("RoomPrice", "숙박 1박당 가격");
-		roomListHeadMap.put("RoomPoints", "숙박 마일리지 (숙박 1박당 가격의 8%로 자동 계산)");
 		roomListHeadMap.put("RoomDesc", "숙박 시설 설명을 여기에 적어주세요");
 		roomListHeadMap.put("RoomCat", "숙박시설 유형");
 		roomListHeadMap.put("RoomWIFI", "와이파이 유무");
@@ -65,7 +64,7 @@ public class RoomController {
 	//(호스트) 업주용 숙소 등록 폼 페이지 이동
 	@RequestMapping(value="/moveInsertRoom.do")
 	public String moveInsertRoom() {
-		return "WEB-INF/views/host_insert_room.jsp";
+		return "WEB-INF/views/host_room/host_room_insert.jsp";
 	}
 
 	// (호스트) 숙소 등록 (숙소 이미지를 같이 받아야 하기에 Multipart 라이브러리 도입, 숙소 이미지는 webapp 아래 img 폴더에 저장,
@@ -271,7 +270,7 @@ public class RoomController {
 		System.out.println("숙소 상세 보기 시작");
 		model.addAttribute("room", roomService.getRoom(rvo));
 		System.out.println("숙소 상세 보기 성공");
-		return "WEB-INF/views/host_room_detail.jsp";
+		return "WEB-INF/views/host_room/host_room_detail.jsp";
 	}
 
 	//(호스트) 업주용 숙소 목록
@@ -297,7 +296,7 @@ public class RoomController {
 
 		model.addAttribute("paging", pvo);
 		model.addAttribute("roomList", roomService.getRoomList(rvo));
-		return "WEB-INF/views/host_room_list.jsp";
+		return "WEB-INF/views/host_room/host_room_list.jsp";
 
 	}
 
@@ -338,7 +337,6 @@ public class RoomController {
 		revo.setRoom_id(u_room.getRoom_id());
 		List<ReviewVO> revo_list = reviewService.selectReviewForRoom(revo);
 		model.addAttribute("u_room", u_room);
-		System.out.println(lvo);
 		model.addAttribute("lvo", lvo);
 		model.addAttribute("revo_list", revo_list);
 		return "WEB-INF/views/user_room_detail.jsp";
