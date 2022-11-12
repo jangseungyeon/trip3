@@ -126,21 +126,20 @@ div#btnBox {
 						</c:forEach>
 						<%-- 		<option value="${conditionMap['제목']}">${conditionMap['제목']}</option> --%>
 						<%-- 		<option value="${conditionMap['내용']}">${conditionMap['내용']}</option> --%>
-					</select> <input class="form-control mr-sm-2" type="text" name="searchKeyword" 
-						placeholder="검색어를 입력하세요.">
+					</select> <input class="form-control mr-sm-2" type="text"
+						name="searchKeyword" placeholder="검색어를 입력하세요.">
 					<button class="btn btn-success" type="submit">검색</button>
 				</form>
 			</nav>
 			<div class="content">
 				<div class="container-fluid">
-
 					<h3>공지목록</h3>
 					<table border="1">
 						<tr>
 							<th>번호</th>
 							<th>제목</th>
-							<th>작성일</th>
 							<th>작성자</th>
+							<th>작성일</th>
 							<th>조회수</th>
 							<th><a class="btn btn-primary"
 								href="manage_faqInsertForm.do" role="button">공지등록</a></th>
@@ -185,10 +184,9 @@ div#btnBox {
 					<br> <br>
 				</div>
 			</div>
+
 		</div>
-
 	</div>
-
 </body>
 <%@ include file="footer.jsp"%>
 </html>

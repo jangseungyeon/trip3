@@ -15,13 +15,10 @@ public class UserVO {
 	private String user_type;
 	private String find;
 
-	@Override
-	public String toString() {
-		return "UserVO [user_id=" + user_id + ", user_password=" + user_password + ", user_name=" + user_name
-				+ ", user_birth=" + user_birth + ", user_gender=" + user_gender + ", user_email=" + user_email
-				+ ", user_phone=" + user_phone + ", user_address1=" + user_address1 + ", user_address2=" + user_address2
-				+ ", user_status=" + user_status + ", user_type=" + user_type + ", find=" + find + "]";
-	}
+	private String searchCondition;
+	private String searchKeyword;
+
+	private int offset;
 
 	public String getUser_id() {
 		return user_id;
@@ -118,4 +115,38 @@ public class UserVO {
 	public void setFind(String find) {
 		this.find = find;
 	}
+
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
+	@Override
+	public String toString() {
+		return "UserVO [user_id=" + user_id + ", user_password=" + user_password + ", user_name=" + user_name
+				+ ", user_birth=" + user_birth + ", user_gender=" + user_gender + ", user_email=" + user_email
+				+ ", user_phone=" + user_phone + ", user_address1=" + user_address1 + ", user_address2=" + user_address2
+				+ ", user_status=" + user_status + ", user_type=" + user_type + ", find=" + find + ", searchCondition="
+				+ searchCondition + ", searchKeyword=" + searchKeyword + ", offset=" + offset + "]";
+	}
+
 }

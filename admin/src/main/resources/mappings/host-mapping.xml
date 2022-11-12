@@ -4,16 +4,6 @@
 
 <mapper namespace="HostDAO">
 
-	<!-- 관리자용 시작 -->
-	<!-- 관리자 업주 조회 -->
-	<select id="manage_hostList" resultType="host">
-		SELECT *
-		FROM host
-		order
-		by
-		host_bizname
-	</select>
-
 	<!-- 관리자 업주 등록 -->
 	<insert id="manage_hostInsert">
 		INSERT INTO
@@ -21,14 +11,7 @@
 		VALUES(#{host_id},#{host_bizname},#{host_pw},#{host_name},#{host_birth},#{host_email},#{host_phone},#{host_addr1},#{host_addr2},#{host_status},#{host_biznum},#{host_bizimg},#{host_bank},#{host_banknum});
 	</insert>
 
-	<!-- 관리자 업주 상세 조회 -->
-	<select id="manage_hostInfo" resultType="host">
-		SELECT *
-		FROM HOST WHERE
-		HOST_ID=#{host_id}
-	</select>
-
-	<!-- 관리자 업주 관리 수정 -->
+	<!-- 관리자 업주 수정 -->
 	<update id="manage_hostUpdate">
 		UPDATE HOST SET
 		HOST_BIZNAME =#{host_bizname},
@@ -52,15 +35,35 @@
 		DELETE FROM HOST WHERE HOST_ID = #{host_id}
 	</delete>
 
-	<!-- 관리자용 끝 -->
+	<!-- 관리자 업주 조회 -->
+	<select id="manage_hostList" resultType="host">
+		SELECT * FROM HOST WHERE 1=1
+		<if test="searchCondition == 'ID' "> AND HOST_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'BIZNAME' "> AND HOST_BIZNAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		ORDER BY HOST_BIZNAME DESC LIMIT 10 OFFSET #{offset}
+	</select>
 
+	<!-- 관리자 업주 상세 -->
+	<select id="manage_hostInfo" resultType="host">
+		SELECT *
+		FROM HOST WHERE
+		HOST_ID=#{host_id}
+	</select>
 
+	<!-- 관리자 공지 개수 -->
+	<select id="totalHostListCnt" resultType="_int">
+		SELECT COUNT(*) FROM HOST WHERE 1=1
+		<if test="searchCondition == 'ID' "> AND HOST_ID LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'BIZNAME' "> AND HOST_BIZNAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+	</select>
 
 	<!-- 아이디 체크 -->
 	<select id="idCheck" resultType="host">
 		SELECT * FROM HOST WHERE
 		HOST_ID=#{host_id}
 	</select>
-
 
 </mapper>

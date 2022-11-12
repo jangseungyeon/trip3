@@ -16,6 +16,35 @@ public class HostVO {
 	private String host_bank;
 	private String host_banknum;
 
+	private String searchCondition;
+	private String searchKeyword;
+
+	private int offset;
+
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
 	public String getHost_id() {
 		return host_id;
 	}
@@ -134,7 +163,8 @@ public class HostVO {
 				+ host_name + ", host_birth=" + host_birth + ", host_email=" + host_email + ", host_phone=" + host_phone
 				+ ", host_addr1=" + host_addr1 + ", host_addr2=" + host_addr2 + ", host_status=" + host_status
 				+ ", host_biznum=" + host_biznum + ", host_bizimg=" + host_bizimg + ", host_bank=" + host_bank
-				+ ", host_banknum=" + host_banknum + "]";
+				+ ", host_banknum=" + host_banknum + ", searchCondition=" + searchCondition + ", searchKeyword="
+				+ searchKeyword + ", offset=" + offset + "]";
 	}
 
 }

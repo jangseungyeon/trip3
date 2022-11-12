@@ -39,231 +39,324 @@ public class RoomVO {
 	private MultipartFile room_img_no3_multi; // 숙소 이미지 파일 업로드할때 쓰이는 MultipartFile 변수
 	private MultipartFile room_img_no4_multi; // room_img_no1 대표 이미지, 나머지 서브 이미지 4개
 	private MultipartFile room_img_no5_multi; 
-	private int offset;
 	
-	public String getRoom_theme_m() {
-		return room_theme_m;
-	}
-	public void setRoom_theme_m(String room_theme_m) {
-		this.room_theme_m = room_theme_m;
-	}
-	public String getRoom_theme_s() {
-		return room_theme_s;
-	}
-	public void setRoom_theme_s(String room_theme_s) {
-		this.room_theme_s = room_theme_s;
-	}
-	public String getRoom_theme_f() {
-		return room_theme_f;
-	}
-	public void setRoom_theme_f(String room_theme_f) {
-		this.room_theme_f = room_theme_f;
-	}
-	public String getRoom_theme_v() {
-		return room_theme_v;
-	}
-	public void setRoom_theme_v(String room_theme_v) {
-		this.room_theme_v = room_theme_v;
-	}
-	public String getRoom_theme_r() {
-		return room_theme_r;
-	}
-	public void setRoom_theme_r(String room_theme_r) {
-		this.room_theme_r = room_theme_r;
-	}
-	public String getRoom_theme_c() {
-		return room_theme_c;
-	}
-	public void setRoom_theme_c(String room_theme_c) {
-		this.room_theme_c = room_theme_c;
-	}
-	public String getRoom_min_price() {
-		return room_min_price;
-	}
-	public void setRoom_min_price(String room_min_price) {
-		this.room_min_price = room_min_price;
-	}
-	public String getRoom_max_price() {
-		return room_max_price;
-	}
-	public void setRoom_max_price(String room_max_price) {
-		this.room_max_price = room_max_price;
-	}
-	public String getRoom_desc() {
-		return room_desc;
-	}
-	public void setRoom_desc(String room_desc) {
-		this.room_desc = room_desc;
-	}
-	public String getRoom_addr_detail() {
-		return room_addr_detail;
-	}
-	public void setRoom_addr_detail(String room_addr_detail) {
-		this.room_addr_detail = room_addr_detail;
-	}
-	public int getOffset() {
-		return offset;
-	}
-	public void setOffset(int offset) {
-		this.offset = offset;
-	}
-	public MultipartFile getRoom_img_no1_multi() {
-		return room_img_no1_multi;
-	}
-	public void setRoom_img_no1_multi(MultipartFile room_img_no1_multi) {
-		this.room_img_no1_multi = room_img_no1_multi;
-	}
-	public MultipartFile getRoom_img_no2_multi() {
-		return room_img_no2_multi;
-	}
-	public void setRoom_img_no2_multi(MultipartFile room_img_no2_multi) {
-		this.room_img_no2_multi = room_img_no2_multi;
-	}
-	public MultipartFile getRoom_img_no3_multi() {
-		return room_img_no3_multi;
-	}
-	public void setRoom_img_no3_multi(MultipartFile room_img_no3_multi) {
-		this.room_img_no3_multi = room_img_no3_multi;
-	}
-	public MultipartFile getRoom_img_no4_multi() {
-		return room_img_no4_multi;
-	}
-	public void setRoom_img_no4_multi(MultipartFile room_img_no4_multi) {
-		this.room_img_no4_multi = room_img_no4_multi;
-	}
-	public MultipartFile getRoom_img_no5_multi() {
-		return room_img_no5_multi;
-	}
-	public void setRoom_img_no5_multi(MultipartFile room_img_no5_multi) {
-		this.room_img_no5_multi = room_img_no5_multi;
-	}
+	private String searchCondition;
+	private String searchKeyword;
+	
+	private int offset;
+
 	public String getRoom_name() {
 		return room_name;
 	}
+
 	public void setRoom_name(String room_name) {
 		this.room_name = room_name;
 	}
+
 	public String getRoom_addr() {
 		return room_addr;
 	}
+
 	public void setRoom_addr(String room_addr) {
 		this.room_addr = room_addr;
 	}
+
+	public String getRoom_addr_detail() {
+		return room_addr_detail;
+	}
+
+	public void setRoom_addr_detail(String room_addr_detail) {
+		this.room_addr_detail = room_addr_detail;
+	}
+
+	public String getRoom_desc() {
+		return room_desc;
+	}
+
+	public void setRoom_desc(String room_desc) {
+		this.room_desc = room_desc;
+	}
+
 	public String getRoom_id() {
 		return room_id;
 	}
+
 	public void setRoom_id(String room_id) {
 		this.room_id = room_id;
 	}
+
 	public String getHost_id() {
 		return host_id;
 	}
+
 	public void setHost_id(String host_id) {
 		this.host_id = host_id;
 	}
+
 	public String getRoom_price() {
 		return room_price;
 	}
+
 	public void setRoom_price(String room_price) {
 		this.room_price = room_price;
 	}
+
 	public String getRoom_img_no1() {
 		return room_img_no1;
 	}
+
 	public void setRoom_img_no1(String room_img_no1) {
 		this.room_img_no1 = room_img_no1;
 	}
+
 	public String getRoom_img_no2() {
 		return room_img_no2;
 	}
+
 	public void setRoom_img_no2(String room_img_no2) {
 		this.room_img_no2 = room_img_no2;
 	}
+
 	public String getRoom_img_no3() {
 		return room_img_no3;
 	}
+
 	public void setRoom_img_no3(String room_img_no3) {
 		this.room_img_no3 = room_img_no3;
 	}
+
 	public String getRoom_img_no4() {
 		return room_img_no4;
 	}
+
 	public void setRoom_img_no4(String room_img_no4) {
 		this.room_img_no4 = room_img_no4;
 	}
+
 	public String getRoom_img_no5() {
 		return room_img_no5;
 	}
+
 	public void setRoom_img_no5(String room_img_no5) {
 		this.room_img_no5 = room_img_no5;
 	}
+
 	public String getRoom_points() {
 		return room_points;
 	}
+
 	public void setRoom_points(String room_points) {
 		this.room_points = room_points;
 	}
+
 	public int getRoom_max() {
 		return room_max;
 	}
+
 	public void setRoom_max(int room_max) {
 		this.room_max = room_max;
 	}
+
 	public String getRoom_theme() {
 		return room_theme;
 	}
+
 	public void setRoom_theme(String room_theme) {
 		this.room_theme = room_theme;
 	}
+
 	public String getRoom_cat() {
 		return room_cat;
 	}
+
 	public void setRoom_cat(String room_cat) {
 		this.room_cat = room_cat;
 	}
+
 	public String getRoom_wifi() {
 		return room_wifi;
 	}
+
 	public void setRoom_wifi(String room_wifi) {
 		this.room_wifi = room_wifi;
 	}
+
 	public String getRoom_pet() {
 		return room_pet;
 	}
+
 	public void setRoom_pet(String room_pet) {
 		this.room_pet = room_pet;
 	}
+
 	public String getRoom_meal() {
 		return room_meal;
 	}
+
 	public void setRoom_meal(String room_meal) {
 		this.room_meal = room_meal;
 	}
+
 	public String getRoom_parking() {
 		return room_parking;
 	}
+
 	public void setRoom_parking(String room_parking) {
 		this.room_parking = room_parking;
 	}
+
 	public String getRoom_swpool() {
 		return room_swpool;
 	}
+
 	public void setRoom_swpool(String room_swpool) {
 		this.room_swpool = room_swpool;
 	}
+
 	public String getRoom_likes() {
 		return room_likes;
 	}
+
 	public void setRoom_likes(String room_likes) {
 		this.room_likes = room_likes;
 	}
+
 	public String getRoom_stars() {
 		return room_stars;
 	}
+
 	public void setRoom_stars(String room_stars) {
 		this.room_stars = room_stars;
 	}
-	
+
+	public String getRoom_min_price() {
+		return room_min_price;
+	}
+
+	public void setRoom_min_price(String room_min_price) {
+		this.room_min_price = room_min_price;
+	}
+
+	public String getRoom_max_price() {
+		return room_max_price;
+	}
+
+	public void setRoom_max_price(String room_max_price) {
+		this.room_max_price = room_max_price;
+	}
+
+	public String getRoom_theme_m() {
+		return room_theme_m;
+	}
+
+	public void setRoom_theme_m(String room_theme_m) {
+		this.room_theme_m = room_theme_m;
+	}
+
+	public String getRoom_theme_s() {
+		return room_theme_s;
+	}
+
+	public void setRoom_theme_s(String room_theme_s) {
+		this.room_theme_s = room_theme_s;
+	}
+
+	public String getRoom_theme_f() {
+		return room_theme_f;
+	}
+
+	public void setRoom_theme_f(String room_theme_f) {
+		this.room_theme_f = room_theme_f;
+	}
+
+	public String getRoom_theme_v() {
+		return room_theme_v;
+	}
+
+	public void setRoom_theme_v(String room_theme_v) {
+		this.room_theme_v = room_theme_v;
+	}
+
+	public String getRoom_theme_r() {
+		return room_theme_r;
+	}
+
+	public void setRoom_theme_r(String room_theme_r) {
+		this.room_theme_r = room_theme_r;
+	}
+
+	public String getRoom_theme_c() {
+		return room_theme_c;
+	}
+
+	public void setRoom_theme_c(String room_theme_c) {
+		this.room_theme_c = room_theme_c;
+	}
+
+	public MultipartFile getRoom_img_no1_multi() {
+		return room_img_no1_multi;
+	}
+
+	public void setRoom_img_no1_multi(MultipartFile room_img_no1_multi) {
+		this.room_img_no1_multi = room_img_no1_multi;
+	}
+
+	public MultipartFile getRoom_img_no2_multi() {
+		return room_img_no2_multi;
+	}
+
+	public void setRoom_img_no2_multi(MultipartFile room_img_no2_multi) {
+		this.room_img_no2_multi = room_img_no2_multi;
+	}
+
+	public MultipartFile getRoom_img_no3_multi() {
+		return room_img_no3_multi;
+	}
+
+	public void setRoom_img_no3_multi(MultipartFile room_img_no3_multi) {
+		this.room_img_no3_multi = room_img_no3_multi;
+	}
+
+	public MultipartFile getRoom_img_no4_multi() {
+		return room_img_no4_multi;
+	}
+
+	public void setRoom_img_no4_multi(MultipartFile room_img_no4_multi) {
+		this.room_img_no4_multi = room_img_no4_multi;
+	}
+
+	public MultipartFile getRoom_img_no5_multi() {
+		return room_img_no5_multi;
+	}
+
+	public void setRoom_img_no5_multi(MultipartFile room_img_no5_multi) {
+		this.room_img_no5_multi = room_img_no5_multi;
+	}
+
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
 	@Override
 	public String toString() {
 		return "RoomVO [room_name=" + room_name + ", room_addr=" + room_addr + ", room_addr_detail=" + room_addr_detail
@@ -278,7 +371,10 @@ public class RoomVO {
 				+ ", room_theme_v=" + room_theme_v + ", room_theme_r=" + room_theme_r + ", room_theme_c=" + room_theme_c
 				+ ", room_img_no1_multi=" + room_img_no1_multi + ", room_img_no2_multi=" + room_img_no2_multi
 				+ ", room_img_no3_multi=" + room_img_no3_multi + ", room_img_no4_multi=" + room_img_no4_multi
-				+ ", room_img_no5_multi=" + room_img_no5_multi + ", offset=" + offset + "]";
+				+ ", room_img_no5_multi=" + room_img_no5_multi + ", searchCondition=" + searchCondition
+				+ ", searchKeyword=" + searchKeyword + ", offset=" + offset + "]";
 	}
+	
+
 	
 }

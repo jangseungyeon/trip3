@@ -13,22 +13,10 @@ public class UserDAOMybatis {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
-// 	관리자 회원 조회	
-	public List<UserVO> manage_userList() {
-		System.out.println("manage_userList: ");
-		return mybatis.selectList("UserDAO.manage_userList");
-	}
-
 // 	관리자 회원 등록
 	public int manage_userInsert(UserVO vo) {
 		System.out.println("manage_userInsert: " + vo);
 		return mybatis.insert("UserDAO.manage_userInsert", vo);
-	}
-
-//  관리자 회원 상세 조회
-	public UserVO manage_userInfo(UserVO vo) {
-		System.out.println("manage_userInfo: " + vo);
-		return mybatis.selectOne("UserDAO.manage_userInfo", vo);
 	}
 
 //	관리자 회원 정보 수정	
@@ -41,15 +29,30 @@ public class UserDAOMybatis {
 	public void manage_userDelete(UserVO vo) {
 		System.out.println("manage_userDelete: ");
 		mybatis.delete("UserDAO.manage_userDelete", vo);
+	}
 
+// 	관리자 회원 조회	
+	public List<UserVO> manage_userList(UserVO vo) {
+		System.out.println("manage_userList: ");
+		return mybatis.selectList("UserDAO.manage_userList", vo);
+	}
+
+//  관리자 회원 상세
+	public UserVO manage_userInfo(UserVO vo) {
+		System.out.println("manage_userInfo: " + vo);
+		return mybatis.selectOne("UserDAO.manage_userInfo", vo);
+	}
+
+//	관리자 업주 개수
+	public int totalUserListCnt(UserVO vo) {
+		System.out.println("totalUserListCnt() 기능처리");
+		return mybatis.selectOne("UserDAO.totalUserListCnt", vo);
 	}
 
 //  아이디 체크
 	public int user_idCheck(UserVO vo) {
-		System.out.println("user_idCheck");
 		System.out.println("idCheck: " + vo);
 		if (vo.getUser_id() != null || !vo.getUser_id().equals("")) {
-			System.out.println("아이디체크 널아님");
 			vo = mybatis.selectOne("UserDAO.idCheck", vo);
 			if (vo != null) {
 				return 1;

@@ -8,6 +8,35 @@
 <head>
 <meta charset="utf-8" />
 <title>Admin Dashboard</title>
+<style>
+#searchNav {
+	-webkit-justify-content: flex-end;
+	justify-content: flex-end;
+}
+
+a.list-btn {
+	text-decoration: none;
+	font-weight: bolder;
+	display: inline-block;
+	padding: 5px 10px;
+	background-color: blue;
+	color: #fff;
+	border: 1px solid #777;
+	border-radius: 5px;
+}
+
+a.list-btn:hover, a.list-btn:active {
+	background-color: red;
+}
+
+a.aSel {
+	color: red;
+}
+
+div#btnBox {
+	text-align: center;
+}
+</style>
 </head>
 
 <body>
@@ -35,8 +64,8 @@
 							정보
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i
-							class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
@@ -87,62 +116,88 @@
 			</nav>
 			<!-- End Navbar -->
 
+			<!-- Search -->
+			<nav id="searchNav" class="navbar navbar-expand-sm navbar-dark">
+				<form class="form-inline" action="manage_hostList.do" method="post">
+					<select class="form-control" id="sel1" name="searchCondition"
+						style="display: inline-block !important; margin-right: 10px;">
+						<c:forEach items="${conditionMap}" var="option">
+							<option value="${option.value}">${option.key}</option>
+						</c:forEach>
+						<%-- 		<option value="${conditionMap['제목']}">${conditionMap['제목']}</option> --%>
+						<%-- 		<option value="${conditionMap['내용']}">${conditionMap['내용']}</option> --%>
+					</select> <input class="form-control mr-sm-2" type="text"
+						name="searchKeyword" placeholder="검색어를 입력하세요.">
+					<button class="btn btn-success" type="submit">검색</button>
+				</form>
+			</nav>
 			<div class="content">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card strpied-tabled-with-hover">
-								<div class="card-header ">
-									<h4 class="card-title">업주 목록</h4>
-								</div>
-								<div class="card-body table-full-width table-responsive">
-									<table class="table table-hover table-striped">
-										<thead>
-											<tr>
-												<th>아이디</th>
-												<th>업소명</th>
-												<th>이름</th>
-												<th>생년월일</th>
-												<th>이메일</th>
-												<th>전화번호</th>
-												<th>주소</th>
-												<th>상세</th>
-												<th>상태</th>
-												<th>사업자번호</th>
-												<th>이미지</th>
-												<th>은행</th>
-												<th>계좌번호</th>
-												<th><a class="btn btn-primary"
-													href="manage_hostInsertForm.do" role="button">업주가입</a></th>
-											</tr>
-										</thead>
-										<c:forEach var="i" items="${list}">
-											<tbody>
-												<tr>
-													<td>${i.host_id}</td>
-													<td>${i.host_bizname}</td>
-													<td>${i.host_name}</td>
-													<td>${i.host_birth}</td>
-													<td>${i.host_email}</td>
-													<td>${i.host_phone}</td>
-													<td>${i.host_addr1}</td>
-													<td>${i.host_addr2}</td>
-													<td>${i.host_status}</td>
-													<td>${i.host_biznum}</td>
-													<td>${i.host_bizimg}</td>
-													<td>${i.host_bank}</td>
-													<td>${i.host_banknum}</td>
-													<td><a class="btn btn-danger"
-														href="manage_hostInfo.do?host_id=${i.host_id}"
-														role="button">정보수정</a></td>
-												</tr>
-											</tbody>
-										</c:forEach>
-									</table>
-								</div>
-							</div>
-						</div>
+					<h3>업주 목록</h3>
+					<table border="1">
+						<tr>
+							<th>아이디</th>
+							<th>업소명</th>
+							<th>이름</th>
+							<th>생년월일</th>
+							<th>이메일</th>
+							<th>전화번호</th>
+							<th>주소</th>
+							<th>상세</th>
+							<th>상태</th>
+							<th>사업자번호</th>
+							<th>이미지</th>
+							<th>은행</th>
+							<th>계좌번호</th>
+							<th><a class="btn btn-primary"
+								href="manage_hostInsertForm.do" role="button">업주가입</a></th>
+						</tr>
+						<c:forEach var="host" items="${hostList}">
+							<tr align="center">
+								<td>${host.host_id}</td>
+								<td>${host.host_bizname}</td>
+								<td>${host.host_name}</td>
+								<td>${host.host_birth}</td>
+								<td>${host.host_email}</td>
+								<td>${host.host_phone}</td>
+								<td>${host.host_addr1}</td>
+								<td>${host.host_addr2}</td>
+								<td>${host.host_status}</td>
+								<td>${host.host_biznum}</td>
+								<td>${host.host_bizimg}</td>
+								<td>${host.host_bank}</td>
+								<td>${host.host_banknum}</td>
+								<td><a class="btn btn-danger"
+									href="manage_hostInfo.do?host_id=${host.host_id}" role="button">정보수정</a></td>
+							</tr>
+						</c:forEach>
+					</table>
+					<br> <br>
+					<div id="btnBox">
+						<!-- 반복처리할 태그 시작-->
+						<c:if test="${paging.nowPageBtn > 1 }">
+							<a class="list-btn"
+								href="manage_hostList.do?nowPageBtn=${paging.nowPageBtn -1 }">&lt;</a>
+						</c:if>
+						<c:forEach begin="${paging.startBtn}" end="${paging.endBtn }"
+							step="1" var="i">
+							<c:choose>
+								<c:when test="${paging.nowPageBtn == i}">
+									<a class="aSel">${i}</a>
+								</c:when>
+								<c:otherwise>
+									<a class="list-btn" href="manage_hostList.do?nowPageBtn=${i}">${i}</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.nowPageBtn < paging.totalBtnCnt }">
+							<a class="list-btn"
+								href="manage_hostList.do?nowPageBtn=${paging.nowPageBtn +1 }">&gt;</a>
+						</c:if>
+						<!-- 반복처리할 태그 끝 -->
+
 					</div>
+					<br> <br>
 				</div>
 			</div>
 

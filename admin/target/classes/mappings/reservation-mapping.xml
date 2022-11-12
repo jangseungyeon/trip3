@@ -4,95 +4,47 @@
 
 <mapper namespace="ReservationDAO">
 
-<!-- 관리자용 시작 -->
-	<!-- 관리자 예약 조회 -->
-	<select id="manage_reservList" resultType="reservation">
-		SELECT * FROM RESERVATION WHERE 1=1
-		<if test='res_id != null'>AND RES_ID = #{res_id}</if>
-	</select>
-
-	<!-- 관리자 예약 등록 -->
-	<insert id="manage_reservInsert">
-		INSERT INTO RESERVATION (USER_ID, RES_NAME, RES_TEL, RES_EMAIL, HOST_ID, ROOM_ID, ROOM_NAME, ROOM_IMG, PAY_DATE, PAY_AMOUNT, RES_NUM, 
-		RES_CHECKIN, RES_CHECKOUT)
-		VALUES(#{user_id}, #{res_name}, #{res_tel}, #{res_email}, #{host_id}, #{room_id}, #{room_name}, #{room_img}, #{pay_date}, #{pay_amount}, #{res_num},
-		#{res_checkin}, #{res_checkout})
-	</insert>
-
-	<!-- 관리자 예약 상세 조회 -->
-	<select id="manage_reservInfo" resultType="reservation">
-		SELECT *
-		FROM RESERVATION WHERE
-		RES_ID=#{res_id}
-	</select>
-
-	<!-- 관리자 예약 정보 수정 -->
-	<!-- 예약 변경 가능 상태 => '1' == 예약 변경 가능, '2' == 예약 변경 불가, '3' == 예약 취소 완료, '4' == 사용 완료 (리뷰 작성 가능) -->
+	<!-- 관리자 예약 수정 -->
+	<!-- 예약 변경 가능 상태 => '1' == 예약 변경 가능, '2' == 예약 변경 불가, '3' == 예약 취소 완료, '4' 
+		== 사용 완료 (리뷰 작성 가능) -->
 	<update id="manage_reservUpdate">
 		UPDATE RESERVATION
-		SET 
-		RES_STATUS = 1 
-		WHERE RES_ID = #{res_id} AND USER_ID = #{user_id}
+		SET
+		RES_STATUS = 1
+		WHERE RES_ID =
+		#{res_id} AND USER_ID = #{user_id}
 	</update>
 
 	<!-- 관리자 예약 삭제 -->
 	<delete id="manage_reservDelete">
 		DELETE FROM RESERVATION WHERE
-		RES_ID = #{res_id} AND USER_ID = #{user_id}
+		RES_ID = #{res_id} AND
+		USER_ID = #{user_id}
 	</delete>
 
-<!-- 관리자용 끝 -->
+	<!-- 관리자 예약 조회 -->
+	<select id="manage_reservList" resultType="reservation">
+		SELECT * FROM RESERVATION WHERE 1=1
+		<if test="searchCondition == 'RESID' "> AND RES_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'NAME' "> AND RES_NAME LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+<!-- 		<if test='res_id != null'>AND RES_ID = #{res_id}</if> -->
+		ORDER BY RES_ID DESC LIMIT 10 OFFSET #{offset}
+	</select>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- 숙소 예약 등록 -->
-	<insert id="insertReservation">
-		INSERT INTO RESERVATION (USER_ID, RES_NAME, RES_TEL, RES_EMAIL, HOST_ID, ROOM_ID, ROOM_NAME, ROOM_IMG, PAY_DATE, PAY_AMOUNT, RES_NUM, 
-		RES_CHECKIN, RES_CHECKOUT)
-		VALUES(#{user_id}, #{res_name}, #{res_tel}, #{res_email}, #{host_id}, #{room_id}, #{room_name}, #{room_img}, #{pay_date}, #{pay_amount}, #{res_num},
-		#{res_checkin}, #{res_checkout})
-	</insert>
-	
-	<!-- 숙소 예약 수정 (기본적으로 예약 번호와 유저 아이디와 예약 상태가 취소 가능하다는 상태 아래 일정 조정 즉, 
-	체크인/체크아웃 날짜 조정 (처음 예약했던 기간만 가능, 거기서 날짜 변경만 가능 ex) 21~24일 예약 3일 예약 여기서 3일 기준으로 날짜만 변경 가능하게 함) -->
-	<!-- 업데이트 쿼리문 돌려서 예약 변경할때마다 자동적으로 RES_COUNT 컬럼에 들어가는 값이 기존에 있던 값보다 하나씩 줄 예정 
-	(초기값 3 => 2 => 1 => 0 => 0되면 더이상 수정이 불가능하도록 조치 예정 -->
-	
-	<!-- 예약 변경 가능 상태 => '1' == 예약 변경 가능, '2' == 예약 변경 불가, '3' == 예약 취소 완료, '4' == 사용 완료 (리뷰 작성 가능) -->
-	<update id="updateReservation">
-		UPDATE RESERVATION
-		SET RES_CHECKIN = #{res_checkin}, RES_CHECKOUT = #{res_checkout}, RES_COUNT=#{res_count}-1, RES_STATUS = #{res_status} 
-		WHERE RES_ID = #{res_id} AND USER_ID = #{user_id} AND RES_STATUS = '1'
-	</update>
-	
-	<!-- 숙소 예약 삭제 => 처음 계획했던 일정에서 더 추가 일자로 숙박하거나 더 적게 숙박해야할때 먼저 취소 후 새로 다시 등록 (예약) -->
-	<delete id="deleteReservation">
-		DELETE FROM RESERVATION WHERE
-		RES_ID = #{res_id} AND USER_ID = #{user_id}
-	</delete>
-	
-	<!-- 숙소 예약 조회  -->
-	<select id="getReservationList" resultType="reservation">
-		SELECT * FROM RESERVATION WHERE USER_ID = #{user_id}
+	<!-- 관리자 예약 상세 -->
+	<select id="manage_reservInfo" resultType="reservation">
+		SELECT *
+		FROM
+		RESERVATION WHERE
+		RES_ID=#{res_id}
 	</select>
 	
-	<!-- 숙소 총 예약 갯수 조회 -->
+	<!-- 관리자 예약 개수 -->
 	<select id="totalReservationListCnt" resultType="_int">
-		SELECT COUNT(*) FROM RESERVATION WHERE USER_ID = #{user_id}
+		SELECT COUNT(*) FROM RESERVATION WHERE 1=1
+		<if test="searchCondition == 'RESID' "> AND RES_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'NAME' "> AND RES_NAME LIKE CONCAT('%', #{searchKeyword}, '%')</if>
 	</select>
-	
+
 
 </mapper>

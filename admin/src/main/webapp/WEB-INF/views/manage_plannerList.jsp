@@ -8,6 +8,35 @@
 <head>
 <meta charset="utf-8" />
 <title>Admin Dashboard</title>
+<style>
+#searchNav {
+	-webkit-justify-content: flex-end;
+	justify-content: flex-end;
+}
+
+a.list-btn {
+	text-decoration: none;
+	font-weight: bolder;
+	display: inline-block;
+	padding: 5px 10px;
+	background-color: blue;
+	color: #fff;
+	border: 1px solid #777;
+	border-radius: 5px;
+}
+
+a.list-btn:hover, a.list-btn:active {
+	background-color: red;
+}
+
+a.aSel {
+	color: red;
+}
+
+div#btnBox {
+	text-align: center;
+}
+</style>
 </head>
 
 <body>
@@ -87,50 +116,79 @@
 			</nav>
 			<!-- End Navbar -->
 
+			<!-- Search -->
+			<nav id="searchNav" class="navbar navbar-expand-sm navbar-dark">
+				<form class="form-inline" action="manage_plannerList.do"
+					method="post">
+					<select class="form-control" id="sel1" name="searchCondition"
+						style="display: inline-block !important; margin-right: 10px;">
+						<c:forEach items="${conditionMap}" var="option">
+							<option value="${option.value}">${option.key}</option>
+						</c:forEach>
+						<%-- 		<option value="${conditionMap['제목']}">${conditionMap['제목']}</option> --%>
+						<%-- 		<option value="${conditionMap['내용']}">${conditionMap['내용']}</option> --%>
+					</select> <input class="form-control mr-sm-2" type="text"
+						name="searchKeyword" placeholder="검색어를 입력하세요.">
+					<button class="btn btn-success" type="submit">검색</button>
+				</form>
+			</nav>
+
 			<div class="content">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card strpied-tabled-with-hover">
-								<div class="card-header ">
-									<h4 class="card-title">플레너 목록</h4>
-								</div>
-								<div class="card-body table-full-width table-responsive">
-									<table class="table table-hover table-striped">
-										<thead>
-											<tr>
-												<th>플래너제목</th>
-												<th>아이디</th>
-												<th>번호</th>
-												<th>숙소명</th>
-												<th>여행시작일</th>
-												<th>여행종료일</th>
-												<th>여행지역</th>
-												<th>여행기간</th>
-											</tr>
-										</thead>
-										<c:forEach var="i" items="${list}">
-											<tbody>
-												<tr>
-													<td>${i.planner_title}</td>
-													<td>${i.user_id}</td>
-													<td>${i.planner_no}</td>
-													<td>${i.room_name}</td>
-													<td>${i.planner_start}</td>
-													<td>${i.planner_end}</td>
-													<td>${i.planner_area}</td>
-													<td>${i.planner_day}</td>
-													<td><a class="btn btn-danger"
-														href="manage_plannerInfo.do?planner_no=${i.planner_no}"
-														role="button">플레너 수정</a></td>
-												</tr>
-											</tbody>
-										</c:forEach>
-									</table>
-								</div>
-							</div>
-						</div>
+					<h3>플레너 목록</h3>
+					<table border="1">
+						<tr>
+							<th>플래너제목</th>
+							<th>아이디</th>
+							<th>번호</th>
+							<th>숙소명</th>
+							<th>여행시작일</th>
+							<th>여행종료일</th>
+							<th>여행지역</th>
+							<th>여행기간</th>
+						</tr>
+						<c:forEach var="plan" items="${plannerList}">
+							<tr>
+								<td>${plan.planner_title}</td>
+								<td>${plan.user_id}</td>
+								<td>${plan.planner_no}</td>
+								<td>${plan.room_name}</td>
+								<td>${plan.planner_start}</td>
+								<td>${plan.planner_end}</td>
+								<td>${plan.planner_area}</td>
+								<td>${plan.planner_day}</td>
+								<td><a class="btn btn-danger"
+									href="manage_plannerInfo.do?planner_no=${plan.planner_no}"
+									role="button">플레너 수정</a></td>
+							</tr>
+						</c:forEach>
+					</table>
+					<br> <br>
+					<div id="btnBox">
+						<!-- 반복처리할 태그 시작-->
+						<c:if test="${paging.nowPageBtn > 1 }">
+							<a class="list-btn"
+								href="manage_plannerList.do?nowPageBtn=${paging.nowPageBtn -1 }">&lt;</a>
+						</c:if>
+						<c:forEach begin="${paging.startBtn}" end="${paging.endBtn }"
+							step="1" var="i">
+							<c:choose>
+								<c:when test="${paging.nowPageBtn == i}">
+									<a class="aSel">${i}</a>
+								</c:when>
+								<c:otherwise>
+									<a class="list-btn" href="manage_plannerList.do?nowPageBtn=${i}">${i}</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.nowPageBtn < paging.totalBtnCnt }">
+							<a class="list-btn"
+								href="manage_plannerList.do?nowPageBtn=${paging.nowPageBtn +1 }">&gt;</a>
+						</c:if>
+						<!-- 반복처리할 태그 끝 -->
+
 					</div>
+					<br> <br>
 				</div>
 			</div>
 

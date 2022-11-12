@@ -11,21 +11,8 @@ import com.springbook.biz.planner.PlannerVO;
 
 @Service("PlannerService")
 public class PlannerServiceImpl implements PlannerService {
-
 	@Autowired
 	private PlannerDAOMybatis plannerDAO;
-
-// 	관리자 플레너 조회
-	@Override
-	public List<PlannerVO> manage_plannerList() {
-		return plannerDAO.manage_plannerList();
-	}
-
-//	관리자 플레너 상세 조회
-	@Override
-	public PlannerVO manage_plannerInfo(PlannerVO vo) {
-		return plannerDAO.manage_plannerInfo(vo);
-	}
 
 // 	관리자 플레너 등록
 	@Override
@@ -41,17 +28,12 @@ public class PlannerServiceImpl implements PlannerService {
 		plannerDAO.manage_placeInsert(List);
 	}
 
-// 관리자 플레너 관리 수정
+// 관리자 플레너 수정
 	@Override
 	public void manage_plannerUpdate(PlannerVO vo) {
 		plannerDAO.manage_plannerUpdate(vo);
 	}
 
-	@Override
-	public List<PlaceVO> getPlace(PlaceVO place) {
-		return plannerDAO.getPlace(place);
-	}
-	
 //	관리자 플레너 삭제
 	@Override
 	public void manage_plannerDelete(PlannerVO vo) {
@@ -66,53 +48,29 @@ public class PlannerServiceImpl implements PlannerService {
 		plannerDAO.manage_placeDelete(vo);
 	}
 
-//	
-//	
-//	@Override
-//	public void insertPlace(List<PlaceVO> List) {
-//		plannerDAO.insertPlace(List);
-//	}
-//
-//	@Override
-//	public void insertPlanner(PlannerVO vo) {
-//		plannerDAO.insertPlanner(vo);
-//	}
-//	
-////	내가 작성한 플래너 정보 가져오기
-//	@Override
-//	public PlannerVO plannerinfo(PlannerVO pvo) {
-//		return plannerDAO.plannerinfo(pvo);
-//	}
-//	
-//	@Override
-//	public List<PlannerVO> plannerlist(PlannerVO pvo) {
-//		return plannerDAO.plannerList(pvo);
-//	}
-//	
+// 	관리자 플레너 조회
+	@Override
+	public List<PlannerVO> manage_plannerList(PlannerVO vo) {
+		return plannerDAO.manage_plannerList(vo);
+	}
+
+//	관리자 플레너 상세
+	@Override
+	public PlannerVO manage_plannerInfo(PlannerVO vo) {
+		return plannerDAO.manage_plannerInfo(vo);
+	}
+
+//	관리자 플레너 개수
+	@Override
+	public int totalPlannerListCnt(PlannerVO vo) {
+		return plannerDAO.totalPlannerListCnt(vo);
+	}
+
+	
+	
+	
 //	@Override
 //	public List<PlaceVO> getPlace(PlaceVO place) {
 //		return plannerDAO.getPlace(place);
 //	}
-//
-//	@Override
-//	public List<PlannerVO> plannerPage() {
-//		return plannerDAO.plannerPage();
-//	}
-//	
-//	@Override
-//	public List<PlannerVO> mainPlannerList() {
-//		return plannerDAO.mainPlannerList();
-//	}
-//
-//	@Override
-//	public void deltePlanner(PlannerVO vo) {
-//		plannerDAO.deletePlanner(vo);
-//	}
-//
-//	@Override
-//	public void deletePlace(PlaceVO vo) {
-//		plannerDAO.deletePlace(vo);
-//	}
-//	
-
 }

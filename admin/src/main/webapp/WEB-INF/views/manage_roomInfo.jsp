@@ -18,7 +18,7 @@
 			$("#btnUpdate").click(function() {
 				// 확인 대화상자    
 				if (confirm("수정하시겠습니까?")) {
-					document.manage_roomInfo.action = "manage_updateRoom.do";
+					document.manage_roomInfo.action = "manage_roomUpdate.do";
 					document.manage_roomInfo.submit();
 				}
 			});
@@ -27,7 +27,7 @@
 			$("#btnDelete").click(function() {
 				// 확인 대화상자 
 				if (confirm("삭제하시겠습니까?")) {
-					document.manage_roomInfo.action = "manage_deleteRoom.do";
+					document.manage_roomInfo.action = "manage_roomDelete.do";
 					document.manage_roomInfo.submit();
 				}
 			});

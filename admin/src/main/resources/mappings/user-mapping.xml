@@ -4,17 +4,6 @@
 
 <mapper namespace="UserDAO">
 
-<!-- 관리자용 시작 -->
-	<!-- 관리자 회원 조회 -->
-	<select id="manage_userList" resultType="user">
-		SELECT user_id,
-		user_name, user_birth, user_gender, user_email, user_phone,
-		user_address1, user_address2, user_status, user_type
-		FROM user
-		order by
-		user_name
-	</select>
-
 	<!-- 관리자 회원 등록 -->
 	<insert id="manage_userInsert">
 		INSERT INTO USER (USER_ID, USER_PASSWORD, USER_NAME,
@@ -23,20 +12,6 @@
 		#{user_password}, #{user_name}, #{user_email}, #{user_phone},
 		#{user_type})
 	</insert>
-
-	<!-- 관리자 회원 상세 조회 -->
-	<select id="manage_userInfo" resultType="user">
-		SELECT *
-		FROM USER WHERE
-		USER_ID=#{user_id}
-	</select>
-	<!-- <select id="manage_userInfo" resultType="user"> -->
-	<!-- SELECT user_id, -->
-	<!-- user_name, user_birth, user_gender, user_email, user_phone, -->
-	<!-- user_address1, user_address2, user_status, user_type -->
-	<!-- FROM USER WHERE USER_ID=#{user_id} -->
-	<!-- </select> -->
-
 
 	<!-- 관리자 회원 정보 수정 -->
 	<update id="manage_userUpdate">
@@ -51,7 +26,8 @@
 		USER_ADDRESS1=#{user_address1},
 		USER_ADDRESS2=#{user_address2},
 		USER_STATUS=#{user_status}
-		WHERE USER_ID=#{user_id}
+		WHERE
+		USER_ID=#{user_id}
 	</update>
 
 	<!-- 관리자 회원 삭제 -->
@@ -59,12 +35,39 @@
 		DELETE FROM USER WHERE USER_ID = #{user_id}
 	</delete>
 
-<!-- 관리자용 끝 -->
+	<!-- 관리자 회원 조회 -->
+	<select id="manage_userList" resultType="user">
+		SELECT * FROM USER WHERE 1=1
+		<if test="searchCondition == 'ID' "> AND USER_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'NAME' "> AND USER_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		ORDER BY USER_NAME
+		LIMIT 10 OFFSET #{offset}
+
+		<!-- user_name, user_birth, user_gender, user_email, user_phone, -->
+		<!-- user_address1, user_address2, user_status, user_type -->
+		<!-- FROM user order by user_name -->
+	</select>
+
+	<!-- 관리자 회원 상세 -->
+	<select id="manage_userInfo" resultType="user">
+		SELECT *
+		FROM USER WHERE
+		USER_ID=#{user_id}
+	</select>
+
+	<!-- 관리자 공지 개수 -->
+	<select id="totalUserListCnt" resultType="_int">
+		SELECT COUNT(*) FROM USER WHERE 1=1
+		<if test="searchCondition == 'ID' "> AND USER_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'NAME' "> AND USER_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+	</select>
 
 	<!-- 아이디 체크 -->
 	<select id="idCheck" resultType="user">
 		SELECT * FROM USER WHERE
 		USER_ID= #{user_id}
 	</select>
-	
+
 </mapper>

@@ -8,6 +8,35 @@
 <head>
 <meta charset="utf-8" />
 <title>Admin Dashboard</title>
+<style>
+#searchNav {
+	-webkit-justify-content: flex-end;
+	justify-content: flex-end;
+}
+
+a.list-btn {
+	text-decoration: none;
+	font-weight: bolder;
+	display: inline-block;
+	padding: 5px 10px;
+	background-color: blue;
+	color: #fff;
+	border: 1px solid #777;
+	border-radius: 5px;
+}
+
+a.list-btn:hover, a.list-btn:active {
+	background-color: red;
+}
+
+a.aSel {
+	color: red;
+}
+
+div#btnBox {
+	text-align: center;
+}
+</style>
 </head>
 
 <body>
@@ -35,8 +64,8 @@
 							정보
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i
-							class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
@@ -75,8 +104,7 @@
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">${manage_id}님
-								접속중</span>
+									<span class="no-icon">${manage_id}님 접속중</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log
@@ -88,21 +116,35 @@
 			</nav>
 			<!-- End Navbar -->
 
+			<!-- Search -->
+			<nav id="searchNav" class="navbar navbar-expand-sm navbar-dark">
+				<form class="form-inline" action="manage_roomList.do" method="post">
+					<select class="form-control" id="sel1" name="searchCondition"
+						style="display: inline-block !important; margin-right: 10px;">
+						<c:forEach items="${conditionMap}" var="option">
+							<option value="${option.value}">${option.key}</option>
+						</c:forEach>
+						<%-- 		<option value="${conditionMap['제목']}">${conditionMap['제목']}</option> --%>
+						<%-- 		<option value="${conditionMap['내용']}">${conditionMap['내용']}</option> --%>
+					</select> <input class="form-control mr-sm-2" type="text"
+						name="searchKeyword" placeholder="검색어를 입력하세요.">
+					<button class="btn btn-success" type="submit">검색</button>
+				</form>
+			</nav>
 			<div class="content">
 				<div class="container-fluid">
-
 					<h3>숙소목록</h3>
 					<table border="1">
 						<tr>
+							<th>숙소 아이디</th>
+							<th>업주 아이디</th>
 							<th>이름</th>
 							<th>주소</th>
 							<th>상세주소</th>
 							<th>설명</th>
-							<th>숙소 아이디</th>
-							<th>업주 아이디</th>
 							<th>가격</th>
 							<th>이미지</th>
-							<th>마일리지</th>
+<!-- 							<th>마일리지</th> -->
 							<th>최대인원</th>
 							<th>테마</th>
 							<th>카테고리</th>
@@ -114,35 +156,61 @@
 							<th>좋아요</th>
 							<th>별점</th>
 						</tr>
-						<c:forEach var="i" items="${list}">
+						<c:forEach var="room" items="${roomList}">
 							<tr align="center">
-								<td>${i.room_name}</td>
-								<td>${i.room_addr}</td>
-								<td>${i.room_addr_detail}</td>
-								<td>${i.room_desc}</td>
-								<td>${i.room_id}</td>
-								<td>${i.host_id}</td>
-								<td>${i.room_price}</td>
-								<td>${i.room_img_no1}</td>
-								<td>${i.room_points}</td>
-								<td>${i.room_max}</td>
-								<td>${i.room_theme}</td>
-								<td>${i.room_cat}</td>
-								<td>${i.room_wifi}</td>
-								<td>${i.room_pet}</td>
-								<td>${i.room_meal}</td>
-								<td>${i.room_parking}</td>
-								<td>${i.room_swpool}</td>
-								<td>${i.room_likes}</td>
-								<td>${i.room_stars}</td>
+								<td>${room.room_id}</td>
+								<td>${room.host_id}</td>
+								<td>${room.room_name}</td>
+								<td>${room.room_addr}</td>
+								<td>${room.room_addr_detail}</td>
+								<td>${room.room_desc}</td>
+								<td>${room.room_price}</td>
+								<td>${room.room_img_no1}</td>
+<%-- 								<td>${room.room_points}</td> --%>
+								<td>${room.room_max}</td>
+								<td>${room.room_theme}</td>
+								<td>${room.room_cat}</td>
+								<td>${room.room_wifi}</td>
+								<td>${room.room_pet}</td>
+								<td>${room.room_meal}</td>
+								<td>${room.room_parking}</td>
+								<td>${room.room_swpool}</td>
+								<td>${room.room_likes}</td>
+								<td>${room.room_stars}</td>
 								<td><a class="btn btn-danger"
-									href="manage_roomInfo.do?host_id=${i.host_id}" role="button">정보수정</a></td>
+									href="manage_roomInfo.do?room_id=${room.room_id}" role="button">정보수정</a></td>
 							</tr>
 						</c:forEach>
 					</table>
+					<br> <br>
+					<div id="btnBox">
+						<!-- 반복처리할 태그 시작-->
+						<c:if test="${paging.nowPageBtn > 1 }">
+							<a class="list-btn"
+								href="manage_roomList.do?nowPageBtn=${paging.nowPageBtn -1 }">&lt;</a>
+						</c:if>
+						<c:forEach begin="${paging.startBtn}" end="${paging.endBtn }"
+							step="1" var="i">
+							<c:choose>
+								<c:when test="${paging.nowPageBtn == i}">
+									<a class="aSel">${i}</a>
+								</c:when>
+								<c:otherwise>
+									<a class="list-btn" href="manage_roomList.do?nowPageBtn=${i}">${i}</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${paging.nowPageBtn < paging.totalBtnCnt }">
+							<a class="list-btn"
+								href="manage_roomList.do?nowPageBtn=${paging.nowPageBtn +1 }">&gt;</a>
+						</c:if>
+						<!-- 반복처리할 태그 끝 -->
+
+					</div>
+					<br> <br>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 

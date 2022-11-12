@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
@@ -17,9 +19,15 @@ request.setCharacterEncoding("UTF-8");
 	//공지 작성 버튼
 	function check() {
 		$('#manage_faqInsert').submit();
-		
+
 	}
+	
+<%Date nowTime = new Date();
+SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");%>
+	
 </script>
+
+
 
 
 </head>
@@ -105,12 +113,14 @@ request.setCharacterEncoding("UTF-8");
 					<h3>공지 등록</h3>
 					<form action="manage_faqInsert.do" method="post"
 						id="manage_faqInsert" enctype="multipart/form-data">
-						
-						<input type="text" name="faq_writer" id="faq_writer" value="관리자" readonly><br>
+
+						<input type="text" name="faq_writer" id="faq_writer" value="관리자"
+							readonly><br>
 						<!-- <input type="password" name="host_password" id="host_password" placeholder='비밀번호'><br> -->
-						<input type="date" name="faq_regdate"><br> 
-						<input type="text" name="faq_title" placeholder='제목'><br> 
-						<input type="text" name="faq_content" id="faq_content" placeholder='내용'><br>
+						<input type="date" name="faq_regdate"
+							value="<%=sf.format(nowTime)%>"><br> <input
+							type="text" name="faq_title" placeholder='제목'><br> <input
+							type="text" name="faq_content" id="faq_content" placeholder='내용'><br>
 						<input type="hidden" name="faq_cnt" id="faq_cnt" value="0">
 						<input type="file" name="uploadFile"><br>
 

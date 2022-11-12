@@ -19,7 +19,27 @@ public class ReservationVO {
 	private String res_status; // 예약상태 (DB 디폴트 초기 값 1)
 	private String res_checkin; // 체크인 날짜
 	private String res_checkout; // 체크아웃 날짜
+
 	private int offset; // 페이징 처리에서 페이지 바꿀때마다 변하는, 맨 처음부터 데이터 건너뛰는 갯수 <= pagingVO에서 조정
+
+	private String searchCondition;
+	private String searchKeyword;
+
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 
 	public String getRes_tel() {
 		return res_tel;
@@ -180,6 +200,8 @@ public class ReservationVO {
 				+ ", host_id=" + host_id + ", room_id=" + room_id + ", room_name=" + room_name + ", room_img="
 				+ room_img + ", pay_date=" + pay_date + ", pay_amount=" + pay_amount + ", res_num=" + res_num
 				+ ", res_count=" + res_count + ", res_status=" + res_status + ", res_checkin=" + res_checkin
-				+ ", res_checkout=" + res_checkout + ", offset=" + offset + "]";
+				+ ", res_checkout=" + res_checkout + ", offset=" + offset + ", searchCondition=" + searchCondition
+				+ ", searchKeyword=" + searchKeyword + "]";
 	}
+
 }
