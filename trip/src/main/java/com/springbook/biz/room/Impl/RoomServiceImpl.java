@@ -37,6 +37,33 @@ public class RoomServiceImpl implements RoomService {
 		roomDAO.deleteRoom(rvo);
 		
 	}
+	
+	@Override
+	public void deleteRoomImageOne2(RoomVO rvo) {
+
+		roomDAO.deleteRoomImageOne2(rvo);
+		
+	}
+
+	@Override
+	public void deleteRoomImageOne3(RoomVO rvo) {
+
+		roomDAO.deleteRoomImageOne3(rvo);
+	}
+
+	@Override
+	public void deleteRoomImageOne4(RoomVO rvo) {
+
+		roomDAO.deleteRoomImageOne4(rvo);
+		
+	}
+
+	@Override
+	public void deleteRoomImageOne5(RoomVO rvo) {
+
+		roomDAO.deleteRoomImageOne5(rvo);
+		
+	}
 
 	//(업주, 회원) 숙소 상세 조회
 	@Override

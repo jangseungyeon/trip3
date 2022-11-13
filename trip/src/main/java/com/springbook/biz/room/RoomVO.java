@@ -35,8 +35,22 @@ public class RoomVO {
 	private MultipartFile room_img_no5_multi; 
 	private int offset;
 	private String status; //좋아요 +1 할지 -1할지 결정하는 기준점 변수
+	private String searchCondition;
+	private String searchKeyword;
 	
 	
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 	public String getStatus() {
 		return status;
 	}
@@ -235,14 +249,14 @@ public class RoomVO {
 				+ ", room_area=" + room_area + ", room_desc=" + room_desc + ", room_id=" + room_id + ", host_id="
 				+ host_id + ", room_price=" + room_price + ", room_img_no1=" + room_img_no1 + ", room_img_no2="
 				+ room_img_no2 + ", room_img_no3=" + room_img_no3 + ", room_img_no4=" + room_img_no4 + ", room_img_no5="
-				+ room_img_no5 +  ", room_max=" + room_max + ", room_theme="
-				+ room_theme + ", room_cat=" + room_cat + ", room_wifi=" + room_wifi + ", room_pet=" + room_pet
-				+ ", room_meal=" + room_meal + ", room_parking=" + room_parking + ", room_swpool=" + room_swpool
-				+ ", room_likes=" + room_likes + ", room_stars=" + room_stars + ", room_min_price=" + room_min_price
-				+ ", room_max_price=" + room_max_price + ", room_img_no1_multi=" + room_img_no1_multi
-				+ ", room_img_no2_multi=" + room_img_no2_multi + ", room_img_no3_multi=" + room_img_no3_multi
-				+ ", room_img_no4_multi=" + room_img_no4_multi + ", room_img_no5_multi=" + room_img_no5_multi
-				+ ", offset=" + offset + ", status=" + status + "]";
+				+ room_img_no5 + ", room_max=" + room_max + ", room_theme=" + room_theme + ", room_cat=" + room_cat
+				+ ", room_wifi=" + room_wifi + ", room_pet=" + room_pet + ", room_meal=" + room_meal + ", room_parking="
+				+ room_parking + ", room_swpool=" + room_swpool + ", room_likes=" + room_likes + ", room_stars="
+				+ room_stars + ", room_min_price=" + room_min_price + ", room_max_price=" + room_max_price
+				+ ", room_img_no1_multi=" + room_img_no1_multi + ", room_img_no2_multi=" + room_img_no2_multi
+				+ ", room_img_no3_multi=" + room_img_no3_multi + ", room_img_no4_multi=" + room_img_no4_multi
+				+ ", room_img_no5_multi=" + room_img_no5_multi + ", offset=" + offset + ", status=" + status
+				+ ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + "]";
 	}
 	
 	

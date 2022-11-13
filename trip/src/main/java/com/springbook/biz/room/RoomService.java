@@ -10,6 +10,15 @@ public interface RoomService {
 	//(업주) 숙소 수정 
 	void updateRoom(RoomVO rvo);
 	
+	//(업주) 숙소 이미지 삭제
+	void deleteRoomImageOne2(RoomVO rvo);
+	
+	void deleteRoomImageOne3(RoomVO rvo);
+	
+	void deleteRoomImageOne4(RoomVO rvo);
+	
+	void deleteRoomImageOne5(RoomVO rvo);
+	
 	//(업주) 숙소 삭제
 	void deleteRoom(RoomVO rvo);
 	
@@ -33,7 +42,7 @@ public interface RoomService {
 	
 	//메인페이지 숙소 상세 검색
 	List<RoomVO> mainRoomThemeList(RoomVO vo);
-
+	
 	//(회원) 숙소 좋아요 등록/좋아요 해제
 	void updateLikeRoom(RoomVO rvo);
 	

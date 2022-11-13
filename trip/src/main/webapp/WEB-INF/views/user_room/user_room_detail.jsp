@@ -390,7 +390,7 @@ function f_moveInsertRes() {
 	<div id="u_room_sml_desc">
 	<span>${u_room.room_name}/<a href="#" onclick="f_searchAddr('${u_room.room_addr}')">${u_room.room_addr}</a>/${u_room.room_max}/${u_room.room_likes}</span>
 	<div class="head">
-		<div id="heartDiv" class="heart" style="height: 10px; width: 10px;" onclick="f_heart('${u_room.room_id}', '${u_room.room_name}')"></div>
+		<div id="heartDiv" class="heart" style="height: 10px; width: 10px;" onclick="f_heart('${u_room.room_id}','${u_room.room_name}')"></div>
 		<input type="hidden" name="status" value="">
 	</div>
 	</div>
@@ -454,9 +454,9 @@ function f_moveInsertRes() {
 	
 	<!-- https://iconify.design/ -->
 	
-	<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M2 18c2.22-1 4.44-2 6.67-2c2.22 0 4.44 2 6.66 2c2.23 0 4.45-2 
-	6.67-2v3c-2.22 0-4.44 2-6.67 2c-2.22 0-4.44-2-6.66-2c-2.23 0-4.45 1-6.67 2v-3m6.67-5c-.78 0-1.55.12-2.32.32l4.92-3.44l-1.04-1.24c-.14-.17-.23-.4-.23-.64c0-.34.17-.65.44-.83l5.72-4l1.15 1.63l-4.84 3.39l5.23 
-	6.23c-.79.33-1.58.58-2.37.58c-2.22 0-4.44-2-6.66-2M18 7a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2Z"/></svg>
+	<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 13c.5.5 2.13-.112 3.262-.5c1.46-.5 3.238 0 
+	2.738-.5l-2-2s-4.5 2.5-4 3Zm-9 7c2 0 3-1 5-1s3 1 5 1s3-1 5-1s3 1 5 
+	1M2 16c2 0 3-1 5-1s3 1 5 1s3-1 5-1s3 1 5 1M17.5 4l-5.278 3l3.278 3.5L12 12m7.222-2a1 1 0 1 0 0-2a1 1 0 0 0 0 2Z"/></svg>
 	
 	</div>
 	

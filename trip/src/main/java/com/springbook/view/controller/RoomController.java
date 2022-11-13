@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -47,11 +48,11 @@ public class RoomController {
 		Map<String, String> roomListHeadMap = new HashMap<String, String>();
 		roomListHeadMap.put("RoomName", "숙박시설 이름");
 		roomListHeadMap.put("RoomAddr", "숙박시설 주소");
-		roomListHeadMap.put("RoomTumbnail", "숙박시설 대표 이미지");
+		roomListHeadMap.put("RoomTumbnail", "숙박시설 이미지 수정/추가");
 		roomListHeadMap.put("RoomMax", "최대 수용 인원");
 		roomListHeadMap.put("RoomTheme", "숙박 시설 테마");
 		roomListHeadMap.put("RoomPrice", "숙박 1박당 가격");
-		roomListHeadMap.put("RoomDesc", "숙박 시설 설명을 여기에 적어주세요");
+		roomListHeadMap.put("RoomDesc", "숙박 시설 설명");
 		roomListHeadMap.put("RoomCat", "숙박시설 유형");
 		roomListHeadMap.put("RoomWIFI", "와이파이 유무");
 		roomListHeadMap.put("RoomPet", "애완견 동반 투숙 가능 유무");
@@ -125,9 +126,15 @@ public class RoomController {
 		
 	//(호스트) 숙소 수정 (새션에 저장한 업주 호스트 아이디와 숙소 상세 페이지의 아이디와 일치해야 수정, 그 후 숙소 목록으로 돌아감)
 	@RequestMapping(value="/updateRoom.do")
-	public String updateRoom(MultipartHttpServletRequest request, @ModelAttribute("room") RoomVO rvo, HttpSession session, SessionStatus sessionStatus) throws IllegalStateException, IOException {
+	public String updateRoom(MultipartHttpServletRequest request, RoomVO rvo, HttpSession session, Model model) throws IllegalStateException, IOException {
 		
 		System.out.println("숙소 수정 시작");
+		
+		RoomVO room_s = null;
+		
+		room_s = new RoomVO();
+		
+		room_s = (RoomVO) model.getAttribute("room");
 		
 		RoomVO rvo_bf = null;
 		rvo_bf = new RoomVO();
@@ -165,6 +172,8 @@ public class RoomController {
 				}
 				rvo.setRoom_img_no1(room_img_no1);
 				uploadFile1.transferTo(new File(realPath + room_img_no1));
+			} else {
+				rvo.setRoom_img_no1(room_s.getRoom_img_no1());
 			}
 			
 			if(!uploadFile2.isEmpty()) {
@@ -175,6 +184,8 @@ public class RoomController {
 				}
 				rvo.setRoom_img_no2(room_img_no2);
 				uploadFile2.transferTo(new File(realPath + room_img_no2));
+			} else {
+				rvo.setRoom_img_no2(room_s.getRoom_img_no2());
 			}
 			
 			if(!uploadFile3.isEmpty()) {
@@ -185,6 +196,8 @@ public class RoomController {
 				}
 				rvo.setRoom_img_no3(room_img_no3);
 				uploadFile3.transferTo(new File(realPath + room_img_no3));
+			} else {
+				rvo.setRoom_img_no3(room_s.getRoom_img_no3());
 			}
 			
 			if(!uploadFile4.isEmpty()) {
@@ -195,6 +208,8 @@ public class RoomController {
 				}
 				rvo.setRoom_img_no4(room_img_no4);
 				uploadFile4.transferTo(new File(realPath + room_img_no4));
+			} else {
+				rvo.setRoom_img_no4(room_s.getRoom_img_no4());
 			}
 			
 			if(!uploadFile5.isEmpty()) {
@@ -205,6 +220,8 @@ public class RoomController {
 				}
 				rvo.setRoom_img_no5(room_img_no5);
 				uploadFile5.transferTo(new File(realPath + room_img_no5));
+			} else {
+				rvo.setRoom_img_no5(room_s.getRoom_img_no5());
 			}
 			
 			rvo.setRoom_price(rvo.getRoom_price().replace(",", ""));
@@ -263,6 +280,62 @@ public class RoomController {
 			return "getRoom.do?error=y";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteRoomImageTwo.do")
+	public void deleteRoomImageTwo(@RequestParam("room_id") String room_id) {
+		System.out.println("숙소 이미지 하나 삭제 시작");
+		RoomVO rvo_I2 = null;
+		rvo_I2 = new RoomVO();
+		
+		rvo_I2.setRoom_id(room_id);
+		
+		roomService.deleteRoomImageOne2(rvo_I2);
+		
+		System.out.println("숙소 이미지 하나 삭제 완료");
+	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteRoomImageThree.do")
+	public void deleteRoomImageThree(@RequestParam("room_id") String room_id) {
+		System.out.println("숙소 이미지 하나 삭제 시작");
+		RoomVO rvo_I3 = null;
+		rvo_I3 = new RoomVO();
+		
+		rvo_I3.setRoom_id(room_id);
+		
+		roomService.deleteRoomImageOne3(rvo_I3);
+		
+		System.out.println("숙소 이미지 하나 삭제 완료");
+	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteRoomImageFour.do")
+	public void deleteRoomImageFour(@RequestParam("room_id") String room_id) {
+		System.out.println("숙소 이미지 하나 삭제 시작");
+		RoomVO rvo_I4 = null;
+		rvo_I4 = new RoomVO();
+		
+		rvo_I4.setRoom_id(room_id);
+		
+		roomService.deleteRoomImageOne4(rvo_I4);
+		
+		System.out.println("숙소 이미지 하나 삭제 완료");
+	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteRoomImageFive.do")
+	public void deleteRoomImageFive(@RequestParam("room_id") String room_id) {
+		System.out.println("숙소 이미지 하나 삭제 시작");
+		RoomVO rvo_I5 = null;
+		rvo_I5 = new RoomVO();
+		
+		rvo_I5.setRoom_id(room_id);
+		
+		roomService.deleteRoomImageOne5(rvo_I5);
+		
+		System.out.println("숙소 이미지 하나 삭제 완료");
+	}
 
 	//(호스트) 업주용 숙소 상세 페이지 보기
 	@RequestMapping(value = "/getRoom.do")
@@ -282,19 +355,15 @@ public class RoomController {
 		if (session.getAttribute("host_id") != null) {
 			rvo.setHost_id((String) session.getAttribute("host_id"));
 		}
-
-		int totalPageCnt = roomService.totalRoomListCnt(rvo);
-
-		int nowPage = Integer.parseInt(nowPageBtn == null || nowPageBtn.equals("") ? "1" : nowPageBtn);
-
-		int onePageCnt = 10;
-
-		int oneBtnCnt = 5;
-
-		PagingVO pvo = new PagingVO(totalPageCnt, onePageCnt, nowPage, oneBtnCnt);
-		rvo.setOffset(pvo.getOffset());
-
-		model.addAttribute("paging", pvo);
+		
+		if(rvo.getSearchCondition() == null) {
+			rvo.setSearchCondition("RoomName");
+		}
+		
+		if(rvo.getSearchKeyword() == null) {
+			rvo.setSearchKeyword("");
+		}
+		
 		model.addAttribute("roomList", roomService.getRoomList(rvo));
 		return "WEB-INF/views/host_room/host_room_list.jsp";
 
@@ -307,7 +376,7 @@ public class RoomController {
 		List<RoomVO> u_list = roomService.u_getRoomList(rvo);
 		System.out.println(u_list);
 		model.addAttribute("u_roomList", u_list);
-		return "WEB-INF/views/user_room_list.jsp";
+		return "WEB-INF/views/user_room/user_room_list.jsp";
 	}
 	
 	//(회원) 장승연 회원용 숙소 검색 필터
@@ -318,7 +387,7 @@ public class RoomController {
 		System.out.println(u_list);
 		model.addAttribute("u_roomList", u_list);
 		model.addAttribute("rvo", rvo);
-		return "WEB-INF/views/user_room_list.jsp";
+		return "WEB-INF/views/user_room/user_room_list.jsp";
 	}
 	
 	//(회원) 회원용 숙소 상세페이지 이동
@@ -339,7 +408,7 @@ public class RoomController {
 		model.addAttribute("u_room", u_room);
 		model.addAttribute("lvo", lvo);
 		model.addAttribute("revo_list", revo_list);
-		return "WEB-INF/views/user_room_detail.jsp";
+		return "WEB-INF/views/user_room/user_room_detail.jsp";
 	}
 	
 	@ResponseBody

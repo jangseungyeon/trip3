@@ -9,8 +9,6 @@
 
 <%@ include file="../host_header.jsp"%>
 
-
-
 <style>
 
 	@media(max-width: 1200px) {
@@ -21,7 +19,7 @@
 	}
 	
 	.wrap {
-		margin-top: 70px;
+		margin-top: 70px auto;
 	}
 	
 	.ipt_custom input {
@@ -51,6 +49,15 @@
 	    padding: 12px;
 	}
 	
+	.room_price, .room_max {
+		text-align: right;
+	}
+		
+	.room_addr_box {
+		margin: 10px auto;
+		width: 350px;
+	}
+
 	#room_addr  {
 		border-radius: 15px;
     	width: 300px;
@@ -62,10 +69,16 @@
 	}
 	
 	#room_addr_div {
-		width: 360px;
 		text-align: center;
 		margin: 0 auto;
 		height: 50px;
+	}
+	
+	#room_addr_div button {
+		width: 43px;
+		height: 36px;
+		font-size: 15px;
+		padding: 0;
 	}
 	
 	#room_addr_detail {
@@ -91,39 +104,19 @@
 	
 	#room_addr_search {
 		height: 50px;
+		width: 350px;
+		margin: 0 auto;
 		text-align: center;
 		vertical-align: baseline;
 		padding-top: 11px;
 	}
 	
-	.room_img_div {
-		text-align: center;
-		margin-top: 50px;
-	}
-	
-	.room_img_ipt {
-		display: flex;
-		justify-content: center;
-	}
-	
-	.room_q {
-		font-weight: 700;
-	}
-	
-	.room_price, .room_max {
-		text-align: right;
-	}
-	
-	.room_img_preview_box {
-		display: flex;
-		justify-content: space-evenly;
-	}
 	
 	#img_btn_toggle {
 		display: none;
 	}
 	
-	.room_img_div p {
+	.room_img_div label {
 		text-align: center;
 		font-weight: 600;
 		text-decoration:underline;
@@ -134,15 +127,40 @@
 	.room_img_preview {
 		border-radius: 20px;
 		margin-bottom: 15px;
+		margin: 10px auto;
+	}
+	
+	.room_img_div {
+		text-align: center;
+		margin-top: 50px;
+	}
+	
+	.room_img_ipt {
+		width: 225px;
+		text-align: center;
+		margin: 10px auto;
+	}
+	
+	.room_img_preview_box {
+		display: flex;
+		justify-content: space-evenly;
+		margin-left: 0;
 	}
 	
 	textarea{
 		width: 80vw;
 		border-radius: 15px;
-    	width: 300px;
-    	height: 40px;
     	border: 1px solid #aaa;
     	padding: 12px;
+	}
+	
+	.room_q, .room_themes_sentence, .room_cats_sentence, .room_conditions_sentence {
+		font-weight: 700;
+	}
+	
+	#room_themes_picked, #room_cats_picked, #room_conditions_picked {
+		font-size: 1.3rem;
+		color: #dc3545;
 	}
 	
 	#room_cat_GH figcaption {
@@ -172,6 +190,7 @@
 		text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 	}
 
+
 	/*여기서부터 숙박 시설 산/바다/산과바다, 호텔/모텔/게스트하우스/민박/펜션 css 애니메이션 설정 */
 	.room_theme_box input, .room_cat_div input, .room_condition_div input {
 		margin: 0;
@@ -193,7 +212,7 @@
 		height: 100%;
 	}
 	
-	.room_theme_div figcaption, .room_cat_div figcaption, .room_condition_label figcaption  {
+	.room_theme_div figcaption, .room_cat_div figcaption  {
 		width: 100%; 
 		height: 100%;
 		background-color: rgba(0,0,0,0.3);
@@ -205,6 +224,51 @@
 		font-weight: bolder;
 		font-size: 1.75rem;
 		line-height: 200px;
+		opacity: 0.9;
+		transition: 0.3s;
+		text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+	}
+	
+	.room_condition_label figcaption {
+		width: 130%; 
+		height: 100%;
+		writing-mode: vertical-lr;
+		background-color: rgba(0,0,0,0.3);
+		text-align: center;
+	 	position: absolute;
+		top: 0;
+		left: -7px;
+		color: #fff;
+		font-weight: bolder;
+		font-size: 1.75rem;
+		opacity: 0.9;
+		transition: 0.3s;
+		text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+	}
+	
+	#room_condition_pet figcaption {
+		visibility: hidden;
+		line-height: 0;
+		
+	}
+	
+	#room_condition_pet figcaption:after {
+		visibility: visible;
+		content: "애완견 동반";
+		writing-mode: vertical-lr;
+		white-space: pre;
+		display: block;
+		width: 130%; 
+		height: 100%;
+		background-color: rgba(0,0,0,0.3);
+		text-align: center;
+	 	position: absolute;
+		top: 0;
+		left: -27px;
+		color: #fff;
+		font-weight: bolder;
+		font-size: 1.75rem;
+		line-height: 100px;
 		opacity: 0.9;
 		transition: 0.3s;
 		text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
@@ -236,7 +300,7 @@
 		width: 100%;
 		height: 100%;
 		transition: all 100ms ease-in;
-		filter: brightness(1) grayscale(0.5) opacity(.6);
+		filter: brightness(0.7) grayscale(0.8) opacity(.7);
 	}
 	
 	.room_condition_label {
@@ -252,17 +316,13 @@
 		width: 100%;
 		height: 100%;
 		transition: all 100ms ease-in;
-		filter: brightness(1) grayscale(0.5) opacity(.6);
+		filter: brightness(1) grayscale(0.8) opacity(.7);
 	}
 
 	/*마우스 올렸을때 밝기20%증가로 조정 + 회색조 50% 감소 + 투명도 90프로로 증가*/
 	.room_theme_label:hover, .room_cat_label:hover, .room_condition_label:hover {
-		filter: brightness(1.2) grayscale(.5) opacity(.9);
+		filter: brightness(1.4) grayscale(.5) opacity(.9);
 		transform: scale(1.1);
-	}
-	
-	.room_condition_div {
-		
 	}
 		
 	}
@@ -360,8 +420,13 @@
 		justify-content: center;
 	}
 	
-	.room_q {
+	.room_q, .room_themes_sentence, .room_cats_sentence, .room_conditions_sentence {
 		font-weight: 700;
+	}
+	
+	#room_themes_picked, #room_cats_picked, #room_conditions_picked {
+		font-size: 1.3rem;
+		color: #dc3545;
 	}
 	
 	.room_price, .room_max {
@@ -383,7 +448,7 @@
 		display: none;
 	}
 	
-	.room_img_div p {
+	.room_img_div label {
 		text-align: center;
 		font-weight: 600;
 		text-decoration:underline;
@@ -417,7 +482,7 @@
 		height: 100%;
 	}
 	
-	.room_theme_div figcaption, .room_cat_div figcaption, .room_condition_label figcaption  {
+	.room_theme_div figcaption, .room_cat_div figcaption, .room_condition_label figcaption {
 		width: 100%; 
 		height: 100%;
 		background-color: rgba(0,0,0,0.3);
@@ -460,7 +525,7 @@
 		width: 100%;
 		height: 100%;
 		transition: all 100ms ease-in;
-		filter: brightness(1) grayscale(0.5) opacity(.6);
+		filter: brightness(0.7) grayscale(0.8) opacity(.7);
 	}
 	
 	 .room_condition_label {
@@ -476,12 +541,12 @@
 		width: 100%;
 		height: 100%;
 		transition: all 100ms ease-in;
-		filter: brightness(1) grayscale(0.5) opacity(.6);
+		filter: brightness(1) grayscale(0.8) opacity(.7);
 	 }
 
 	/*마우스 올렸을때 밝기20%증가로 조정 + 회색조 50% 감소 + 투명도 90프로로 증가*/
 	.room_theme_label:hover, .room_cat_label:hover, .room_condition_label:hover {
-		filter: brightness(1.2) grayscale(.5) opacity(.9);
+		filter: brightness(1.4) grayscale(.5) opacity(.9);
 		transform: scale(1.1);
 	}
 	
@@ -588,9 +653,16 @@
 	
 </style>
 
+
 <script>
 
 $(document).ready(function(){
+	
+	$('.room_themes_sentence').hide();
+	
+	$('.room_cats_sentence').hide();
+	
+	$('.room_conditions_sentence').hide();
 	
 	//1박당 가격 인풋창 값 넣었을때 실행되는 함수
 	$('.room_price').on('keyup', function(){
@@ -607,7 +679,15 @@ $(document).ready(function(){
 		
 		$(this).parent().prev().toggle();
 		
-	});	
+	});
+	
+	$(".room_img_delete_btn").click(function(){
+		
+		$(this).parent().prev().prev().children("input").val("");
+		
+		$(this).parent().prev().prev().prev().attr("src", "");
+		
+	});
 });
 
 //타입 파일 인풋창 사진 올리면 미리보기 뜨게하는 함수
@@ -676,6 +756,305 @@ function readThisSub4Img(img) {
 	}
 }
 
+function th_getCheckBoxAndRadioValue() {
+	
+	const query_room_themes = 'input[name="room_theme"]:checked';
+	
+	const selectedEls = document.querySelectorAll(query_room_themes);
+	
+	let result = '';
+	  
+	selectedEls.forEach((el, index, array) => {
+		
+		if(index != (array.length - 1)) {
+			
+			if(el.value == "mountain") {
+				
+				result += "산" + ', ';
+				
+			}
+			
+			if(el.value == "sea") {
+				
+				result += "바다" + ', ';
+				
+			}
+			
+			if(el.value == "forest") {
+				
+				result += "숲" + ', ';
+				
+			}
+			
+			if(el.value == "valley") {
+				
+				result += "계곡" + ', ';
+				
+			}
+			
+			if(el.value == "river") {
+				
+				result += "강" + ', ';
+				
+			}
+			
+			if(el.value == "city") {
+				
+				result += "도시" + ', ';
+				
+			}
+			
+		} else {
+			
+			if(el.value == "mountain") {
+				
+				result += "산";
+				
+			}
+			
+			if(el.value == "sea") {
+				
+				result += "바다";
+				
+			}
+			
+			if(el.value == "forest") {
+				
+				result += "숲";
+				
+			}
+			
+			if(el.value == "valley") {
+				
+				result += "계곡";
+				
+			}
+			
+			if(el.value == "river") {
+				
+				result += "강";
+				
+			}
+			
+			if(el.value == "city") {
+				
+				result += "도시";
+				
+			}
+		}
+		
+	});
+	
+	$('.room_themes_sentence').show();
+	
+	document.getElementById('room_themes_picked').innerText = result;
+	
+	if(result == '') {
+		
+		$('.room_themes_sentence').hide();
+	}
+}
+
+function ca_getCheckBoxAndRadioValue() {
+	
+	const query_room_cat = 'input[name="room_cat"]:checked';
+	
+	const selectedEls = document.querySelectorAll(query_room_cat);
+	
+	let result = '';
+	  
+	selectedEls.forEach((el, index, array) => {
+		
+			if(el.value == "hotel") {
+				
+				result = "호텔";
+				
+			}
+			
+			if(el.value == "motel") {
+				
+				result = "모텔";
+				
+			}
+			
+			if(el.value == "guestHouse") {
+				
+				result = "게스트 하우스";
+				
+			}
+			
+			if(el.value == "minbak") {
+				
+				result = "민박";
+				
+			}
+			
+			if(el.value == "pension") {
+				
+				result = "펜션";
+				
+			}
+		
+	});
+	
+	$('.room_cats_sentence').show();
+	
+	document.getElementById('room_cats_picked').innerText = result;
+	
+	if(result == '') {
+		
+		$('.room_cats_sentence').hide();
+	}
+}
+
+function co_getCheckBoxAndRadioValue() {
+	
+	const query_room_wifi = 'input[name="room_wifi"]:checked';
+	
+	const query_room_pet = 'input[name="room_pet"]:checked';
+	
+	const query_room_meal = 'input[name="room_meal"]:checked';
+	
+	const query_room_parking = 'input[name="room_parking"]:checked';
+	
+	const query_room_swpool = 'input[name="room_swpool"]:checked';
+	
+	const selectedEls_wifi = document.querySelectorAll(query_room_wifi);
+	
+	const selectedEls_pet = document.querySelectorAll(query_room_pet);
+	
+	const selectedEls_meal = document.querySelectorAll(query_room_meal);
+	
+	const selectedEls_parking = document.querySelectorAll(query_room_parking);
+	
+	const selectedEls_swpool = document.querySelectorAll(query_room_swpool);
+	
+	let result_arr = [];
+	
+	selectedEls_wifi.forEach((el, index, array) => {
+		
+		if(el.value == "Y") {
+			
+			result_arr.push("무료 와이파이");
+			
+		}
+	});
+	
+	selectedEls_pet.forEach((el, index, array) => {
+		
+		if(el.value == "Y") {
+			
+			result_arr.push("애완견 동반 투숙 가능");
+			
+		}
+	});
+	
+	selectedEls_meal.forEach((el, index, array) => {
+		
+		if(el.value == "Y") {
+			
+			result_arr.push("조식 제공");
+			
+		}
+	});
+	
+	selectedEls_swpool.forEach((el, index, array) => {
+		
+		if(el.value == "Y") {
+			
+			result_arr.push("수영장 보유");
+			
+		}
+	});
+	
+	selectedEls_parking.forEach((el, index, array) => {
+		
+		if(el.value == "Y") {
+			
+			result_arr.push("주차장 보유");
+			
+		}
+	});
+
+	let result = '';
+	
+	result_arr.forEach((el, index, array) => {
+		
+		if(index != (array.length - 1)) {
+			
+			if(el == "무료 와이파이") {
+				
+				result += el + ', ';
+				
+			}
+			
+			if(el == "애완견 동반 투숙 가능") {
+				
+				result += el + ', ';
+				
+			}
+			
+			if(el == "조식 제공") {
+				
+				result += el + ', ';
+				
+			}
+			
+			if(el == "수영장 보유") {
+				
+				result += el + ', ';
+				
+			}
+			
+			if(el == "주차장 보유") {
+				
+				result += el + ', ';
+				
+			}
+			
+		} else {
+			
+			if(el == "무료 와이파이") {
+			
+				result += el;
+				
+			}
+			
+			if(el == "애완견 동반 투숙 가능") {
+				
+				result += el;
+				
+			}
+			
+			if(el == "조식 제공") {
+				
+				result += el;
+				
+			}
+			
+			if(el == "수영장 보유") {
+				
+				result += el;
+				
+			}
+			
+			if(el == "주차장 보유") {
+				
+				result += el;
+				
+			}
+		}
+	});
+	
+	$('.room_conditions_sentence').show();
+	
+	document.getElementById('room_conditions_picked').innerText = result;
+	
+	if(result == '') {
+		
+		$('.room_conditions_sentence').hide();
+	}
+}
 </script>
 
 </head>
@@ -793,9 +1172,9 @@ function readThisSub4Img(img) {
 			<div class="room_img_preview_box container row">
 			
 			<div class="room_img_div col-xs-12 col-lg-2">
+			<div><label for="room_img_main">숙소 대표 이미지</label></div>
 			<img id="room_img_main_preview" class="room_img_preview" alt="숙소 대표 이미지 미리보기" title="숙소 대표 이미지" width="150" height="150" src="" onerror="this.style.display='none';"/>
-			<div><p>숙소 대표 이미지</p></div>
-			<br>
+			
 			<div class="room_img_ipt">
 			<input name="room_img_no1_multi" type="file" id="room_img_main" onchange="readThisMainImg(this);" required/>
 			</div>
@@ -803,48 +1182,52 @@ function readThisSub4Img(img) {
 			
 			<div class="room_img_div col-xs-12 col-lg-2">
 			<div id="img_btn_toggle">
+			<div><label for="room_img_sub1">숙소 서브1 이미지</label></div>
 			<img id="room_img_sub1_preview" class="room_img_preview" alt="숙소 서브1 이미지 미리보기" title="숙소 서브1 이미지" width="150" height="150" src="" onerror="this.style.display='none'"/>
-			<div><p>숙소 서브1 이미지</p></div>
-			<br>
+			
 			<div class="room_img_ipt">
-			<input name="room_img_no2_multi" type="file" id="room_img_sub1" onchange="readThisSub1Img(this);" />
-			</div><br>
+			<input name="room_img_no2_multi" type="file" id="room_img_sub1" onchange="readThisSub1Img(this);" /></div><br>
+			<div><button class="room_img_delete_btn btn btn-outline-dark" type="button">숙소 서브1 이미지 삭제하기</button></div>
+			<br>
 			</div>
 			<div><button class="room_img_sub_btn btn btn-outline-dark" type="button">숙소 서브1 이미지 추가하기</button></div>
 			</div>
 			
 			<div class="room_img_div col-xs-12 col-lg-2">
 			<div id="img_btn_toggle">
+			<div><label for="room_img_sub2">숙소 서브2 이미지</label></div>
 			<img id="room_img_sub2_preview" class="room_img_preview" alt="숙소 서브2 이미지 미리보기" title="숙소 서브2 이미지" width="150" height="150" src="" onerror="this.style.display='none'"/>
-			<div><p>숙소 서브2 이미지</p></div>
-			<br>
+			
 			<div class="room_img_ipt">
-			<input name="room_img_no3_multi" type="file" id="room_img_sub2" onchange="readThisSub2Img(this);" />
-			</div><br>
+			<input name="room_img_no3_multi" type="file" id="room_img_sub2" onchange="readThisSub2Img(this);" /></div><br>
+			<div><button class="room_img_delete_btn btn btn-outline-dark" type="button">숙소 서브2 이미지 삭제하기</button></div>
+			<br>
 			</div>
 			<div><button class="room_img_sub_btn btn btn-outline-dark" type="button">숙소 서브2 이미지 추가하기</button></div>
 			</div>
 			
 			<div class="room_img_div col-xs-12 col-lg-2">
 			<div id="img_btn_toggle">
+			<div><label for="room_img_sub3">숙소 서브3 이미지</label></div>
 			<img id="room_img_sub3_preview" class="room_img_preview" alt="숙소 서브3 이미지 미리보기" title="숙소 서브3 이미지" width="150" height="150" src="" onerror="this.style.display='none'"/>
-			<div><p>숙소 서브3 이미지</p></div>
-			<br>
+			
 			<div class="room_img_ipt">
-			<input name="room_img_no4_multi" type="file" id="room_img_sub3" onchange="readThisSub3Img(this);" />
-			</div><br>
+			<input name="room_img_no4_multi" type="file" id="room_img_sub3" onchange="readThisSub3Img(this);" /></div><br>
+			<div><button class="room_img_delete_btn btn btn-outline-dark" type="button">숙소 서브3 이미지 삭제하기</button></div>
+			<br>
 			</div>
 			<div><button class="room_img_sub_btn btn btn-outline-dark" type="button">숙소 서브3 이미지 추가하기</button></div>
 			</div>
 			
 			<div class="room_img_div col-xs-12 col-lg-2">
 			<div id="img_btn_toggle">
+			<div><label for="room_img_sub4">숙소 서브4 이미지</label></div>
 			<img id="room_img_sub4_preview" class="room_img_preview" alt="숙소 서브4 이미지 미리보기" title="숙소 서브4 이미지" width="150" height="150" src="" onerror="this.style.display='none'"/>
-			<div><p>숙소 서브4 이미지</p></div>
-			<br>
+			
 			<div class="room_img_ipt">
-			<input name="room_img_no5_multi" type="file" id="room_img_sub4" onchange="readThisSub4Img(this);" />
-			</div><br>
+			<input name="room_img_no5_multi" type="file" id="room_img_sub4" onchange="readThisSub4Img(this);" /></div><br>
+			<div><button class="room_img_delete_btn btn btn-outline-dark" type="button">숙소 서브4 이미지 삭제하기</button></div>
+			<br>
 			</div>
 			<div><button class="room_img_sub_btn btn btn-outline-dark" type="button">숙소 서브4 이미지 추가하기</button></div>
 			</div>
@@ -871,6 +1254,8 @@ function readThisSub4Img(img) {
 			<div class="room_theme_box">
 		
 				<div class="room_q">숙박시설이 위치한 곳의 특징을 아래 사진들에서 골라 결정해주세요. (중복선택 가능)</div>
+				<br>
+				<div class="room_themes_sentence">${host_id} 님이 선택하신 숙박 시설 테마 유형은 <span id="room_themes_picked"></span> 입니다.</div>
 				
 				<br>
 				
@@ -879,7 +1264,7 @@ function readThisSub4Img(img) {
 				<div class="row">
 				
 				<div class="room_theme_div col-xs-12 col-4">
-				<input type="checkbox" name="room_theme" id="room_theme_mountain" value="mountain"/>
+				<input type="checkbox" name="room_theme" id="room_theme_mountain" value="mountain" onclick="th_getCheckBoxAndRadioValue()"/>
 				<label class="room_theme_label mountain" for="room_theme_mountain">
 				<figure>
 				<figcaption>산</figcaption>
@@ -888,7 +1273,7 @@ function readThisSub4Img(img) {
 				</div>
 				
 				<div class="room_theme_div col-xs-12 col-4">
-				<input type="checkbox" name="room_theme" id="room_theme_sea" value="sea"/>
+				<input type="checkbox" name="room_theme" id="room_theme_sea" value="sea" onclick="th_getCheckBoxAndRadioValue()"/>
 				<label class="room_theme_label sea" for="room_theme_sea">
 				<figure>
 				<figcaption>바다</figcaption>
@@ -898,7 +1283,7 @@ function readThisSub4Img(img) {
 				
 				
 				<div class="room_theme_div col-xs-12 col-4">
-				<input type="checkbox" name="room_theme" id="room_theme_forest" value="forest"/>
+				<input type="checkbox" name="room_theme" id="room_theme_forest" value="forest" onclick="th_getCheckBoxAndRadioValue()"/>
 				<label class="room_theme_label forest" for="room_theme_forest">
 				<figure>
 				<figcaption>숲</figcaption>
@@ -911,7 +1296,7 @@ function readThisSub4Img(img) {
 				<div class="row">
 				
 				<div class="room_theme_div col-xs-12 col-4">
-				<input type="checkbox" name="room_theme" id="room_theme_valley" value="valley"/>
+				<input type="checkbox" name="room_theme" id="room_theme_valley" value="valley" onclick="th_getCheckBoxAndRadioValue()"/>
 				<label class="room_theme_label valley" for="room_theme_valley">
 				<figure>
 				<figcaption>계곡</figcaption>
@@ -920,7 +1305,7 @@ function readThisSub4Img(img) {
 				</div>
 				
 				<div class="room_theme_div col-xs-12 col-4">
-				<input type="checkbox" name="room_theme" id="room_theme_river" value="river" />
+				<input type="checkbox" name="room_theme" id="room_theme_river" value="river" onclick="th_getCheckBoxAndRadioValue()"/>
 				<label class="room_theme_label river" for="room_theme_river">
 				<figure>
 				<figcaption>강</figcaption>
@@ -930,7 +1315,7 @@ function readThisSub4Img(img) {
 				
 				
 				<div class="room_theme_div col-xs-12 col-4">
-				<input type="checkbox" name="room_theme" id="room_theme_city" value="city" />
+				<input type="checkbox" name="room_theme" id="room_theme_city" value="city" onclick="th_getCheckBoxAndRadioValue()"/>
 				<label class="room_theme_label city" for="room_theme_city">
 				<figure>
 				<figcaption>도시</figcaption>
@@ -951,6 +1336,8 @@ function readThisSub4Img(img) {
 			<div class="room_cat_box">
 			
 				<div class="room_q">숙박 시설의 유형은 어떻게 되시나요?</div>
+				<br>
+				<div class="room_cats_sentence">${host_id} 님이 선택하신 숙박 시설 유형은 <span id="room_cats_picked"></span> 입니다.</div>
 				
 					<br>
 				
@@ -959,7 +1346,7 @@ function readThisSub4Img(img) {
 				<div class="row">
 				
 				<div class="room_cat_div col-xs-12 col-4">
-				<input type="radio" name="room_cat" id="room_cat_hotel" value="hotel" required/>
+				<input type="radio" name="room_cat" id="room_cat_hotel" value="hotel" onclick="ca_getCheckBoxAndRadioValue()" required/>
 				<label class="room_cat_label hotel" for="room_cat_hotel">
 				<figure>
 				<figcaption>호텔</figcaption>
@@ -968,7 +1355,7 @@ function readThisSub4Img(img) {
 				</div>
 				
 				<div class="room_cat_div col-xs-12 col-4">
-				<input type="radio" name="room_cat" id="room_cat_motel" value="motel"/>
+				<input type="radio" name="room_cat" id="room_cat_motel" value="motel" onclick="ca_getCheckBoxAndRadioValue()"/>
 				<label class="room_cat_label motel" for="room_cat_motel">
 				<figure>
 				<figcaption>모텔</figcaption>
@@ -977,7 +1364,7 @@ function readThisSub4Img(img) {
 				</div>
 				
 				<div class="room_cat_div col-xs-12 col-4" id="room_cat_GH">
-				<input type="radio" name="room_cat" id="room_cat_guestHouse" value="guestHouse"/>
+				<input type="radio" name="room_cat" id="room_cat_guestHouse" value="guestHouse" onclick="ca_getCheckBoxAndRadioValue()"/>
 				<label class="room_cat_label guestHouse" for="room_cat_guestHouse">
 				<figure>
 				<figcaption>게스트 하우스</figcaption>
@@ -990,7 +1377,7 @@ function readThisSub4Img(img) {
 				<div class="row">
 				
 				<div class="room_cat_div col-xs-12 col-4">
-				<input type="radio" name="room_cat" id="room_cat_minbak" value="minbak"/>
+				<input type="radio" name="room_cat" id="room_cat_minbak" value="minbak" onclick="ca_getCheckBoxAndRadioValue()"/>
 				<label class="room_cat_label minbak" for="room_cat_minbak">
 				<figure>
 				<figcaption>민박</figcaption>
@@ -999,7 +1386,7 @@ function readThisSub4Img(img) {
 				</div>
 				
 				<div class="room_cat_div col-xs-12 col-4">
-				<input type="radio" name="room_cat" id="room_cat_pension" value="pension"/>
+				<input type="radio" name="room_cat" id="room_cat_pension" value="pension" onclick="ca_getCheckBoxAndRadioValue()"/>
 				<label class="room_cat_label pension" for="room_cat_pension">
 				<figure>
 				<figcaption>펜션</figcaption>
@@ -1018,6 +1405,8 @@ function readThisSub4Img(img) {
 		
 			<!-- 숙박 시설 조건들 체크 -->
 			<div class="room_q">그 외 숙박시설이 갖추고 있는 것들을 체크해주세요.(여러개 선택 가능)</div>
+			<br>
+			<div class="room_conditions_sentence">${host_id} 님이 선택하신 숙박 시설 기본 조건은 <span id="room_conditions_picked"></span> 입니다.</div>
 			
 			<br>
 			
@@ -1025,7 +1414,7 @@ function readThisSub4Img(img) {
 			
 				<div class="row">
 				<div class="room_condition_div col-xs-12 col-3">
-				<input type="checkbox" name="room_wifi" id="room_wifi" value="Y" />
+				<input type="checkbox" name="room_wifi" id="room_wifi" value="Y" onclick="co_getCheckBoxAndRadioValue()"/>
 				<label for="room_wifi" class="room_condition_label wifi">
 				<figure>
 				<figcaption>와이파이</figcaption>
@@ -1033,8 +1422,8 @@ function readThisSub4Img(img) {
 				</label>
 				</div>
 				
-				<div class="room_condition_div col-xs-12 col-3">
-				<input type="checkbox" name="room_pet" id="room_pet" value="Y" />
+				<div class="room_condition_div col-xs-12 col-3" id="room_condition_pet">
+				<input type="checkbox" name="room_pet" id="room_pet" value="Y" onclick="co_getCheckBoxAndRadioValue()"/>
 				<label for="room_pet" class="room_condition_label pet">
 				<figure>
 				<figcaption>애완견 동반 투숙 가능</figcaption>
@@ -1043,7 +1432,7 @@ function readThisSub4Img(img) {
 				</div>
 				
 				<div class="room_condition_div col-xs-12 col-3">
-				<input type="checkbox" name="room_meal" id="room_meal" value="Y" />
+				<input type="checkbox" name="room_meal" id="room_meal" value="Y" onclick="co_getCheckBoxAndRadioValue()"/>
 				<label for="room_meal" class="room_condition_label eat">
 				<figure>
 				<figcaption>조식 포함</figcaption>
@@ -1054,7 +1443,7 @@ function readThisSub4Img(img) {
 				
 				<div class="row">
 				<div class="room_condition_div col-xs-12 col-3">
-				<input type="checkbox" name="room_parking" id="room_parking" value="Y" />
+				<input type="checkbox" name="room_parking" id="room_parking" value="Y" onclick="co_getCheckBoxAndRadioValue()"/>
 				<label for="room_parking" class="room_condition_label car">
 				<figure>
 				<figcaption>주차장</figcaption>
@@ -1063,7 +1452,7 @@ function readThisSub4Img(img) {
 				</div>
 				
 				<div class="room_condition_div col-xs-12 col-3">
-				<input type="checkbox" name="room_swpool" id="room_swpool" value="Y" />
+				<input type="checkbox" name="room_swpool" id="room_swpool" value="Y" onclick="co_getCheckBoxAndRadioValue()"/>
 				<label for="room_swpool" class="room_condition_label swim">
 				<figure>
 				<figcaption>수영장</figcaption>

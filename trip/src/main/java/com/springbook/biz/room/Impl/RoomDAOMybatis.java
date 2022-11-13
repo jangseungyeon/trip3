@@ -26,6 +26,27 @@ public class RoomDAOMybatis {
 		mybatis.update("RoomDAO.updateRoom", rvo);
 	}
 	
+	//(업주) 숙소 이미지 삭제
+	public void deleteRoomImageOne2(RoomVO rvo) {
+		System.out.println("마이바티스 숙소 이미지 삭제 deleteRoomImageOne2 기능 처리");
+		mybatis.update("RoomDAO.deleteRoomImageOne2", rvo);
+	}
+	
+	public void deleteRoomImageOne3(RoomVO rvo) {
+		System.out.println("마이바티스 숙소 이미지 삭제 deleteRoomImageOne3 기능 처리");
+		mybatis.update("RoomDAO.deleteRoomImageOne3", rvo);
+	}
+	
+	public void deleteRoomImageOne4(RoomVO rvo) {
+		System.out.println("마이바티스 숙소 이미지 삭제 deleteRoomImageOne4 기능 처리");
+		mybatis.update("RoomDAO.deleteRoomImageOne4", rvo);
+	}
+	
+	public void deleteRoomImageOne5(RoomVO rvo) {
+		System.out.println("마이바티스 숙소 이미지 삭제 deleteRoomImageOne5 기능 처리");
+		mybatis.update("RoomDAO.deleteRoomImageOne5", rvo);
+	}
+	
 	//(업주) 숙소 삭제
 	public void deleteRoom(RoomVO rvo) {
 		System.out.println("마이바티스 숙소 삭제 deleteRoom 기능 처리");
