@@ -27,7 +27,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="sidebar" data-color="purple">
+		<div class="sidebar" data-color="black">
 			<!-- data-color="purple | blue | green | orange | red" -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
@@ -66,9 +66,9 @@
 		</div>
 		<div class="main-panel">
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-lg">
+			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#pablo"> Dashboard </a>
+					<a class="navbar-brand" href="#pablo"> DASH BOARD </a>
 					<button href="" class="navbar-toggler navbar-toggler-right"
 						type="button" data-toggle="collapse"
 						aria-controls="navigation-index" aria-expanded="false"
@@ -79,18 +79,13 @@
 					</button>
 					<div class="collapse navbar-collapse justify-content-end"
 						id="navigation">
-						<ul class="nav navbar-nav mr-auto">
-							<li class="nav-item"><a href="#" class="nav-link"
-								data-toggle="dropdown"> <span class="d-lg-none">Dashboard</span>
-							</a></li>
-							<li class="nav-item"><a href="#" class="nav-link"> <i
-									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span>
-							</a></li>
-						</ul>
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
 									<span class="no-icon">${manage_id}님 접속중</span>
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#pablo">
+									<span class="no-icon">Account</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log
@@ -115,7 +110,7 @@
 									<div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
 									<div class="legend">
 										<i class="fa fa-circle text-info"></i> Open <i
-											class="fa fa-circle text-danger"></i> Bounce <i
+											class="fa fa-circle text-table border=1px solid;"></i> Bounce <i
 											class="fa fa-circle text-warning"></i> Unsubscribe
 									</div>
 									<hr>
@@ -137,7 +132,7 @@
 								<div class="card-footer ">
 									<div class="legend">
 										<i class="fa fa-circle text-info"></i> Open <i
-											class="fa fa-circle text-danger"></i> Click <i
+											class="fa fa-circle text-table border=1px solid;"></i> Click <i
 											class="fa fa-circle text-warning"></i> Click Second Time
 									</div>
 									<hr>
@@ -161,7 +156,7 @@
 								<div class="card-footer ">
 									<div class="legend">
 										<i class="fa fa-circle text-info"></i> Tesla Model S <i
-											class="fa fa-circle text-danger"></i> BMW 5 Series
+											class="fa fa-circle text-table border=1px solid;"></i> BMW 5 Series
 									</div>
 									<hr>
 									<div class="stats">
@@ -197,7 +192,7 @@
 															<i class="fa fa-edit"></i>
 														</button>
 														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-danger btn-simple btn-link">
+															class="btn btn-warning btn-simple btn-link">
 															<i class="fa fa-times"></i>
 														</button>
 													</td>
@@ -219,7 +214,7 @@
 															<i class="fa fa-edit"></i>
 														</button>
 														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-danger btn-simple btn-link">
+															class="btn btn-warning btn-simple btn-link">
 															<i class="fa fa-times"></i>
 														</button>
 													</td>
@@ -242,7 +237,7 @@
 															<i class="fa fa-edit"></i>
 														</button>
 														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-danger btn-simple btn-link">
+															class="btn btn-warning btn-simple btn-link">
 															<i class="fa fa-times"></i>
 														</button>
 													</td>
@@ -264,7 +259,7 @@
 															<i class="fa fa-edit"></i>
 														</button>
 														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-danger btn-simple btn-link">
+															class="btn btn-warning btn-simple btn-link">
 															<i class="fa fa-times"></i>
 														</button>
 													</td>
@@ -285,7 +280,7 @@
 															<i class="fa fa-edit"></i>
 														</button>
 														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-danger btn-simple btn-link">
+															class="btn btn-warning btn-simple btn-link">
 															<i class="fa fa-times"></i>
 														</button>
 													</td>
@@ -306,7 +301,7 @@
 															<i class="fa fa-edit"></i>
 														</button>
 														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-danger btn-simple btn-link">
+															class="btn btn-warning btn-simple btn-link">
 															<i class="fa fa-times"></i>
 														</button>
 													</td>
@@ -420,8 +415,6 @@
 <script src="resources/assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="resources/assets/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="resources/assets/js/light-bootstrap-dashboard.js?v=2.0.0 "
-	type="text/javascript"></script>
+
 <%@ include file="footer.jsp"%>
 </html>

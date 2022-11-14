@@ -52,7 +52,7 @@
 		</div>
 		<div class="main-panel">
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-lg">
+			<nav class="navbar navbar-expand-lg" color-on-scroll="500">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="#pablo"> Dashboard </a>
 					<button href="" class="navbar-toggler navbar-toggler-right"
@@ -118,7 +118,7 @@
 															value="${board.regdate}" /></td>
 													<td><fmt:formatDate pattern="yyyy-MM-dd"
 															value="${board.updateDate }" /></td>
-													<td><a class="btn btn-danger"
+													<td><a class="btn btn-warning"
 														href="manage_boardInfo.do?user_id=${i.user_id}"
 														role="button">글수정</a></td>
 												</tr>

@@ -7,10 +7,7 @@
 
 <!doctype html>
 <html lang="ko">
-
 <title>정보 수정</title>
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 </head>
 <body class="info-body">
 	<script>
@@ -35,7 +32,7 @@
 	</script>
 
 	<div class="wrapper">
-		<div class="sidebar" data-color="green">
+		<div class="sidebar" data-color="orange">
 			<!-- data-color="purple | blue | green | orange | red" -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
@@ -74,9 +71,9 @@
 		</div>
 		<div class="main-panel">
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-lg">
+			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#pablo"> Dashboard </a>
+					<a class="navbar-brand" href="#pablo"> 플래너 관리 </a>
 					<button href="" class="navbar-toggler navbar-toggler-right"
 						type="button" data-toggle="collapse"
 						aria-controls="navigation-index" aria-expanded="false"
@@ -87,18 +84,13 @@
 					</button>
 					<div class="collapse navbar-collapse justify-content-end"
 						id="navigation">
-						<ul class="nav navbar-nav mr-auto">
-							<li class="nav-item"><a href="#" class="nav-link"
-								data-toggle="dropdown"> <span class="d-lg-none">Dashboard</span>
-							</a></li>
-							<li class="nav-item"><a href="#" class="nav-link"> <i
-									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span>
-							</a></li>
-						</ul>
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
 									<span class="no-icon">${manage_id}님 접속중</span>
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#pablo">
+									<span class="no-icon">Account</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log

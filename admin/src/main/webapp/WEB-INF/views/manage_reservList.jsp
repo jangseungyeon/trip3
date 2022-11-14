@@ -8,40 +8,11 @@
 <head>
 <meta charset="utf-8" />
 <title>Admin Dashboard</title>
-<style>
-#searchNav {
-	-webkit-justify-content: flex-end;
-	justify-content: flex-end;
-}
-
-a.list-btn {
-	text-decoration: none;
-	font-weight: bolder;
-	display: inline-block;
-	padding: 5px 10px;
-	background-color: blue;
-	color: #fff;
-	border: 1px solid #777;
-	border-radius: 5px;
-}
-
-a.list-btn:hover, a.list-btn:active {
-	background-color: red;
-}
-
-a.aSel {
-	color: red;
-}
-
-div#btnBox {
-	text-align: center;
-}
-</style>
 </head>
 
 <body>
 	<div class="wrapper">
-		<div class="sidebar" data-color="green">
+		<div class="sidebar" data-color="red">
 			<!-- data-color="purple | blue | green | orange | red" -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
@@ -80,9 +51,9 @@ div#btnBox {
 		</div>
 		<div class="main-panel">
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-lg">
+			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#pablo"> Dashboard </a>
+					<a class="navbar-brand" href="#pablo"> 예약 관리 </a>
 					<button href="" class="navbar-toggler navbar-toggler-right"
 						type="button" data-toggle="collapse"
 						aria-controls="navigation-index" aria-expanded="false"
@@ -93,18 +64,13 @@ div#btnBox {
 					</button>
 					<div class="collapse navbar-collapse justify-content-end"
 						id="navigation">
-						<ul class="nav navbar-nav mr-auto">
-							<li class="nav-item"><a href="#" class="nav-link"
-								data-toggle="dropdown"> <span class="d-lg-none">Dashboard</span>
-							</a></li>
-							<li class="nav-item"><a href="#" class="nav-link"> <i
-									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span>
-							</a></li>
-						</ul>
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
 									<span class="no-icon">${manage_id}님 접속중</span>
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#pablo">
+									<span class="no-icon">Account</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log
@@ -116,69 +82,70 @@ div#btnBox {
 			</nav>
 			<!-- End Navbar -->
 
-			<!-- Search -->
-			<nav id="searchNav" class="navbar navbar-expand-sm navbar-dark">
-				<form class="form-inline" action="manage_reservList.do"
-					method="post">
-					<select class="form-control" id="sel1" name="searchCondition"
-						style="display: inline-block !important; margin-right: 10px;">
-						<c:forEach items="${conditionMap}" var="option">
-							<option value="${option.value}">${option.key}</option>
-						</c:forEach>
-						<%-- 		<option value="${conditionMap['제목']}">${conditionMap['제목']}</option> --%>
-						<%-- 		<option value="${conditionMap['내용']}">${conditionMap['내용']}</option> --%>
-					</select> <input class="form-control mr-sm-2" type="text"
-						name="searchKeyword" placeholder="검색어를 입력하세요.">
-					<button class="btn btn-success" type="submit">검색</button>
-				</form>
-			</nav>
-
 			<div class="content">
 				<div class="container-fluid">
-					<h3>예약목록</h3>
+					<!-- Search -->
+					<nav id="searchNav" class="navbar navbar-expand-sm navbar-dark">
+						<form class="form-inline" action="manage_hostList.do"
+							method="post">
+							<select class="form-control" id="sel1" name="searchCondition"
+								style="display: inline-block !important; margin-right: 10px;">
+								<c:forEach items="${conditionMap}" var="option">
+									<option value="${option.value}">${option.key}</option>
+								</c:forEach>
+							</select> <input class="form-control" type="text" name="searchKeyword"
+								placeholder="검색어를 입력하세요.">
+							<button class="btn btn-success" type="submit">검색</button>
+						</form>
+					</nav>
+					<!-- End Search -->
+
 					<table border="1">
-						<tr>
-							<th>예약번호</th>
-							<th>회원아이디</th>
-							<th>imp_uid</th>
-							<th>merchant_uid</th>
-							<th>이름</th>
-							<th>전화번호</th>
-							<th>이메일</th>
-							<th>업주아이디</th>
-							<th>숙소아이디</th>
-							<th>숙소명</th>
-							<th>이미지</th>
-							<th>결제일자</th>
-							<th>결제금액</th>
-							<th>예약인원</th>
-							<th>변경가능횟수</th>
-							<th>예약상태</th>
-							<th>체크인</th>
-							<th>체크아웃</th>
-						</tr>
+						<thead>
+							<tr>
+								<th>예약번호</th>
+								<th>회원아이디</th>
+<!-- 								<th>imp_uid</th> -->
+<!-- 								<th>merchant_uid</th> -->
+								<th>이름</th>
+								<th>전화번호</th>
+<!-- 								<th>이메일</th> -->
+<!-- 								<th>업주아이디</th> -->
+<!-- 								<th>숙소아이디</th> -->
+								<th>숙소명</th>
+<!-- 								<th>이미지</th> -->
+								<th>결제일자</th>
+								<th>결제금액</th>
+								<th>예약인원</th>
+<!-- 								<th>변경가능횟수</th> -->
+								<th>예약상태</th>
+								<th>체크인</th>
+								<th>체크아웃</th>
+								<th></th>
+							</tr>
+						</thead>
 						<c:forEach var="res" items="${reservList}">
 							<tr align="center">
 								<td>${res.res_id}</td>
 								<td>${res.user_id}</td>
-								<td>${res.imp_uid}</td>
-								<td>${res.merchant_uid}</td>
+<%-- 								<td>${res.imp_uid}</td> --%>
+<%-- 								<td>${res.merchant_uid}</td> --%>
 								<td>${res.res_name}</td>
 								<td>${res.res_tel}</td>
-								<td>${res.res_email}</td>
-								<td>${res.host_id}</td>
-								<td>${res.room_id}</td>
+<%-- 								<td>${res.res_email}</td> --%>
+<%-- 								<td>${res.host_id}</td> --%>
+<%-- 								<td>${res.room_id}</td> --%>
 								<td>${res.room_name}</td>
-								<td>${res.room_img}</td>
+<%-- 								<td>${res.room_img}</td> --%>
 								<td>${res.pay_date}</td>
 								<td>${res.pay_amount}</td>
 								<td>${res.res_num}</td>
-								<td>${res.res_count}</td>
+<%-- 								<td>${res.res_count}</td> --%>
 								<td>${res.res_status}</td>
 								<td>${res.res_checkin}</td>
 								<td>${res.res_checkout}</td>
-								<td><a class="btn btn-danger"
-									href="manage_reservInfo.do?res_id=${res.res_id}" role="button">예약수정</a></td>
+								<td><a class="btn btn-success"
+									href="manage_reservInfo.do?res_id=${res.res_id}" role="button">상세보기</a></td>
 							</tr>
 						</c:forEach>
 					</table>

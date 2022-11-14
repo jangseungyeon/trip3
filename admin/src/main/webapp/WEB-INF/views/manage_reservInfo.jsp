@@ -7,10 +7,7 @@
 
 <!doctype html>
 <html lang="ko">
-
 <title>정보 수정</title>
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 </head>
 <body class="info-body">
 	<script>
@@ -80,7 +77,7 @@
 
 
 	<div class="wrapper">
-		<div class="sidebar" data-color="green">
+		<div class="sidebar" data-color="red">
 			<!-- data-color="purple | blue | green | orange | red" -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
@@ -103,8 +100,8 @@
 							정보
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i
-							class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
@@ -119,9 +116,9 @@
 		</div>
 		<div class="main-panel">
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-lg">
+			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#pablo"> Dashboard </a>
+					<a class="navbar-brand" href="#pablo"> 예약 관리 </a>
 					<button href="" class="navbar-toggler navbar-toggler-right"
 						type="button" data-toggle="collapse"
 						aria-controls="navigation-index" aria-expanded="false"
@@ -132,18 +129,13 @@
 					</button>
 					<div class="collapse navbar-collapse justify-content-end"
 						id="navigation">
-						<ul class="nav navbar-nav mr-auto">
-							<li class="nav-item"><a href="#" class="nav-link"
-								data-toggle="dropdown"> <span class="d-lg-none">Dashboard</span>
-							</a></li>
-							<li class="nav-item"><a href="#" class="nav-link"> <i
-									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span>
-							</a></li>
-						</ul>
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
 									<span class="no-icon">${manage_id}님 접속중</span>
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#pablo">
+									<span class="no-icon">Account</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log
@@ -157,7 +149,7 @@
 
 			<div class="content">
 				<div class="container-fluid">
-					<h2>회원정보 상세</h2>
+					<h2>예약정보 상세</h2>
 					<form name="manage_reservInfo" method="post">
 						<table border="1">
 							<tr>
@@ -245,11 +237,10 @@
 							</tr>
 
 							<tr>
-								<td colspan="2" align="center">
-								<input type="button" value="환불" id="btnUpdate"
-									onclick="cancelPay('${ReservationVO.merchant_uid}')">
-									<input type="button"
-									value="삭제" id="btnDelete"></td>
+								<td colspan="2" align="center"><input type="button"
+									value="환불" id="btnUpdate"
+									onclick="cancelPay('${ReservationVO.merchant_uid}')"> <input
+									type="button" value="삭제" id="btnDelete"></td>
 							</tr>
 						</table>
 					</form>

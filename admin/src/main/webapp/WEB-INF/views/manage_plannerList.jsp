@@ -8,40 +8,11 @@
 <head>
 <meta charset="utf-8" />
 <title>Admin Dashboard</title>
-<style>
-#searchNav {
-	-webkit-justify-content: flex-end;
-	justify-content: flex-end;
-}
-
-a.list-btn {
-	text-decoration: none;
-	font-weight: bolder;
-	display: inline-block;
-	padding: 5px 10px;
-	background-color: blue;
-	color: #fff;
-	border: 1px solid #777;
-	border-radius: 5px;
-}
-
-a.list-btn:hover, a.list-btn:active {
-	background-color: red;
-}
-
-a.aSel {
-	color: red;
-}
-
-div#btnBox {
-	text-align: center;
-}
-</style>
 </head>
 
 <body>
 	<div class="wrapper">
-		<div class="sidebar" data-color="green">
+		<div class="sidebar" data-color="orange">
 			<!-- data-color="purple | blue | green | orange | red" -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
@@ -80,9 +51,9 @@ div#btnBox {
 		</div>
 		<div class="main-panel">
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-lg">
+			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#pablo"> Dashboard </a>
+					<a class="navbar-brand" href="#pablo"> 플래너 관리 </a>
 					<button href="" class="navbar-toggler navbar-toggler-right"
 						type="button" data-toggle="collapse"
 						aria-controls="navigation-index" aria-expanded="false"
@@ -93,18 +64,13 @@ div#btnBox {
 					</button>
 					<div class="collapse navbar-collapse justify-content-end"
 						id="navigation">
-						<ul class="nav navbar-nav mr-auto">
-							<li class="nav-item"><a href="#" class="nav-link"
-								data-toggle="dropdown"> <span class="d-lg-none">Dashboard</span>
-							</a></li>
-							<li class="nav-item"><a href="#" class="nav-link"> <i
-									class="nc-icon nc-zoom-split"></i> <span class="d-lg-block">&nbsp;Search</span>
-							</a></li>
-						</ul>
 
 						<ul class="navbar-nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="#pablo">
 									<span class="no-icon">${manage_id}님 접속중</span>
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#pablo">
+									<span class="no-icon">Account</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log
@@ -116,39 +82,40 @@ div#btnBox {
 			</nav>
 			<!-- End Navbar -->
 
-			<!-- Search -->
-			<nav id="searchNav" class="navbar navbar-expand-sm navbar-dark">
-				<form class="form-inline" action="manage_plannerList.do"
-					method="post">
-					<select class="form-control" id="sel1" name="searchCondition"
-						style="display: inline-block !important; margin-right: 10px;">
-						<c:forEach items="${conditionMap}" var="option">
-							<option value="${option.value}">${option.key}</option>
-						</c:forEach>
-						<%-- 		<option value="${conditionMap['제목']}">${conditionMap['제목']}</option> --%>
-						<%-- 		<option value="${conditionMap['내용']}">${conditionMap['내용']}</option> --%>
-					</select> <input class="form-control mr-sm-2" type="text"
-						name="searchKeyword" placeholder="검색어를 입력하세요.">
-					<button class="btn btn-success" type="submit">검색</button>
-				</form>
-			</nav>
-
 			<div class="content">
 				<div class="container-fluid">
-					<h3>플레너 목록</h3>
+					<!-- Search -->
+					<nav id="searchNav" class="navbar navbar-expand-sm navbar-dark">
+						<form class="form-inline" action="manage_hostList.do"
+							method="post">
+							<select class="form-control" id="sel1" name="searchCondition"
+								style="display: inline-block !important; margin-right: 10px;">
+								<c:forEach items="${conditionMap}" var="option">
+									<option value="${option.value}">${option.key}</option>
+								</c:forEach>
+							</select> <input class="form-control" type="text" name="searchKeyword"
+								placeholder="검색어를 입력하세요.">
+							<button class="btn btn-success" type="submit">검색</button>
+						</form>
+					</nav>
+					<!-- End Search -->
+
 					<table border="1">
-						<tr>
-							<th>플래너제목</th>
-							<th>아이디</th>
-							<th>번호</th>
-							<th>숙소명</th>
-							<th>여행시작일</th>
-							<th>여행종료일</th>
-							<th>여행지역</th>
-							<th>여행기간</th>
-						</tr>
-						<c:forEach var="plan" items="${plannerList}">
+						<thead>
 							<tr>
+								<th>플래너제목</th>
+								<th>아이디</th>
+								<th>번호</th>
+								<th>숙소명</th>
+								<th>여행시작일</th>
+								<th>여행종료일</th>
+								<th>여행지역</th>
+								<th>여행기간</th>
+								<th></th>
+							</tr>
+						</thead>
+						<c:forEach var="plan" items="${plannerList}">
+							<tr align="center">
 								<td>${plan.planner_title}</td>
 								<td>${plan.user_id}</td>
 								<td>${plan.planner_no}</td>
@@ -157,9 +124,9 @@ div#btnBox {
 								<td>${plan.planner_end}</td>
 								<td>${plan.planner_area}</td>
 								<td>${plan.planner_day}</td>
-								<td><a class="btn btn-danger"
+								<td><a class="btn btn-success"
 									href="manage_plannerInfo.do?planner_no=${plan.planner_no}"
-									role="button">플레너 수정</a></td>
+									role="button">상세보기</a></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -177,7 +144,8 @@ div#btnBox {
 									<a class="aSel">${i}</a>
 								</c:when>
 								<c:otherwise>
-									<a class="list-btn" href="manage_plannerList.do?nowPageBtn=${i}">${i}</a>
+									<a class="list-btn"
+										href="manage_plannerList.do?nowPageBtn=${i}">${i}</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
