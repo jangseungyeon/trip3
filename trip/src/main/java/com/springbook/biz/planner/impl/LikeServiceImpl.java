@@ -25,7 +25,7 @@ public class LikeServiceImpl implements LikeService{
 	}
 
 	@Override
-	public void likedelete(LikeVO vo) {
+	public void likedalete(LikeVO vo) {
 		likeDAO.likedelete(vo);
 	}
 	
@@ -58,6 +58,11 @@ public class LikeServiceImpl implements LikeService{
 	@Override
 	public List<LikeVO> likeslist2(LikeVO lvo) {
 		return likeDAO.likeslist2(lvo);
+	}
+	
+	@Override
+	public int likeSelect(LikeVO vo) {
+		return likeDAO.selectLike(vo);
 	}
 
 }

@@ -24,5 +24,19 @@ public interface PlannerService {
 	void deletePlace(PlaceVO vo);
 	
 	void insertMemo(List<PlannerMemoVO> List);
+	
+	List<PlannerMemoVO> selectMemo(PlannerMemoVO vo);
+	
+	void deleteMemo(PlannerMemoVO vo);
+	
+	void updateLike(PlannerVO vo);
+	
+	List<PlannerVO> PopularPlanner();
+	
+	void insertPlace2(List<PlaceVO> List);
+
+	void updateMemo(PlannerMemoVO list);
+	
+	void deletePlace2(PlaceVO vo);
 
 }

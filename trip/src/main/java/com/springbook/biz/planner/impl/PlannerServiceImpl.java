@@ -67,5 +67,41 @@ public class PlannerServiceImpl implements PlannerService{
 		plannerDAO.insertMemo(List);
 	}
 	
+	@Override
+	public List<PlannerMemoVO> selectMemo(PlannerMemoVO vo) {
+		return plannerDAO.selectMemo(vo);
+	}
+
+	@Override
+	public void deleteMemo(PlannerMemoVO vo) {
+		plannerDAO.deleteMemo(vo);
+	}
+
+	@Override
+	public void updateLike(PlannerVO vo) {
+		plannerDAO.updateLike(vo);
+	}
+
+	@Override
+	public List<PlannerVO> PopularPlanner() {
+		return plannerDAO.PopularPlanner();
+	}
+
+	@Override
+	public void insertPlace2(List<PlaceVO> List) {
+		plannerDAO.insertPlace2(List);
+	}
+
+	@Override
+	public void updateMemo(PlannerMemoVO list) {
+		plannerDAO.updateMemo(list);
+	}
+
+	@Override
+	public void deletePlace2(PlaceVO vo) {
+		plannerDAO.deletePlace2(vo);
+	}
+	
+	
 	
 }

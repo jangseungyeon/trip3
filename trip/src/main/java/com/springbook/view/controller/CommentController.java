@@ -46,7 +46,11 @@ public class CommentController {
 	}
 	
 	@RequestMapping("/commentdelete.do")
-	public int commentDelete(CommentVO vo , HttpServletRequest request , String comment_no ) {
+	public int commentDelete(CommentVO vo , HttpServletRequest request , String comment_no , ReplyVO rvo) {
+		if(comment_no.equals("")) {
+			rvo.setComment_no(0);
+		}else rvo.setComment_no(Integer.parseInt(comment_no));
+		service.replyDelete(rvo);
 		return service.commentDelete(vo);
 	}
 	

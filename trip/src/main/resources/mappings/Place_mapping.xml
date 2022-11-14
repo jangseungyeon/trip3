@@ -30,4 +30,27 @@
 	<delete id="deletePlace">
 	DELETE FROM PLACE WHERE PLANNER_NO = #{planner_no}
 	</delete>
+	
+	<insert id="insertPlace2" parameterType="java.util.List">
+	insert into place(
+	Planner_no , user_id , planner_date , place_name , mapy , mapx , img , addr
+	) values
+	<foreach collection="list" item="i" separator=",">
+		(
+			#{i.planner_no} , 
+			#{i.user_id} , 
+			#{i.planner_date} ,
+			#{i.place_name} ,
+			#{i.mapy} ,
+			#{i.mapx} ,
+			#{i.img} ,
+			#{i.addr} 
+			
+		)
+		</foreach>
+	</insert>
+	
+	<delete id="deletePlace2">
+	delete from place where place_name = #{place_name} and planner_no = #{planner_no} and user_id = #{user_id}
+	</delete>
 </mapper>

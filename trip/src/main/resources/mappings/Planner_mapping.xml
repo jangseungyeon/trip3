@@ -22,7 +22,11 @@
    </select>
    
      <select id="plannerPage" resultType="planner">
-      SELECT * FROM PLANNER WHERE PLANNER_SHOW = 'Y'
+     SELECT * FROM PLANNER WHERE PLANNER_SHOW = 'Y' ORDER BY PLANNER_END DESC;
+   </select>
+   
+   <select id="plannerPopular" resultType="planner"> 
+   SELECT * FROM PLANNER WHERE PLANNER_SHOW = 'Y' ORDER BY PLANNER_LIKE DESC;
    </select>
    
    	<select id="mainPlannerList" resultType="planner">
@@ -32,6 +36,13 @@
 	<delete id="deletePlanner">
 	DELETE FROM PLANNER WHERE PLANNER_NO = #{planner_no}
 	</delete>
+	
+	<update id="updateLike">
+	update planner set planner_like = planner_like 
+	<if test="status  == 'like'"> + </if>
+	<if test="status  == 'unlike'"> - </if>
+	 1 where planner_no = #{planner_no}
+	</update>
    
 
 </mapper>

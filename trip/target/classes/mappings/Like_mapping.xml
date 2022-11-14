@@ -65,5 +65,9 @@
 		SELECT * FROM likes lt JOIN planner pt ON lt.like_no = pt.planner_no
 		WHERE lt.user_id = #{user_id} AND lt.like_type = 1
 	</select>
+	
+	<select id="selectLike" resultType="int">
+	select count(*) from likes where user_id = #{user_id} and like_no = #{like_no} and like_type = #{like_type}
+	</select>
 
 </mapper>

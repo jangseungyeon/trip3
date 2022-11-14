@@ -19,6 +19,23 @@
 		)
 		</foreach>
 	</insert>
+	
+		<delete id="deleteMemo">
+	
+	DELETE FROM MEMO WHERE PLANNER_NO = #{planner_no}
+	
+	</delete>
+	
+	<select id="selectMemo" resultType="memo">
+	
+	SELECT * FROM MEMO WHERE PLANNER_NO = #{planner_no}
+	
+	</select>
+	
+	<update id="updateMemo" parameterType="memo">
+		update memo set memo_content = #{memo_content} 
+		where user_id = #{user_id} and memo_day = #{memo_day} and planner_no = #{planner_no}
+	</update>
 
 
 </mapper>

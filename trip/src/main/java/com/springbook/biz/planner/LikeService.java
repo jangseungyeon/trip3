@@ -8,7 +8,9 @@ public interface LikeService {
 	
 	void likeupdate(LikeVO vo);
 	
-	void likedelete(LikeVO vo);
+	void likedalete(LikeVO vo);
+	
+	int likeSelect(LikeVO vo);
 
 	void likeinsertRoom(LikeVO vo);
 	

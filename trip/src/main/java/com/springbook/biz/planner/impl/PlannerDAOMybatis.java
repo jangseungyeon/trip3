@@ -66,4 +66,37 @@ public class PlannerDAOMybatis {
 		mybatis.insert("memoDAO.insertMemo", list);
 	}
 	
+	public void deleteMemo(PlannerMemoVO vo) {
+		System.out.println("deleteMemo 메소드 실행");
+		mybatis.delete("memoDAO.deleteMemo", vo);
+	}
+	
+	public List<PlannerMemoVO> selectMemo(PlannerMemoVO vo){
+		System.out.println("selectMemo 메소드 실행");
+		return mybatis.selectList("memoDAO.selectMemo", vo);
+	}
+	
+	public void updateLike(PlannerVO vo) {
+		System.out.println("updateLike 메소드 실행");
+		mybatis.update("PlannerDAO.updateLike", vo);
+	}
+	
+	public List<PlannerVO> PopularPlanner(){
+		return mybatis.selectList("PlannerDAO.plannerPopular");
+	}
+	
+	public void insertPlace2(List<PlaceVO> list){
+		System.out.println("PlannerDAOMybatis.insertPlace2 메소드 실행");
+		mybatis.insert("PlaceDAO.insertPlace2" , list);
+	}
+	
+	public void updateMemo(PlannerMemoVO list) {
+		mybatis.update("memoDAO.updateMemo", list);
+	}
+	
+	public void deletePlace2(PlaceVO vo) {
+		mybatis.delete("PlaceDAO.deletePlace2", vo);
+	}
+	
+	
 }

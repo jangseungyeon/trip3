@@ -21,6 +21,23 @@
 		ROOM_SWPOOL=#{room_swpool} WHERE ROOM_ID=#{room_id} and HOST_ID=#{host_id}
 	</update>
 	
+	<!-- (업주) 숙소 이미지 삭제 -->
+	<update id="deleteRoomImageOne2">
+		UPDATE ROOM SET ROOM_IMG_NO2 = null WHERE ROOM_ID = #{room_id}
+	</update>
+	
+	<update id="deleteRoomImageOne3">
+		UPDATE ROOM SET ROOM_IMG_NO3 = null WHERE ROOM_ID = #{room_id}
+	</update>
+	
+	<update id="deleteRoomImageOne4">
+		UPDATE ROOM SET ROOM_IMG_NO4 = null WHERE ROOM_ID = #{room_id}
+	</update>
+	
+	<update id="deleteRoomImageOne5">
+		UPDATE ROOM SET ROOM_IMG_NO5 = null WHERE ROOM_ID = #{room_id}
+	</update>
+	
 	
 	<!-- (업주) 숙소 아이디와 업주 호스트 아이디 일치할때 숙소 데이터 삭제 -->
 	<delete id="deleteRoom">
@@ -38,7 +55,9 @@
 	<select id="getRoomList" resultType="room">
 		SELECT * FROM ROOM WHERE 1=1
 			<if test="host_id != null and host_id != ''">AND HOST_ID = #{host_id}</if>
-<!-- 		ORDER BY SEQ DESC  -->
+			<if test="searchCondition == 'RoomName'">AND ROOM_NAME LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'RoomAddr'">AND ROOM_ADDR LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		ORDER BY ROOM_ID DESC 
 <!-- 		LIMIT 10 OFFSET #{offset} -->
 	</select>
 	
@@ -61,13 +80,13 @@
 		<if test="room_min_price == '' and room_max_price != ''"> AND ROOM_PRICE &lt;= #{room_max_price}</if>
 		<if test="room_min_price != '' and room_max_price !=''"> AND ROOM_PRICE BETWEEN #{room_min_price} AND #{room_max_price}</if>
 		<if test="room_max !=null and room_max != ''"> AND ROOM_MAX &lt;= #{room_max} </if>
-		<if test="room_wifi == 'Y'"> AND ROOM_WIFI = #{room_wifi} </if>
-		<if test="room_pet == 'Y'"> AND ROOM_PET = #{room_pet} </if>
-		<if test="room_meal == 'Y'"> AND ROOM_MEAL = #{room_meal} </if>
-		<if test="room_parking == 'Y'"> AND ROOM_PARKING = #{room_parking} </if>
-		<if test="room_swpool == 'Y'"> AND ROOM_SWPOOL = #{room_swpool} </if>
+		<if test='room_wifi == "Y"'> AND ROOM_WIFI = #{room_wifi} </if>
+		<if test='room_pet == "Y"'> AND ROOM_PET = #{room_pet} </if>
+		<if test='room_meal == "Y"'> AND ROOM_MEAL = #{room_meal} </if>
+		<if test='room_parking == "Y"'> AND ROOM_PARKING = #{room_parking} </if>
+		<if test='room_swpool == "Y"'> AND ROOM_SWPOOL = #{room_swpool} </if>
 		<if test="room_theme !=null and room_theme !=''"> AND ROOM_THEME LIKE CONCAT('%',#{room_theme},'%') </if>
-		<!-- ORDER BY SEQ DESC -->
+		ORDER BY ROOM_ID DESC
 		<!-- LIMIT 10 OFFSET #{offset} -->
 	</select>
 

@@ -119,7 +119,7 @@ input#key:focus {
 
 <div style="margin-left: 5%; margin-right: 5%;">
 
- <form action="testValue.do" id="testValue" method="post">  
+ <form action="plannerUpdate.do" method="post">  
 <div class="container-fluid" style="margin-top: 3%;">
 <div class="row">
 <div class="col-sm-6" >
@@ -192,18 +192,51 @@ input#key:focus {
 	<div style="padding-left:30px;">
 			<div>
 			<div class="form-check form-switch" style="margin-top:10px">
-  			<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="show()">
-  			<input type="hidden" value="N" name="planner_show" id="show_c" onclick="show()">
-  			<label class="form-check-label" for="flexSwitchCheckDefault" id="test">비공개</label>
+				<c:choose> 
+  						<c:when test="${planner.planner_show eq 'Y'}">
+  						<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="show()" checked>
+  							<input type="hidden" value="Y" name="planner_show" id="show_c" onclick="show()">
+  							<label class="form-check-label" for="flexSwitchCheckDefault" id="test">전체공개</label>
+						</c:when> 
+						<c:when test="${planner.planner_show eq 'N'}">
+							<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="show()">
+  							<input type="hidden" value="N" name="planner_show" id="show_c" onclick="show()">
+  							<label class="form-check-label" for="flexSwitchCheckDefault" id="test">비공개</label>
+						</c:when>
+					</c:choose>
 			</div>
-	<textarea onkeydown="return captureReturnKey(event);" id="title"  placeholder="여행 제목을 정해주세요 (최대 40자)" name="planner_title" class="input" maxlength="40"></textarea><br>
-	<a id="h2" style="display: inline-block; margin-bottom:10px"><%= session.getAttribute("areaname") %></a>
-	<a><%= session.getAttribute("start") %> ~ <%= session.getAttribute("end") %></a>
-	<% for(int i=1; i<=Integer.parseInt((String)session.getAttribute("date")) + 1; i ++){ %>
-				<div style="height:70px;"><h5 id='p<%= i %>' class="cn"><span class="memo<%= i %>">DAY-<%= i %></span> <i class="bi bi-journal-text zoom bo<%= i %>" onclick="memo('<%= i %>')" style=" cursor: pointer; font-size' : '22px"><i class="bi bi-plus bo<%= i %>" style="font-size' : '22px"></i></i></h5>
-					<input type="hidden" value=" " name="content" id="val<%= i %>">
+	<textarea onkeydown="return captureReturnKey(event);" id="title" name="planner_title" class="input" maxlength="40">${planner.planner_title}</textarea><br>
+	<a id="h2" style="display: inline-block; margin-bottom:10px">${planner.planner_area}</a>
+	<a>${planner.planner_start} ~ ${planner.planner_end}</a>
+		<c:forEach begin="1" end="${planner.planner_day}" step="1" varStatus="status">
+				<div style="height:70px;"><h5 id='p${status.count}' class="cn"><span class="memo${status.count}">DAY-${status.count}</span> <i class="bi bi-journal-text zoom bo${status.count}>" onclick="memo('${status.count}')" style=" cursor: pointer; font-size' : '22px"><i class="bi bi-plus bo${status.count}" style="font-size' : '22px"></i></i>
+					<c:set var="count" value="${status.count}" />
+  					
+  					<c:forEach items="${place}" var="place" varStatus="status">
+  						<c:if test="${place.planner_date eq count}">
+  							<div style="display:inline" class="delete${status.count}">
+							<span id='name${status.count}'> ${place.place_name} </span> 
+							<i class='bi bi-x-lg dele' onclick="deletes(${status.count})"></i>
+							<i class='bi bi-arrow-right'></i>
+							</div>
+						</c:if> 
+					</c:forEach> 
+					<input type="hidden" name="deletePlace" value="" id="deletePlace">
+				</h5>
 					</div>	
-			<% } %>
+	
+			</c:forEach>
+			<c:forEach items="${memo}" var="memo" varStatus="status" >
+					<c:set var="count" value="${status.count}" />
+  						<c:choose> 
+  						<c:when test="${memo.memo_day eq count}">
+								<input type="hidden" value="${memo.memo_content}" name="content" id="val${count}">
+						</c:when> 
+						<c:otherwise>
+								<input type="hidden" value=" " name="content" id="val${count}">
+							</c:otherwise> 
+					</c:choose>
+					</c:forEach> 
 				<div>
 			<p id="plus"></p>
 			</div>
@@ -215,14 +248,20 @@ input#key:focus {
 			<div id="memo" style="font-size:20px; width:200px; height:40px"><span>DAY-</span></div>
   <textarea class="form-control" rows="5" id="content" style="resize: none; box-shadow: none;" placeholder="메모 아이콘을 클릭하여 일자별로 메모기능을 사용해보세요!"></textarea>
   			<div style="text-align: center; margin-top: 2%;">
-  			<input type="submit" value="임시저장" class="btn" style="background-color: #ff8e15; color: white;">
-			<input type="button" value="숙소 둘러보기" onclick="room()" class="btn" style="background-color: #ff8e15; color: white;">
+  			<input type="submit" value="수정하기" class="btn" style="background-color: #ff8e15; color: white;">
+  			<input type="hidden" name="planner_no" value="${planner.planner_no}">
 			</div>
 </div>
 			</div>
 			</div>
 			</form> 
 <script>
+function deletes(num){
+	$("#deletePlace").val($("#deletePlace").val()+"/"+$("#name" + num).text());
+	$(".delete"+num).remove();
+}
+
+
 document.addEventListener('keydown', function(event) {
 	  if (event.keyCode === 13) {
 	    event.preventDefault();
@@ -236,7 +275,6 @@ function captureReturnKey(e) {
 
 
 function submits(num){
-	//애니메이션 추가 글 등록시
 	 $(".bo"+num).animate({
 		'font-size' : '30px' 
 	});  
@@ -335,7 +373,7 @@ function test00(tval) {
  			var str = "";
  			var str2 = "";
 			var img = "";
-				for(var i = 1; i <= data[0].date+1; i++){
+				for(var i = 1; i <= ${planner.planner_day}; i++){
  					str += "<option id='o"+i+"' value='"+i+"'>"+i+"일차</option>";
  				}
  			

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springbook.biz.planner.LikeService;
 import com.springbook.biz.planner.LikeVO;
+import com.springbook.biz.planner.PlannerService;
+import com.springbook.biz.planner.PlannerVO;
 import com.springbook.biz.room.RoomService;
 import com.springbook.biz.room.RoomVO;
 
@@ -26,10 +28,13 @@ public class LikeController {
 	@Autowired
 	private RoomService roomService;
 	
+	@Autowired
+	private PlannerService planner;
+	
 	@ResponseBody
 	@RequestMapping(value = "/Like.do")
 	public void LikeCheck(@RequestParam(value = "type") int type, @RequestParam(value = "status") String status,
-			LikeVO vo , String like_id , String like_no , HttpSession session) {
+			LikeVO vo , String like_id , String like_no , HttpSession session , PlannerVO pvo , String planner_no) {
 		vo.setLike_id(like_id);
 		vo.setUser_id((String)session.getAttribute("user_id"));
 		vo.setLike_no(Integer.parseInt(like_no));
@@ -37,12 +42,24 @@ public class LikeController {
 			vo.setStatus(status);
 			Service.likeinsert(vo);
 			Service.likeupdate(vo);
+			pvo.setStatus(status);
+			planner.updateLike(pvo);
 		} else if (status.equals("unlike")) {
 			vo.setStatus(status);
 			Service.likeupdate(vo);
-			Service.likedelete(vo);
+			Service.likedalete(vo);
+			pvo.setStatus(status);
+			planner.updateLike(pvo);
 		}
-		System.out.println(vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectLike.do")
+	public int selectLike(LikeVO vo , String like_no , HttpSession session) {
+		vo.setLike_no(Integer.parseInt(like_no));
+		vo.setLike_type(1);
+		vo.setUser_id((String)session.getAttribute("user_id"));
+		return Service.likeSelect(vo);
 	}
 
 	//좋아요 누른 리스트로 불러오기(숙소)

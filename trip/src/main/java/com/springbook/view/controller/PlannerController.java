@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.springbook.biz.planner.AreaService;
+import com.springbook.biz.planner.AreaVO;
 import com.springbook.biz.planner.PlaceVO;
 import com.springbook.biz.planner.PlannerMemoVO;
 import com.springbook.biz.planner.PlannerService;
@@ -28,6 +30,9 @@ public class PlannerController {
 	
 	@Autowired
 	private com.springbook.biz.planner.CommentService CommentService;
+	
+	@Autowired
+	private AreaService areaService;
 	
 	
 	@RequestMapping("/start.do") // 인덱스 페이지에서 들어올 때 
@@ -59,34 +64,34 @@ public class PlannerController {
 			
 			List<PlaceVO> tourList = new ArrayList<PlaceVO>();
 			String[] tableArr = new String[6];
-			for(int i=0; i<arr.length; i++) {
-				PlaceVO vo = new PlaceVO();
-				tableArr = arr[i].split("===");
-				vo.setUser_id((String)session.getAttribute("user_id"));
-				vo.setPlanner_date(tableArr[0]);
-				vo.setPlace_name(tableArr[1]);
-				vo.setAddr(tableArr[2]);
-				vo.setMapx(tableArr[3]);
-				vo.setMapy(tableArr[4]);
-				vo.setImg(tableArr[5]);
-				
-				tourList.add(vo);
+			if(arr != null) {
+				for(int i=0; i<arr.length; i++) {
+					PlaceVO vo = new PlaceVO();
+					tableArr = arr[i].split("===");
+					vo.setUser_id((String)session.getAttribute("user_id"));
+					vo.setPlanner_date(tableArr[0]);
+					vo.setPlace_name(tableArr[1]);
+					vo.setAddr(tableArr[2]);
+					vo.setMapx(tableArr[3]);
+					vo.setMapy(tableArr[4]);
+					vo.setImg(tableArr[5]);
+					
+					tourList.add(vo);
+				}
+				Service.insertPlace(tourList);
 			}
-			Service.insertPlace(tourList);
 			
 			List<PlannerMemoVO> memoList = new ArrayList<PlannerMemoVO>();
-			for(int i=0; i<content.length; i++) {
-				PlannerMemoVO memo = new PlannerMemoVO();
-				memo.setUser_id((String)session.getAttribute("user_id"));
-				memo.setMemo_day(i+1);
-				memo.setMemo_content(content[i]);
-				String s = content[i].replace(" ", "");
-				if(!(s.equals(""))) {
+			if(content != null) {
+				for(int i=0; i<content.length; i++) {
+					PlannerMemoVO memo = new PlannerMemoVO();
+					memo.setUser_id((String)session.getAttribute("user_id"));
+					memo.setMemo_day(i+1);
+					memo.setMemo_content(content[i]);
 					memoList.add(memo);
 				}
-				System.out.println(memo);
+					Service.insertMemo(memoList);
 			}
-			Service.insertMemo(memoList);
 			
 			if(request.getParameter("roomPage") != null ) {
 				return "u_getRoomList.do";
@@ -96,7 +101,7 @@ public class PlannerController {
 	
 //	내가 작성한 플래너 정보 가져오기
 	@RequestMapping("/plannerinfo.do")
-	public String plannerinfo(PlannerVO pvo, HttpSession session, Model model , PlaceVO vo) {
+	public String plannerinfo(PlannerVO pvo, HttpSession session, Model model , PlaceVO vo ,AreaVO area) {
 		pvo.setUser_id((String)session.getAttribute("user_id"));
 		pvo = Service.plannerinfo(pvo);
 		System.out.println("플래너 정보: "+pvo);
@@ -110,10 +115,18 @@ public class PlannerController {
 			model.addAttribute("planner_area", pvo.getPlanner_area());
 			model.addAttribute("planner_title", pvo.getPlanner_title());
 			model.addAttribute("planner_day", pvo.getPlanner_day());
+			area.setArea_name(pvo.getPlanner_area());
+			model.addAttribute("area" , areaService.getArea(area));
 			return "WEB-INF/views/detailPlanner.jsp";
 		} else {
 			return "index.jsp";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/placeSelect.do")
+	public List<PlaceVO> placeSelect( PlaceVO vo , String planner_no){
+		return Service.getPlace(vo);
 	}
 	
 	//리스트로 불러오기
@@ -156,11 +169,77 @@ public class PlannerController {
 			Service.deletePlace(pvo);
 			return "plannerlist.do";
 		}
-		
+	
 		@ResponseBody
-		@RequestMapping("/placeSelect.do")
-		public List<PlaceVO> placeSelect( PlaceVO vo , String planner_no){
-			return Service.getPlace(vo);
+		@RequestMapping("/selectMemo.do")
+		public List<PlannerMemoVO> selectMemo(String planner_no , PlannerMemoVO vo) {
+			return Service.selectMemo(vo);
+		}
+		
+		@RequestMapping("/selectPlanner.do")
+		public String selectPlanner(HttpServletRequest request , Model model) {
+			String select = request.getParameter("select");
+			if(select.equals("new")) {
+				model.addAttribute("plannerList", Service.plannerPage());
+				model.addAttribute("check", 1);
+			}else if(select.equals("popul")) {
+				model.addAttribute("plannerList", Service.PopularPlanner());
+				model.addAttribute("check", 2);
+			}
+			return "WEB-INF/views/plannerInsert/plannerList.jsp";
+		}
+		
+		
+		@RequestMapping("/plannerUpdate.do")
+		public String plannerUpdate(@RequestParam(value="placeTab", required=false) String[] arr , HttpSession session , String[] content ,
+				@RequestParam(value="planner_no") String planner_no , @RequestParam(value="deletePlace") String deletePlace) {
+			
+			List<PlaceVO> tourList = new ArrayList<PlaceVO>();
+			String[] tableArr = new String[6];
+			if(arr != null) {
+				for(int i=0; i<arr.length; i++) {
+					PlaceVO vo = new PlaceVO();
+					tableArr = arr[i].split("===");
+					vo.setUser_id((String)session.getAttribute("user_id"));
+					vo.setPlanner_date(tableArr[0]);
+					vo.setPlace_name(tableArr[1]);
+					vo.setAddr(tableArr[2]);
+					vo.setMapx(tableArr[3]);
+					vo.setMapy(tableArr[4]);
+					vo.setImg(tableArr[5]);
+					vo.setPlanner_no(planner_no);
+					
+					tourList.add(vo);
+				}
+				
+				Service.insertPlace2(tourList);
+			}
+			if(content != null) {
+				for(int i=0; i<content.length; i++) {
+					PlannerMemoVO memo = new PlannerMemoVO();
+					memo.setUser_id((String)session.getAttribute("user_id"));
+					memo.setMemo_day(i+1);
+					memo.setMemo_content(content[i]);
+					memo.setPlanner_no(Integer.parseInt(planner_no));
+					Service.updateMemo(memo);
+				}
+				
+			}
+			deletePlace = deletePlace.replaceAll(",", "");
+			String[] strArr = deletePlace.split("/");
+
+			for(String s : strArr){
+				s = s.trim();
+				PlaceVO vo = new PlaceVO();
+				if((!s.equals(""))) {
+					vo.setUser_id((String)session.getAttribute("user_id"));
+					vo.setPlanner_no(planner_no);
+					vo.setPlace_name(s);
+					Service.deletePlace2(vo);
+				}
+			}
+			
+			return "/plannerinfo.do?planner_no="+planner_no;
 		}
 	
 	

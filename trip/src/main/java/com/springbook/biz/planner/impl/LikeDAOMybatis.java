@@ -59,4 +59,8 @@ public class LikeDAOMybatis {
 		System.out.println("다오에서 likelist 실행");
 		return mybatis.selectList("LikeDAO.likelist2", lvo);
 	}
+	
+	public int selectLike(LikeVO vo) {
+		return mybatis.selectOne("LikeDAO.selectLike", vo);
+	}
 }

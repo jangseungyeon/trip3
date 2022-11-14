@@ -12,25 +12,30 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <script>
 function like(num){ // num = like (좋아요 누름)  num = unlike (좋아요 해제)   
+	var id = '<%=(String)session.getAttribute("user_id")%>';
+	if(id == 'null'){
+		alert("로그인이 필요합니다");
+		location.href = "user.login.do";
+		return;
+	}
+	
 	var like = $("#like_id").val();
 	var like_no = $("#like_no").val();
-	alert(like_no)
-	if(num == 'like'){
-		$('.unlike').css('display', '');
-		$('.like').css('display', 'none');
-		$('#status').attr('value' , 'like');
-	}else if(num == 'unlike'){
-		$('.like').css('display', '');
-		$('.unlike').css('display', 'none');
-		$('#status').attr('value' , 'unlike');
-	}
 	$.ajax({
 		url:"Like.do",
 		type: "GET",
 		cache: false,
-		data:{"type" : 1 , "status" : num  , "like_id" : like , "like_no" : like_no} , // 플래너 = 1 , 숙소 = 2
+		data:{"type" : 1 , "status" : num  , "like_id" : like , "like_no" : like_no , "planner_no" : ${planner.planner_no}} , // 플래너 = 1 , 숙소 = 2
 		success:function(){
-			alert("성공");
+			if(num == 'like'){
+				$('.unlike').css('display', '');
+				$('.like').css('display', 'none');
+				$('#status').attr('value' , 'like');
+			}else if(num == 'unlike'){
+				$('.like').css('display', '');
+				$('.unlike').css('display', 'none');
+				$('#status').attr('value' , 'unlike');
+			}
 		},
 		error : function(){
 			alert("실패");
@@ -40,6 +45,7 @@ function like(num){ // num = like (좋아요 누름)  num = unlike (좋아요 �
 (function () {
 	var num = ${planner.planner_no};
 	var id = "${planner.user_id}";
+	var id = '<%=(String)session.getAttribute("user_id")%>';
 	$.ajax({
 		url:"plannerRE.do",
 		type: "GET",
@@ -60,6 +66,25 @@ function like(num){ // num = like (좋아요 누름)  num = unlike (좋아요 �
 			alert(e);
 		}
 	});
+	
+	$.ajax({
+		url:"selectLike.do",
+		type: "GET",
+		cache: false,
+		dataType: "json",
+		data:{"like_no" : ${planner.planner_no}} ,
+		success:function(data){
+			if (data > 0){
+				$(".like").css("display" , "none");
+			}else if(data == 0){
+				$(".unlike").css("display" , "none");
+			}
+			},
+		error : function(e){
+			alert(e);
+		}
+	});
+	
 })();
 
 function update(val){
@@ -112,6 +137,7 @@ function reply(val){
 }
 
 function crud(num , number){
+
 	var url = "";
 	var no = number
 	var planner_no = ${planner.planner_no};
@@ -155,6 +181,7 @@ function crud(num , number){
 		}
 	});
 }
+
 </script>
 <body>
 <h1>${planner.planner_title}</h1>
@@ -174,8 +201,13 @@ function crud(num , number){
 
 
 <h1>댓글</h1>
-	댓글달기 : <input type="text" id="comment_content" value="">
-	<button onclick="crud('Cinsert' , 0)">등록</button>
+	댓글달기 : 
+	<% if((String)session.getAttribute("user_id") == null){ %>
+	<div style="display:inline-block"> <a href="user.login.do">로그인</a>이 필요합니다</div>
+	<% }else{ %>
+	<input type="text" id="comment_content" value="" > <button onclick="crud('Cinsert' , 0)">등록</button>
+	<%} %>
+
 <%-- 	<input type="hidden" value="${planner.planner_no}" name="planner_no">
 	<input type="hidden" value=<%= (String)session.getAttribute("user_id") %> name="user_id">
 	<input type="hidden" value="${planner.user_id}" name="id">  --%>
@@ -207,8 +239,8 @@ function crud(num , number){
 <p id="reply${c.comment_no}">
 </p> 
 </c:forEach>
-	<i class="bi bi-heart-fill unlike" onclick="like('unlike')" style="display:none"></i>
-<i class="bi bi-heart like" onclick="like('like')"></i>
+<i class="bi bi-heart-fill unlike" onclick="like('unlike')" class="unlike"></i>
+<i class="bi bi-heart like" onclick="like('like')" class="like"></i>
 <input type="hidden" name="status" id="status">
 
 </body>

@@ -12,10 +12,16 @@ public class PlannerVO {
 	private String planner_day; // 여행 기간
 	private int planner_like;
 	private String planner_show;
+	private String status;
 	
 	
 	
-	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getPlanner_show() {
 		return planner_show;
 	}

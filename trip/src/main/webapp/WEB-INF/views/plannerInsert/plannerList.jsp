@@ -51,28 +51,40 @@ color : #525252;
 }
 </style>
 </head>
+<script>
+function submit(num){
+	$(".list" + num).children("form").submit();
+}
+</script>
 <body>
-<div style="margin-top:2%; margin-left:15%; margin-right:15%;">
+<div style="margin-top:2%; margin-left:10%; margin-right:10%;">
 <h1 style="margin-top:8%; margin-bottom:4%;">다양한 여행일정을 체크해보세요 <i class="bi bi-check-lg"></i></h1>
 <div style="text-align: right;">
-<select class='delete form-select form-select-sm' aria-label='.form-select-sm example' style='width: 100px; box-shadow: none; display: inline-block; margin-right:10%'>
- <option>인기순</option>
- <option>최신순</option>
+<form action="selectPlanner.do">
+<select class='delete form-select form-select-sm' aria-label='.form-select-sm example' style='width: 100px; box-shadow: none; display: inline-block; margin-right:10%' name="select" onchange="this.form.submit()">
+ <option value="new">최신순</option>
+ <option value="popul" 
+ <c:if test="${check eq 2}">
+ 
+  selected
+ 
+</c:if>
+ >인기순</option>
  </select>
+ </form>
  </div>
-<c:forEach items="${plannerList}" var="planner">
-<div class="list">
+<c:forEach items="${plannerList}" var="planner" varStatus="status">
+<div class="list list${status.index}" onclick="submit(${status.index})">
 <form action="plannerDP.do">
 <input type="hidden" name="planner_no" value="${planner.planner_no}">
 <input type="hidden" name="user_id" value="${planner.user_id}">
  <img src="resources/img/city-7085073_960_720.jpg" style="width:200px; height:210px; float: left;" class="listImg"> 
-<%-- <p>${planner.planner_title} 작성자 : ${planner.user_id} <input type="submit" value="상세보기"></p> --%>
 <div style=" padding-top: 28px;">
-<span style="font-size:18px" class="title">강원도</span> <br>
-<span style="font-size:18px; font-weight:550; color:#fa8100" class="title main">신나는 강원도 여행 하하</span>
-<span style="font-size:15px" class="comment">2099.12.12~2099.12.31</span><br>
-<span style="font-size:15px" class="comment">작성자 kimkim</span><br>
-<span style="font-size:15px" class="comment">comment : 3</span><span class="like"><i class="bi bi-heart-fill" style="color:black;"></i> 8&nbsp;</span>
+<span style="font-size:18px" class="title">${planner.planner_area}</span> <br>
+<span style="font-size:18px; font-weight:550; color:#fa8100" class="title main">${planner.planner_title}</span><br>
+<span style="font-size:15px" class="comment">${planner.planner_start}~${planner.planner_end}</span><br>
+<span style="font-size:15px" class="comment">작성자 ${planner.user_id}</span><br>
+<span style="font-size:15px" class="comment">comment : 3</span><span class="like"><i class="bi bi-heart-fill" style="color:black;"></i> ${planner.planner_like}&nbsp;</span>
 </div>
 </form>
 </div>

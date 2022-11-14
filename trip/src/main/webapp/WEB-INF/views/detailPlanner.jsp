@@ -56,7 +56,7 @@ background-color: #cccccc;
 </style>
 <script>
 
-$(function() {
+/* $(function() {
 	  var lnb = $("#lnb").offset().top;
 	 
 	  $(window).scroll(function() {
@@ -69,7 +69,7 @@ $(function() {
 	      $("#lnb").removeClass("fixed");
 	    }
 	  })
-	});
+	}); */
 
 (function () {
 	var number = ${planner_no};
@@ -83,7 +83,7 @@ $(function() {
 	 success : function(data){
 		 var i = 1;
 		 $(data).each(function(){
-		$("#"+this.planner_date).append("<div style='width:380px; margin-bottom: 1px;' class='day day"+this.planner_date+"' onclick='area("+i+")'><img src='"+this.img+"' class='img'>"+
+		$("#"+this.planner_date).append("<div style='width:350px; margin-bottom: 1px;' class='day day"+this.planner_date+"' onclick='area("+i+")'><img src='"+this.img+"' class='img'>"+
 	 	"<span style='vertical-align:top;' class='title'>"+ this.place_name+"</span> <small style='vertical-align:buttom;'>"+ this.addr+"</small>"+
 	 	"<input type='hidden' value='"+this.mapy+"' class='mapy"+this.planner_date+" y"+i+"'> <input type='hidden' value='"+this.mapx+"' class='mapx"+this.planner_date+" x"+i+"'></div><span class='material-symbols-outlined' style='font-weight: 900;'>more_vert</span>")
 	 	 i += 1;
@@ -95,7 +95,26 @@ $(function() {
 		 alert("실패");
 	 }
  });
-	
+
+  $.ajax({
+		 url: "selectMemo.do" ,
+		 type: "GET" , 
+		 dataType: "json", 
+		 data : {
+			 "planner_no" : number
+		 } , 
+		 success : function(data){
+			 $(data).each(function(){
+				 
+				 $("#memoP" + this.memo_day).text(this.memo_content)
+				 
+			 });
+		 
+		 } , 
+		 error : function(){
+			 alert("실패");
+		 }
+	 });
 	
 	
 })();
@@ -178,7 +197,7 @@ function area(num){
  <div class="col-sm-6">
 <c:forEach begin="1" end="${planner_day}" varStatus="status">
 <div id="${status.count}" style="text-align: -webkit-center;">
-<h4 style="text-align: initial; margin-left: 18%; margin-bottom: 3%; color:#ff8e15; font-weight: 900;" onclick="memo(${status.count})">DAY - ${status.count}</h4>
+<h4 style="text-align: initial; margin-left: 23%; margin-bottom: 3%; color:#ff8e15; font-weight: 900;" onclick="memo(${status.count})">DAY - ${status.count}</h4>
 </div>
 <br>
 </c:forEach> 
@@ -203,8 +222,8 @@ function area(num){
       </button>
     </h2>
     <div id="flush-collapse${number}" class="accordion-collapse collapse" aria-labelledby="flush-heading${number}" data-bs-parent="#accordionFlushExample" >
-      <div class="accordion-body">
-      Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+      <div class="accordion-body" id="memoP${status.count}">
+      </div>
     </div>
   </div>
 
@@ -216,13 +235,19 @@ function area(num){
 <input type="hidden" value="${planner_no}" name="planner_no">
 <button class="btn delete btn-sm">일정 지우기</button>
 </form>
+<form action="getAreaList.do" method="post" style="text-align: center;">
+<input type="hidden" value="${user_id}" name="user_id">
+<input type="hidden" value="${planner_no}" name="planner_no">
+<input type="hidden" value="${planner_area}" name="area">
+<button class="btn delete btn-sm">수정하기</button>
+</form>
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=b96ec8a7c96b4f5663ea3d19a4bbc885"></script>
 
 <script>
 //마커를 표시할 위치와 title 객체 배열입니다 
 var mapContainer = document.getElementById('map') // 지도를 표시할 div  
     mapOption = { 
-        center: new kakao.maps.LatLng(37.4736521046,129.1070564038), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(${area.area_mapy},${area.area_mapx}), // 지도의 중심좌표
         level: 12 // 지도의 확대 레벨
     };
 var map = new kakao.maps.Map(mapContainer, mapOption); 
