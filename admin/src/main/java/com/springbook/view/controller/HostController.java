@@ -1,6 +1,7 @@
 package com.springbook.view.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springbook.biz.common.PagingVO;
+import com.springbook.biz.host.HostChartVO;
 import com.springbook.biz.host.HostService;
 import com.springbook.biz.host.HostVO;
 
@@ -80,7 +82,7 @@ public class HostController {
 
 		PagingVO pvo = new PagingVO(totalPageCnt, onePageCnt, nowPage, oneBtnCnt);
 		vo.setOffset(pvo.getOffset());
-		
+
 		model.addAttribute("paging", pvo);
 		model.addAttribute("hostList", hostService.manage_hostList(vo));
 		System.out.println("리스트 출력");
@@ -99,6 +101,39 @@ public class HostController {
 	@ResponseBody
 	public int host_idCheck(HostVO vo) {
 		return hostService.idCheck(vo);
+	}
+
+	// 호스트 헤더 > 인덱스 홈으로 이동, 이동할 때 차트 데이터(최근 10일 매출), 인덱스에 뿌려줄 데이터 가져오기
+	@RequestMapping("/manage_indexChart.do")
+	public String moveToHostIndex(HostChartVO vo, Model model, HttpSession session) {
+		vo.setHost_id((String) session.getAttribute("host_id"));
+		List<HostChartVO> listvo = hostService.hostIndexChartSelect(vo);
+		List<HostChartVO> listvo2 = hostService.hostIndexChart2Select(vo);
+		List<HostChartVO> listvo3 = hostService.hostIndexRoomSelect(vo);
+		model.addAttribute("hostIndexChartSelect", listvo);
+		model.addAttribute("hostIndexChart2Select", listvo2);
+		model.addAttribute("hostIndexRoomSelect", listvo3);
+		vo = hostService.indexRoomCount(vo);
+		model.addAttribute("indexRoomCount", vo);
+		vo.setHost_id((String) session.getAttribute("host_id"));
+		vo = hostService.indexReviewCount(vo);
+		model.addAttribute("indexReviewCount", vo);
+		vo.setHost_id((String) session.getAttribute("host_id"));
+		vo = hostService.indexLikeCount(vo);
+		model.addAttribute("indexLikeCount", vo);
+		vo.setHost_id((String) session.getAttribute("host_id"));
+		vo = hostService.indexCheckout(vo);
+		model.addAttribute("indexCheckout", vo);
+		vo.setHost_id((String) session.getAttribute("host_id"));
+		vo = hostService.indexTodayCheckin(vo);
+		model.addAttribute("indexTodayCheckin", vo);
+		vo.setHost_id((String) session.getAttribute("host_id"));
+		vo = hostService.indexStaying(vo);
+		model.addAttribute("indexStaying", vo);
+		vo.setHost_id((String) session.getAttribute("host_id"));
+		vo = hostService.indexCheckinAble(vo);
+		model.addAttribute("indexCheckinAble", vo);
+		return "WEB-INF/views/manage_main.jsp";
 	}
 
 }

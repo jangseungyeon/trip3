@@ -17,6 +17,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.springbook.biz.host.HostChartVO,java.util.*"%>
 <%@ include file="header.jsp"%>
 
 <!DOCTYPE html>
@@ -34,26 +35,32 @@
 					<a href="#" class="simple-text"> Trip 3.0 </a>
 				</div>
 				<ul class="nav">
-					<li class="nav-item active"><a class="nav-link" href="manage_main.do">
-							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
+					<li class="nav-item active"><a class="nav-link"
+						href="manage_main.do"> <i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원 관리
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너 관리
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약 관리
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="qna_admin_list.do"> <i class="nc-icon nc-send"></i>문의 응답
@@ -96,7 +103,330 @@
 
 			<div class="content">
 				<div class="container-fluid">
+
 					<div class="row">
+						<div class="col-md-6">
+							<div class="card  card-tasks">
+								<div class="card-header ">
+									<h4 class="card-title">Info</h4>
+									<p class="card-category">운영 현황</p>
+								</div>
+								<div class="card-body ">
+									<div class="table-full-width">
+										<table class="table">
+											<tbody>
+												<tr>
+													<td>운영중인 숙소: <span class="red-text-small">${indexRoomCount.index_room_count}</span>건
+													</td>
+												</tr>
+												<tr>
+													<td>등록된 총 리뷰: <span class="red-text-small">${indexReviewCount.index_review_count}</span>건
+													</td>
+												</tr>
+												<tr>
+													<td>받은 좋아요 수: <span class="red-text-small">${indexLikeCount.index_like_count}</span>건
+													</td>
+												</tr>
+												<tr>
+													<td>체크아웃(완료): <span class="red-text-small">${indexCheckout.index_checkout}</span>건
+													</td>
+												</tr>
+												<tr>
+													<td>오늘 체크인: <span class="red-text-small">${indexTodayCheckin.index_today_checkin}</span>건
+													</td>
+												</tr>
+												<tr>
+													<td>숙박중: <span class="red-text-small">${indexStaying.index_staying}</span>건
+													</td>
+												</tr>
+												<tr>
+													<td>체크인(예정): <span class="red-text-small">${indexCheckinAble.index_checkin_able}</span>건
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="card-footer ">
+									<hr>
+									<div class="stats">
+										<i class="now-ui-icons loader_refresh spin"></i> Data
+										information certified
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="card  card-tasks">
+								<div class="card-header ">
+									<h4 class="card-title">Info</h4>
+									<p class="card-category">인기 테마 / 숙소</p>
+								</div>
+								<div class="card-body ">
+									<div class="table-full-width">
+										<table class="table">
+											<tbody>
+												<tr>
+													<td><span class="red-text-small">${hostIndexRoomSelect[0].index_theme_rank}</span>
+													</td>
+												</tr>
+												<tr>
+													<td><span class="red-text-small">${hostIndexRoomSelect[1].index_theme_rank}</span>
+													</td>
+												</tr>
+												<tr>
+													<td><span class="red-text-small">${hostIndexRoomSelect[2].index_theme_rank}</span>
+													</td>
+												</tr>
+												<tr>
+													<td><span class="red-text-small">${hostIndexRoomSelect[0].index_room_rank}</span>
+													</td>
+												</tr>
+												<tr>
+													<td><span class="red-text-small">${hostIndexRoomSelect[1].index_room_rank}</span>
+													</td>
+												</tr>
+												<tr>
+													<td><span class="red-text-small">${hostIndexRoomSelect[2].index_room_rank}</span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="card-footer ">
+									<hr>
+									<div class="stats">
+										<i class="now-ui-icons loader_refresh spin"></i> Data
+										information certified
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+<!-- 매출현황 -->
+
+<div style="text-align:center";>
+<div class="chart1" style="width: 65%; height: 500px; padding-left:30px ; float:left; position: relative;">
+	<!--차트 1, 막대형 그래프-->
+	최근 10일간 <span class="red-text-small">${host_id}</span>님의 <span class="chart_title"><span class="red-text-small">일별</span> 매출 현황<br></span>
+	<br>
+	<canvas id="myChart"></canvas>
+</div>
+<div style="width: 30%; height: 400px; padding-right:30px ; float:right; position: relative;">
+	<!--차트 2, 원형 그래프-->
+	최근 10일간 <span class="red-text-small">${host_id}</span>님의 <span class="chart_title"><span class="red-text-small">숙소별</span> 매출 현황<br></span>
+	<br>
+	<canvas id="myChart2"></canvas>
+</div>
+</div>
+
+<!-- 차트 3, 전체 매출 -->
+
+
+<script type="text/javascript">
+            var context = document
+                .getElementById('myChart')
+                .getContext('2d');
+            var myChart = new Chart(context, {
+                type: 'bar', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: [
+                        //x 축
+                        '${hostIndexChartSelect[0].chart_date}',
+                        '${hostIndexChartSelect[1].chart_date}',
+                        '${hostIndexChartSelect[2].chart_date}',
+                        '${hostIndexChartSelect[3].chart_date}',
+                        '${hostIndexChartSelect[4].chart_date}',
+                        '${hostIndexChartSelect[5].chart_date}',
+                        '${hostIndexChartSelect[6].chart_date}',
+                        '${hostIndexChartSelect[7].chart_date}',
+                        '${hostIndexChartSelect[8].chart_date}',
+                       ' ${hostIndexChartSelect[9].chart_date}'
+                    ],
+                    datasets: [
+                        { //데이터
+                            label: 'Daily..', //차트 제목
+                            fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                            data: [
+                                ${hostIndexChartSelect[0].chart_sum},
+                                ${hostIndexChartSelect[1].chart_sum},
+                                ${hostIndexChartSelect[2].chart_sum},
+                                ${hostIndexChartSelect[3].chart_sum},
+                                ${hostIndexChartSelect[4].chart_sum},
+                                ${hostIndexChartSelect[5].chart_sum},
+                                ${hostIndexChartSelect[6].chart_sum},
+                                ${hostIndexChartSelect[7].chart_sum},
+                                ${hostIndexChartSelect[8].chart_sum},
+                                ${hostIndexChartSelect[9].chart_sum}
+                            ],
+                            backgroundColor: [
+                                //색상
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)'
+                            ],
+                            borderColor: [
+                                //경계선 색상
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)'
+                            ],
+                            borderWidth: 1 //경계선 굵기
+                        }/* ,
+                        {
+                            label: 'test2',
+                            fill: false,
+                            data: [
+                                8, 34, 12, 24
+                            ],
+                            backgroundColor: 'rgb(157, 109, 12)',
+                            borderColor: 'rgb(157, 109, 12)'
+                        } */
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
+
+<script type="text/javascript">
+			<!-- 방 개수 구하기 -->
+			var labels_b = [];
+				 <%List<HostChartVO> host_chart2_list = (List<HostChartVO>) request.getAttribute("hostIndexChart2Select"); 
+				 for(int i = 0; i < host_chart2_list.size(); i++) {
+					 	String room_name = host_chart2_list.get(i).getRoom_name();%>
+			labels_b.push("<%=room_name%>");
+			<%}%>
+			
+			<!-- 방 매출 구하기 -->
+			var labels_c = [];
+			 <%List<HostChartVO> host_chart2_list2 = (List<HostChartVO>) request.getAttribute("hostIndexChart2Select"); 
+			 for(int i = 0; i < host_chart2_list2.size(); i++) {
+				 	int chart_sum2 = host_chart2_list2.get(i).getChart_sum2();%>
+		labels_c.push("<%=chart_sum2%>");
+		<% } %>
+			
+            var context = document
+                .getElementById('myChart2')
+                .getContext('2d');
+            var myChart = new Chart(context, {
+                type: 'pie', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                	labels: labels_b,
+
+                    datasets: [
+                        { //데이터
+                            label: '최근 10일간 숙소별 매출 현황', //차트 제목
+                            fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                            data: labels_c
+//                                 ${hostIndexChart2Select[0].chart_sum2},
+//                                 ${hostIndexChart2Select[1].chart_sum2},
+//                                 ${hostIndexChart2Select[2].chart_sum2},
+//                                 ${hostIndexChart2Select[3].chart_sum2},
+//                                 ${hostIndexChart2Select[4].chart_sum2},
+//                                 ${hostIndexChart2Select[5].chart_sum2},
+//                                 ${hostIndexChart2Select[6].chart_sum2},
+//                                 ${hostIndexChart2Select[7].chart_sum2},
+//                                 ${hostIndexChart2Select[8].chart_sum2},
+//                                 ${hostIndexChart2Select[9].chart_sum2}
+                            ,
+                            backgroundColor: [
+                                //색상
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)'
+                            ],
+                            borderColor: [
+                                //경계선 색상
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)'
+                            ],
+                            borderWidth: 1 //경계선 굵기
+                        }/* ,
+                        {
+                            label: 'test2',
+                            fill: false,
+                            data: [
+                                8, 34, 12, 24
+                            ],
+                            backgroundColor: 'rgb(157, 109, 12)',
+                            borderColor: 'rgb(157, 109, 12)'
+                        } */
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
+        
+
+
+
+
+
+
+
+
+
+
+
 						<div class="col-md-4">
 							<div class="card ">
 								<div class="card-header ">
@@ -107,8 +437,8 @@
 									<div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
 									<div class="legend">
 										<i class="fa fa-circle text-info"></i> Open <i
-											class="fa fa-circle text-table border=1px solid;"></i> Bounce <i
-											class="fa fa-circle text-warning"></i> Unsubscribe
+											class="fa fa-circle text-table border=1px solid;"></i> Bounce
+										<i class="fa fa-circle text-warning"></i> Unsubscribe
 									</div>
 									<hr>
 									<div class="stats">
@@ -129,8 +459,8 @@
 								<div class="card-footer ">
 									<div class="legend">
 										<i class="fa fa-circle text-info"></i> Open <i
-											class="fa fa-circle text-table border=1px solid;"></i> Click <i
-											class="fa fa-circle text-warning"></i> Click Second Time
+											class="fa fa-circle text-table border=1px solid;"></i> Click
+										<i class="fa fa-circle text-warning"></i> Click Second Time
 									</div>
 									<hr>
 									<div class="stats">
@@ -153,7 +483,8 @@
 								<div class="card-footer ">
 									<div class="legend">
 										<i class="fa fa-circle text-info"></i> Tesla Model S <i
-											class="fa fa-circle text-table border=1px solid;"></i> BMW 5 Series
+											class="fa fa-circle text-table border=1px solid;"></i> BMW 5
+										Series
 									</div>
 									<hr>
 									<div class="stats">
@@ -162,160 +493,18 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="card  card-tasks">
-								<div class="card-header ">
-									<h4 class="card-title">Tasks</h4>
-									<p class="card-category">Backend development</p>
-								</div>
-								<div class="card-body ">
-									<div class="table-full-width">
-										<table class="table">
-											<tbody>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input" type="checkbox" value="">
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>Sign contract for "What are conference organizers
-														afraid of?"</td>
-													<td class="td-actions text-right">
-														<button type="button" rel="tooltip" title="Edit Task"
-															class="btn btn-info btn-simple btn-link">
-															<i class="fa fa-edit"></i>
-														</button>
-														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-warning btn-simple btn-link">
-															<i class="fa fa-times"></i>
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input" type="checkbox" value=""
-																checked> <span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>Lines From Great Russian Literature? Or E-mails
-														From My Boss?</td>
-													<td class="td-actions text-right">
-														<button type="button" rel="tooltip" title="Edit Task"
-															class="btn btn-info btn-simple btn-link">
-															<i class="fa fa-edit"></i>
-														</button>
-														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-warning btn-simple btn-link">
-															<i class="fa fa-times"></i>
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input" type="checkbox" value=""
-																checked> <span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>Flooded: One year later, assessing what was lost
-														and what was found when a ravaging rain swept through
-														metro Detroit</td>
-													<td class="td-actions text-right">
-														<button type="button" rel="tooltip" title="Edit Task"
-															class="btn btn-info btn-simple btn-link">
-															<i class="fa fa-edit"></i>
-														</button>
-														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-warning btn-simple btn-link">
-															<i class="fa fa-times"></i>
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input" type="checkbox" checked>
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>Create 4 Invisible User Experiences you Never Knew
-														About</td>
-													<td class="td-actions text-right">
-														<button type="button" rel="tooltip" title="Edit Task"
-															class="btn btn-info btn-simple btn-link">
-															<i class="fa fa-edit"></i>
-														</button>
-														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-warning btn-simple btn-link">
-															<i class="fa fa-times"></i>
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input" type="checkbox" value="">
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>Read "Following makes Medium better"</td>
-													<td class="td-actions text-right">
-														<button type="button" rel="tooltip" title="Edit Task"
-															class="btn btn-info btn-simple btn-link">
-															<i class="fa fa-edit"></i>
-														</button>
-														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-warning btn-simple btn-link">
-															<i class="fa fa-times"></i>
-														</button>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input" type="checkbox" value=""
-																disabled> <span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>Unfollow 5 enemies from twitter</td>
-													<td class="td-actions text-right">
-														<button type="button" rel="tooltip" title="Edit Task"
-															class="btn btn-info btn-simple btn-link">
-															<i class="fa fa-edit"></i>
-														</button>
-														<button type="button" rel="tooltip" title="Remove"
-															class="btn btn-warning btn-simple btn-link">
-															<i class="fa fa-times"></i>
-														</button>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="card-footer ">
-									<hr>
-									<div class="stats">
-										<i class="now-ui-icons loader_refresh spin"></i> Updated 3
-										minutes ago
-									</div>
-								</div>
-							</div>
-						</div>
+
+
+
+
+
+
+
+
+
+
+
+
 					</div>
 
 				</div>
@@ -403,15 +592,6 @@
 </div>
  -->
 </body>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="resources/assets/js/plugins/bootstrap-switch.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!--  Chartist Plugin  -->
-<script src="resources/assets/js/plugins/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="resources/assets/js/plugins/bootstrap-notify.js"></script>
 
 <%@ include file="footer.jsp"%>
 </html>

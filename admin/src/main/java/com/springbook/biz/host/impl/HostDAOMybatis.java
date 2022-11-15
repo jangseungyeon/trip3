@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.springbook.biz.host.HostChartVO;
 import com.springbook.biz.host.HostVO;
 
 @Repository
@@ -62,6 +63,57 @@ public class HostDAOMybatis {
 		} else {
 			return 2;
 		}
+	}
+
+	 //호스트가 운영중인 숙소 수
+	public HostChartVO indexRoomCount(HostChartVO vo) {
+		return mybatis.selectOne("HostDAO.indexRoomCount", vo);
+	}
+
+	//호스트가 가진 리뷰 수
+	public HostChartVO indexReviewCount(HostChartVO vo) {
+		return mybatis.selectOne("HostDAO.indexReviewCount", vo);
+	}
+
+	//호스트가 가진 좋아요 수
+	public HostChartVO indexLikeCount(HostChartVO vo) {
+		return mybatis.selectOne("HostDAO.indexLikeCount", vo);
+	}
+
+	//호스트가 가진 체크아웃된 숙소 수
+	public HostChartVO indexCheckout(HostChartVO vo) {
+		return mybatis.selectOne("HostDAO.indexCheckout", vo);
+	}
+
+	//호스트가 가진 오늘 체크인 숙소 수
+	public HostChartVO indexTodayCheckin(HostChartVO vo) {
+		return mybatis.selectOne("HostDAO.indexTodayCheckin", vo);
+	}
+
+	 //호스트가 가진 현재 숙박중인 숙소 수
+	public HostChartVO indexStaying(HostChartVO vo) {
+		return mybatis.selectOne("HostDAO.indexStaying", vo);
+	}
+
+	//호스트가 가진 체크인 예정 숙소 수
+	public HostChartVO indexCheckinAble(HostChartVO vo) {
+		return mybatis.selectOne("HostDAO.indexCheckinAble", vo);
+	}
+
+	public List<HostChartVO> hostIndexChartSelect(HostChartVO vo) {
+		return mybatis.selectList("HostDAO.hostIndexChartSelect", vo);
+	}
+
+	public List<HostChartVO> hostIndexChart2Select(HostChartVO vo) {
+		return mybatis.selectList("HostDAO.hostIndexChart2Select", vo);
+	}
+
+	public List<HostChartVO> hostIndexRoomSelect(HostChartVO vo) {
+		return mybatis.selectList("hostIndexRoomSelect", vo);
+	}
+
+	public List<HostChartVO> hostIndexChart3Select(HostChartVO vo) {
+		return mybatis.selectList("hostIndexChart3Select", vo);
 	}
 
 }

@@ -33,7 +33,7 @@ public class ManageController {
 			session.setAttribute("manage_id", manage_id);
 			session.setAttribute("manage_name", manage_name);
 			System.out.println("로그인성공");
-			return "WEB-INF/views/manage_main.jsp";
+			return "manage_indexChart.do";
 		} else {
 			System.out.println("로그인실패");
 			return "manage_loginForm.do";
@@ -50,7 +50,7 @@ public class ManageController {
 	// 관리자 메인 이동
 	@RequestMapping("/manage_main.do")
 	public String manage_main(ModelAndView mv) {
-		return "WEB-INF/views/manage_main.jsp";
+		return "manage_indexChart.do";
 	}
 
 }
