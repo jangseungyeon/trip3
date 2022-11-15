@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="header.jsp"%>
 
 <!DOCTYPE html>
@@ -23,28 +24,25 @@
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
-							정보
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
-							정보
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
-							정보
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
-							관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
-							정보
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너 관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
-							정보
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약 관리
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="qna_admin_list.do"> <i class="nc-icon nc-send"></i>문의 응답
 					</a></li>
 				</ul>
 			</div>
@@ -99,25 +97,24 @@
 						</form>
 					</nav>
 					<!-- End Search -->
-
 					<table border="1">
 						<thead>
 							<tr>
 								<th>예약번호</th>
 								<th>회원아이디</th>
-<!-- 								<th>imp_uid</th> -->
-<!-- 								<th>merchant_uid</th> -->
+								<!-- 								<th>imp_uid</th> -->
+								<!-- 								<th>merchant_uid</th> -->
 								<th>이름</th>
 								<th>전화번호</th>
-<!-- 								<th>이메일</th> -->
-<!-- 								<th>업주아이디</th> -->
-<!-- 								<th>숙소아이디</th> -->
+								<!-- 								<th>이메일</th> -->
+								<!-- 								<th>업주아이디</th> -->
+								<!-- 								<th>숙소아이디</th> -->
 								<th>숙소명</th>
-<!-- 								<th>이미지</th> -->
+								<!-- 								<th>이미지</th> -->
 								<th>결제일자</th>
 								<th>결제금액</th>
 								<th>예약인원</th>
-<!-- 								<th>변경가능횟수</th> -->
+								<!-- 								<th>변경가능횟수</th> -->
 								<th>예약상태</th>
 								<th>체크인</th>
 								<th>체크아웃</th>
@@ -128,19 +125,23 @@
 							<tr align="center">
 								<td>${res.res_id}</td>
 								<td>${res.user_id}</td>
-<%-- 								<td>${res.imp_uid}</td> --%>
-<%-- 								<td>${res.merchant_uid}</td> --%>
+								<%-- 								<td>${res.imp_uid}</td> --%>
+								<%-- 								<td>${res.merchant_uid}</td> --%>
 								<td>${res.res_name}</td>
 								<td>${res.res_tel}</td>
-<%-- 								<td>${res.res_email}</td> --%>
-<%-- 								<td>${res.host_id}</td> --%>
-<%-- 								<td>${res.room_id}</td> --%>
+								<%-- 								<td>${res.res_email}</td> --%>
+								<%-- 								<td>${res.host_id}</td> --%>
+								<%-- 								<td>${res.room_id}</td> --%>
 								<td>${res.room_name}</td>
-<%-- 								<td>${res.room_img}</td> --%>
-								<td>${res.pay_date}</td>
+								<%-- 								<td>${res.room_img}</td> --%>
+								<%-- 								<td>${res.pay_date}</td> --%>
+
+								<td><fmt:parseDate value="${res.pay_date}" var="dateValue"
+										pattern="yyyy-MM-dd HH:mm:ss.S" /> <fmt:formatDate
+										value="${dateValue}" pattern="yyyy-MM-dd" /></td>
 								<td>${res.pay_amount}</td>
 								<td>${res.res_num}</td>
-<%-- 								<td>${res.res_count}</td> --%>
+								<%-- 								<td>${res.res_count}</td> --%>
 								<td>${res.res_status}</td>
 								<td>${res.res_checkin}</td>
 								<td>${res.res_checkout}</td>

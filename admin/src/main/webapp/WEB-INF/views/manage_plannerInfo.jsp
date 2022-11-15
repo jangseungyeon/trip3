@@ -43,28 +43,25 @@
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
-							정보
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
-							정보
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
-							정보
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
-							관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
-							정보
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
-							정보
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약 관리
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="qna_admin_list.do"> <i class="nc-icon nc-send"></i>문의 응답
 					</a></li>
 				</ul>
 			</div>
