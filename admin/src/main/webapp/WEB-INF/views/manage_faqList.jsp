@@ -92,12 +92,12 @@
 								</c:forEach>
 							</select> <input class="form-control" type="text" name="searchKeyword"
 								placeholder="검색어를 입력하세요.">
-							<button class="btn btn-success" type="submit">검색</button>
+							<button class="btn btn-search" type="submit">검색</button>
 						</form>
 					</nav>
 					<!-- End Search -->
 
-					<table border="1">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th>번호</th>
@@ -105,7 +105,7 @@
 								<th>작성자</th>
 								<th>작성일</th>
 								<th>조회수</th>
-								<th><a class="btn btn-primary"
+								<th><a class="btn btn-light"
 									href="manage_faqInsertForm.do" role="button">공지등록</a></th>
 							</tr>
 						</thead>
@@ -116,7 +116,7 @@
 								<td>${faq.faq_writer}</td>
 								<td>${faq.faq_regdate}</td>
 								<td>${faq.faq_cnt}</td>
-								<td><a class="btn btn-success"
+								<td><a class="btn btn-secondary"
 									href="manage_faqInfo.do?faq_no=${faq.faq_no}" role="button">상세보기</a></td>
 							</tr>
 						</c:forEach>

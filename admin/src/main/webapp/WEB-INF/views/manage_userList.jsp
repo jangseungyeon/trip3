@@ -92,12 +92,12 @@
 								</c:forEach>
 							</select> <input class="form-control" type="text" name="searchKeyword"
 								placeholder="검색어를 입력하세요.">
-							<button class="btn btn-success" type="submit">검색</button>
+							<button class="btn btn-search" type="submit">검색</button>
 						</form>
 					</nav>
 					<!-- End Search -->
 
-					<table border="1">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th>아이디</th>
@@ -110,7 +110,7 @@
 								<th>상세주소</th>
 								<th>상태</th>
 								<th>타입</th>
-								<th><a class="btn btn-primary" href="manage_userInsertForm.do">회원가입</a></th>
+								<th><a class="btn btn-light" href="manage_userInsertForm.do">회원가입</a></th>
 							</tr>
 						</thead>
 						<c:forEach var="user" items="${userList}">
@@ -125,7 +125,7 @@
 								<td>${user.user_address2}</td>
 								<td>${user.user_status}</td>
 								<td>${user.user_type}</td>
-								<td><a class="btn btn-success"
+								<td><a class="btn btn-secondary"
 									href="manage_userInfo.do?user_id=${user.user_id}" role="button">상세보기</a></td>
 							</tr>
 						</c:forEach>

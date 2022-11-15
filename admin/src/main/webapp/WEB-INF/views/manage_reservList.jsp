@@ -93,11 +93,11 @@
 								</c:forEach>
 							</select> <input class="form-control" type="text" name="searchKeyword"
 								placeholder="검색어를 입력하세요.">
-							<button class="btn btn-success" type="submit">검색</button>
+							<button class="btn btn-search" type="submit">검색</button>
 						</form>
 					</nav>
 					<!-- End Search -->
-					<table border="1">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th>예약번호</th>
@@ -145,7 +145,7 @@
 								<td>${res.res_status}</td>
 								<td>${res.res_checkin}</td>
 								<td>${res.res_checkout}</td>
-								<td><a class="btn btn-success"
+								<td><a class="btn btn-secondary"
 									href="manage_reservInfo.do?res_id=${res.res_id}" role="button">상세보기</a></td>
 							</tr>
 						</c:forEach>

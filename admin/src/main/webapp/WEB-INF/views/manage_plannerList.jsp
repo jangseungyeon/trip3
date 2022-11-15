@@ -92,12 +92,12 @@
 								</c:forEach>
 							</select> <input class="form-control" type="text" name="searchKeyword"
 								placeholder="검색어를 입력하세요.">
-							<button class="btn btn-success" type="submit">검색</button>
+							<button class="btn btn-search" type="submit">검색</button>
 						</form>
 					</nav>
 					<!-- End Search -->
 
-					<table border="1">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th>플래너제목</th>
@@ -121,7 +121,7 @@
 								<td>${plan.planner_end}</td>
 								<td>${plan.planner_area}</td>
 								<td>${plan.planner_day}</td>
-								<td><a class="btn btn-success"
+								<td><a class="btn btn-secondary"
 									href="manage_plannerInfo.do?planner_no=${plan.planner_no}"
 									role="button">상세보기</a></td>
 							</tr>

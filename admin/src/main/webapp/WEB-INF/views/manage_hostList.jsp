@@ -92,12 +92,11 @@
 								</c:forEach>
 							</select> <input class="form-control" type="text" name="searchKeyword"
 								placeholder="검색어를 입력하세요.">
-							<button class="btn btn-success" type="submit">검색</button>
+							<button class="btn btn-search" type="submit">검색</button>
 						</form>
 					</nav>
 					<!-- End Search -->
-
-					<table border="1">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th>아이디</th>
@@ -113,7 +112,7 @@
 <!-- 								<th>이미지</th> -->
 <!-- 								<th>은행</th> -->
 <!-- 								<th>계좌번호</th> -->
-								<th><a class="btn btn-primary"
+								<th><a class="btn btn-light"
 									href="manage_hostInsertForm.do" role="button">업주가입</a></th>
 							</tr>
 						</thead>
@@ -132,7 +131,7 @@
 <%-- 								<td>${host.host_bizimg}</td> --%>
 <%-- 								<td>${host.host_bank}</td> --%>
 <%-- 								<td>${host.host_banknum}</td> --%>
-								<td><a class="btn btn-success"
+								<td><a class="btn btn-secondary"
 									href="manage_hostInfo.do?host_id=${host.host_id}" role="button">상세보기</a></td>
 							</tr>
 						</c:forEach>

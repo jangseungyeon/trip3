@@ -23,22 +23,28 @@
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원 관리
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
+							관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너 관리
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약 관리
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="qna_admin_list.do"> <i class="nc-icon nc-send"></i>문의 응답
@@ -79,7 +85,7 @@
 			</nav>
 			<!-- End Navbar -->
 
-		<div class="content">
+			<div class="content">
 				<div class="container-fluid">
 					<!-- Search -->
 					<nav id="searchNav" class="navbar navbar-expand-sm navbar-dark">
@@ -92,31 +98,31 @@
 								</c:forEach>
 							</select> <input class="form-control" type="text" name="searchKeyword"
 								placeholder="검색어를 입력하세요.">
-							<button class="btn btn-success" type="submit">검색</button>
+							<button class="btn btn-search" type="submit">검색</button>
 						</form>
 					</nav>
 					<!-- End Search -->
 
-					<table border="1">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th>숙소 아이디</th>
-								<th>업주 아이디</th>
+								<th>숙소ID</th>
+								<th>업주ID</th>
 								<th>이름</th>
 								<th>주소</th>
 								<th>상세주소</th>
 								<th>설명</th>
 								<th>가격</th>
-								<th>이미지</th>
+								<!-- 								<th>이미지</th> -->
 								<!-- 							<th>마일리지</th> -->
-								<th>최대인원</th>
+								<!-- 								<th>최대인원</th> -->
 								<th>테마</th>
 								<th>카테고리</th>
-<!-- 								<th>와이파이</th> -->
-<!-- 								<th>동물</th> -->
-<!-- 								<th>조식</th> -->
-<!-- 								<th>주차</th> -->
-<!-- 								<th>수영</th> -->
+								<!-- 								<th>와이파이</th> -->
+								<!-- 								<th>동물</th> -->
+								<!-- 								<th>조식</th> -->
+								<!-- 								<th>주차</th> -->
+								<!-- 								<th>수영</th> -->
 								<th>좋아요</th>
 								<th>별점</th>
 								<th></th>
@@ -131,19 +137,19 @@
 								<td>${room.room_addr_detail}</td>
 								<td>${room.room_desc}</td>
 								<td>${room.room_price}</td>
-								<td>${room.room_img_no1}</td>
+								<%-- 								<td>${room.room_img_no1}</td> --%>
 								<%-- 								<td>${room.room_points}</td> --%>
-								<td>${room.room_max}</td>
+								<%-- 								<td>${room.room_max}</td> --%>
 								<td>${room.room_theme}</td>
 								<td>${room.room_cat}</td>
-<%-- 								<td>${room.room_wifi}</td> --%>
-<%-- 								<td>${room.room_pet}</td> --%>
-<%-- 								<td>${room.room_meal}</td> --%>
-<%-- 								<td>${room.room_parking}</td> --%>
-<%-- 								<td>${room.room_swpool}</td> --%>
+								<%-- 								<td>${room.room_wifi}</td> --%>
+								<%-- 								<td>${room.room_pet}</td> --%>
+								<%-- 								<td>${room.room_meal}</td> --%>
+								<%-- 								<td>${room.room_parking}</td> --%>
+								<%-- 								<td>${room.room_swpool}</td> --%>
 								<td>${room.room_likes}</td>
 								<td>${room.room_stars}</td>
-								<td><a class="btn btn-success"
+								<td><a class="btn btn-secondary"
 									href="manage_roomInfo.do?room_id=${room.room_id}" role="button">상세보기</a></td>
 							</tr>
 						</c:forEach>

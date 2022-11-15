@@ -43,22 +43,28 @@
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원 관리
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
+							관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너 관리
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약 관리
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="qna_admin_list.do"> <i class="nc-icon nc-send"></i>문의 응답
@@ -102,98 +108,91 @@
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-12">
-							<div class="card strpied-tabled-with-hover">
-								<div class="card-header ">
-									<h4 class="card-title">업주정보 상세</h4>
-								</div>
-								<div class="card-body table-full-width table-responsive">
-									<form name="manage_hostInfo" method="post">
-										<table class="table table-hover table-striped">
-											<thead>
-												<tr>
-													<td>아이디</td>
-													<td><input name="host_id" value="${HostVO.host_id}"
-														readonly></td>
-												</tr>
-												<tr>
-													<td>업소명</td>
-													<td><input name="host_bizname"
-														value="${HostVO.host_bizname}"></td>
-												</tr>
-												<tr>
-													<td>이름</td>
-													<td><input name="host_name"
-														value="${HostVO.host_name}"></td>
-												</tr>
-												<tr>
-													<td>생년월일</td>
-													<td><input name="host_birth"
-														value="${HostVO.host_birth}"></td>
-												</tr>
-												<tr>
-													<td>이메일</td>
-													<td><input name="host_email"
-														value="${HostVO.host_email}"></td>
-												</tr>
-												<tr>
-													<td>전화번호</td>
-													<td><input name="host_phone"
-														value="${HostVO.host_phone}"></td>
-												</tr>
-												<tr>
-													<td>주소</td>
-													<td><input name="host_addr1"
-														value="${HostVO.host_addr1}"></td>
-												</tr>
-												<tr>
-													<td>상세주소</td>
-													<td><input name="host_addr2"
-														value="${HostVO.host_addr2}"></td>
-												</tr>
-												<tr>
-													<td>상태</td>
-													<td><input name="host_status"
-														value="${HostVO.host_status}"></td>
-												</tr>
-												<tr>
-													<td>사업자번호</td>
-													<td><input name="host_biznum"
-														value="${HostVO.host_biznum}"></td>
-												</tr>
-												<tr>
-													<td>이미지</td>
-													<td><input name="host_bizimg"
-														value="${HostVO.host_bizimg}"></td>
-												</tr>
-												<tr>
-													<td>은행</td>
-													<td><input name="host_bank"
-														value="${HostVO.host_bank}"></td>
-												</tr>
-												<tr>
-													<td>계좌번호</td>
-													<td><input name="host_banknum"
-														value="${HostVO.host_banknum}"></td>
-												</tr>
+						<div class="input-form col-md-12 mx-auto">
+							<form name="manage_hostInfo" method="post">
+								<table>
+									<thead>
+										<tr>
+											<td>아이디</td>
+											<td><input name="host_id" value="${HostVO.host_id}"
+												readonly></td>
+										</tr>
+										<tr>
+											<td>업소명</td>
+											<td><input name="host_bizname"
+												value="${HostVO.host_bizname}"></td>
+										</tr>
+										<tr>
+											<td>이름</td>
+											<td><input name="host_name" value="${HostVO.host_name}"></td>
+										</tr>
+										<tr>
+											<td>생년월일</td>
+											<td><input name="host_birth"
+												value="${HostVO.host_birth}"></td>
+										</tr>
+										<tr>
+											<td>이메일</td>
+											<td><input name="host_email"
+												value="${HostVO.host_email}"></td>
+										</tr>
+										<tr>
+											<td>전화번호</td>
+											<td><input name="host_phone"
+												value="${HostVO.host_phone}"></td>
+										</tr>
+										<tr>
+											<td>주소</td>
+											<td><input name="host_addr1"
+												value="${HostVO.host_addr1}"></td>
+										</tr>
+										<tr>
+											<td>상세주소</td>
+											<td><input name="host_addr2"
+												value="${HostVO.host_addr2}"></td>
+										</tr>
+										<tr>
+											<td>상태</td>
+											<td><input name="host_status"
+												value="${HostVO.host_status}"></td>
+										</tr>
+										<tr>
+											<td>사업자번호</td>
+											<td><input name="host_biznum"
+												value="${HostVO.host_biznum}"></td>
+										</tr>
+										<tr>
+											<td>이미지</td>
+											<td><input name="host_bizimg"
+												value="${HostVO.host_bizimg}"></td>
+										</tr>
+										<tr>
+											<td>은행</td>
+											<td><input name="host_bank" value="${HostVO.host_bank}"></td>
+										</tr>
+										<tr>
+											<td>계좌번호</td>
+											<td><input name="host_banknum"
+												value="${HostVO.host_banknum}"></td>
+										</tr>
 
 
-												<tr>
-													<td colspan="2" align="center"><input type="button"
-														value="수정" id="btnUpdate"> <input type="button"
-														value="삭제" id="btnDelete"></td>
-												</tr>
-										</table>
-									</form>
-								</div>
-							</div>
+										<tr>
+											<td colspan="2" align="center"><input type="button"
+												value="수정" id="btnUpdate"> <input type="button"
+												value="삭제" id="btnDelete"></td>
+										</tr>
+								</table>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
+
+		</div>
 	</div>
+
 </body>
 <%@ include file="footer.jsp"%>
 </html>
