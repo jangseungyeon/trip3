@@ -387,6 +387,13 @@ public class RoomController {
 		System.out.println(u_list);
 		model.addAttribute("u_roomList", u_list);
 		model.addAttribute("rvo", rvo);
+		
+		if(u_list.size() != 0) {
+			model.addAttribute("moveCards", "Y");
+		} else {
+			model.addAttribute("moveNone", "Y");
+		}
+		
 		return "WEB-INF/views/user_room/user_room_list.jsp";
 	}
 	
