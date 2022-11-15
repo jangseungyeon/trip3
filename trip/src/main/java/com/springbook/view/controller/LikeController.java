@@ -69,7 +69,7 @@ public class LikeController {
 
 			List<LikeVO> list = Service.likeslist(lvo);
 			model.addAttribute("list", list);
-			return "WEB-INF/views/my_likes.jsp";
+			return "WEB-INF/views/my/my_likes.jsp";
 		}
 	
 	//좋아요 누른 (플래너) 리스트로 불러오기
@@ -79,7 +79,7 @@ public class LikeController {
 
 		List<LikeVO> list = Service.likeslist2(lvo);
 		model.addAttribute("list", list);
-		return "WEB-INF/views/my_likes2.jsp";
+		return "WEB-INF/views/my/my_likes2.jsp";
 	}
 
 		//좋아요 누른 숙소 데이터 등록 저장하기

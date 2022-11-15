@@ -49,7 +49,7 @@ public class ReservationController {
 			rvo = reservationService.getReservationOneDetail(rvo);
 			System.out.println("결제정보확인: " + rvo);
 			model.addAttribute("rvo", rvo);
-				return "WEB-INF/views/my_ReservationDetail.jsp";
+				return "WEB-INF/views/my/my_ReservationDetail.jsp";
 			
 		}
 
@@ -296,7 +296,7 @@ public class ReservationController {
 		
 		model.addAttribute("reservationList", rvo_list);
 		
-		return "WEB-INF/views/my_ReservationList.jsp";
+		return "WEB-INF/views/my/my_ReservationList.jsp";
 		
 		} else {
 			//혹여나 user_id가 없으면 (로그인 x) 메인 페이지로 이동 

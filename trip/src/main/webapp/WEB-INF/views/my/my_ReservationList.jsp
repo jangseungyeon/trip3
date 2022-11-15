@@ -7,15 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="header.jsp"%>
+<%@ include file="../header.jsp"%>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
- <script>
-
-</script> 
 
 <script>
 
@@ -101,40 +98,51 @@ function f_move_to_insert_review(room_id) {
 }
 </script>
 
+<style>
+@media (max-width: 1200px) {
+  #mycheckin, #mycheckin1, #checkout, #checkout1 {
+    display: none;
+  }
+}
 
+@media (max-width: 990px) {
+  #myres-img {
+    display: none;
+  }
+}
+</style>
 </head>
 <body>
-
+<div class="w">
 <br><br>
+
 <div class="container">
-</div>
-<div class="container">
-<div class="reslist-div1">결제한 숙소 목록</div>
+<div class="reslist-div1">결제 숙소 목록</div>
 <hr class="reslist-hr">
 <div class="row list-grid-div">
-  <table class="table table-hover" id="re_table">
+<table class="table table-hover reslist-table" id="re_table">
     <thead class="btn-primary">
       <tr>
-       <th class="col-sm-3">숙소 이미지</th>
-        <th class="col-sm-2">숙소명</th>
-          <th class="col-sm-1">결제금액</th>
-          <th class="col-sm-1">예약인원</th>
-          <th class="col-sm-1">체크인</th>
-          <th class="col-sm-1">체크아웃</th>
-          <th class="col-sm-1">결제</th>
-          <th class="col-sm-1">상세정보</th>
-          <th class="col-sm-1">리뷰</th>
+       <th id="myres-img" class="col-sm-3 myreslint-th">숙소 이미지</th>
+        <th class="col-sm-2 myreslint-th">숙소명</th>
+          <th class="col-sm-1 myreslint-th">결제금액</th>
+          <th id="myres-num1" class="col-sm-1 myreslint-th">예약인원</th>
+          <th id="mycheckin1" class="col-sm-1 myreslint-th">체크인</th>
+          <th id="checkout1" class="col-sm-1 myreslint-th">체크아웃</th>
+          <th class="col-sm-1 myreslint-th">결제</th>
+          <th class="col-sm-1 myreslint-th">상세정보</th>
+          <th class="col-sm-1 myreslint-th">리뷰</th>
       </tr>
     </thead>
     <tbody>
 <c:forEach var="i" items="${reservationList}" varStatus="status">
 			<tr align="center">
-			<td><img style="width: 300px; height:200px" src="resources/room_img/${i.room_img}"></td>
+			<td id="myres-img"><img style="width: 300px; height:200px" src="resources/room_img/${i.room_img}"></td>
 				<td>${i.room_name}</td>
 				<td>${i.pay_amount}</td>
-				<td>${i.res_num}</td>
+				<td id="myres-num">${i.res_num}</td>
 				<td style="display: none" class="status">${i.res_status}</td>
-				<td>${i.res_checkin}</td>
+				<td id="mycheckin">${i.res_checkin}</td>
 				<td id="checkout" class="checkout">${i.res_checkout}</td>
 				<td id="daybefore${status.index}"><button class="reserlist-btn" onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제<br>취소</button></td>
 				<td id="ing${status.index}" style="display: none"><span>취소<br>완료</span></td>
@@ -143,7 +151,6 @@ function f_move_to_insert_review(room_id) {
 				<td id="ing2${status.index}" style="display: none"><span>작성<br>대기</span></td>
 <%-- 				<td><button onclick="f_getPayInfo('${i.merchant_uid}','PayInfos${status.index}')">결제 정보 보기</button></td> --%>
 			</tr>
-			<br>
 			<form name="resCancelfm_${status.index}">
 			<input type="hidden" name="user_id" value="${user_id}" />
 			<input type="hidden" name="res_id" value="${i.res_id}" />
@@ -204,6 +211,17 @@ function f_move_to_insert_review(room_id) {
     var month = ("0" + (1 + date.getMonth())).slice(-2);
     var day = ("0" + date.getDate()).slice(-2);
     var today = year + "-" + month + "-" + day;
+    console.log("오늘날짜"+today)
+    
+	const tomorrow = new Date(today);
+    tomorrow.setDate(date.getDate() + 1);
+    console.log(tomorrow);
+    var year1 = tomorrow.getFullYear();
+    var month1 = ("0" + (1 + tomorrow.getMonth())).slice(-2);
+    var day1 = ("0" + tomorrow.getDate()).slice(-2);
+    var tomorrow1 =  year1 + "-" + month1 + "-" + day1;
+    console.log("내일"+tomorrow1);
+    
 $(function() {
 	//오늘 날짜
 	
@@ -219,6 +237,7 @@ $(function() {
 
 		} else {
 			$("#re_table td#dayafter"+x).hide();
+// 			$("#re_table td#dayafter"+x).attr('disabled', 'disabled');
 			$("#ing2" + x).show();
 // 		
 
@@ -227,5 +246,7 @@ $(function() {
 	});
 });
 </script>
+<%@ include file="../footer.jsp"%>
+</div>
 </body>
 </html>

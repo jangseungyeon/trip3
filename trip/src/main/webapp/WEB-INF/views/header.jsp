@@ -29,10 +29,20 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
- <link href="resources/css/style.css" rel="stylesheet"> 
+<!-- 구글폰트관련 링크 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<link href="resources/css/style.css" rel="stylesheet">
 <link href="resources/css/my_info.css" rel="stylesheet">
 <link href="resources/css/my_Reservation.css" rel="stylesheet">
 <link href="resources/css/my_likes.css" rel="stylesheet">
+<link href="resources/css/my_planner.css" rel="stylesheet">
+
+<style type="text/css">
+@import
+	url('https://fonts.googleapis.com/css2?family=B612:wght@700&family=Do+Hyeon&family=RocknRoll+One&display=swap')
+	;
+</style>
 
 </head>
 
@@ -45,8 +55,8 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 				<c:when test='${user_id ne NULL}'>
 
 					<ul class="nav justify-content-around bg-success">
-						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="index.jsp">홈</a></li>
+						<li class="nav-item"><a class="nav-link head-link text-white header-logo"
+							href="index.jsp">tripONplan</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="u_getRoomList.do">숙소</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
@@ -81,8 +91,8 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 				<c:otherwise>
 
 					<ul class="nav justify-content-around bg-success">
-						<li class="nav-item"><a class="nav-link head-link text-white"
-							href="index.jsp">홈</a></li>
+						<li class="nav-item"><a class="nav-link head-link text-white header-logo"
+							href="index.jsp">tripONplan</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"
 							href="u_getRoomList.do">숙소</a></li>
 						<li class="nav-item"><a class="nav-link head-link text-white"

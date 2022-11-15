@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="ko">
-<%@ include file="header.jsp"%>
+<%@ include file="../header.jsp"%>
 
 <title>정보수정</title>
 </head>
@@ -309,7 +309,6 @@
 				
 				$("#sendMail").on("click", function() {
 					var inputemail = document.getElementById('email').value
-					alert(inputemail);
 					if(email_pattern.test(inputemail) == false){
 						alert("형식이 올바르지 않습니다.")
 					} else if(inputemail=='${user_email}'){
@@ -385,84 +384,71 @@
 		
 	</script>
 
+<br><br>
+<div class="container">
+<div class="myinfo-div1">내 정보 수정</div>
+<hr class="myinfo-hr">
+<br><br>
 
-
-	<div class="container info-div">
-		<div class="input-form-backgroud row">
-			<div class="input-form col-md-12 mx-auto">
-				<h4 class="mb-3" style="font-size: 25px;">내 정보 수정</h4>
-				<br>
-
-				<form class="validation-form" action="user_update.do" method="post"
+<div class="container">
+<form class="validation-form" action="user_update.do" method="post"
 					name="joinform">
-
-					<div class="mb-3">
-						<label for="id">아이디</label> <input type="text"
+	<table class="myinfo-table">
+	<tr>
+	<th id="myinfo-th">아이디</th><td id="myinfo-td"><input type="text"
 							class="form-control" name="user_id" id="id" value="${user_id}"
-							readonly>
-					</div>
-
-					<div class="mb-3" style="display: none">
-						<label for="pw">비밀번호</label> <input type="password"
-							class="form-control" name="user_password" id="pw"
-							value="${user_password}" minlength="8" maxlength="16" required>
-					</div>
-
-					<div class="mb-3" style="display: none">
-						<label for="pw2">비밀번호 확인</label> <input type="password"
-							class="form-control" name="user_password2" id="pw2"
-							value="${user_password}" minlength="8" maxlength="16" required>
-						<font id="checkPw" size="2">비밀번호는 8~16글자입니다</font>
-					</div>
-					<font id="checkPw" size="2"></font>
-
-					<div class="mb-3">
-						<label for="name">이름</label> <input type="text"
+							readonly></td>
+	</tr>
+	<tr></tr>
+	<tr>
+	<th id="myinfo-th">이름</th><td id="myinfo-td"><input type="text"
 							class="form-control" id="name" name="user_name"
-							value="${user_name}" required>
-					</div>
-
-					<div class="mb-3">
-						<label for="address">주소</label> <input type="text"
-							id="sample6_postcode" name="postcode" placeholder="우편번호"
-							value="${aarr[0]}" style="display: none"><br> <input
-							type="text" id="sample6_address" placeholder="주소"
-							name="user_address1" value="${user_address1}"><br> <input
-							type="text" id="sample6_detailAddress" placeholder="상세주소"
-							name="user_address2" value="${user_address2}"> <input
-							type="text" id="sample6_extraAddress" placeholder="참고항목"
-							style="display: none"> <input type="button" class="adbtn"
-							onclick="sample6_execDaumPostcode()" value="주소 찾기">
-					</div>
-					<br>
-					<div class="mb-3">
-						<label for="phone">연락처</label><br> <input type="text"
+							value="${user_name}" required></td>
+	</tr>
+	<tr>
+	<th id="myinfo-th">주소</th><td id="myinfo-td"> <input type="text"	id="sample6_postcode" name="postcode" placeholder="우편번호"
+							value="${aarr[0]}" style="display: none">
+							<input type="text" id="sample6_address" placeholder="주소"
+							name="user_address1" value="${user_address1}">
+							
+							<input type="text" id="sample6_extraAddress" placeholder="참고항목"
+							style="display: none">
+							</td>
+	</tr>
+	<tr>
+	<th id="myinfo-thnone"></th><td><input type="text" id="sample6_detailAddress" placeholder="상세주소"
+							name="user_address2" value="${user_address2}">
+							<input type="button" class="adbtn" onclick="sample6_execDaumPostcode()" value="주소 찾기">
+							</td>
+	</tr>
+	
+	<tr>
+	<th id="myinfo-th">연락처</th><td id="myinfo-td"><input type="text"
 							class="form-control info-phone" name="user_phone" id="phone"
-							value="${user_phone}" readonly> <input id="phone-c"
-							type="button" onclick="phonec()" value="번호 변경하기"> <input
+							value="${user_phone}" readonly>
+							<input id="phone-c"
+							type="button" onclick="phonec()" value="번호 변경하기"><input
 							id="phoneChk" type="button" style="display: none" value="인증하기">
-						<br> <font id="checkphone" size="2"></font>
+						<font id="checkphone" size="2"></font>
 						<div id="config1" style="display: none">
 							<input id="phone2" type="text" name="phone2" title="인증번호 입력">
 							<input id="phoneChk2" class="doubleChk" type="button"
-								value="인증확인"> <span class="point successPhoneChk"></span>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="birth">생년월일</label> <input type="date"
+								value="인증확인"> <span class="point successPhoneChk"></span></div>
+							</td>
+	</tr>
+	
+	<tr>
+	<th id="myinfo-th">생년월일</th><td id="myinfo-td"><input type="date"
 							class="form-control" id="birth" name="user_birth"
-							value="${user_birth}"> <font id="checkbirth" size="2"></font>
-					</div>
-
-					<div class="mb-3">
-						<label for="gender">성별</label> <input type="text"
+							value="${user_birth}"> <font id="checkbirth" size="2"></font></td>
+	</tr>
+	<tr>
+	<th id="myinfo-th">성별</th><td id="myinfo-td"><input type="text"
 							class="form-control" id="gender" name="user_gender"
-							value="${user_gender}"> <font id="checkgender" size="2"></font>
-					</div>
-
-					<div class="mb-3">
-						<label for="email">이메일</label><br>
-						<input type="email" class="form-control" id="email" name="user_email" required value="${user_email}" readOnly>
+							value="${user_gender}"> </td>
+	</tr>
+	<tr>
+	<th id="myinfo-th">이메일</th><td id="myinfo-td"><input type="email" class="form-control" id="email" name="user_email" required value="${user_email}" readOnly>
 						<input id="email-c" type="button" onclick="emailc()" value="메일 변경하기">
 						<input id="sendMail" type="button" style="display: none" value="인증하기">
 						<br><font id="checkemail" size="2"></font>
@@ -470,26 +456,17 @@
 							<input id="emailCheck" type="text" name="emailCheck" title="인증번호 입력">
 							<button  type="button" onclick="emailC()">인증확인</button>
 							<span class="point successEmailChk"></span>
-						</div>
-					</div>
-					<hr class="mb-4">
-					<div class="mb-4"></div>
-					<!-- 					<button class="btn btn-lg btn-block" type="button" id="cbtn" -->
-					<!-- 						onclick="checkForm()">수정 완료</button> -->
-					<button class="btn btn-lg btn-block" type="button" id="cbtn"
+						</div></td>
+	</tr>
+	</table>
+	<button class="btn btn-lg btn-block" type="button" id="cbtn"
 						onclick="checkForm()">수정 완료</button>
-					<button class="btn btn-lg btn-block" type="button"
+					<button id="dbtn" class="btn btn-lg btn-block" type="button"
 						onclick="deletecheck()">탈퇴 하기</button>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<br>
-	<br>
-	<form action="" method="post">
-		<input type='hidden' name="user_password" class="checkuser_password">
 	</form>
+	</div>
+	</div>
+	<%@ include file="../footer.jsp"%>
 </body>
 
 </html>

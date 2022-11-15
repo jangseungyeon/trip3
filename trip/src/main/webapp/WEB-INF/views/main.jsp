@@ -14,28 +14,33 @@
 	src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=B612:wght@700&family=Do+Hyeon&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=B612:wght@700&family=Do+Hyeon&family=RocknRoll+One&display=swap');
-
-span.material-symbols-outlined {
-	color: white;
-	font-size: 50px;
-}
-
 button.main-icon-div1:hover span:nth-child(1) {
     display: none;
 }
 button.main-icon-div1:hover span:nth-child(2) {
     display: block;
+  
 }
-
+button.main-icon-div2:hover span:nth-child(1) {
+    display: none;
+}
+button.main-icon-div2:hover span:nth-child(2) {
+    display: block;
+  
+}
+button.main-icon-div3:hover span:nth-child(1) {
+    display: none;
+}
+button.main-icon-div3:hover span:nth-child(2) {
+    display: block;
+}
 </style>
 <!-- 집아이콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body class="main-body">
+<div id='wrapper'>
 <br><br><br>
      <div class="container main-top-div"> 
      <div class="main-div1">숙소 예매와 플레너 작성을 한번에</div>
@@ -46,12 +51,20 @@ button.main-icon-div1:hover span:nth-child(2) {
 <div class="container-fluid main-iconfull-div"style="position:absolute;">
 
 <button class="main-icon-div1" onclick="location.href='u_getRoomList.do'">
-<span class="material-symbols-outlined">home_work</span>
+<span class="material-symbols-outlined" style="color: white; font-size: 50px;">home_work</span>
 <span class="main-icon-span1">숙소<br>예약하기</span>
 </button><br>
-<button class="main-icon-div2" onclick="location.href='plannerlist.do?page=Y'">플래너(보기)</button><br>
-<button class="main-icon-div3" onclick="location.href='start.do'">플래너(쓰기)</button>
+<button class="main-icon-div2" onclick="location.href='plannerlist.do?page=Y'">
+<span class="material-symbols-outlined" style="color: white; font-size: 50px;">event_note</span>
+<span class="main-icon-span1">플래너<br>보기</span>
+</button><br>
+<button class="main-icon-div3" onclick="location.href='start.do'">
+<span class="material-symbols-outlined" style="color: white; font-size: 50px;">edit_calendar</span>
+<span class="main-icon-span1">플래너<br>쓰기</span>
+</button>
 </div>
 </div>
+</div>
+<%@ include file="footer.jsp"%>
 </body>
 </html>

@@ -7,10 +7,42 @@ public class LikeVO {
 	private int like_no;
 	private int like_count;
 	private String status;
+	
 	private String planner_title; // 플레너 제목
+	private String planner_area; // 여행 지역
+	private String planner_day; // 여행 기간
+	
 	private String room_img_no1;	//숙소 이미지 파일명
 	private String room_name;	//숙소명
+	private String room_area;	//숙소 지역
+	
+	
+	public String getPlanner_area() {
+		return planner_area;
+	}
+	public void setPlanner_area(String planner_area) {
+		this.planner_area = planner_area;
+	}
+	public String getPlanner_day() {
+		return planner_day;
+	}
+	public void setPlanner_day(String planner_day) {
+		this.planner_day = planner_day;
+	}
+	public String getRoom_area() {
+		return room_area;
+	}
+	public void setRoom_area(String room_area) {
+		this.room_area = room_area;
+	}
+	public String getRoom_price() {
+		return room_price;
+	}
+	public void setRoom_price(String room_price) {
+		this.room_price = room_price;
+	}
 
+	private String room_price;	//숙소 1박 가격
 	
 	public String getRoom_img_no1() {
 		return room_img_no1;

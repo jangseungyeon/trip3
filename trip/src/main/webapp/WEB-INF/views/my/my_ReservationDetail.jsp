@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="header.jsp"%>
+<%@ include file="../header.jsp"%>
 </head>
 <body>
 <script>
@@ -71,8 +72,8 @@ function f_cancelRes(){
 <div class="container">
 <div class="detail-div1">결제 상세 내역</div>
 <hr class="detail-hr">
-<div>
 
+<div class="myresdti-div3">
 	<fieldset class="resd-fieldset1">
 	<legend class="resd-legend1">예약 내역</legend>
 	
@@ -86,12 +87,13 @@ function f_cancelRes(){
 <%-- 	<div class="resd-div"> 결제일 : ${rvo.pay_date}</div> --%>
 	</fieldset>
 	
-	
 			<fieldset class="resd-fieldset2">
-	<legend class="resd-legend2">결제 정보</legend>
-	<div class="resd-div"> 결제자 성명 : ${rvo.res_name}</div>
-	<div class="resd-div"> 가격 : ${rvo.pay_amount} </div>
-	<div class="resd-div"> 결제일 : ${rvo.pay_date}</div>
+	<legend class="resd-legend1">결제 정보</legend>
+	<div class="resd-div"> 결제자 : ${rvo.res_name}</div>
+	<div class="resd-div"> 가격 :  ${rvo.pay_amount} </div>
+	<div class="resd-div"> 결제일 : <fmt:parseDate var="dateTempParse" value="${rvo.pay_date}" pattern="yyyy-MM-dd HH:mm:ss.S"/>
+       <fmt:formatDate value="${dateTempParse}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+	
 	<div id="daybefore"><button class="detail-but" onclick="f_cancelPay('${rvo.merchant_uid}')">결제 취소</button></div>
 	</fieldset>
 
@@ -102,7 +104,7 @@ function f_cancelRes(){
 	<legend class="resd-legend2">이용자 정보</legend>
 	<div class="resd-div">이&nbsp;&nbsp;&nbsp;&nbsp;름  <input class="detail-input" name="res_name" readonly value="${rvo.res_name}"></div>
 	<div class="resd-div">연락처   <input class="detail-input" name="res_tel" value="${rvo.res_tel}"></div>
-	<div class="resd-div">E-mail <input class="detail-input" name="res_email" value="${rvo.res_email}"></div>
+	<div class="resd-div">E-mail&nbsp; <input class="detail-input" name="res_email" value="${rvo.res_email}"></div>
 	<div  style="display:none;" class="resd-div">res_id : <input name="res_id" value="${rvo.res_id}"></div>
 	<div class="detail-info-div"><button class="detail-but" type="button" onclick="reservationtr(${rvo.res_status})">수정하기</button></div>
 	</fieldset>
@@ -125,5 +127,6 @@ function f_cancelRes(){
 
 </div>
 <br>
+<%@ include file="../footer.jsp"%>
 </body>
 </html>

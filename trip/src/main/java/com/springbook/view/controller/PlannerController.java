@@ -141,7 +141,7 @@ public class PlannerController {
 		pvo.setUser_id((String)session.getAttribute("user_id"));
 		List<PlannerVO> list = Service.plannerlist(pvo);
 		model.addAttribute("list", list);
-		return "WEB-INF/views/my_Planner.jsp";
+		return "WEB-INF/views/my/my_Planner.jsp";
 	}
 		
 		@RequestMapping("/plannerDP.do")

@@ -199,13 +199,13 @@ public class UserController {
 				out.println("location.href='myinfo.do'");
 				out.println("</script>");
 				out.flush();
-				return "WEB-INF/views/my_Check.jsp";
+				return "WEB-INF/views/my/my_Check.jsp";
 			}
 		}
 	
 	@RequestMapping("/myinfo.do")
 	public String mycheck(UserVO vo, HttpSession session) {
-		return "WEB-INF/views/my_Check.jsp";
+		return "WEB-INF/views/my/my_Check.jsp";
 	}
 	
 //	내 정보 확인
@@ -226,7 +226,7 @@ public class UserController {
 			model.addAttribute("user_phone", vo.getUser_phone());
 			model.addAttribute("user_address1", vo.getUser_address1());
 			model.addAttribute("user_address2", vo.getUser_address2());
-			return "WEB-INF/views/my_info.jsp";
+			return "WEB-INF/views/my/my_info.jsp";
 		} else {
 			return "index.jsp";
 		}
