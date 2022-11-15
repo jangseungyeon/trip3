@@ -98,5 +98,9 @@ public class PlannerDAOMybatis {
 		mybatis.delete("PlaceDAO.deletePlace2", vo);
 	}
 	
+	public void updatePlanner(PlannerVO vo) {
+		mybatis.update("PlannerDAO.updatePlanner", vo);
+	}
+	
 	
 }

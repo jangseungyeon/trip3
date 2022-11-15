@@ -8,6 +8,13 @@
 <title>Insert title here</title>
 </head>
 <style>
+input.btn.btn-lg.button{
+ border: solid 1px #ff8e15;
+}
+input.btn.btn-lg.button:hover{
+  background-color: #ff9a2d;
+    color: white;
+}
 .TEXT:hover {
 	font-size:25px;
 	font-weight:600;
@@ -17,7 +24,7 @@
 	fill: rgb(235, 210, 122);
 }
 
-.container {
+.con {
   padding-top: 40px;
   padding-bottom: 120px;
 }
@@ -28,7 +35,6 @@
     border-radius: 10px;
     box-sizing: border-box;
     background-color: #fff !important;
-    color: #4CAF50 !important;
     font-size: 18px !important;
     letter-spacing: 1px;
     position: relative;
@@ -137,11 +143,11 @@ thead tr:nth-child(3) th {
 
 .range-start, .range-end {
   border-radius: 50% !important;
-  background-image: linear-gradient(#4CAF50, #4CAF50) !important;
+  background-image: linear-gradient(#ff8e15, #ff8e15) !important;
 }
 
 .range {
-  color: #4CAF50 !important;
+  color: #474747 !important;
 }
 
 .prev, .next, .datepicker-switch {
@@ -149,7 +155,7 @@ thead tr:nth-child(3) th {
   padding: 10px 10px 10px 10px !important;
   font-size: 18px;
   opacity: 0.7;
-  color: #4CAF50;
+  color: #474747;
 }
 
 .prev:hover, .next:hover, .datepicker-switch:hover {
@@ -183,13 +189,12 @@ text-decoration:underline;
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
 <script>
 $(document).ready(function(){
 	
 	$("#hr1").css({
 		"width" : "33%" , 
-		"border" : "solid 1.5px green"
+		"border" : "solid 2px #ff8e15"
 	});
 	
 	$('.input-daterange').datepicker({
@@ -230,7 +235,7 @@ $(document).ready(function(){
 		});
 		$("#hr3").css({
 		"width" : "33%" , 
-		"border" : "solid 1.5px green"
+		"border" : "solid 2px #ff8e15"
 	});
 			
 		}else {
@@ -260,7 +265,7 @@ $(document).ready(function(){
 			$('html, body').animate({scrollTop: offset.top}, 500);
 			$("#hr2").css({
 			"width" : "33%" , 
-			"border" : "solid 1.5px green"
+			"border" : "solid 2px #ff8e15"
 		});
 			$("#date").val(Math.abs(diffDate / (1000 * 60 * 60 * 24)));
 		}
@@ -303,7 +308,8 @@ $(document).ready(function(){
 </script>
 <body>
 <form action="start.do" onsubmit="return last(20)">
-<div class="container px-1 px-sm-5 mx-auto 1">
+<p class="1"></p><br>
+<div class="container px-1 px-sm-5 mx-auto con" >
 <hr id="hr1" style="float:left; transition-property: width; transition-duration: 2s; width:0%">
       <h2>&nbsp&nbsp여행 날짜를 선택해주세요</h2> <br><br><br><br>
       <input type="hidden" name="date" id="date">
@@ -317,25 +323,26 @@ $(document).ready(function(){
       </div>
     </div>
 </div>
-	<div class="container px-1 px-sm-5 mx-auto 2">
+	<p class="2" style="margin-bottom:3%"></p>
+	<div class="container px-1 px-sm-5 mx-auto">
 		<hr id="hr2" style="float:left; transition-property: width; transition-duration: 2s; width:0%">
 		
 			<h2>&nbsp&nbsp지역을 선택해주세요</h2>
 			<%@ include file="map.jsp" %>
-			
-			<div class="container px-1 px-sm-5 mx-auto 3">
+			 </div>
+			<p class="3" style="margin-bottom:3%"></p>
+			<div class="container px-1 px-sm-5 mx-auto">
   <hr id="hr3" style="float:left; transition-property: width; transition-duration: 2s; width:0%">
  <h2>&nbsp&nbsp인원수를 선택해주세요</h2>
       <br>
       <br>
       <br>
-      <input type="number" class="form-control input1 input" name="numPeople" style="width:150px; margin:0 auto; " value="0" onclick="last()" id="numP" min="0" max="20">
+      <input type="number" class="form-control input1 input" name="numPeople" style="width:150px; margin:0 auto; margin-bottom:10%;" value="0" onclick="last()" id="numP" min="0" max="20">
         </div>
-<div style="text-align: center;">
+<div style="text-align: center; margin-bottom:20%;">
 	     <input type="hidden" value="ok" name="check" >
 	    <a class="btn btn-light btn-lg"href="javascript:history.go(-1)">이전</a>
-       <input type="submit" value="선택" class="btn btn-outline-success btn-lg" style="margin-left:250px">
-       </div>
+       <input type="submit" value="선택" class="btn btn-lg button" style="margin-left:250px">
         </div>
         </form>
 </body>

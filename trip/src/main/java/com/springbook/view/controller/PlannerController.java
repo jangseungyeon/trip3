@@ -1,10 +1,13 @@
 package com.springbook.view.controller;
 
 import java.util.List;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.FileVisitOption;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springbook.biz.planner.AreaService;
 import com.springbook.biz.planner.AreaVO;
+import com.springbook.biz.planner.CommentVO;
 import com.springbook.biz.planner.PlaceVO;
 import com.springbook.biz.planner.PlannerMemoVO;
 import com.springbook.biz.planner.PlannerService;
@@ -36,7 +40,20 @@ public class PlannerController {
 	
 	
 	@RequestMapping("/start.do") // 인덱스 페이지에서 들어올 때 
-	public String start(HttpSession session , HttpServletRequest request) {
+	public String start(HttpSession session , HttpServletRequest request , HttpServletResponse response) {
+		if((String)session.getAttribute("user_name") == null) {
+			   response.setContentType("text/html; charset=UTF-8");
+			    PrintWriter out;
+				try {
+					out = response.getWriter();
+					out.println("<script>alert('로그인이 필요합니다'); location.href = 'user.login.do';</script>");
+				    out.flush();
+				    response.flushBuffer();
+				    out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
 		if(request.getParameter("check") != null) {
 				session.setAttribute("start", request.getParameter("start"));
 				session.setAttribute("end", request.getParameter("end"));
@@ -144,15 +161,19 @@ public class PlannerController {
 		return "WEB-INF/views/my/my_Planner.jsp";
 	}
 		
-		@RequestMapping("/plannerDP.do")
-		public String plannerDetailPage(PlannerVO vo , Model model , PlaceVO pvo , HttpSession session) {
-			model.addAttribute("planner", Service.plannerinfo(vo));
-			model.addAttribute("place" , Service.getPlace(pvo));
-			model.addAttribute("comment" , CommentService.selectComment(vo));
-			model.addAttribute("reply" , CommentService.selectReply(vo));
-			model.addAttribute("userID" , (String)session.getAttribute("user_id"));
-			return "WEB-INF/views/plannerInsert/plannerDetailPage.jsp";
-		}
+	@RequestMapping("/plannerDP.do")
+	public String plannerDetailPage(PlannerVO vo , Model model , PlaceVO pvo , HttpSession session , AreaVO area , CommentVO comment , ReplyVO reply ) {
+		vo = Service.plannerinfo(vo);
+		model.addAttribute("planner", vo);
+		model.addAttribute("place" , Service.getPlace(pvo));
+		model.addAttribute("comment" , CommentService.selectComment(vo));
+		model.addAttribute("reply" , CommentService.selectReply(vo));
+		model.addAttribute("commentNum" , CommentService.selectComment(vo).size() + CommentService.selectReply(vo).size());
+		model.addAttribute("userID" , (String)session.getAttribute("user_id"));
+		area.setArea_name(vo.getPalnner_area());
+		model.addAttribute("area" , areaService.getArea(area));
+		return "WEB-INF/views/plannerInsert/plannerDetailPage.jsp";
+	}
 		
 		@ResponseBody
 		@RequestMapping("/plannerRE.do")
@@ -192,8 +213,9 @@ public class PlannerController {
 		
 		@RequestMapping("/plannerUpdate.do")
 		public String plannerUpdate(@RequestParam(value="placeTab", required=false) String[] arr , HttpSession session , String[] content ,
-				@RequestParam(value="planner_no") String planner_no , @RequestParam(value="deletePlace") String deletePlace) {
-			
+				@RequestParam(value="planner_no") String planner_no , @RequestParam(value="deletePlace") String deletePlace , PlannerVO planner
+				) {
+			Service.updatePlanner(planner);
 			List<PlaceVO> tourList = new ArrayList<PlaceVO>();
 			String[] tableArr = new String[6];
 			if(arr != null) {

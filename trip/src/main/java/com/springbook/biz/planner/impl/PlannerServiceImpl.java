@@ -102,6 +102,11 @@ public class PlannerServiceImpl implements PlannerService{
 		plannerDAO.deletePlace2(vo);
 	}
 	
+	@Override
+	public void updatePlanner(PlannerVO vo) {
+		plannerDAO.updatePlanner(vo);
+	}
+	
 	
 	
 }

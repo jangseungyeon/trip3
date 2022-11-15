@@ -83,8 +83,8 @@ function submit(num){
 <span style="font-size:18px" class="title">${planner.planner_area}</span> <br>
 <span style="font-size:18px; font-weight:550; color:#fa8100" class="title main">${planner.planner_title}</span><br>
 <span style="font-size:15px" class="comment">${planner.planner_start}~${planner.planner_end}</span><br>
-<span style="font-size:15px" class="comment">작성자 ${planner.user_id}</span><br>
-<span style="font-size:15px" class="comment">comment : 3</span><span class="like"><i class="bi bi-heart-fill" style="color:black;"></i> ${planner.planner_like}&nbsp;</span>
+<span style="font-size:15px" class="comment">${planner.planner_day}일 여행</span><br>
+<span style="font-size:15px" class="comment">작성자 ${planner.user_id}</span><span class="like"><i class="bi bi-heart-fill" style="color:black;"></i> ${planner.planner_like}&nbsp;</span>
 </div>
 </form>
 </div>

@@ -20,6 +20,7 @@ margin-bottom: 3%;
 border: solid 1px #e0dfde;
 border-radius: 8px;
 height: 75px;
+overflow: auto;
 }
 
 .img{
@@ -56,20 +57,6 @@ background-color: #cccccc;
 </style>
 <script>
 
-/* $(function() {
-	  var lnb = $("#lnb").offset().top;
-	 
-	  $(window).scroll(function() {
-	   
-	    var window = $(this).scrollTop();
-	    
-	    if(lnb <= window) {
-	      $("#lnb").addClass("fixed");
-	    }else{
-	      $("#lnb").removeClass("fixed");
-	    }
-	  })
-	}); */
 
 (function () {
 	var number = ${planner_no};
@@ -83,7 +70,7 @@ background-color: #cccccc;
 	 success : function(data){
 		 var i = 1;
 		 $(data).each(function(){
-		$("#"+this.planner_date).append("<div style='width:350px; margin-bottom: 1px;' class='day day"+this.planner_date+"' onclick='area("+i+")'><img src='"+this.img+"' class='img'>"+
+		$("#"+this.planner_date).append("<div style='width:450px; margin-bottom: 1px;' class='day day"+this.planner_date+"' onclick='area("+i+")'><img src='"+this.img+"' class='img'>"+
 	 	"<span style='vertical-align:top;' class='title'>"+ this.place_name+"</span> <small style='vertical-align:buttom;'>"+ this.addr+"</small>"+
 	 	"<input type='hidden' value='"+this.mapy+"' class='mapy"+this.planner_date+" y"+i+"'> <input type='hidden' value='"+this.mapx+"' class='mapx"+this.planner_date+" x"+i+"'></div><span class='material-symbols-outlined' style='font-weight: 900;'>more_vert</span>")
 	 	 i += 1;
@@ -197,7 +184,7 @@ function area(num){
  <div class="col-sm-6">
 <c:forEach begin="1" end="${planner_day}" varStatus="status">
 <div id="${status.count}" style="text-align: -webkit-center;">
-<h4 style="text-align: initial; margin-left: 23%; margin-bottom: 3%; color:#ff8e15; font-weight: 900;" onclick="memo(${status.count})">DAY - ${status.count}</h4>
+<h4 style="cursor:pointer; text-align: initial; margin-left: 23%; margin-bottom: 3%; color:#ff8e15; font-weight: 900;" onclick="memo(${status.count})">DAY - ${status.count}</h4>
 </div>
 <br>
 </c:forEach> 
@@ -230,19 +217,22 @@ function area(num){
 </c:forEach> 
 
 </div>
-<form action="deletePlanner.do" method="post" style="text-align: center;">
-<input type="hidden" value="${user_id}" name="user_id">
-<input type="hidden" value="${planner_no}" name="planner_no">
-<button class="btn delete btn-sm">일정 지우기</button>
-</form>
-<form action="getAreaList.do" method="post" style="text-align: center;">
+<form action="getAreaList.do" method="post" style="display:inline-block; margin-left:35%; margin-top:10%">
 <input type="hidden" value="${user_id}" name="user_id">
 <input type="hidden" value="${planner_no}" name="planner_no">
 <input type="hidden" value="${planner_area}" name="area">
 <button class="btn delete btn-sm">수정하기</button>
 </form>
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=b96ec8a7c96b4f5663ea3d19a4bbc885"></script>
+<form action="deletePlanner.do" method="post" style="display:inline-block">
+<input type="hidden" value="${user_id}" name="user_id">
+<input type="hidden" value="${planner_no}" name="planner_no">
+<button class="btn delete btn-sm">일정 지우기</button>
+</form>
+</div>
+</div>
+</div>
 
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=b96ec8a7c96b4f5663ea3d19a4bbc885"></script>
 <script>
 //마커를 표시할 위치와 title 객체 배열입니다 
 var mapContainer = document.getElementById('map') // 지도를 표시할 div  

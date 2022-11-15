@@ -43,6 +43,11 @@
 	<if test="status  == 'unlike'"> - </if>
 	 1 where planner_no = #{planner_no}
 	</update>
+	
+	<update id="updatePlanner">
+	UPDATE PLANNER SET PLANNER_SHOW = #{planner_show} , PLANNER_TITLE = #{planner_title} 
+	WHERE PLANNER_NO = #{planner_no} AND USER_ID = #{user_id}
+	</update>
    
 
 </mapper>

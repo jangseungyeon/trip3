@@ -200,7 +200,10 @@ input#key:focus {
 	<a id="h2" style="display: inline-block; margin-bottom:10px"><%= session.getAttribute("areaname") %></a>
 	<a><%= session.getAttribute("start") %> ~ <%= session.getAttribute("end") %></a>
 	<% for(int i=1; i<=Integer.parseInt((String)session.getAttribute("date")) + 1; i ++){ %>
-				<div style="height:70px;"><h5 id='p<%= i %>' class="cn"><span class="memo<%= i %>">DAY-<%= i %></span> <i class="bi bi-journal-text zoom bo<%= i %>" onclick="memo('<%= i %>')" style=" cursor: pointer; font-size' : '22px"><i class="bi bi-plus bo<%= i %>" style="font-size' : '22px"></i></i></h5>
+				<div style="height:70px;"><h5 id='p<%= i %>' class="cn"><span class="memo<%= i %>">DAY-<%= i %></span>
+			 <i class="bi bi-journal-text zoom bo<%= i %>" onclick="memo('<%= i %>')" style=" cursor: pointer; font-size' : '22px">
+				<i class="bi bi-plus bo<%= i %> bo2<%= i %>" style="font-size' : '22px"></i></i>
+				 </h5>
 					<input type="hidden" value=" " name="content" id="val<%= i %>">
 					</div>	
 			<% } %>
@@ -243,14 +246,14 @@ function submits(num){
 	  $(".bo"+num).animate({
 			'font-size' : '22px' 
 		}); 
-	$(".bo"+num).css("color" , "#19558c")
+	$(".bo2"+num).css("background-color" , "bisque")
 	$("#val"+num).val($("#content").val());
 }
 
 function memo(num){
   var memo = $(".memo" + num).html();
   $("#memo").html(memo);
-  $("#memo").append("<i class='bi bi-journal-text zoom' onclick='submits("+num+")' style=' cursor: pointer; font-size' : '22px'><i class='bi bi-plus' style='font-size : 22px'></i></i>");
+  $("#memo").append("&nbsp<i class='bi bi-journal-text zoom' onclick='submits("+num+")' style=' cursor: pointer; font-size' : '22px'><i class='bi bi-plus' style='font-size : 22px'></i></i>");
   $("#content").val($("#val"+num).val());
 }
 function area(){
@@ -349,7 +352,7 @@ function test00(tval) {
 				}
 				
  				if(this.firstimage == ""){
- 					img = "./resources/img/none_img.png";
+ 					img = "./resources/img/undraw_Trip_re_f724.png";
  				}else{
  				 	img = this.firstimage
  				}

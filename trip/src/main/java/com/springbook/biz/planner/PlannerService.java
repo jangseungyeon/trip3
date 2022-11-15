@@ -38,5 +38,7 @@ public interface PlannerService {
 	void updateMemo(PlannerMemoVO list);
 	
 	void deletePlace2(PlaceVO vo);
+	
+	void updatePlanner(PlannerVO vo);
 
 }

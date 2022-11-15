@@ -209,7 +209,9 @@ input#key:focus {
 	<a id="h2" style="display: inline-block; margin-bottom:10px">${planner.planner_area}</a>
 	<a>${planner.planner_start} ~ ${planner.planner_end}</a>
 		<c:forEach begin="1" end="${planner.planner_day}" step="1" varStatus="status">
-				<div style="height:70px;"><h5 id='p${status.count}' class="cn"><span class="memo${status.count}">DAY-${status.count}</span> <i class="bi bi-journal-text zoom bo${status.count}>" onclick="memo('${status.count}')" style=" cursor: pointer; font-size' : '22px"><i class="bi bi-plus bo${status.count}" style="font-size' : '22px"></i></i>
+				<div style="height:70px;"><h5 id='p${status.count}' class="cn"><span class="memo${status.count}">DAY-${status.count}</span> 
+				<i class="bi bi-journal-text zoom bo${status.count}>" onclick="memo('${status.count}')" style=" cursor: pointer; font-size' : '22px">
+				<i class="bi bi-plus bo${status.count} bo2${status.count}" style="font-size' : '22px"></i></i>
 					<c:set var="count" value="${status.count}" />
   					
   					<c:forEach items="${place}" var="place" varStatus="status">
@@ -250,6 +252,7 @@ input#key:focus {
   			<div style="text-align: center; margin-top: 2%;">
   			<input type="submit" value="수정하기" class="btn" style="background-color: #ff8e15; color: white;">
   			<input type="hidden" name="planner_no" value="${planner.planner_no}">
+  			<input type="hidden" name="user_id" value="${user_id}">
 			</div>
 </div>
 			</div>
@@ -276,19 +279,19 @@ function captureReturnKey(e) {
 
 function submits(num){
 	 $(".bo"+num).animate({
-		'font-size' : '30px' 
-	});  
-	  $(".bo"+num).animate({
-			'font-size' : '22px' 
-		}); 
-	$(".bo"+num).css("color" , "#19558c")
-	$("#val"+num).val($("#content").val());
+			'font-size' : '30px' 
+		});  
+		  $(".bo"+num).animate({
+				'font-size' : '22px' 
+			}); 
+		$(".bo2"+num).css("background-color" , "bisque")
+		$("#val"+num).val($("#content").val());
 }
 
 function memo(num){
   var memo = $(".memo" + num).html();
   $("#memo").html(memo);
-  $("#memo").append("<i class='bi bi-journal-text zoom' onclick='submits("+num+")' style=' cursor: pointer; font-size' : '22px'><i class='bi bi-plus' style='font-size : 22px'></i></i>");
+  $("#memo").append("&nbsp<i class='bi bi-journal-text zoom' onclick='submits("+num+")' style=' cursor: pointer; font-size' : '22px'><i class='bi bi-plus' style='font-size : 22px'></i></i>");
   $("#content").val($("#val"+num).val());
 }
 function area(){
@@ -387,7 +390,7 @@ function test00(tval) {
 				}
 				
  				if(this.firstimage == ""){
- 					img = "./resources/img/none_img.png";
+ 					img = "./resources/img/undraw_Trip_re_f724.png";
  				}else{
  				 	img = this.firstimage
  				}
