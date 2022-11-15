@@ -23,4 +23,14 @@ public interface HostService {
 	HostChartVO indexCheckinAble(HostChartVO vo);
 	List<HostChartVO> hostIndexRoomSelect(HostChartVO vo);
 	List<HostChartVO> hostIndexChart3Select(HostChartVO vo);
+	
+	HostLoginVO hostCount(HostLoginVO vo);
+	HostLoginVO hostAvgIncome (HostLoginVO vo);
+	List<HostLoginVO> hostMaxIncome (HostLoginVO vo);
+	List<HostLoginVO> bestRoomName (HostLoginVO vo);
+	List<HostLoginVO> bestRoomImg (HostLoginVO vo);
+	List<HostLoginVO> bestRoomIncome (HostLoginVO vo);
+	HostLoginVO reservationCountLast10days (HostLoginVO vo);
+	HostLoginVO reservation_count (HostLoginVO vo);
+	
 }

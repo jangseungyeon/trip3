@@ -97,4 +97,34 @@
   SELECT DATE_FORMAT(PAY_DATE, '%y-%m-%d') AS chart_date_all, sum(PAY_AMOUNT) AS chart_sum_all, COUNT(*) AS chart_count_all FROM reservation WHERE host_id=#{host_id} GROUP BY DATE_FORMAT(PAY_DATE, '%y-%m-%d')
   </select>
   
+  <!-- host login 전체 호스트 수 -->
+  <select id="hostCount" resultType="hostLogin">
+  SELECT COUNT(*) FROM host
+  </select>
+  
+  <!-- host login 호스트들 10일간 평균 매출 -->
+  <select id="hostAvgIncome" resultType="hostLogin">
+  SELECT ROUND(AVG(pay_amount),0) AS host_avg_income FROM reservation WHERE pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW();
+  </select>
+  
+  <!-- host login 1등 호스트의 10일간 최고 매출, 0번 배열만 가져갈 것. -->
+  <select id="hostMaxIncome" resultType="hostLogin">
+  SELECT host_id, sum(pay_amount) AS host_max_income FROM reservation WHERE host_id is NOT NULL AND pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW() GROUP BY host_id ORDER BY host_max_income DESC
+  </select>
+  
+  <!-- host login 최고 방 매출, 3위까지, 매출+이미지 -->
+  <select id="bestRoomIncome" resultType="hostLogin">
+  SELECT room_id, room_name AS best_room_name, room_img AS best_room_img, sum(pay_amount) AS best_room_income FROM reservation GROUP BY room_id ORDER BY best_room_income DESC
+  </select>
+  
+  <!-- 최근 10일간 예약 건수 -->
+  <select id="reservationCountLast10days" resultType="hostLogin">
+  SELECT COUNT(*) AS reservation_count_last10days FROM reservation WHERE pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW()
+  </select>
+  
+  <!-- 예약 누적 건수 -->
+  <select id="reservationCount" resultType="hostLogin">
+  SELECT COUNT(*) as reservation_count FROM reservation;
+  </select>
+  
   </mapper>

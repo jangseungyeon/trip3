@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springbook.biz.host.HostChartVO;
+import com.springbook.biz.host.HostLoginVO;
 import com.springbook.biz.host.HostService;
 import com.springbook.biz.host.HostVO;
 
@@ -120,6 +121,54 @@ public class HostServiceImpl implements HostService {
 	public List<HostChartVO> hostIndexChart3Select(HostChartVO vo) {
 		// TODO Auto-generated method stub
 		return hostDAO.hostIndexChart3Select(vo);
+	}
+
+	@Override
+	public HostLoginVO hostCount(HostLoginVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HostLoginVO hostAvgIncome(HostLoginVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<HostLoginVO> hostMaxIncome(HostLoginVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<HostLoginVO> bestRoomName(HostLoginVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<HostLoginVO> bestRoomImg(HostLoginVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<HostLoginVO> bestRoomIncome(HostLoginVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HostLoginVO reservationCountLast10days(HostLoginVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HostLoginVO reservation_count(HostLoginVO vo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

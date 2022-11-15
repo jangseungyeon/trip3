@@ -26,6 +26,7 @@
 		<typeAlias type="com.springbook.biz.planner.ReplyVO" alias="reply"/>
 		<typeAlias type="com.springbook.biz.planner.PlannerMemoVO" alias="memo"/>
 		<typeAlias type="com.springbook.biz.faq.FaqVO" alias="faq"/>
+		<typeAlias type="com.springbook.biz.host.HostLoginVO" alias="HostLogin"/>
 		
 	</typeAliases>
 	

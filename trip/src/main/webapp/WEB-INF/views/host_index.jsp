@@ -10,10 +10,15 @@
 <title>Insert title here</title>
 <%@ include file="host_header.jsp"%>
 <style>
+	body, html{
+	background: #f9fcff;
+	}
 	.top{
 		width:100%;
-		min-height:200px;
+		min-height:450px;
 		background: linear-gradient(45deg, deepSkyBlue, skyBlue, lightCyan, lightCyan, lightCyan);
+		background: url(resources/img/host_index.png);
+		background-size:cover;
 		color: white;
 		font-size: 30px;
 		font-weight: normal;
