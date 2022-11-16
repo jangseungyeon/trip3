@@ -77,12 +77,18 @@
 <style>
 /* 로그인버튼 */
 .user_loginbutton {
-	border-radius: 5px;
+	margin: auto 0;
+	color: white;
+	border-radius: 7px;
+	background-color: #ff8e15;
 	border: none;
+	width: 90px;
+	height: 35px;
 }
 
 #user_id, #user_password {
 	width: 300px;
+	padding: 15px;
 	margin: 10px;
 	border-radius: 20px;
 	height: 40px;
@@ -123,7 +129,7 @@ a.find {
 		<!-- 회원로그인 -->
 		<form action="user_loginform.do" method="post">
 			<input name="user_id" id="user_id" placeholder=" 아이디"><br>
-			<input name="user_password" id="user_password" placeholder=" 비밀번호"><br>
+			<input type="password" name="user_password" id="user_password" placeholder=" 비밀번호"><br>
 			<button class="user_loginbutton">로그인</button>
 		</form>
 		<br>

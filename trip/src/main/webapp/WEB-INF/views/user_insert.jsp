@@ -179,9 +179,31 @@ $(function() {
 	}
 	
 </script>
+
+<style>
+
+input {
+    height: 45px;
+    border-radius: 15px;
+    border: 1px solid #aaa;
+    padding: 12px;
+    margin-top: 10px;
+    }
+    
+    #phoneChk, button {
+    margin: 15px 5px;
+	color: white;
+	border-radius: 7px;
+	background-color: #ff8e15;
+	border: none;
+	width: 130px;
+	height: 35px;
+    }
+
+</style>
 </head>
 <body class="d-flex flex-column min-vh-100">
-<br><br>
+<br>
 <div class="container">
 <div class="userinsert-div1">회원가입</div>
 <hr class="userinsert-hr">
