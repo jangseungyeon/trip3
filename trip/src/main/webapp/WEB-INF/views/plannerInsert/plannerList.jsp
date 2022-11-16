@@ -49,14 +49,64 @@ color : #3d3d3d;
 .comment{
 color : #525252;
 }
+
+#container{
+	height:5000px;
+}
+
+#log{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100px;
+	height:50px;
+	background-color:rgba(0,0,0,0.7);
+	color:white;
+	text-align:center;
+	line-height:50px;
+}
+
+html { overflow: scroll !imporatant;  overflow-y: scroll !imporatant; }
+body { overflow: scroll !imporatant;  overflow-y: scroll !imporatant; }
 </style>
 </head>
 <script>
 function submit(num){
 	$(".list" + num).children("form").submit();
 }
+
+  var page = 2;
+  var count = 8;
+  
+ $(window).scroll(function(){
+	 var scroll = $(window).scrollTop();
+	 var filter = "win16|win32|win64|macintel|mac|"; // PC일 경우 가능한 값
+	 if( navigator.platform){
+	 	if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
+	 		scroll = Number(scroll) + 149 
+	 	} }
+	 
+	 if($(window).scrollTop()  >= $(document).height() - $(window).height()){
+			var f = (count * page) - (count * (page-1) +1);
+			var m = count * (page-1) +1;
+			if($(".list").length > count * (page-1) +1){
+				$("#spinner").css("display" , "")
+				 setTimeout(function() {
+					 $("#spinner").css("display" , "none")
+					 for(var i = 0; i <= f; i ++){
+						 $(".list" + m ).css("display" , "");
+						 m += 1;
+					 }
+					}, 1000);	
+			}
+			page +=  1;
+			}
+	 
+	});
+	
 </script>
 <body>
+
 <div style="margin-top:2%; margin-left:10%; margin-right:10%;">
 <h1 style="margin-top:8%; margin-bottom:4%;">다양한 여행일정을 체크해보세요 <i class="bi bi-check-lg"></i></h1>
 <div style="text-align: right;">
@@ -73,8 +123,13 @@ function submit(num){
  </select>
  </form>
  </div>
+ <input type="hidden" value="" id="count">
 <c:forEach items="${plannerList}" var="planner" varStatus="status">
-<div class="list list${status.index}" onclick="submit(${status.index})">
+<div class="list list${status.index}" onclick="submit(${status.index})"
+<c:if test="${status.count >= '9'}">
+style="display:none"
+</c:if>
+>
 <form action="plannerDP.do">
 <input type="hidden" name="planner_no" value="${planner.planner_no}">
 <input type="hidden" name="user_id" value="${planner.user_id}">
@@ -89,6 +144,11 @@ function submit(num){
 </form>
 </div>
 </c:forEach>
+<div style="text-align-last: center; margin-top:5%; margin-bottom:3%; display:none" id="spinner">
+<div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+</div>
 </div>
 </body>
 </html>

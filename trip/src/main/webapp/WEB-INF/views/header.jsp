@@ -80,7 +80,8 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 								<a class="dropdown-item" href="getReservationList.do">결제 목록</a>
 								<a class="dropdown-item" href="likeslist.do">좋아요(like)</a>
 								<a class="dropdown-item" href="plannerlist.do">나의 여행</a>
-								<a class="dropdown-item" href="plannerlist.do">1:1문의하기</a>
+								<a class="dropdown-item" href="qna_insert.do">1:1문의</a>
+								<a class="dropdown-item" href="qna_list.do">문의 목록</a>
 							</div>
 						</div>
 					</ul>

@@ -1,5 +1,8 @@
 package com.springbook.view.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +25,6 @@ public class CommentController {
 	
 	@RequestMapping("comment.do")
 	public int insertComment(CommentVO vo , HttpServletRequest request , String planner , String content , HttpSession session) {
-		System.out.println(planner + content);
 		vo.setPlanner_no(Integer.parseInt(planner));
 		vo.setUser_id((String)session.getAttribute("user_id"));
 		vo.setComment_content(content);
@@ -31,6 +33,7 @@ public class CommentController {
 	
 	@RequestMapping("reply.do")
 	public int insertReply(ReplyVO vo , HttpServletRequest request , String planner , String content , String comment_no , HttpSession session) {
+	
 		vo.setPlanner_no(Integer.parseInt(planner));
 		vo.setReply_content(content);
 		vo.setComment_no(Integer.parseInt(comment_no));
@@ -47,9 +50,7 @@ public class CommentController {
 	
 	@RequestMapping("/commentdelete.do")
 	public int commentDelete(CommentVO vo , HttpServletRequest request , String comment_no , ReplyVO rvo) {
-		if(comment_no.equals("")) {
-			rvo.setComment_no(0);
-		}else rvo.setComment_no(Integer.parseInt(comment_no));
+		rvo.setComment_no(Integer.parseInt(comment_no));
 		service.replyDelete(rvo);
 		return service.commentDelete(vo);
 	}

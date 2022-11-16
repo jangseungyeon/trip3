@@ -8,7 +8,7 @@ public class CommentVO {
 	private int comment_no;
 	private String user_id;
 	private String comment_content;
-	private Date reg_date;
+	private String reg_date;
 	private String re_user_id;
 	private String re_content;
 	private Date re_date;
@@ -56,10 +56,10 @@ public class CommentVO {
 	public void setComment_content(String comment_content) {
 		this.comment_content = comment_content;
 	}
-	public Date getReg_date() {
+	public String getReg_date() {
 		return reg_date;
 	}
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
 	

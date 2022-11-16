@@ -177,7 +177,7 @@ function area(num){
 </script>
 <body>
 <div class="container" style="margin-top:3%">
-<div style="text-align: center; border-radius: 50px" class="main"><h3>${planner_title}</h3>
+<div style="text-align: center; border-radius: 50px" class="main"><h3 style="color:#ff8e15">${planner_title}</h3>
 <a>여행 기간 : ${planner_start} ~ ${planner_end} &nbsp </a> <a>&nbsp&nbsp 지역 : ${planner_area}</a>
 </div>
 <div class="row">

@@ -27,6 +27,7 @@
 		<typeAlias type="com.springbook.biz.planner.PlannerMemoVO" alias="memo"/>
 		<typeAlias type="com.springbook.biz.faq.FaqVO" alias="faq"/>
 		<typeAlias type="com.springbook.biz.host.HostLoginVO" alias="HostLogin"/>
+		<typeAlias alias="qna" type="com.springbook.biz.qna.QnaVO" />
 		
 	</typeAliases>
 	
@@ -45,6 +46,7 @@
 		<mapper resource="mappings/reply_mapping.xml"/>
 		<mapper resource="mappings/memo_mapping.xml"/>
 		<mapper resource="mappings/faq-mapping.xml"/>
+		<mapper resource="mappings/qna-mapping.xml" />
 		
 	</mappers>
 </configuration>

@@ -119,7 +119,6 @@ function like(num){ // num = like (좋아요 누름)  num = unlike (좋아요 �
 		data:{"num" : num , "id" : id } ,
 		success:function(data){
 			$(data).each(function(){
-				alert(this.comment_no)
 				$("#reply" + this.comment_no).append("<br><span class='userID'>"+this.user_id+"</span><small class='reg"+this.reply_no+" date'>"+this.reg_date+"</small>");
 				if("${userID}" == this.user_id){
 					$("#reply" + this.comment_no).append("<button type='button' class='btn btn-light btn-sm REtest"+this.reply_no+"' onclick='REupdate("+this.reply_no+" , "+this.comment_no+")'>수정</button><button type='button' class='btn btn-light btn-sm REtest"+this.reply_no+"' onclick='REdeletes("+this.reply_no+")'>삭제</button>");
@@ -365,7 +364,7 @@ function area(num){
 <body>
 <div class="container" style="margin-top:3%; border-left: solid 1px #d1d1d1; border-right: solid 1px #dbdbdb; padding-bottom:5%">
 <span style="color:#6a6a6a">${planner.user_id} 님의 여행 플래너</span>
-<div style="text-align:center; border-radius: 50px" class="main"><h3>${planner.planner_title}</h3>
+<div style="text-align:center; border-radius: 50px" class="main"><h3 style="color:#ff8e15">${planner.planner_title}</h3>
 <a>여행 기간 : ${planner.planner_start} ~ ${planner.planner_end} &nbsp </a> <a>&nbsp&nbsp 지역 : ${planner.planner_area}</a>
 </div>
 <div class="row">

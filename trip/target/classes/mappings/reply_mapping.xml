@@ -9,8 +9,8 @@
 		(#{planner_no} , #{user_id} , #{reply_content} , #{comment_no} , sysdate())
 	</insert>
 	
-	<delete id="replyDelete">
-		DELETE FROM REPLY WHERE REPLY_NO = #{reply_no}
+<delete id="replyDelete">
+		DELETE FROM REPLY WHERE REPLY_NO = #{reply_no} OR COMMENT_NO = #{comment_no}
 	</delete> 
 	
 	<select id="selectReply" resultType="reply">
