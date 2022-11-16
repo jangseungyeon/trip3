@@ -337,8 +337,29 @@ $(document).ready(function(){
 			
 			e.preventDefault();
 			
+			if('${rsvo.res_id}' == "") {
+				
+				alert("해당 방에 대해 예약한 내역이 없습니다.\예약 후 체크아웃 뒤 리뷰 등록이 가능합니다.");
+				
+				return;
+				
+				if('${rsvo.res_co_ok}' == "false" {
+				
+					alert("아직 체크아웃 날짜가 지나지 않았습니다.\체크 아웃 날짜 이후 리뷰 등록이 가능합니다.");
+					
+					return;
+				}
+			}
+			
+			if('${user_id}' == "") {
+				
+				alert("로그인 후 이용가능합니다.");
+				
+				location.href = "user.login.do";
+			}
+			
 			let popUrl = "move_to_insert_review.do?room_id=" + '${u_room.room_id}';
-			let popOption = "width= 490px, height= 510px, top=300px, let=300px, scrollbars=yes";
+			let popOption = "width= 490px, height= 490px, top=300px, let=300px, scrollbars=yes";
 			
 			window.open(popUrl, "리뷰 쓰기", popOption);
 			

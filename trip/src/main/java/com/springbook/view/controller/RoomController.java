@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.springbook.biz.common.PagingVO;
 import com.springbook.biz.planner.LikeService;
 import com.springbook.biz.planner.LikeVO;
+import com.springbook.biz.reservation.ReservationService;
+import com.springbook.biz.reservation.ReservationVO;
 import com.springbook.biz.review.ReviewService;
 import com.springbook.biz.review.ReviewVO;
 import com.springbook.biz.room.RoomService;
@@ -401,21 +401,149 @@ public class RoomController {
 	
 	//(회원) 회원용 숙소 상세페이지 이동
 	@RequestMapping(value="/u_getRoom.do")
-	public String u_getRoom(RoomVO rvo, Model model, HttpSession session) {
+	public String u_getRoom(RoomVO rvo, Model model, HttpSession session) throws Exception {
 		System.out.println("u_getRoom: " + rvo);
 		RoomVO u_room = roomService.getRoom(rvo);
 		System.out.println(u_room);
 		LikeVO lvo = null;
 		ReviewVO revo = null;
+		ReservationVO rsvo = null;
+		rsvo = new ReservationVO();
 		revo = new ReviewVO();
 		lvo = new LikeVO();
 		lvo.setUser_id((String) session.getAttribute("user_id"));
+		rsvo.setUser_id((String) session.getAttribute("user_id"));
 		lvo.setLike_id(u_room.getRoom_id());
 		lvo = Service.likeselectRoom(lvo);
-		revo.setRoom_id(u_room.getRoom_id());
 		List<ReviewVO> revo_list = reviewService.selectReviewForRoom(revo);
+		List<ReservationVO> rsvo_list = reservationService.getReservationList(rsvo);
+		
+		//Date 자료형 변수 미리 세팅
+		Date res_cancel_ci = null;
+		Date res_cancel_co = null;
+		Date today = null;
+		
+		
+		//오늘 날짜 끌어옴
+		today = new Date();
+
+		
+		//날짜 계산을 위해 Calendar 클래스 객체 생성
+		Calendar cal = Calendar.getInstance();
+
+		
+		//DB에 있는 체크인 및 체크아웃 날짜를 Date 자료형 객체로 받기 위해 포맷 형식 객체 만듬, yyyy-mm-dd로 형식 맞춤
+		//Date 자료형으로 해야 현재 시간과 계산 가능
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		
+		//유저 아이디 기준으로 구해온 예약 목록 현황을 하나 하나 돌면서 체크
+		for(ReservationVO rvo_f : rsvo_list) {
+			
+			
+			//일단 변경 기준이 되는 현재 날짜-체크인 날짜 3일전 기준 변수와 현재 날짜-체크아웃 날짜 기준 변수를 디폴트값으로 초기화 시켜줌
+			rvo_f.setRes_ci3_ok("true");
+			rvo_f.setRes_co_ok("false");
+			
+			
+			//예약 데이터의 체크인 날짜 및 체크아웃 날짜 출력 (yyyy-MM-dd)
+			System.out.println(rvo_f.getRes_checkin());
+			System.out.println(rvo_f.getRes_checkout());
+			
+			
+			//DB에 저장된 체크인과 체크아웃 날짜를 Date형으로 변환
+			res_cancel_ci = formatter.parse(rvo_f.getRes_checkin());
+			res_cancel_co = formatter.parse(rvo_f.getRes_checkout());
+			
+			
+			//Date형으로 변환된 체크인 체크아웃 날짜 출력 (요일 월 일 시 분 초)
+			System.out.println(res_cancel_ci);
+			System.out.println(res_cancel_co);
+			
+			
+			//calendar 객체에 오늘 날짜 세팅
+			cal.setTime(today);
+			
+			
+			//getTimeInMillis 메소드를 통해 long 자료형으로 오늘 날짜 밀리세컨드 형식으로 구함
+			long today_long = cal.getTimeInMillis();
+			
+			
+			//다시 calendar 객체에 체크인 날짜 세팅후 
+			//getTimeInMillis 메소드를 통해 long 자료형으로 체크인 날짜 밀리세컨드 형식으로 구함
+			cal.setTime(res_cancel_ci);
+			long res_cancel_ci_long = cal.getTimeInMillis();
+			
+			
+			//또다시 calendar 객체에 체크아웃 날짜 세팅후 
+			//getTimeInMillis 메소드를 통해 long 자료형으로 체크아웃 날짜 밀리세컨드 형식으로 구함
+			cal.setTime(res_cancel_co);
+			long res_cancel_co_long = cal.getTimeInMillis();
+			
+			
+			//마이페이지 - 예약 현황을 누른 오늘 시간과 체크인 날짜 사이 간격을 구함 
+			//밀리세컨드이기에 1000 (1초) * 60초 (1분) * 60분(1시간) * 24시간 (1일)로 나눠야 결과가 일자로 나옴
+			//오늘 날짜 기준 - 체크인 날짜 빼기
+			long dayDiff_toci = (today_long - res_cancel_ci_long) / (1000*60*60*24);
+			
+			
+			//마찬가지로 오늘 시간과 체크아웃 날짜 사이 간격을 구함
+			//오늘 날짜 기준 - 체크아웃 날짜 빼기
+			long dayDiff_toco = (today_long - res_cancel_co_long) / (1000*60*60*24);
+			
+			
+			//그 두 간격을 출력
+			System.out.println(dayDiff_toci);
+			System.out.println(dayDiff_toco);
+			
+			
+			//아래에서 today 오늘날짜와 체크인 날짜 res_cancel_ci과 비교해
+			//시간이 지나지 않았다면 예약 변경이 가능하게끔 하고 (dayDiff_toci <= -3)
+			//시간이 지났다면 예약 변경이 불가능하게끔 한다 (dayDiff_toci > -3)
+			
+			
+			//또, 오늘 날짜와 체크아웃 날짜 res_cancel_co와 비교해 시간이 지났으면 사용 완료 리뷰 작성 가능하게끔 한다
+			//(dayDiff_toco >= 0)
+			
+
+			//예약 상태 변경 조건이 되는것들을 출력
+			//첫번째 + 두번째 모두가 true가 나와야 예약 변경 불가능 상태로 변경되고
+			//세번째가 true가 나와야 리뷰 쓰기 가능 상태로 변경된다
+			System.out.println(dayDiff_toci > -3);
+			System.out.println(dayDiff_toco < 0);
+			System.out.println(dayDiff_toco >= 0);
+			
+			if (((dayDiff_toci > -3) == true) && ((dayDiff_toco < 0) == true)){
+				
+				//위의 조건은 체크인 3일전보다 더 시간이 지났고 체크아웃보다 지나지 않은 오늘 날짜 상태
+				
+				
+				//res_ci3_ok => true값이면 예약 변경 가능 (기본값 true, 예약 변경 불가능이면 false)
+				//res_co_ok => false이면 리뷰 쓰기 버튼 비활성화 아직 오늘 날짜가 체크 아웃 날짜보다 지나지 않았음 (기본값 false, true면 리뷰 쓰기 버튼 기능 활성화)
+				
+				
+				rvo_f.setRes_ci3_ok("false");
+			} 
+			
+			if ((dayDiff_toco >= 0) == true) {
+				
+				// 체크 아웃 날짜보다 오늘 날짜가 같거나 지난 상태
+				
+				rvo_f.setRes_ci3_ok("false");
+				rvo_f.setRes_co_ok("true");
+				
+			}
+			
+		}
+		
+		for(int i = 0; i < rsvo_list.size(); i++) {
+			if((rvo.getRoom_id()).equals((rsvo_list.get(i).getRoom_id()))) {
+				rsvo = rsvo_list.get(i);
+			}
+		}
 		model.addAttribute("u_room", u_room);
 		model.addAttribute("lvo", lvo);
 		model.addAttribute("revo_list", revo_list);
+		model.addAttribute("rsvo", rsvo);
 		return "WEB-INF/views/user_room/user_room_detail.jsp";
 	}}

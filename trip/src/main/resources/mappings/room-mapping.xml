@@ -96,6 +96,11 @@
 		<if test="status == 'unlike'"> - </if> 1 
 		WHERE ROOM_ID = #{room_id} AND ROOM_NAME = #{room_name} 
 		</update>
+		
+		<update id="updateStarsRoom">
+		UPDATE ROOM SET ROOM_STARS = #{room_stars}
+		WHERE ROOM_ID = #{room_id}
+		</update>
 	
 	<select id="mainRoomList" resultType="room"> 
 	SELECT * FROM ROOM ORDER BY ROOM_LIKES DESC LIMIT 8;
