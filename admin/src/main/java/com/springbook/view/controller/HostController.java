@@ -110,9 +110,11 @@ public class HostController {
 		List<HostChartVO> listvo = hostService.hostIndexChartSelect(vo);
 		List<HostChartVO> listvo2 = hostService.hostIndexChart2Select(vo);
 		List<HostChartVO> listvo3 = hostService.hostIndexRoomSelect(vo);
+		List<HostChartVO> listvo4 = hostService.hostIndexChart3Select(vo);
 		model.addAttribute("hostIndexChartSelect", listvo);
 		model.addAttribute("hostIndexChart2Select", listvo2);
 		model.addAttribute("hostIndexRoomSelect", listvo3);
+		model.addAttribute("hostIndexChart3Select", listvo4);
 		vo = hostService.indexRoomCount(vo);
 		model.addAttribute("indexRoomCount", vo);
 		vo.setHost_id((String) session.getAttribute("host_id"));

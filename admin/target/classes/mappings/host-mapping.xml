@@ -68,63 +68,70 @@
 
 	<!-- host index 막대형 차트 (최근 10일 일별 매출) -->
 	<select id="hostIndexChartSelect" resultType="hostChart">
-		SELECT DATE_FORMAT(PAY_DATE, '%y-%m-%d') AS chart_date, sum(PAY_AMOUNT) AS
+		SELECT
+		DATE_FORMAT(PAY_DATE, '%y-%m-%d') AS chart_date, sum(PAY_AMOUNT) AS
 		chart_sum, COUNT(*) AS chart_count FROM reservation WHERE
-		host_id=#{host_id} AND PAY_DATE BETWEEN DATE_SUB(NOW(), INTERVAL 10
-		DAY) AND NOW() GROUP BY DATE_FORMAT(PAY_DATE, '%y-%m-%d');
+		PAY_DATE
+		BETWEEN DATE_SUB(NOW(), INTERVAL 10
+		DAY) AND NOW() GROUP BY
+		DATE_FORMAT(PAY_DATE, '%y-%m-%d');
 	</select>
 
 	<!-- host index 파이형 차트 (최근 10일 숙소별 매출) -->
 	<select id="hostIndexChart2Select" resultType="hostChart">
-		SELECT ROOM_NAME, sum(PAY_AMOUNT) AS chart_sum2 FROM reservation WHERE
-		host_id=#{host_id} AND pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10
-		DAY) AND NOW() GROUP BY room_name;
+		SELECT ROOM_NAME,
+		sum(PAY_AMOUNT) AS chart_sum2 FROM reservation WHERE
+		pay_date BETWEEN
+		DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW() GROUP BY room_name;
 	</select>
 
 	<!-- host index 운영중인 숙소 -->
 	<select id="indexRoomCount" resultType="hostChart">
-		SELECT COUNT(ROOM_ID) index_room_count FROM room WHERE host_id=#{host_id}
+		SELECT COUNT(ROOM_ID)
+		index_room_count FROM room
 	</select>
 
 	<!-- host index 등록된 총 리뷰 -->
 	<select id="indexReviewCount" resultType="hostChart">
-		SELECT COUNT(REVIEW_ID) index_review_count FROM review WHERE
-		HOST_ID=#{host_id}
+		SELECT COUNT(REVIEW_ID)
+		index_review_count FROM review
 	</select>
 
 	<!-- host index 받은 좋아요 수 -->
 	<select id="indexLikeCount" resultType="hostChart">
-		SELECT COUNT(c.room_id) index_like_count FROM (SELECT * FROM room a RIGHT
-		JOIN likes b ON a.ROOM_ID = b.like_id) c WHERE c.host_id=#{host_id}
+		SELECT COUNT(c.room_id)
+		index_like_count FROM (SELECT * FROM room a RIGHT JOIN likes b ON
+		a.ROOM_ID = b.like_id) c
 	</select>
 
 	<!-- host index 체크아웃(완료) -->
 	<select id="indexCheckout" resultType="hostChart">
-  <![CDATA[SELECT COUNT(c.res_id) index_checkout FROM (SELECT * FROM reservation WHERE res_checkout < DATE_FORMAT(NOW(), '%y-%m-%d') AND host_id=#{host_id}) c]]>
+  <![CDATA[SELECT COUNT(c.res_id) index_checkout FROM (SELECT * FROM reservation WHERE res_checkout < DATE_FORMAT(NOW(), '%y-%m-%d')) c]]>
 	</select>
 
 	<!-- host index 오늘 체크인 -->
 	<select id="indexTodayCheckin" resultType="hostChart">
-		SELECT COUNT(c.res_id) index_today_checkin FROM (SELECT * FROM reservation
-		WHERE res_checkin = DATE_FORMAT(NOW(), '%y-%m-%d') AND
-		host_id=#{host_id}) c
+		SELECT COUNT(c.res_id)
+		index_today_checkin FROM (SELECT * FROM reservation WHERE res_checkin
+		= DATE_FORMAT(NOW(), '%y-%m-%d')) c
 	</select>
 
 	<!-- host index 숙박중 -->
 	<select id="indexStaying" resultType="hostChart">
-   <![CDATA[ SELECT COUNT(c.res_id) index_staying FROM (SELECT * FROM reservation WHERE res_checkin <= DATE_FORMAT(NOW(), '%y-%m-%d') AND res_checkout > DATE_FORMAT(NOW(), '%y-%m-%d') AND host_id=#{host_id}) c]]>
+   <![CDATA[ SELECT COUNT(c.res_id) index_staying FROM (SELECT * FROM reservation WHERE res_checkin <= DATE_FORMAT(NOW(), '%y-%m-%d') AND res_checkout > DATE_FORMAT(NOW(), '%y-%m-%d')) c]]>
 	</select>
 
 	<!-- host index 체크인 예정 -->
 	<select id="indexCheckinAble" resultType="hostChart">
-		SELECT COUNT(c.res_id) index_checkin_able FROM (SELECT * FROM reservation
-		WHERE res_checkin > DATE_FORMAT(NOW(), '%y-%m-%d') AND
-		host_id=#{host_id}) c
+		SELECT COUNT(c.res_id)
+		index_checkin_able FROM (SELECT * FROM reservation WHERE res_checkin >
+		DATE_FORMAT(NOW(), '%y-%m-%d')) c
 	</select>
 
 	<!-- host index 인기방, 인기테마 -->
 	<select id="hostIndexRoomSelect" resultType="hostChart">
-		SELECT A.ROOM_ID, COUNT(a.room_id) index_THEME, a.room_name index_room_rank,
+		SELECT A.ROOM_ID,
+		COUNT(a.room_id) index_THEME, a.room_name index_room_rank,
 		b.room_theme index_theme_rank, b.room_id FROM reservation a LEFT JOIN
 		room b ON a.room_id = b.room_id GROUP BY A.ROOM_ID ORDER BY
 		INDEX_THEME DESC;
@@ -132,9 +139,10 @@
 
 	<!-- host index 하단 차트 3, 이 호스트의 전체 매출 -->
 	<select id="hostIndexChart3Select" resultType="hostChart">
-		SELECT DATE_FORMAT(PAY_DATE, '%y-%m-%d') AS chart_date_all, sum(PAY_AMOUNT)
-		AS chart_sum_all, COUNT(*) AS chart_count_all FROM reservation WHERE
-		host_id=#{host_id} GROUP BY DATE_FORMAT(PAY_DATE, '%y-%m-%d')
+		SELECT
+		DATE_FORMAT(PAY_DATE, '%y-%m-%d') AS chart_date_all, sum(PAY_AMOUNT)
+		AS chart_sum_all, COUNT(*) AS chart_count_all FROM reservation GROUP
+		BY DATE_FORMAT(PAY_DATE, '%y-%m-%d')
 	</select>
 
 	<!-- host login 전체 호스트 수 -->
@@ -144,50 +152,42 @@
 
 	<!-- host login 호스트들 10일간 평균 매출 -->
 	<select id="hostAvgIncome" resultType="hostLogin">
-		SELECT ROUND(AVG(pay_amount),0) AS host_avg_income FROM reservation WHERE
+		SELECT
+		ROUND(AVG(pay_amount),0) AS host_avg_income FROM reservation WHERE
 		pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW();
 	</select>
 
 	<!-- host login 1등 호스트의 10일간 최고 매출, 0번 배열만 가져갈 것. -->
 	<select id="hostMaxIncome" resultType="hostLogin">
-		SELECT host_id, sum(pay_amount) AS host_max_income FROM reservation WHERE
-		host_id is NOT NULL AND pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10
-		DAY) AND NOW() GROUP BY host_id ORDER BY host_max_income DESC
+		SELECT host_id,
+		sum(pay_amount) AS host_max_income FROM reservation WHERE
+		host_id is
+		NOT NULL AND pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10
+		DAY) AND
+		NOW() GROUP BY host_id ORDER BY host_max_income DESC
 	</select>
 
 	<!-- host login 최고 방 매출, 3위까지, 매출+이미지 -->
 	<select id="bestRoomIncome" resultType="hostLogin">
-		SELECT room_id, room_name AS best_room_name, room_img AS best_room_img,
-		sum(pay_amount) AS best_room_income FROM reservation GROUP BY room_id
-		ORDER BY best_room_income DESC
+		SELECT room_id, room_name
+		AS best_room_name, room_img AS best_room_img,
+		sum(pay_amount) AS
+		best_room_income FROM reservation GROUP BY room_id
+		ORDER BY
+		best_room_income DESC
 	</select>
 
 	<!-- 최근 10일간 예약 건수 -->
 	<select id="reservationCountLast10days" resultType="hostLogin">
-		SELECT COUNT(*) AS reservation_count_last10days FROM reservation WHERE
+		SELECT
+		COUNT(*) AS reservation_count_last10days FROM reservation WHERE
 		pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW()
 	</select>
 
 	<!-- 예약 누적 건수 -->
 	<select id="reservationCount" resultType="hostLogin">
-		SELECT COUNT(*) as reservation_count FROM reservation;
+		SELECT COUNT(*) as
+		reservation_count FROM reservation;
 	</select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </mapper>

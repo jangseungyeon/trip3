@@ -36,7 +36,7 @@
 			<!-- data-color="purple | blue | green | orange | red" -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="#" class="simple-text"> Trip 3.0 </a>
+					<a href="manage_main.do" class="simple-text"> Trip 3.0 </a>
 				</div>
 				<ul class="nav">
 					<li class="nav-item"><a class="nav-link" href="manage_main.do">
@@ -70,7 +70,7 @@
 			<!-- Navbar -->
 			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#pablo"> 숙소 관리 </a>
+					<a class="navbar-brand"> 숙소 관리 </a>
 					<button href="" class="navbar-toggler navbar-toggler-right"
 						type="button" data-toggle="collapse"
 						aria-controls="navigation-index" aria-expanded="false"

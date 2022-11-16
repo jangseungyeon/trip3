@@ -38,6 +38,10 @@
 	</delete>
 
 	<!-- 사용자정보가져오기 -->
+	<!-- QnaDAOMybatis.java파일 -->
+	<!-- 이 한줄에서mybatis.selectOne("QnaDAO.myUserOne", vo); -->
+	<!-- QnaDAO는 mapper namespace의"QnaDAO"와 일치 -->
+	<!-- myUserOne는 id="myUserOne"와 일치 -->
 	<select id="myUserOne" resultType="user">
 		SELECT * FROM USER WHERE
 		USER_ID = #{user_id}
@@ -78,10 +82,10 @@
 		#{qna_num}
 	</select>
 
-<!-- 	<select id="qnaOne" resultType="qna"> -->
-<!-- 		SELECT * FROM QNA WHERE QNA_NUM = -->
-<!-- 		#{qna_num} -->
-<!-- 	</select> -->
+	<!-- <select id="qnaOne" resultType="qna"> -->
+	<!-- SELECT * FROM QNA WHERE QNA_NUM = -->
+	<!-- #{qna_num} -->
+	<!-- </select> -->
 
 	<!-- 게시물 목록 + 페이징 -->
 	<!-- <select id="adminQnaNoAnswerList" resultType="qna"> -->

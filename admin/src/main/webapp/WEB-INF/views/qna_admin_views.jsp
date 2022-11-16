@@ -7,15 +7,6 @@
 <title>관리자 상세보기 페이지</title>
 <%@ include file="header.jsp"%>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 function deleteOne(num){
@@ -100,13 +91,12 @@ $(function() {
 
 		<div class="row">
 			<div class="col-sm-12 pt-3" style="text-align: center;">
-				<button  id="amd-btn" type="submit" class="btn btn-primary">수정하기</button>
+				<button  id="amd-btn" type="submit" class="btn btn-primary">답변하기</button>
 				<!-- <a href="qna_update.jsp" class="btn btn-primary">수정하기</a> -->
            <!-- <button type="button" onclick="alert('삭제하시겠습니까?')" class="btn btn-primary">삭제하기</button> -->
            <button type="button" onclick="deleteOne(${qnaOne.qna_num});" class="btn btn-primary">삭제</button>
 			</div>
 		</div>
 	</form>
-
 </body>
 </html>

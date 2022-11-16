@@ -151,11 +151,11 @@ body, .wrapper {
 }
 
 a {
-	color: #1DC7EA;
+	color: #19558c;
 }
 
 a:hover, a:focus {
-	color: #42d0ed;
+	color: #1DC7EA;
 	text-decoration: none;
 }
 
