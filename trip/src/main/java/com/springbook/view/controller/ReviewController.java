@@ -65,8 +65,8 @@ public class ReviewController {
 		
 		MultipartFile uploadFile1 = rvo.getReview_img_uploadFile();
 		
-		String realPath = "c:/Swork/trip/src/main/webapp/resources/review_img/";
-//		String realPath = request.getSession().getServletContext().getRealPath("/resources/review_img/");
+//		String realPath = "c:/Swork/trip/src/main/webapp/resources/review_img/";
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/review_img/");
 		
 		String review_img = uploadFile1.getOriginalFilename();
 		
@@ -119,8 +119,8 @@ public class ReviewController {
 		
 		MultipartFile uploadFile1 = rvo.getReview_img_uploadFile();
 		
-		String realPath = "c:/Swork/trip/src/main/webapp/resources/review_img/";
-//		String realPath = request.getSession().getServletContext().getRealPath("/resources/review_img/");
+//		String realPath = "c:/Swork/trip/src/main/webapp/resources/review_img/";
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/review_img/");
 		
 		String review_img = uploadFile1.getOriginalFilename();
 		
@@ -187,8 +187,8 @@ List <ReviewVO> rvo_list = reviewService.selectReviewForRoom(rvo);
 		
 		ReviewVO rvo_d = reviewService.selectReviewOneForUser(rvo);
 		
-		String realPath = "c:/Swork/trip/src/main/webapp/resources/review_img/";
-//		String realPath = request.getSession().getServletContext().getRealPath("/resources/review_img/");
+//		String realPath = "c:/Swork/trip/src/main/webapp/resources/review_img/";
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/review_img/");
 		
 		if(rvo_d.getReview_img()!=null) {
 			System.out.println("파일 삭제: " + realPath + rvo_d.getReview_img());

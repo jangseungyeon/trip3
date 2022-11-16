@@ -220,9 +220,27 @@ $(document).ready(function(){
 				
 			}
 			
+			var maximumNum_s = '${u_room.room_max}';
+			
+			var maximumNum_I = parseInt(maximumNum_s);
+			
 			var resNum = $("#res_num").val();
 			
 			var totalNum = document.getElementById("totalNum");
+			
+			if (resNum > maximumNum_I) {
+				
+				alert("최대 수용 인원 " + maximumNum_I + "명보다 큽니다. 다시 입력해주세요.");
+				
+				$("#res_num").val('');
+				
+				document.getElementById("totalNum").innerText = '총 예약 인원: ';
+				
+				document.getElementById("finalAmount").innerText = '총 결제 금액: ';
+				
+				return;
+				
+			}
 			
 			if(totalNum.innerText != "") {
 				
@@ -233,8 +251,6 @@ $(document).ready(function(){
 					
 					 document.getElementById("totalNum").innerText = '총 예약 인원: ';
 					 
-					 
-
 					}
 				
 			}
@@ -682,7 +698,7 @@ function f_moveInsertRes() {
 
 #u_room_sml_desc {
 	height: 30%;
-	font-size: 1.4rem;
+	font-size: 1.3rem;
 }
 
 #u_room_sml_desc div {
@@ -691,7 +707,7 @@ function f_moveInsertRes() {
 }
 
 #u_room_price_div {
-	font-size: 1.4rem;
+	font-size: 1.3rem;
 	height: 5%;
 	font-weight: 600;
 	
@@ -975,7 +991,7 @@ svg {
 	<div>
 	<div><h4 style="font-weight: 600;">${u_room.room_name}</h4></div>
 	<div><a href="#" onclick="f_searchAddr('${u_room.room_addr}')">${u_room.room_addr}</a></div>
-	<div>최대 수용 인원: ${u_room.room_max}명</div>
+	<div><textarea style=" font-size: 0.9rem; font-weight: 600; resize:none; text-align: center; word-break: keep-all; border: none;" readonly rows="2" cols="45">${u_room.room_desc}</textarea></div>
 	</div>
 	
 	<div class="head">
@@ -1169,8 +1185,8 @@ svg {
 			<div style="text-align: center;">
 				<button id="review_insert_btn">리뷰 등록하기</button>
 			</div>
-	
-	</div>
+			
+			</div>
 	
 			<% } %>
 			<% } %>
@@ -1181,9 +1197,13 @@ svg {
 			</div>
 			<% } %>
 		
-	</div>
+</div>
 
 </div>
+
+<br>
+
+<br>
 
 <%@ include file="../footer.jsp" %>
 	

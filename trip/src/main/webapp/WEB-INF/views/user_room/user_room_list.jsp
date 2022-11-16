@@ -18,8 +18,44 @@
 	
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
 <% ArrayList<RoomVO> u = (ArrayList<RoomVO>)request.getAttribute("u_roomList"); %>
 <script>
+
+var page = 2;
+var count = 10;
+
+$(window).scroll(function(){
+	 var scroll = $(window).scrollTop();
+	 var filter = "win16|win32|win64|macintel|mac|"; // PC일 경우 가능한 값
+	 if( navigator.platform){
+	 	if( filter.indexOf(navigator.platform.toLowerCase())<0 ){
+	 		scroll = Number(scroll) + 149 
+	 	} }
+	 
+	 if($(window).scrollTop()  >= $(document).height() - $(window).height()){
+			var f = (count * page) - (count * (page-1) +1);
+			var m = count * (page-1) +1;
+			if($(".roomCardAllDiv").length > count * (page-1) +1){
+				$("#spinner").css("display" , "");
+				 setTimeout(function() {
+					 $("#spinner").css("display" , "none")
+					 for(var i = 0; i <= f; i ++){
+						 $(".roomCardAllDiv" + m ).css("display" , "");
+						 m += 1;
+					 }
+					}, 1000);	
+			}
+			page +=  1;
+			}
+	 
+	});
+
 
 	function f_getRoom(room_id) {
 		
@@ -366,16 +402,16 @@ justify-content: space-evenly;
 #roomListImgDiv {
 	text-align: center;
 	position: relative;
-	height:200px;
+	height:205px;
 }
 
 #roomListImgDiv img {
 	position: absolute;
 	border-radius: 15px;
-	top:65%;
+	top:50%;
 	left:50%;
 	width: 95%;
-	height: 110%;
+	height: 90%;
 	margin-left: 5px;
 	transform: translate(-50%, -50%);
 }
@@ -442,6 +478,7 @@ select {
 	background-color: #f9fcff;
 	border: 1px solid #aaa;
 	height: 265px;
+	cursor: pointer;
 }
 
 #roomCardsPriceDiv div {
@@ -700,8 +737,8 @@ button.main-icon-div1:hover span:nth-child(2) {
 
 .main-icon-div1 {
 	margin: 10px;
-	width: 60px;
-	height: 60px;
+	width: 64px;
+	height: 64px;
 }
 
 .stars {
@@ -909,7 +946,7 @@ button.main-icon-div1:hover span:nth-child(2) {
 
 	<c:forEach var="i" begin="0" end="${u_roomList.size()-1}" step="1" varStatus="status">
 	
-		<div class="roomCardAllDiv card mb-3" onclick="f_getRoom('${u_roomList[i].room_id}')" style="cursor: pointer;" data-room_id = "${u_roomList[i].room_id}">
+		<div class="roomCardAllDiv roomCardAllDiv${status.index} card mb-3" onclick="f_getRoom('${u_roomList[i].room_id}')" <c:if test="${status.count >= '11'}"> style="display:none;"</c:if> >
   			<div class="row no-gutters">
 	    		<div class="col-md-3" id="roomListImgDiv">
 	      			<img src="resources/room_img/${u_roomList[i].room_img_no1}" alt="${u_roomList[i].room_name} 대표 이미지" title="${u_roomList[i].room_name} 대표 이미지">
@@ -1075,6 +1112,12 @@ button.main-icon-div1:hover span:nth-child(2) {
 		
 	</c:forEach>
 	
+	<div style="text-align-last: center; margin-top:5%; margin-bottom:3%; display:none" id="spinner">
+		<div class="spinner-border" role="status">
+		  <span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+	
 	<% } else { %>
 		<h4 id="roomListNoneContents" style="text-align: center; font-weight: 600; margin-top: 50px;">설정하신 조건으로 검색된 숙박시설이 없습니다.</h4>
 	<% } %>
@@ -1082,6 +1125,10 @@ button.main-icon-div1:hover span:nth-child(2) {
 </div>
 
 </div>
+
+<br>
+
+<br>
 
 <%@ include file="../footer.jsp" %>
 </body>

@@ -211,6 +211,10 @@ $(document).ready(function(){
 
 </form>
 
+<br>
+
+<br>
+
 <%@ include file="../footer.jsp" %>
 
 </body>
