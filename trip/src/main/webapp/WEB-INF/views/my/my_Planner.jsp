@@ -7,6 +7,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+$(function() {
+var idcheck_check = '<%=(String)session.getAttribute("user_id")%>';
+
+console.log(idcheck_check);
+
+if(idcheck_check == 'null') {
+	alert("로그인이 필요합니다.");
+	location.href = "user.login.do";
+}
+});
+</script>
+<script>
 function plannertr(val){
 	location.href = "plannerinfo.do?planner_no="+val;
 }

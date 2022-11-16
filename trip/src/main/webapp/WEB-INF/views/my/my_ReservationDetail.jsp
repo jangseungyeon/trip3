@@ -7,6 +7,18 @@
 <meta charset="UTF-8">
 <%@ include file="../header.jsp"%>
 <title>Insert title here</title>
+<script>
+$(function() {
+var idcheck_check = '<%=(String)session.getAttribute("user_id")%>';
+
+console.log(idcheck_check);
+
+if(idcheck_check == 'null') {
+	alert("로그인이 필요합니다.");
+	location.href = "user.login.do";
+}
+});
+</script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 <script>

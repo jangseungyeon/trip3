@@ -4,6 +4,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+<%@ include file="header.jsp"%>
 <title>회원가입</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -179,34 +180,60 @@ $(function() {
 	
 </script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+<br><br>
+<div class="container">
+<div class="userinsert-div1">회원가입</div>
+<hr class="userinsert-hr">
+
 
 <form action="user_insertform.do" method="post" id="user_insert">
-	<input type="text" name="user_id" id="user_id" placeholder='아이디'>
+<table class="userinsert-table container">
+<tr>
+<th class="userinsert-th">아이디</th><td><input class="userinsert-input" type="text" name="user_id" id="user_id" placeholder='아이디'>
 	<font id="checkid" size="2"></font>
-	<button type="button" id="idCheck">아이디중복체크</button>
-	<br> <input type="password" name="user_password"
+	<button type="button" id="idCheck" class="userinsert-idbtn">아이디중복체크</button></td>
+</tr>
+<tr>
+<th class="userinsert-th">비밀번호</th><td> <input class="userinsert-input" type="password" name="user_password"
 		id="user_password" placeholder='비밀번호'>
-		<font id="checkpw" size="2"></font>
-		<br>
-	<input type="password" name="user_passwordCheck"
-		id="user_passwordCheck" placeholder='비밀번호재확인'><br>
-	<input type="text" name="user_name" placeholder='이름'><br>
-	<input type="hidden" name="user_phone" id="user_phone" placeholder='핸드폰'>
-	<input type="text" name="user_email" id="user_email" placeholder='이메일'>
-	<button type="button" class="submitbutton" onclick="check()">회원가입</button>
-</form>
-
-
-
+		<font id="checkpw" size="2"></font></td>
+</tr>
+<tr>
+<th class="userinsert-th">비밀번호재확인</th><td><input class="userinsert-input" type="password" name="user_passwordCheck"
+		id="user_passwordCheck" placeholder='비밀번호재확인'></td>
+</tr>
+<tr>
+<th class="userinsert-th">이름</th><td><input class="userinsert-input" type="text" name="user_name" placeholder='이름'></td>
+</tr>
+<tr>
+<th class="userinsert-th">핸드폰</th><td><input class="userinsert-input" type="hidden" name="user_phone" id="user_phone" placeholder='핸드폰'>
 <div id="config1">
-	<input id="phone" type="text" name="phone" title="전화번호 입력" /> <button type="button" id="phoneChk" class="doubleChk">인증번호 보내기</button> <br /> <input
-		id="phone2" type="text" name="phone2" title="인증번호 입력" disabled /> 
-		<button type="button" id="phoneChk2" class="doubleChk">인증확인</button> <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span> <input
-		type="hidden" id="phoneDoubleChk" />
+	<input id="phone" type="text" name="phone" title="전화번호 입력" class="userinsert-input" /> <button type="button" id="phoneChk" class="doubleChk userinsert-input">인증번호 보내기</button>
+
+		
+</div>
+</td>
+</tr>
+<tr>
+<th></th><td><input	id="phone2" type="text" name="phone2" title="인증번호 입력" disabled /><button type="button" id="phoneChk2" class="doubleChk userinsert-input">인증확인</button><br><span class="point successPhoneChk" style="font-size: 12px; color:green;">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span> <input
+		type="hidden" id="phoneDoubleChk" /> </td>
+</tr>	
+<tr>
+<th class="userinsert-th">이메일</th><td><input class="userinsert-input" type="text" name="user_email" id="user_email" placeholder='이메일'></td>
+</tr>
+	<tr>
+	<th></th><td><button type="button" class="submitbutton userinsert-insertbtn" onclick="check()">회원가입</button>
+	<button type="reset" class="submitbutton userinsert-resetbtn">되돌리기</button></td>
+	
+	</tr>
+	</table>
+</form>
 </div>
 
 
+
+<%@ include file="footer.jsp"%>
 </body>
 
 </html>
