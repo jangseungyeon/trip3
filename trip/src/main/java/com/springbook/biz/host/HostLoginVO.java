@@ -9,7 +9,16 @@ public class HostLoginVO {
 	private int best_room_income;
 	private int reservation_count_last10days;
 	private int reservation_count;
+	private int room_count;
 	
+	
+	
+	public int getRoom_count() {
+		return room_count;
+	}
+	public void setRoom_count(int room_count) {
+		this.room_count = room_count;
+	}
 	public int getHost_count() {
 		return host_count;
 	}

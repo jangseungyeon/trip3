@@ -416,4 +416,4 @@ public class RoomController {
 		model.addAttribute("lvo", lvo);
 		model.addAttribute("revo_list", revo_list);
 		return "WEB-INF/views/user_room/user_room_detail.jsp";
-	}
+	}}

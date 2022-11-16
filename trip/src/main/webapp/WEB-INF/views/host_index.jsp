@@ -15,10 +15,12 @@
 	}
 	.top{
 		width:100%;
-		min-height:450px;
+		min-height:550px;
 		background: linear-gradient(45deg, deepSkyBlue, skyBlue, lightCyan, lightCyan, lightCyan);
 		background: url(resources/img/host_index.png);
-		background-size:cover;
+ 		background-size: cover;
+ 		background-position: center;
+ 		background-repeat: no-repeat;
 		color: white;
 		font-size: 30px;
 		font-weight: normal;
@@ -352,7 +354,7 @@
     
      
                     
-        </script>
+
 
 </body>
 </html>

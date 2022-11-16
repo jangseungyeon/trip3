@@ -13,8 +13,23 @@
 <%@ include file="host_header.jsp"%>
 
 <style>
+	body, html{
+		background: #f9fcff;
+	}
 	table, td{
 		border: 1px solid;
+		border-color: gray;
+		padding: 5px;
+		font-color: #19558c;
+		text-align: center;
+		font-size: 14px;
+	}
+	.review_div {		
+	}
+	
+	.title_td{
+		background: #be3232;
+		color: #f9fcff;
 	}
 	.red-text{
 		color:#DC3545;
@@ -30,22 +45,23 @@
 </head>
 <body>
 <br><br>
+<div align=center>
+<div align=center style="width:80%" style="min-height:300px;">
 
-<div style="text-align:center; width:100%; height: 600px; margin: 0 auto;">
-<div style="width: 80%; height: 300px;" >
-<span class="red-text-small">${host_id}</span>님의 <span class="chart_title"><span class="red-text-small">전체 기간</span> 매출 현황<br></span>
+<span class="red-text-small">${host_id}</span>님의 <span class="chart_title"><span class="red-text-small">전체 기간</span> 매출 현황 (차트형)<br></span>
 	<br>
 	<canvas id="myChart3"></canvas>
-</div>
-</div>
 
-<div>
+</div>
+<br><br>
+<div align=center style="width:80%">
+
 <c:choose>
 <c:when test="${reservationListForHost.size() eq '0'}">${host_id}님 숙소의 예약 내역이 없습니다. </c:when>
 <c:when test="${reservationListForHost.size() ne '0'}">
-${host_id}님 숙소의 예약 내역입니다.<br>
-<table>
-<tr><td>예약번호</td><td>회원ID</td><td>내 객실명</td><td>결제일</td><td>결제금액</td><td>예약인원(명)</td><td>예약상태</td><td>체크인</td><td>체크아웃</td></tr>
+<span class="red-text-small">${host_id}</span>님의 <span class="chart_title"><span class="red-text-small">전체 기간</span> 매출 현황 (목록형) <br></span><br>
+<table style="width:100%">
+<tr><td class="title_td">예약번호</td><td class="title_td">회원ID</td><td class="title_td">내 객실명</td><td class="title_td">결제일</td><td class="title_td">결제금액</td><td class="title_td">예약인원(명)</td><td class="title_td">예약상태</td><td class="title_td">체크인</td><td class="title_td">체크아웃</td></tr>
 	<c:forEach var="i" begin="0" end="${reservationListForHost.size()-1}" step="1">
 		<tr>
 			<td>${reservationListForHost[i].res_id}</td>
@@ -64,6 +80,9 @@ ${host_id}님 숙소의 예약 내역입니다.<br>
 </c:choose>
 </div>
 
+
+
+</div>
 
 <!-- 3번 차트 -->
 <script type="text/javascript">
@@ -92,7 +111,7 @@ var bg_color = [];
 	 	%>
 labels_f.push("<%=chart_count_all%>");
 <!-- bar 컬러 동일하게 넣기 -->
-bg_color.push("#f8d7da");
+bg_color.push("#ff677d");
 <% } %>
 
 

@@ -27,10 +27,11 @@ public interface HostService {
 	HostLoginVO hostCount(HostLoginVO vo);
 	HostLoginVO hostAvgIncome (HostLoginVO vo);
 	List<HostLoginVO> hostMaxIncome (HostLoginVO vo);
-	List<HostLoginVO> bestRoomName (HostLoginVO vo);
-	List<HostLoginVO> bestRoomImg (HostLoginVO vo);
+//	List<HostLoginVO> bestRoomName (HostLoginVO vo);
+//	List<HostLoginVO> bestRoomImg (HostLoginVO vo);
 	List<HostLoginVO> bestRoomIncome (HostLoginVO vo);
 	HostLoginVO reservationCountLast10days (HostLoginVO vo);
-	HostLoginVO reservation_count (HostLoginVO vo);
+	HostLoginVO reservationCount (HostLoginVO vo);
+	HostLoginVO roomCount (HostLoginVO vo);
 	
 }

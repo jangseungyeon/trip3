@@ -4,6 +4,7 @@ public class HostVO {
 	private String host_id;
 	private String host_bizname;
 	private String host_pw;
+	private String host_pw_check;
 	private String host_name;
 	private String host_birth;
 	private String host_email;
@@ -17,7 +18,14 @@ public class HostVO {
 	private String host_banknum;
 	private String host_find;
 	
-	
+	public String getHost_pw_check() {
+		return host_pw_check;
+	}
+
+
+	public void setHost_pw_check(String host_pw_check) {
+		this.host_pw_check = host_pw_check;
+	}
 	
 	
 	public String getHost_find() {

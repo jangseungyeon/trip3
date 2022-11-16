@@ -22,7 +22,7 @@ DELETE FROM REVIEW WHERE REVIEW_ID=#{review_id} AND USER_ID=#{user_id} AND ROOM_
   
 <!-- 리뷰 조회 (호스트용) -->
   <select id="selectReviewForHost" resultType="review">
-SELECT * FROM REVIEW WHERE HOST_ID = #{host_id}  
+SELECT * FROM REVIEW WHERE HOST_ID = #{host_id} ORDER BY write_date DESC
   </select>
   
 <!-- 내 리뷰 개수 총 조회 (호스트용) -->

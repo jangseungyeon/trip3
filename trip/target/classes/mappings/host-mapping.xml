@@ -14,7 +14,7 @@
   
   <select id="hostLogin" resultType="host">
   SELECT * FROM HOST WHERE HOST_ID=#{host_id} AND HOST_PW=#{host_pw} AND HOST_STATUS != 'leave'
-  </select>
+  </select>  
   
   <update id="hostUpdate">
   UPDATE HOST SET HOST_BIZNAME=#{host_bizname}, HOST_NAME=#{host_name}, HOST_BIRTH=#{host_birth}, HOST_EMAIL=#{host_email}, HOST_PHONE=#{host_phone}, HOST_ADDR1=#{host_addr1}, HOST_ADDR2=#{host_addr2}, HOST_BIZNUM=#{host_biznum}, HOST_BIZIMG=#{host_bizimg}, HOST_BANK=#{host_bank}, HOST_BANKNUM=#{host_banknum} WHERE HOST_ID=#{host_id}
@@ -99,7 +99,7 @@
   
   <!-- host login 전체 호스트 수 -->
   <select id="hostCount" resultType="hostLogin">
-  SELECT COUNT(*) FROM host
+  SELECT COUNT(*) AS host_count FROM host
   </select>
   
   <!-- host login 호스트들 10일간 평균 매출 -->
@@ -112,7 +112,7 @@
   SELECT host_id, sum(pay_amount) AS host_max_income FROM reservation WHERE host_id is NOT NULL AND pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW() GROUP BY host_id ORDER BY host_max_income DESC
   </select>
   
-  <!-- host login 최고 방 매출, 3위까지, 매출+이미지 -->
+  <!-- host login 최고 방 매출, 5위까지, 매출+이미지 -->
   <select id="bestRoomIncome" resultType="hostLogin">
   SELECT room_id, room_name AS best_room_name, room_img AS best_room_img, sum(pay_amount) AS best_room_income FROM reservation GROUP BY room_id ORDER BY best_room_income DESC
   </select>
@@ -125,6 +125,11 @@
   <!-- 예약 누적 건수 -->
   <select id="reservationCount" resultType="hostLogin">
   SELECT COUNT(*) as reservation_count FROM reservation;
+  </select>
+  
+  <!-- 운영중인 숙소 수 -->
+  <select id="roomCount" resultType="hostLogin">
+  SELECT COUNT(*) AS room_count FROM ROOM;
   </select>
   
   </mapper>

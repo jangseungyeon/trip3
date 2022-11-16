@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.springbook.biz.host.HostChartVO;
+import com.springbook.biz.host.HostLoginVO;
 import com.springbook.biz.host.HostVO;
 
 @Repository
@@ -107,5 +108,33 @@ public class HostDAOMybatis {
 		return mybatis.selectList("hostIndexChart3Select", vo);
 	}
 	
+	public HostLoginVO hostCount (HostLoginVO vo) {
+		return mybatis.selectOne("hostCount", vo);
+	}
+	
+	public HostLoginVO hostAvgIncome(HostLoginVO vo) {
+		return mybatis.selectOne("hostAvgIncome", vo);
+	}
+	
+	public List<HostLoginVO> hostMaxIncome(HostLoginVO vo) {
+		return mybatis.selectList("hostMaxIncome", vo);
+	}
+	
+	public List<HostLoginVO> bestRoomIncome(HostLoginVO vo){
+		return mybatis.selectList("bestRoomIncome", vo);
+	}
+	//best_room_name, best_room_img도 이 SQL이 가져옵니다.
+	
+	public HostLoginVO reservationCountLast10days(HostLoginVO vo) {
+		return mybatis.selectOne("reservationCountLast10days", vo);
+	}
+	
+	public HostLoginVO reservationCount(HostLoginVO vo) {
+		return mybatis.selectOne("reservationCount", vo);
+	}
+	
+	public HostLoginVO roomCount(HostLoginVO vo) {
+		return mybatis.selectOne("roomCount", vo);
+	}
 	
 }

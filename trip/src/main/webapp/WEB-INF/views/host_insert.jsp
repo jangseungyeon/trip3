@@ -34,6 +34,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=B612:wght@700&family=Do+Hyeon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=B612:wght@700&family=Do+Hyeon&family=RocknRoll+One&display=swap');
+
+
 </style>
 
 <style>
@@ -261,6 +263,7 @@
 	}
 	.input1{
 		width:100%;
+		max-width: 290px;
 		height:30px;
 		padding:5px 20px;
 		border-radius:20px;
@@ -268,9 +271,11 @@
 		margin:3px;
 		font-size:12px;
 		box-shadow: 0 0 0 1px #19558c;
+		outline:none;
 	}
 	.input1:focus{
 		width:100%;
+		max-width: 290;
 		height:30px;
 		padding:5px 20px;
 		border-radius:20px;
@@ -332,7 +337,6 @@
 </svg>
 <br><b>나가기</b>
 </div></a>  
-<!-- 후기 추가버튼 -->
 
 
 <br><div style="min-height:150px">
@@ -353,19 +357,20 @@
 </tr>
 
 <tr>
-<td><b>비밀번호</b></td>
-<td><input type="password" name="host_pw" id="host_pw" class="input1" placeholder="비밀번호를 입력해주세요." onkeyup="passwordCheckFunction1();">
+<td class="td1"><b>비밀번호</b></td>
+<td class="td2"><input type="password" name="host_pw" id="host_pw" class="input1" placeholder="비밀번호를 입력해주세요." onkeyup="passwordCheckFunction1();">
 </td>
 </tr>
 
 <tr>
-<td><b>비밀번호 확인</b></td>
-<td><input type="password" name="host_pw2" id="host_pw2" class="input1" placeholder="비밀번호를 한번 더 입력해주세요." onkeyup="passwordCheckFunction2();">
-<span id="checkMessage1"></span><span id="checkMessage2"></span>
+<td class="td1"><b>비밀번호 확인</b></td>
+<td class="td2"><input type="password" name="host_pw2" id="host_pw2" class="input1" placeholder="비밀번호를 한번 더 입력해주세요." onkeyup="passwordCheckFunction2();">
+<span id="checkMessage1"></span>
+<span id="checkMessage2"></span>
 </td>
 </tr>
 
-<tr><td><b>상호명</b></td> <td><input type="text" name="host_bizname" class="input1" placeholder="숙소명을 입력해주세요."><br></td></tr>
+<tr><td><b>상호명</b></td> <td><input type="text" name="host_bizname" class="input1" placeholder="사업자명을 입력해주세요."><br></td></tr>
 
 <tr><td><b>대표자명</b></td> <td><input type="text" name="host_name" class="input1" placeholder="대표자명을 입력해주세요."><br></td></tr>
 
@@ -375,7 +380,7 @@
 
 <tr><td><b>도로명 주소</b></td> <td><input type="text" name="host_addr1" id="host_addr1" class="input1" placeholder="클릭하시면 도로명 주소 찾기 팝업이 실행돼요."></td></tr>
 
-<tr><td><b>상세 주소</b></td> <td><input type="text" name="host_addr2" id="host_addr2" class="input1" placeholder="숙소의 나머지 주소를 입력해주세요."></td></tr>
+<tr><td><b>상세 주소</b></td> <td><input type="text" name="host_addr2" id="host_addr2" class="input1" placeholder="나머지 주소를 입력해주세요."></td></tr>
 
 <tr><td><b>은행</b></td><td> <input type="text" name="host_bank" id="host_bank" class="input1" placeholder="정산받으실 은행명을 입력해주세요."></td></tr>
 
@@ -389,6 +394,24 @@
 </div>
 </div>
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+			
+			<script>
+			
+			$(document).ready(function(){
+			
+			document.getElementById("host_addr1").addEventListener("click", function(){
+				//주소 입력칸을 클릭하면 주소 검색창 팝업
+				 new daum.Postcode({
+				        oncomplete: function(data) {
+							document.getElementById("host_addr1").value = data.address;
+							document.querySelector("#host_addr2").focus();
+				        }
+				    }).open();
+				})
+				
+			});
+			</script>
 <script>
 
 //아이디 중복, 형식 체크
@@ -486,7 +509,6 @@ function checkId(){
 
 
 </script>
-
 
 
 </body>

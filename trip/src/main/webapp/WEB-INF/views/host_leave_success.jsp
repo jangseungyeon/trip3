@@ -15,5 +15,8 @@
 감사합니다.
 <br><br>
 <a href="index.jsp">Trip 메인으로..</a>
+
+<%@ include file="footer.jsp"%>
 </body>
+
 </html>

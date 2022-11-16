@@ -6,9 +6,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.springbook.biz.host.HostLoginVO" %>
+<%@ page import="com.springbook.biz.host.HostVO" %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
+
+<!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <!-- jQuery library -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 
@@ -16,7 +22,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> -->
 
 <link href="resources/css/style.css" rel="stylesheet">
 
@@ -252,7 +258,7 @@
 		font-size:25px;
 		padding:30px;	
 	}
-	.recent30, .count_host, .count_room, .count_money, .count_rank_room_avg_income, .count_best_host_income{
+	.recent30, .count_host, .count_room, .count_money, .count_rank_room_avg_income, .count_best_host_income, .count_all_res{
 		color:#DC3545;
 		font-size:35px;
 	}
@@ -305,6 +311,8 @@
 		left:0;
 		position:absolute;
 	}
+	
+	
 	
 	html{
 		scroll-behavior:smooth;
@@ -409,16 +417,86 @@ $(document).ready(function($) {
 <b style="color:black;"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-hearts" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M11.5 1.246c.832-.855 2.913.642 0 2.566-2.913-1.924-.832-3.421 0-2.566ZM9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276ZM15 2.165c.555-.57 1.942.428 0 1.711-1.942-1.283-.555-2.281 0-1.71Z"/>
 </svg> 활발한 교류가 있습니다. </b><br>
-최근 10일간 <span class="count_room"></span>건의 예약이 성사되었습니다.
+최근 10일간만 <span class="count_room"></span>건의 예약이, 누적 <span class="count_all_res"></span>건의 예약이 성사되었습니다.
 </div>
 <br>
 
 
 <!-- 최근 30일 베스트 숙소 평균 수입(롤링) -->
 <div class="contents-box-cap"></div>
-<div class="contents-box">
-<span class="recent30">(공사중, 후순위) 숙소들 가격+이미지 불러와 캐러셀</span>
-<br>이 숙소들의 수입 평균은 <span class="count_rank_room_avg_income"></span>원(₩) 입니다.</div>
+<div class="pride" style="height:100px;">
+최근 가장 높은 수입을 올린 숙소는 <span style="color:#ff8e15;">${bestRoomIncome[0].best_room_name}</span>. (누적 매출 <span class="count_rank_room_avg_income"></span>원(₩))
+<br>그와 더불어 <span style="color:#ff8e15;">매출 상위 숙소</span>들을 아래에서 확인해보세요. </div>
+
+<div style="height: 600px; max-height: 600px; text-align:center; padding:60px 120px; background:#f9fcff; " class="d-block w-100">
+
+
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="resources/room_img/${bestRoomIncome[0].best_room_img}" style="border-radius: 20px 20px 0px 0px; height: 500px; filter: brightness(50%); z-index: 1;" class="d-inline w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="font-size: 30px;">숙소명: <span style="color:#ff8e15;">${bestRoomIncome[0].best_room_name}</span></h5>
+        <h5 style="font-size: 30px;">누적 매출: <span style="color:#dc3545;"><script type="text/javascript">
+    document.write(Number('${bestRoomIncome[0].best_room_income}').toLocaleString('en'));</script></span>원(₩)</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="resources/room_img/${bestRoomIncome[1].best_room_img}" style="border-radius: 20px 20px 0px 0px; height: 500px; filter: brightness(50%); z-index: 1;" class="d-inline  w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="font-size: 30px;">숙소명: <span style="color:#ff8e15;">${bestRoomIncome[1].best_room_name}</span></h5>
+        <h5 style="font-size: 30px;">누적 매출: <span style="color:#dc3545;"><script type="text/javascript">
+    document.write(Number('${bestRoomIncome[1].best_room_income}').toLocaleString('en'));</script></span>원(₩)</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="resources/room_img/${bestRoomIncome[2].best_room_img}" style="border-radius: 20px 20px 0px 0px; height: 500px; filter: brightness(50%); z-index: 1;" class="d-inline  w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="font-size: 30px;">숙소명: <span style="color:#ff8e15;">${bestRoomIncome[2].best_room_name}</span></h5>
+        <h5 style="font-size: 30px;">누적 매출: <span style="color:#dc3545;"><script type="text/javascript">
+    document.write(Number('${bestRoomIncome[2].best_room_income}').toLocaleString('en'));</script></span>원(₩)</h5>
+      </div>
+    </div>
+        <div class="carousel-item">
+      <img src="resources/room_img/${bestRoomIncome[3].best_room_img}" style="border-radius: 20px 20px 0px 0px; height: 500px; filter: brightness(50%); z-index: 1;" class="d-inline  w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="font-size: 30px;">숙소명: <span style="color:#ff8e15;">${bestRoomIncome[3].best_room_name}</span></h5>
+        <h5 style="font-size: 30px;">누적 매출: <span style="color:#dc3545;"><script type="text/javascript">
+    document.write(Number('${bestRoomIncome[3].best_room_income}').toLocaleString('en'));</script></span>원(₩)</h5>
+      </div>
+    </div>
+        <div class="carousel-item">
+      <img src="resources/room_img/${bestRoomIncome[2].best_room_img}" style="border-radius: 20px 20px 0px 0px; height: 500px; filter: brightness(50%); z-index: 1;" class="d-inline  w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="font-size: 30px;">숙소명: <span style="color:#ff8e15;">${bestRoomIncome[4].best_room_name}</span></h5>
+        <h5 style="font-size: 30px;">누적 매출: <span style="color:#dc3545;"><script type="text/javascript">
+    document.write(Number('${bestRoomIncome[4].best_room_income}').toLocaleString('en'));</script></span>원(₩)</h5>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+</div>
+
+<!-- 준비 완료 -->
+<div class="pride">
+<b style="color:black;"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+  <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+  <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+</svg> 빠를 수록 좋습니다. </b><br>
+이미 <span class="recent30">${roomCount.room_count}</span>개의 숙소가 활발하게 거래되고 있습니다.
+</div>
+<br>
 
 
 <!-- 이제 당신 차례입니다. -->
@@ -428,12 +506,15 @@ $(document).ready(function($) {
 이제 <span class="recent30"><b>당신</b> </span> 차례입니다.
 <br><span class="main-div2" style="font-size:30px !important">tripONplan</span>에 합류해,<br> 다양한 사람들을 맞이해보세요.</div>
 <br>
-<button class="host-insert-button" type="button" class="host" onclick="location.href='move_to_host_insert.do'">호스트 신청하기</a>
+<button class="host-insert-button" type="button" class="host" onclick="location.href='move_to_host_insert.do'">호스트 신청하기</button>
 
 </div>
 
 <% %>
 <script>
+
+
+
 //호스트 숫자
 const counter_host = ($counter_host, max_host) => {
 let now_host = max_host;
@@ -448,11 +529,11 @@ let now_host = max_host;
 	}
 	$(document).ready(function() {
 	  const $counter_host = document.querySelector(".count_host"); // 카운트 출력 요소
-	  const max_host = 154;// 목표 수치	  
+	  const max_host = "${hostCount.host_count}";// 호스트 몇명
 	  setTimeout(() => counter_host($counter_host, max_host), 750);
 	});
 
-//숙소 숫자
+//예약 숙소 숫자
 var counter_room = ($counter_room, max_room) => {
 	  let now_room = max_room;
 	  var handle_room = setInterval(() => {
@@ -466,11 +547,11 @@ var counter_room = ($counter_room, max_room) => {
 	}
 	$(document).ready(function() {
 	  var $counter_room = document.querySelector(".count_room"); // 카운트 출력 요소
-	  var max_room = 1249;// 목표 수치	  
+	  var max_room = "${reservationCountLast10days.reservation_count_last10days}";// 누적 예약 숫자
 	  setTimeout(() => counter_room($counter_room, max_room), 1250);
 	});
 
-//숙소당 평균 매출액 (만원 단위) HERE
+//최근 10일간 호스트 평균 수입 (만원 단위)
 var counter = ($counter, max) => {
 	let now = max;
 		var handle = setInterval(() => {
@@ -484,13 +565,13 @@ var counter = ($counter, max) => {
 		}
 		$(document).ready(function() {
 		  var $counter = document.querySelector(".count_money"); // 카운트 출력 요소
-		  var max = 3218000;// 목표 수치	  
+		  var max = '${hostAvgIncome.host_avg_income}';// 호스트 평균 수입	  
 		  setTimeout(() => counter($counter, max), 1700);
 		});
 
 
 
-//최근 30일 가장 많은 돈을 번 호스트 수입
+//최근 10일 가장 많은 돈을 번 호스트 수입
 const counter_best_income = ($counter_best_income, max_best_income) => {
 	let now_best_income = max_best_income;
 	const handle_best_income = setInterval(() => {
@@ -504,11 +585,11 @@ const counter_best_income = ($counter_best_income, max_best_income) => {
 }
 	$(document).ready(function() {
 		  const $counter_best_income = document.querySelector(".count_best_host_income"); // 카운트 출력 요소
-		  const max_best_income = 7495000;// 목표 수치	  
+		  const max_best_income = '${hostMaxIncome[0].host_max_income}';// 최근 10일 가장 높은 호스트 수입	  
 		  setTimeout(() => counter_best_income($counter_best_income, max_best_income), 1250);
 		});
 		
-//상위 랭크 숙소의 평균 수입
+//상위 랭크 숙소의 누적 수입
 const counter_rank_room_avg_income = ($counter_rank_room_avg_income, max_rank_room_avg_income) => {
 	let now_rank_room_avg_income = max_rank_room_avg_income;
 	const handle_rank_room_avg_income = setInterval(() => {
@@ -522,17 +603,33 @@ const counter_rank_room_avg_income = ($counter_rank_room_avg_income, max_rank_ro
 }
 $(document).ready(function() {
 	const $counter_rank_room_avg_income = document.querySelector(".count_rank_room_avg_income"); // 카운트 출력 요소
-	const max_rank_room_avg_income = 4350000;// 목표 수치	  
+	const max_rank_room_avg_income = "${bestRoomIncome[0].best_room_income}" // 목표 수치	  
 	setTimeout(() => counter_rank_room_avg_income($counter_rank_room_avg_income, max_rank_room_avg_income), 1250);
 });
 
 
-
+//누적 예약 숫자
+const counter_all_res = ($counter_all_res, max_all_res) => {
+let now_all_res = max_all_res;
+	  const handle_all_res = setInterval(() => {
+	    $counter_all_res.innerHTML = Math.ceil(max_all_res - now_all_res).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    if (now_all_res < 1) {
+	      clearInterval(handle_all_res);// 목표수치에 도달하면 정지
+	    }
+	    const step_all_res = now_all_res / 10; // 증가되는 값이 계속하여 작아짐
+	    now_all_res -= step_all_res; // 값을 적용시키면서 다음 차례에 영향을 끼침
+	  }, 50);
+	}
+	$(document).ready(function() {
+	  const $counter_all_res = document.querySelector(".count_all_res"); // 카운트 출력 요소
+	  const max_all_res = "${reservationCount.reservation_count}";// 목표 수치 
+	  setTimeout(() => counter_all_res($counter_all_res, max_all_res), 1750);
+	});
 
  
 </script>
 
-
+<%@ include file="footer.jsp"%>
 
 </body>
 </html>

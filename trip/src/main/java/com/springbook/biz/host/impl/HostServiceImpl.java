@@ -77,98 +77,78 @@ public class HostServiceImpl implements HostService {
 
 	@Override
 	public HostChartVO indexReviewCount(HostChartVO vo) {
-		// TODO Auto-generated method stub
 		return hostDAO.indexReviewCount(vo);
 	}
 
 	@Override
 	public HostChartVO indexLikeCount(HostChartVO vo) {
-		// TODO Auto-generated method stub
 		return hostDAO.indexLikeCount(vo);
 	}
 
 	@Override
 	public HostChartVO indexCheckout(HostChartVO vo) {
-		// TODO Auto-generated method stub
 		return hostDAO.indexCheckout(vo);
 	}
 
 	@Override
 	public HostChartVO indexTodayCheckin(HostChartVO vo) {
-		// TODO Auto-generated method stub
 		return hostDAO.indexTodayCheckin(vo);
 	}
 
 	@Override
 	public HostChartVO indexStaying(HostChartVO vo) {
-		// TODO Auto-generated method stub
 		return hostDAO.indexStaying(vo);
 	}
 
 	@Override
 	public HostChartVO indexCheckinAble(HostChartVO vo) {
-		// TODO Auto-generated method stub
 		return hostDAO.indexCheckinAble(vo);
 	}
 
 	@Override
 	public List<HostChartVO> hostIndexRoomSelect(HostChartVO vo) {
-		// TODO Auto-generated method stub
 		return hostDAO.hostIndexRoomSelect(vo);
 	}
 
 	@Override
 	public List<HostChartVO> hostIndexChart3Select(HostChartVO vo) {
-		// TODO Auto-generated method stub
 		return hostDAO.hostIndexChart3Select(vo);
 	}
 
 	@Override
 	public HostLoginVO hostCount(HostLoginVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return hostDAO.hostCount(vo);
 	}
 
 	@Override
 	public HostLoginVO hostAvgIncome(HostLoginVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return hostDAO.hostAvgIncome(vo);
 	}
 
 	@Override
 	public List<HostLoginVO> hostMaxIncome(HostLoginVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return hostDAO.hostMaxIncome(vo);
 	}
 
-	@Override
-	public List<HostLoginVO> bestRoomName(HostLoginVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<HostLoginVO> bestRoomImg(HostLoginVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<HostLoginVO> bestRoomIncome(HostLoginVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return hostDAO.bestRoomIncome(vo);
 	}
 
 	@Override
 	public HostLoginVO reservationCountLast10days(HostLoginVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return hostDAO.reservationCountLast10days(vo);
 	}
 
 	@Override
-	public HostLoginVO reservation_count(HostLoginVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public HostLoginVO reservationCount(HostLoginVO vo) {
+		return hostDAO.reservationCount(vo);
+	}
+
+	@Override
+	public HostLoginVO roomCount(HostLoginVO vo) {
+		return hostDAO.roomCount(vo);
 	}
 
 
