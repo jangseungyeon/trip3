@@ -97,6 +97,14 @@ button#cbtn:hover {
 	border: 1px solid #222;
 }
 
+input#emailCheck, input#phone2 {
+    border-radius: 15px;
+    width: 45%;
+    height: 35px;
+    border: 1px solid #aaa;
+    padding: 12px;
+}
+
 /* 내정보 수정 비밀번호 체크 */
 .check-div1 {
 	font-size: 40px;
@@ -173,3 +181,4 @@ button#cbtn:hover {
   width: 39%;
   }
 }
+

@@ -12,8 +12,8 @@ function plannertr(val){
 }
 </script>
 </head>
-<body>
-
+<body class="d-flex flex-column min-vh-100">
+<div class="footer-div">
 <br><br>
 	<div class="container">
 	<div class="myplanner-div1">작성한 플래너</div>
@@ -43,6 +43,7 @@ function plannertr(val){
 		</table>
 		<br>
 		<br>
+	</div>
 	</div>
 <%@ include file="../footer.jsp"%>
 </body>

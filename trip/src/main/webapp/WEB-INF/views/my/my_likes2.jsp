@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <%@ include file="../header.jsp"%>
+<title>Insert title here</title>
 <script>
 function plannertr(val, bal){
 	console.log(val, bal)
@@ -13,7 +13,8 @@ function plannertr(val, bal){
 }
 </script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+<div class="footer-div">
 <br>
 <div class="container mt-3">
   <div class="mylikes-div1">좋아요 목록</div>
@@ -77,6 +78,7 @@ function plannertr(val, bal){
 
 </div>
 		</div>
+	</div>
 	</div>
 	<%@ include file="../footer.jsp"%>
 </body>

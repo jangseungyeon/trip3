@@ -6,8 +6,8 @@
 
 <title>정보수정</title>
 </head>
-<body class="info-body">
-
+<body class="info-body d-flex flex-column min-vh-100">
+<div class="footer-div">
 	<script>
 		$(function() {
 			if (check == null) {
@@ -18,7 +18,7 @@
 		function deletecheck() {
 			var deletecheck = prompt("탈퇴를 원하시면 아래 문구를 입력해주세요.\n'회원탈퇴'");
 			if (deletecheck == "회원탈퇴") {
-
+				location.href="delete.do";
 			} else {
 				alert("문구가 일치하지 않습니다.");
 			}
@@ -218,7 +218,7 @@
 								alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
 								$('#config1').show();
 								$('#config').hide();
-// 								var phone = $("#phone").val();
+								var phone = $("#phone").val();
 
 								$
 										.ajax({
@@ -464,6 +464,7 @@
 					<button id="dbtn" class="btn btn-lg btn-block" type="button"
 						onclick="deletecheck()">탈퇴 하기</button>
 	</form>
+	</div>
 	</div>
 	</div>
 	<%@ include file="../footer.jsp"%>

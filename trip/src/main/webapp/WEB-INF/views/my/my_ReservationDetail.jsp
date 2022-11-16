@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <%@ include file="../header.jsp"%>
+<title>Insert title here</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <script>
 function f_getPayInfo(mid) {
 	$.ajax({
@@ -69,6 +69,7 @@ function f_cancelRes(){
 
 </script>
 <br><br>
+<div class="footer-div">
 <div class="container">
 <div class="detail-div1">결제 상세 내역</div>
 <hr class="detail-hr">
@@ -127,6 +128,7 @@ function f_cancelRes(){
 
 </div>
 <br>
+</div>
 <%@ include file="../footer.jsp"%>
 </body>
 </html>

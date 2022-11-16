@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <%@ include file="../header.jsp"%>
+<title>Insert title here</title>
 
 <script>
 function f_getRoom(room_id) {
@@ -13,7 +13,8 @@ function f_getRoom(room_id) {
 }
 </script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+<div class="footer-div">
 <br>
 <div class="container mt-3">
   <div class="mylikes-div1">좋아요 목록</div>
@@ -77,6 +78,7 @@ function f_getRoom(room_id) {
 
 
 		</div>
+	</div>
 	</div>
 	</div>
 	<%@ include file="../footer.jsp"%>

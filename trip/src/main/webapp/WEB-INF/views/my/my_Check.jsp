@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <%@ include file="../header.jsp"%>
+<title>Insert title here</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 <br><br>
-<div class="w">
+<div class="footer-div">
 <div class="container">
 <div class="check-div1">내 정보 수정</div>
 <hr class="check-hr">
@@ -22,7 +22,7 @@
 </form>
 </div>
 <br><br>
-<%@ include file="../footer.jsp"%>
 </div>
+<%@ include file="../footer.jsp"%>
 </body>
 </html>

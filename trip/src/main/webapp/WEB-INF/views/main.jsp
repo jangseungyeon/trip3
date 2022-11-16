@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>main</title>
 <%@ include file="header.jsp"%>
+<title>main</title>
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
@@ -40,15 +40,17 @@ button.main-icon-div3:hover span:nth-child(2) {
 </head>
 
 <body class="main-body">
-<div id='wrapper'>
-<br><br><br>
+<div class="footer-div">
+
      <div class="container main-top-div"> 
-     <div class="main-div1">숙소 예매와 플레너 작성을 한번에</div>
+     <div class="main-div1">숙소 예매와 </div> <div class="main-div1">플래너 작성을 한번에</div>
      <div class="main-div2">tripONplan</div><br>
      </div> <br>
  <div class="container-fluid main-img-div">
-<img style="width: 82%; float: left;" src="resources/img/mainimg.png">
-<div class="container-fluid main-iconfull-div"style="position:absolute;">
+ <div class="img-wrapper">
+<img style="float: left;" src="resources/img/mainimg.png">
+</div>
+<div class="container-fluid main-iconfull-div" style="position:absolute;">
 
 <button class="main-icon-div1" onclick="location.href='u_getRoomList.do'">
 <span class="material-symbols-outlined" style="color: white; font-size: 50px;">home_work</span>

@@ -59,7 +59,7 @@ if (session.getAttribute("userId") == null) {
 	cursor: pointer;
 }
 </style>
-	<div class="jumbotron">
+	<div class="jumbotron" style="background-color: transparent;">
 		<h1>상세 보기</h1>
 	</div>
 	<div class="container-fluid">
