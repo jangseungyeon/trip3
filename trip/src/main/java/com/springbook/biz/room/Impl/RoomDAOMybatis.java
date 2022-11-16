@@ -93,4 +93,8 @@ public class RoomDAOMybatis {
 			mybatis.update("RoomDAO.updateLikeRoom", rvo); 
 	}
 	
+		 public void updateStarsRoom(RoomVO rvo) {
+			 System.out.println("마이바티스 숙소 별점 업데이트 updateStarsRoom 기능 처리");
+			 mybatis.update("RoomDAO.updateStarsRoom", rvo); 
+		 }
 }

@@ -28,6 +28,24 @@
 	
 	$(function(){
 		
+		<% for(int i = 0; i < u.size(); i++) { %>
+		
+		var roomCardAmount = $("#roomCardAmount<%=i%>").text();
+		
+		roomCardAmount = roomCardAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		
+		$("#roomCardAmount<%=i%>").text(roomCardAmount + "원");
+		
+		<% } %>
+		
+		<% String room_area = request.getParameter("room_area");
+		
+		if(room_area != null) { %>
+		
+		$("#room_area").val(room_area);
+		
+		<% } %>
+		
 		<% String moveCards = (String) request.getAttribute("moveCards");
 		
 		String moveNone = (String) request.getAttribute("moveNone");
@@ -217,7 +235,6 @@ form {
 	background-color: #ff8e15;
 	border-radius: 15px;
 	font-weight: 700;
-	border: 3px solid #fff;
 }
 
 .roomListIptAll {
@@ -331,7 +348,6 @@ justify-content: space-evenly;
 	width: 100px;
 	height: 40px;
 	font-weight: bold;
-	border: 3px solid #fff;
 }
 
 #roomSearchBtn:hover {
@@ -356,10 +372,11 @@ justify-content: space-evenly;
 #roomListImgDiv img {
 	position: absolute;
 	border-radius: 15px;
-	top:50%;
+	top:65%;
 	left:50%;
 	width: 95%;
-	height: 90%;
+	height: 110%;
+	margin-left: 5px;
 	transform: translate(-50%, -50%);
 }
 
@@ -424,6 +441,7 @@ select {
 .roomCardAllDiv {
 	background-color: #f9fcff;
 	border: 1px solid #aaa;
+	height: 265px;
 }
 
 #roomCardsPriceDiv div {
@@ -633,7 +651,7 @@ justify-content: space-evenly;
 	top:50%;
 	left:50%;
 	width: 95%;
-	height: 90%;
+	height: 95%;
 	transform: translate(-50%, -50%);
 }
 
@@ -1044,7 +1062,7 @@ button.main-icon-div1:hover span:nth-child(2) {
 						
 						<div id="roomCardsPriceDiv">
 							<div id="roomCardsDesc">1박당 숙박 가격</div>
-							<div style="font-size: 1.75rem; font-weight: 700;">${u_roomList[i].room_price}원</div>
+							<div id="roomCardAmount${status.index}" style="font-size: 1.75rem; font-weight: 700;">${u_roomList[i].room_price}</div>
 						</div>
 				
 				</div>
@@ -1057,14 +1075,14 @@ button.main-icon-div1:hover span:nth-child(2) {
 		
 	</c:forEach>
 	
-	<!-- 페이징 처리  -->
-	
 	<% } else { %>
-		<p id="roomListNoneContents">설정하신 조건으로 검색된 숙박시설이 없습니다.</p>
+		<h4 id="roomListNoneContents" style="text-align: center; font-weight: 600; margin-top: 50px;">설정하신 조건으로 검색된 숙박시설이 없습니다.</h4>
 	<% } %>
 	
 </div>
 
+</div>
 
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

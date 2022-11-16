@@ -54,13 +54,13 @@ public class ReviewController {
 		rvo.setRoom_id(room_id);
 		rvo = roomService.getRoom(rvo);
 		model.addAttribute("u_room", rvo);
-		return "WEB-INF/views/user_insert_review_n.jsp";
+		return "WEB-INF/views/user_room/user_insert_review_n.jsp";
 		
 	}
 	
 	@ResponseBody
 	@RequestMapping("/insertReview.do")
-	public void insertReview(MultipartHttpServletRequest request, ReviewVO rvo) throws IllegalStateException, IOException {
+	public void insertReview(MultipartHttpServletRequest request, ReviewVO rvo, Model model) throws IllegalStateException, IOException {
 		System.out.println("리뷰 등록 시작");
 		
 		MultipartFile uploadFile1 = rvo.getReview_img_uploadFile();
@@ -76,12 +76,46 @@ public class ReviewController {
 		}
 		
 		reviewService.insertReview(rvo);
+		
+		List <ReviewVO> rvo_list = reviewService.selectReviewForRoom(rvo);
+		
+		int review_counts = rvo_list.size();
+		
+		RoomVO roomvo = null;
+		
+		roomvo = new RoomVO();
+		
+		roomvo.setRoom_id(rvo.getRoom_id());
+		
+		roomvo = roomService.getRoom(roomvo);
+		
+		Double review_bf = 0.0;
+		
+		for (int i = 0; i < review_counts; i++) {
+			
+			review_bf += rvo_list.get(i).getStar_point();
+
+		}
+		
+		review_bf = (double) (review_bf / review_counts);
+		
+		String avg_review_s = review_bf.toString();
+		
+		roomvo.setRoom_stars(avg_review_s);
+		
+		roomService.updateStarsRoom(roomvo);
 	}
 	
 	@ResponseBody
 	@RequestMapping("/updateReview.do")
 	public void updateReview(MultipartHttpServletRequest request, ReviewVO rvo) throws IllegalStateException, IOException {
 		System.out.println("리뷰 수정 시작");
+		
+		ReviewVO revo_bf = null;
+		
+		revo_bf = new ReviewVO();
+		
+		revo_bf = reviewService.selectReviewOneForUser(rvo);
 		
 		MultipartFile uploadFile1 = rvo.getReview_img_uploadFile();
 		
@@ -101,8 +135,48 @@ public class ReviewController {
 			}
 			rvo.setReview_img(review_img);
 			uploadFile1.transferTo(new File(realPath + review_img));
+		} else {
+			
+			rvo.setReview_img(revo_bf.getReview_img());
 		}
 		reviewService.updateReview(rvo);
+		
+List <ReviewVO> rvo_list = reviewService.selectReviewForRoom(rvo);
+		
+		int review_counts = rvo_list.size();
+		
+		RoomVO roomvo = null;
+		
+		roomvo = new RoomVO();
+		
+		roomvo.setRoom_id(rvo.getRoom_id());
+		
+		roomvo = roomService.getRoom(roomvo);
+		
+		Double review_bf = 0.0;
+		
+		for (int i = 0; i < review_counts; i++) {
+			
+			review_bf += rvo_list.get(i).getStar_point();
+
+		}
+		
+		review_bf = (double) (review_bf / review_counts);
+		
+		String avg_review_s = review_bf.toString();
+		
+		roomvo.setRoom_stars(avg_review_s);
+		
+		roomService.updateStarsRoom(roomvo);
+		
+		rvo_list = reviewService.selectReviewForRoom(rvo);
+		
+		review_counts = rvo_list.size();
+		
+		if(review_counts == 0) {
+			roomvo.setRoom_stars("0");
+			roomService.updateStarsRoom(roomvo);
+		}
 	}
 	
 	@ResponseBody
@@ -123,6 +197,43 @@ public class ReviewController {
 		}
 		
 		reviewService.deleteReview(rvo_d);
+		
+List <ReviewVO> rvo_list = reviewService.selectReviewForRoom(rvo);
+		
+		int review_counts = rvo_list.size();
+		
+		RoomVO roomvo = null;
+		
+		roomvo = new RoomVO();
+		
+		roomvo.setRoom_id(rvo.getRoom_id());
+		
+		roomvo = roomService.getRoom(roomvo);
+		
+		Double review_bf = 0.0;
+		
+		for (int i = 0; i < review_counts; i++) {
+			
+			review_bf += rvo_list.get(i).getStar_point();
+
+		}
+		
+		review_bf = (double) (review_bf / review_counts);
+		
+		String avg_review_s = review_bf.toString();
+		
+		roomvo.setRoom_stars(avg_review_s);
+		
+		roomService.updateStarsRoom(roomvo);
+		
+		rvo_list = reviewService.selectReviewForRoom(rvo);
+		
+		review_counts = rvo_list.size();
+		
+		if(review_counts == 0) {
+			roomvo.setRoom_stars("0");
+			roomService.updateStarsRoom(roomvo);
+		}
 		
 	}
 }

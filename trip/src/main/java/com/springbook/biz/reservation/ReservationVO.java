@@ -27,13 +27,13 @@ public class ReservationVO {
 	private int offset;	//페이징 처리에서 페이지 바꿀때마다 변하는, 맨 처음부터 데이터 건너뛰는 갯수 <= pagingVO에서 조정
 	
 	
-	public String Res_ci3_ok() {
+	public String getRes_ci3_ok() {
 		return res_ci3_ok;
 	}
 	public void setRes_ci3_ok(String res_ci3_ok) {
 		this.res_ci3_ok = res_ci3_ok;
 	}
-	public String Res_co_ok() {
+	public String getRes_co_ok() {
 		return res_co_ok;
 	}
 	public void setRes_co_ok(String res_co_ok) {

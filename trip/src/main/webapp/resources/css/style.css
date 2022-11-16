@@ -175,19 +175,21 @@ footer {
 .footer_row {
 	letter-spacing: 2px;
 	margin-left: 1%;
-	color: #808080;
+	
 }
 
 .footer-div{
   height: auto;
   min-height: 100%;
   padding-bottom: 30px;
+  
 }
 
 footer.mt-auto{
   height: 108px;
   position : relative;
   transform : translateY(0%);
+  
 }
 
 /* 푸터 반응형 */

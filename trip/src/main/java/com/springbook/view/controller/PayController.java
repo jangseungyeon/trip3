@@ -174,7 +174,7 @@ public class PayController {
 			// 값은 아임포트의 가맹점 식별코드 입력
 			model.addAttribute("impKey", "imp57061355");
 			
-			return "WEB-INF/views/user_insert_reservation.jsp";
+			return "WEB-INF/views/user_room/user_insert_reservation.jsp";
 		
 		} else {
 			
@@ -186,7 +186,7 @@ public class PayController {
 			
 			out.println("alert('로그인 후 이용 가능 합니다.')");
 			
-			out.println("history.back()");
+			out.println("location.href='user.login.do'");
 			
 			out.println("</script>");
 			
@@ -217,25 +217,7 @@ public class PayController {
 			reservationService.insertReservation(rvo);
 			System.out.println("숙소 예약 등록 성공");
 			
-			response.setCharacterEncoding("utf-8");
-			response.setContentType("text/html; charset=utf-8");
-			
-			PrintWriter out = response.getWriter();
-			out.println("<!DOCTYPE html><html>");
-			out.println("<head><meta charset='utf-8'><title>주문완료</title></head>");
-			out.println("<body>");
-			out.print(nm+"님의 주문이 완료 되었습니다.<br>");
-			out.print("상점 거래ID: "+mid+"<br>");
-			out.print("결제 금액: "+amount+"<br>");
-			out.print("<a href='/pay'>쇼핑 계속하기</a>");
-			out.print("<a href='javascript:(\"준비중입니다.\");'>나의 주문내역</a>");
-			out.println("</body></html>");
-			
-			out.flush();
-
-			out.close();
-			
-			return "WEB-INF/views/user_pay_complete.jsp";
+			return "WEB-INF/views/user_room/user_pay_complete.jsp";
 		}
 
 		// 아임포트 merchant_id 일치하면 모든 목록 반환

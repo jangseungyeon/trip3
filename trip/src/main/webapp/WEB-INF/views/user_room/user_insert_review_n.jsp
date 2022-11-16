@@ -9,6 +9,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <style>
 
+body {
+	margin: 10px auto;
+	text-align: center;
+}
+
+.title_star {
+	font-size: 1.3rem;
+	font-weight: 600;
+}
+
+.room_name, .room_addr {
+	margin-top: 10px;
+	font-size: 1.1rem;
+}
+
 .warning_msg {
     display: none;
     position: relative;
@@ -28,17 +43,23 @@
 }
 .cmd input[type="button"]{
     padding: 10px 20px;
-    border: 1px solid #e8e8e8;
-    background-color: #fff;
-    background-color:#000;  
+ 	border: 1px solid #ff8e15; 
+  	border-radius: 7px;
+    background-color: #ff8e15;
     cursor: pointer;
     color: #fff;
+}
+
+.cmd input[type="button"]:hover {
+	background-color: #ff9a2d;
+    color: white;
 }
 
   .star {
     position: relative;
     font-size: 2rem;
     color: #ddd;
+    margin-bottom: 10px;
   }
   
   .star input {
@@ -54,7 +75,7 @@
     width: 0;
     position: absolute; 
     left: 0;
-    color: red;
+    color: yellow;
     overflow: hidden;
     pointer-events: none;
   }
@@ -77,9 +98,16 @@
 
 }
 .reviewform textarea{
+	resize: none;
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
+    font-size: 1.2rem;
+}
+
+.review_img_preivew img {
+	margin: 10px auto;
+	border-radius: 10px;
 }
 </style>
 <script>
@@ -208,12 +236,14 @@ $(function(){
          	<input type="hidden" name="room_name" value='${u_room.room_name}'>
          	<input type="hidden" name="room_id" value='${u_room.room_id}'>
          	<input type="hidden" name="host_id" value='${u_room.host_id}'>
-            <p class="title_star">별점과 이용경험을 남겨주세요.</p>
+         	<div class="title_star">
+            <p>별점과 이용경험을 남겨주세요.</p>
+            </div>
             <input type="hidden" name="user_id" value="${user_id}">
             <div class="room_desc">
-            <img src="resources/room_img/${u_room.room_img_no1}" alt="숙소 썸네일 이미지" title="숙소 썸네일 이미지" width="180" height="180">
-            <span>${u_room.room_name}</span>
-            <p>${u_room.room_addr} ${u_room.room_addr_detail}</p>
+            <img style="border-radius: 10px;"src="resources/room_img/${u_room.room_img_no1}" alt="숙소 썸네일 이미지" title="숙소 썸네일 이미지" width="180" height="180">
+            <div class="room_name"><h4>${u_room.room_name}</h4></div>
+            <div class="room_addr"><h4>${u_room.room_addr} ${u_room.room_addr_detail}</h4></div>
             </div>
             <div class="review_rating rating_point">
                 <div class="warning_msg">별점을 선택해 주세요.</div>
@@ -227,12 +257,14 @@ $(function(){
                 <textarea name="review_content" rows="10" class="review_textarea"></textarea>
             </div>
             <div class="review_img">
-            	<p>후기와 같이 올릴 사진을 여기서 업로드 해주세요</p>
+            	<h4>후기와 같이 올릴 사진을 여기서 업로드 해주세요</h4>
+            	<div class="review_img_preivew">
             	<img id="review_img" src="" alt="리뷰 이미지 미리보기" title="리뷰 이미지" width="100" height="100" onerror="this.style.display='none'"/>
             	<input type="file" name="review_img_uploadFile" class="review_img_ipt" onchange="readThisImg(this);">
+            	</div>
             </div>   
             <div class="cmd">
-                <input type="button" name="save" id="save" value="등록">
+                <input type="button" class="review_insert_btn" name="save" id="save" value="등록">
                 <input type="button" class="review_cancel_btn" value="취소"></button>
             </div>
         </form>

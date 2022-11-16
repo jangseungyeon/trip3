@@ -417,12 +417,3 @@ public class RoomController {
 		model.addAttribute("revo_list", revo_list);
 		return "WEB-INF/views/user_room/user_room_detail.jsp";
 	}
-	
-	@ResponseBody
-	@RequestMapping("/mainRoomThemeList.do")
-	public List<RoomVO> mainRoomThemeList(RoomVO vo , String theme , Model model) {
-		vo.setRoom_theme(theme);
-		model.addAttribute("size", roomService.mainRoomThemeList(vo).size());
-		return roomService.mainRoomThemeList(vo);
-	}
-}

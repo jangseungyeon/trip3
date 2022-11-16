@@ -24,7 +24,7 @@ public interface ReviewService {
 	
 	//숙소 상세보기 해당 숙소의 리뷰 조회 (회원용)
 	List<ReviewVO> selectReviewForRoom(ReviewVO rvo);
-	
+
 	//해당 유저가 진짜 이 방에 대해 리뷰를 작성했는지 확인하는 조회 (리뷰 1건)
 	ReviewVO selectReviewOneForUser(ReviewVO rvo);
 	

@@ -114,5 +114,11 @@ public class RoomServiceImpl implements RoomService {
 	public void updateLikeRoom(RoomVO rvo) {
 		roomDAO.updateLikeRoom(rvo);
 	}
+
+	@Override
+	public void updateStarsRoom(RoomVO rvo) {
+		roomDAO.updateStarsRoom(rvo);
+		
+	}
 	
 }
