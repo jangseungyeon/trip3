@@ -97,7 +97,7 @@ button#cbtn:hover {
 	border: 1px solid #222;
 }
 
-input#emailCheck, input#phone2 {
+#emailCheck, input#phone2 {
     border-radius: 15px;
     width: 45%;
     height: 35px;

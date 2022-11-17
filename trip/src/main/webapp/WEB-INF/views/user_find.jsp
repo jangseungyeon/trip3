@@ -40,30 +40,29 @@
 				});
 
 		$("#phoneChk2").click(
-				
+
 				function() {
 					var phoneCheck = $("#phone2").val();
 					if (phoneCheck == "") {
 						alert("인증번호를 입력하지 않았습니다.");
-					}
-					else if ($("#phone2").val() == code2) {
+					} else if ($("#phone2").val() == code2) {
 						$(".successPhoneChk").text("인증번호가 일치합니다.");
 						$(".successPhoneChk").css("color", "green");
 						$("#phoneDoubleChk").val("true");
-// 						$("#phone2").attr("disabled", true);
+						// 						$("#phone2").attr("disabled", true);
 						$('#user_phone').val($("#phone").val());
 						$("#user_findform").attr("action",
 								"user_findform.do?find=phone");
 						$('#user_findform').submit();
 
 					} else {
-// 						$(".successPhoneChk").text(
-// 								"인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
-// 						$(".successPhoneChk").css("color", "red");
-                        alert("인증번호가 일치하지 않습니다.");
+						// 						$(".successPhoneChk").text(
+						// 								"인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
+						// 						$(".successPhoneChk").css("color", "red");
+						alert("인증번호가 일치하지 않습니다.");
 						$("#phoneDoubleChk").val("false");
 						$(this).attr("autofocus", true);
-						location.href="user_find.do";
+						location.href = "user_find.do";
 					}
 				});
 
@@ -155,8 +154,9 @@
 	background-color: #ff8e15;
 	color: white;
 }
-.config_div{
-text-align:center;
+
+.config_div {
+	text-align: center;
 }
 /* 아이디찾기 텍스트 */
 .idfind {
@@ -175,14 +175,14 @@ text-align:center;
 	margin: 25px auto;
 	text-align: center;
 	border-radius: 8px;
-	height: 300px;
+	height: 350px;
 }
 /* 이메일,전화번호 인증버튼 */
 #emailconfig, #phoneconfig {
 	width: 180px;
 }
 /* 이메일인증 인풋창,전화번호인증 인풋창 */
-input#email, #emailCheck,input#phone,input#phone2 {
+input#email, #emailCheck, input#phone, input#phone2 {
 	width: 380px;
 	height: 45px;
 	border-radius: 15px;
@@ -191,7 +191,7 @@ input#email, #emailCheck,input#phone,input#phone2 {
 	padding: 12px;
 }
 /* 이메일인증버튼,전화번호버튼 */
-#sendMail, #check,#phoneChk,#phoneChk2{
+#sendMail, #check, #phoneChk, #phoneChk2, .modal_btn {
 	margin: auto 0;
 	color: white;
 	border-radius: 7px;
@@ -200,9 +200,20 @@ input#email, #emailCheck,input#phone,input#phone2 {
 	width: 90px;
 	height: 35px;
 }
+
+.look_btn {
+	margin: auto 0;
+	color: white;
+	border-radius: 7px;
+	background-color: #ff8e15;
+	border: none;
+	width: 150px;
+	height: 35px;
+}
 </style>
 </head>
-<body style="padding-top: 57px; background-color: #f9fcff; height: 100vh">
+<body
+	style="padding-top: 57px; background-color: #f9fcff; height: 100vh">
 	<div class="vh">
 
 		<div class="container mx-auto" id="container">
@@ -215,7 +226,7 @@ input#email, #emailCheck,input#phone,input#phone2 {
 				<input type="hidden" name="user_phone" id="user_phone"> <input
 					type="hidden" name="user_email" id="user_email">
 			</form>
-			
+
 			<div class="row config_div">
 				<div class="col-6">
 					<button type="button" id="emailconfig" onclick="emailconfig()">이메일
@@ -249,21 +260,55 @@ input#email, #emailCheck,input#phone,input#phone2 {
 					<h4>전화번호 인증</h4>
 					<div class="row">
 						<div class="col-3"></div>
-					<input id="phone" type="text" name="phone" title="전화번호 입력" placeholder="전화번호 입력" /> <button
-						id="phoneChk" class="doubleChk">발송하기</button></div>
-						<div class="row">
+						<input id="phone" type="text" name="phone" title="전화번호 입력"
+							placeholder="전화번호 입력" />
+						<button id="phoneChk" class="doubleChk">발송하기</button>
+					</div>
+					<div class="row">
 						<br>
-						<div class="col-3"></div> <input
-						id="phone2" type="text" name="phone2" title="인증번호 입력" disabled />
-					<button id="phoneChk2" class="doubleChk">인증확인</button> <input
-						type="hidden" id="phoneDoubleChk" />
+						<div class="col-3"></div>
+						<input id="phone2" type="text" name="phone2" title="인증번호 입력"
+							disabled />
+						<button id="phoneChk2" class="doubleChk">인증확인</button>
+						<input type="hidden" id="phoneDoubleChk" />
+					</div>
 				</div>
-				</div>
-				<div>
-									<c:forEach items="${user}" var="vo1">
+
+				<%
+				if (request.getAttribute("user") != null) {
+				%>
+				<button type="button" class="look_btn" data-toggle="modal"
+					data-target="#myModal">아이디 보기</button>
+				<!-- The Modal -->
+				<div class="modal" id="myModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h4 class="modal-title">회원님의 아이디</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<!-- Modal body -->
+							<div class="modal-body">
+								<c:forEach items="${user}" var="vo1">
 									회원아이디 : ${vo1.user_id}<br>
-									</c:forEach>
+								</c:forEach>
+							</div>
+
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="modal_btn" data-dismiss="modal">닫기</button>
+							</div>
+
+						</div>
+					</div>
 				</div>
+				<%
+				}
+				%>
+
 
 				<%
 				// 				String pullid = (String) request.getAttribute("user");

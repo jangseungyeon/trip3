@@ -146,13 +146,21 @@
 			} else {
 				passwordCheck = true;
 			}
-		})
-	})
+		});
+	});
 	function change() {
 		if (passwordCheck) {
 			$('#pwchange').submit();
 		}
 	}
+	
+	$(function(){
+		$('#changepwbtn').click(function(){
+
+$('#user_id').val($('#u_name').val());
+			
+		});
+	});
 </script>
 <style>
 #emailconfig, #phoneconfig {
@@ -243,7 +251,7 @@ input#email, #emailCheck, input#phone, input#phone2 {
     
 }
 
-#pwchange button {
+#pwchange button,#changepwbtn,#c_pw {
 	margin: 5px 10px;
 	color: white;
 	border-radius: 7px;
@@ -319,22 +327,52 @@ input#email, #emailCheck, input#phone, input#phone2 {
 						
 					</div>
 					
-					<div class="user_form" >
-						<form action="user_change.do" id="pwchange" method="post">
-							<div><input type="password" name="user_password" id="user_password"
-								placeholder='비밀번호'></div>
-								
-								<div><input type="password"
-								name="user_passwordCheck" id="user_passwordCheck"
-								placeholder='비밀번호재확인'></div>
-							<div><button type="button" onclick="change()">변경하기</button></div>
-						</form>
-					</div>
+					
 				</div>
+				 <c:forEach items="${user}" var="vo1">
+									<input type="radio" value="${vo1.user_id}" id="u_name">회원아이디 : ${vo1.user_id}<br>
+									</c:forEach>
+								<c:if test="${user ne null}">
+									<button id="changepwbtn" data-toggle="modal" data-target="#myModal">번경하기</button>
+								</c:if>
 			</div>
 		</div>
 	</div>
 
+				<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">비밀번호변경</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       <div class="user_form" >
+						<form action="user_change.do" id="pwchange" method="post">
+						<input type="hidden" id="user_id" name="user_id">
+							<div><input type="password" name="user_password" id="user_password"
+								placeholder='비밀번호'></div>
+								<div><input type="password"
+								name="user_passwordCheck" id="user_passwordCheck"
+								placeholder='비밀번호재확인'></div>
+							<div></div>
+						</form>
+					</div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" id="c_pw" onclick="change()">변경하기</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 

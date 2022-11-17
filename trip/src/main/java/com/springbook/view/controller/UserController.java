@@ -311,7 +311,7 @@ public class UserController {
 			System.out.println("비밀번호변경" + vo);
 			int a = userService.change(vo);
 			System.out.println("변경여부:" + a);
-			return "WEB-INF/views/user_pwfind.jsp";
+			return "WEB-INF/views/user_login.jsp";
 		}
 
 	}
