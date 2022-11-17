@@ -89,7 +89,7 @@
   
   <!-- host index 인기방, 인기테마 -->
   <select id="hostIndexRoomSelect" resultType="hostChart">
-  SELECT A.ROOM_ID, COUNT(a.room_id) index_THEME, a.room_name index_room_rank, b.room_theme index_theme_rank, b.room_id FROM reservation a LEFT JOIN room b ON a.room_id = b.room_id GROUP BY A.ROOM_ID ORDER BY INDEX_THEME DESC;
+  SELECT A.ROOM_ID AS room_id_for_link, COUNT(a.room_id) index_THEME, a.room_name index_room_rank, b.room_theme index_theme_rank, b.room_id FROM reservation a LEFT JOIN room b ON a.room_id = b.room_id GROUP BY A.ROOM_ID ORDER BY INDEX_THEME DESC;
   </select>
   
   <!-- host index 하단 차트 3, 이 호스트의 전체 매출 -->

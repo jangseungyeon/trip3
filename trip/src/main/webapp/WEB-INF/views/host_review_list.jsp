@@ -88,7 +88,7 @@ $(document).ready(function() {
 <span style="font-size: 25px; color: #dc3545;">${host_id}</span>님! 숙소의 리뷰 목록을 살펴보세요. (최신순)<br><br></span>
 <div align=left> <input type="text" id="mykeyword" class="input1" placeholder="어디 한번 찾을 내용을 입력해보세요"><br>
  <br></div>
-<table id='myTable'>
+<table id='myTable' style="width:100%">
 <thead>
 <tr><td class="title_td">리뷰ID</td><td class="title_td">내 객실명</td><td class="title_td">객실ID</td><td class="title_td">호스트ID</td><td class="title_td">리뷰 내용</td><td class="title_td">리뷰 사진(선택)</td><td class="title_td">별점</td><td class="title_td">작성일</td></tr></thead>
 <tbody id="myTable_tbody">
@@ -99,7 +99,7 @@ $(document).ready(function() {
 			<td>${reviewListForHost[i].room_id}</td>
 			<td>${reviewListForHost[i].host_id}</td>
 			<td>${reviewListForHost[i].review_content}</td>
-			<td>${reviewListForHost[i].review_img}</td>
+			<td><img src="resources/room_img/${reviewListForHost[i].review_img}" style="height:100px; width:100px;" onerror="this.style.display='none';"></td>
 			<td>${reviewListForHost[i].star_point}</td>
 			<td>${reviewListForHost[i].write_date}</td>
 		</tr>
@@ -111,6 +111,6 @@ $(document).ready(function() {
 
 </div>
 </div>
-
+<br><br><br><br><br><br>
 </body>
 </html>

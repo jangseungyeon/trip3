@@ -10,6 +10,15 @@
 <title>Insert title here</title>
 <%@ include file="host_header.jsp"%>
 <style>
+
+	a{
+	color:#be3232;
+	}
+	a:hover{
+	color:#be3232;
+	text-decoration-line:none;
+	}
+	
 	body, html{
 	background: #f9fcff;
 	}
@@ -129,15 +138,16 @@
 <div class="host-index-summary2">
 	<div class="host-index-summary-left">
 	<b>인기 테마 Top 3</b><br>
+	
 	<span class="red-text-small">${hostIndexRoomSelect[0].index_theme_rank}</span><br>
 	<span class="red-text-small">${hostIndexRoomSelect[1].index_theme_rank}</span><br>
 	<span class="red-text-small">${hostIndexRoomSelect[2].index_theme_rank}</span><br>
 	</div>
 	<div class="host-index-summary-left">
 	<b>인기 숙소 Top 3</b><br>
-	<span class="red-text-small">${hostIndexRoomSelect[0].index_room_rank}</span><br>
-	<span class="red-text-small">${hostIndexRoomSelect[1].index_room_rank}</span><br>
-	<span class="red-text-small">${hostIndexRoomSelect[2].index_room_rank}</span><br>
+	<span class="red-text-small"><a href="u_getRoom.do?room_id=${hostIndexRoomSelect[0].room_id_for_link}">${hostIndexRoomSelect[0].index_room_rank}</a></span><br>
+	<span class="red-text-small"><a href="u_getRoom.do?room_id=${hostIndexRoomSelect[1].room_id_for_link}">${hostIndexRoomSelect[1].index_room_rank}</a></span><br>
+	<span class="red-text-small"><a href="u_getRoom.do?room_id=${hostIndexRoomSelect[2].room_id_for_link}">${hostIndexRoomSelect[2].index_room_rank}</a></span><br>
 	</div>
 </div>
 

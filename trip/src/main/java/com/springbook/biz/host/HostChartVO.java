@@ -19,9 +19,20 @@ public class HostChartVO {
 	private String chart_date_all; //차트 3, 전체 매출 발생 날짜
 	private int chart_sum_all; //차트 3, 전체 일별 매출
 	private int chart_count_all; //차트 3, 일별 예약 건수
+	private String room_id_for_link; 
 	
 	
 	
+	
+	
+
+	
+	public String getRoom_id_for_link() {
+		return room_id_for_link;
+	}
+	public void setRoom_id_for_link(String room_id_for_link) {
+		this.room_id_for_link = room_id_for_link;
+	}
 	public String getChart_date_all() {
 		return chart_date_all;
 	}

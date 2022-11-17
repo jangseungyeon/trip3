@@ -39,6 +39,31 @@
 		color:#DC3545;
 		font-size:18px;
 	}
+	
+	.input1{
+		width:100%;
+		max-width: 290px;
+		height:30px;
+		padding:5px 20px;
+		border-radius:20px;
+		border:none;
+		margin:3px;
+		font-size:12px;
+		box-shadow: 0 0 0 1px #19558c;
+		outline:none;
+	}
+	.input1:focus{
+		width:100%;
+		max-width: 290;
+		height:30px;
+		padding:5px 20px;
+		border-radius:20px;
+		border:none;
+		margin:3px;
+		font-size:12px;
+		box-shadow: 0 0 0 3px #ff677d;
+		outline:none;
+	}
 
 
 </style>
@@ -56,12 +81,31 @@
 <br><br>
 <div align=center style="width:80%">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#mykeyword").keyup(function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable_tbody tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+        // $("#myTable > tbody > tr").hide();
+        // var temp = $("#myTable > tbody > tr > td:nth-child(5n+4):contains('" + value + "')");
+        // $(temp).parent().show();
+    });
+});
+</script>
+
 <c:choose>
 <c:when test="${reservationListForHost.size() eq '0'}">${host_id}님 숙소의 예약 내역이 없습니다. </c:when>
 <c:when test="${reservationListForHost.size() ne '0'}">
 <span class="red-text-small">${host_id}</span>님의 <span class="chart_title"><span class="red-text-small">전체 기간</span> 매출 현황 (목록형) <br></span><br>
-<table style="width:100%">
-<tr><td class="title_td">예약번호</td><td class="title_td">회원ID</td><td class="title_td">내 객실명</td><td class="title_td">결제일</td><td class="title_td">결제금액</td><td class="title_td">예약인원(명)</td><td class="title_td">예약상태</td><td class="title_td">체크인</td><td class="title_td">체크아웃</td></tr>
+<div align=left> <input type="text" id="mykeyword" class="input1" placeholder="어디 한번 찾을 내용을 입력해보세요"><br>
+ <br></div>
+<table id='myTable' style="width:100%">
+<thead>
+<tr><td class="title_td">예약번호</td><td class="title_td">회원ID</td><td class="title_td">내 객실명</td><td class="title_td">결제일</td><td class="title_td">결제금액</td><td class="title_td">예약인원(명)</td><td class="title_td">예약상태</td><td class="title_td">체크인</td><td class="title_td">체크아웃</td></tr></thead>
+<tbody id="myTable_tbody">
 	<c:forEach var="i" begin="0" end="${reservationListForHost.size()-1}" step="1">
 		<tr>
 			<td>${reservationListForHost[i].res_id}</td>
@@ -75,6 +119,7 @@
 			<td>${reservationListForHost[i].res_checkout}</td>
 		</tr>
 	</c:forEach>
+</tbody>
 </table>
 </c:when>
 </c:choose>
@@ -83,7 +128,7 @@
 
 
 </div>
-
+<br><br><br><br><br><br>
 <!-- 3번 차트 -->
 <script type="text/javascript">
 	<!-- 날짜 구하기 -->
