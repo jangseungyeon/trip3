@@ -13,9 +13,16 @@ public class PlannerVO {
 	private int planner_like;
 	private String planner_show;
 	private String status;
+	private int planner_areaNum;
 	
 	
 	
+	public int getPlanner_areaNum() {
+		return planner_areaNum;
+	}
+	public void setPlanner_areaNum(int planner_areaNum) {
+		this.planner_areaNum = planner_areaNum;
+	}
 	public String getStatus() {
 		return status;
 	}

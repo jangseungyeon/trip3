@@ -42,6 +42,17 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 @import
 	url('https://fonts.googleapis.com/css2?family=B612:wght@700&family=Do+Hyeon&family=RocknRoll+One&display=swap')
 	;
+	
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.main-font{
+	font-family: 'Pretendard-Regular';
+}
 </style>
 </head>
 
@@ -54,34 +65,34 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 				<c:when test='${user_id ne NULL}'>
 
 					<ul class="nav justify-content-around">
-						<li class="nav-item"><a class="nav-link head-link text-white header-logo"
+						<li class="nav-item"><a class="nav-link head-link text-white header-logo main-font"
 							href="index.jsp">tripONplan</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
+						<li class="nav-item"><a class="nav-link head-link text-white main-font"
 							href="u_getRoomList.do">숙소</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
+						<li class="nav-item"><a class="nav-link head-link text-white main-font"
 							href="start.do">일정 만들기</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
+						<li class="nav-item"><a class="nav-link head-link text-white main-font"
 							href="getFaqList.do">공지사항</a></li>
 					</ul>
 
 
 					<ul class="nav justify-content-end">
-						<li class="nav-item"><a class="nav-link header-link2">${user_name}님
+						<li class="nav-item"><a class="nav-link header-link2 main-font">${user_name}님
 								접속중</a></li>
-						<li class="nav-item"><a class="nav-link header-link2"
+						<li class="nav-item"><a class="nav-link header-link2 main-font"
 							href="move_to_host_login.do">호스트</a></li>
-						<li class="nav-item"><a class="nav-link header-link2"
+						<li class="nav-item"><a class="nav-link header-link2 main-font"
 							href="user_logout.do">로그아웃</a></li>
 						<div id="header-mydiv" class="dropdown">
-							<button id="header-btn" type="button" class="btn btn-primary"
+							<button id="header-btn" type="button" class="btn btn-primary main-font"
 								data-toggle="dropdown">내 정보</button>
 							<div id="header-menu-div" class="dropdown-menu">
-								<a class="dropdown-item" href="myinfo.do">정보 수정</a>
-								<a class="dropdown-item" href="getReservationList.do">결제 목록</a>
-								<a class="dropdown-item" href="likeslist.do">좋아요(like)</a>
-								<a class="dropdown-item" href="plannerlist.do">나의 여행</a>
-								<a class="dropdown-item" href="qna_insert.do">1:1문의</a>
-								<a class="dropdown-item" href="qna_list.do">문의 목록</a>
+								<a class="dropdown-item main-font" href="myinfo.do">정보 수정</a>
+								<a class="dropdown-item main-font" href="getReservationList.do">결제 목록</a>
+								<a class="dropdown-item main-font" href="likeslist.do">좋아요(like)</a>
+								<a class="dropdown-item main-font" href="plannerlist.do">나의 여행</a>
+								<a class="dropdown-item main-font" href="qna_insert.do">1:1문의</a>
+								<a class="dropdown-item main-font" href="qna_list.do">문의 목록</a>
 							</div>
 						</div>
 					</ul>
@@ -90,22 +101,22 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 				<c:otherwise>
 
 					<ul class="nav justify-content-around">
-						<li class="nav-item"><a class="nav-link head-link text-white header-logo"
+						<li class="nav-item"><a class="nav-link head-link text-white header-logo main-font"
 							href="index.jsp">tripONplan</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
+						<li class="nav-item"><a class="nav-link head-link text-white main-font"
 							href="u_getRoomList.do">숙소</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
+						<li class="nav-item"><a class="nav-link head-link text-white main-font"
 							href="start.do">일정 만들기</a></li>
-						<li class="nav-item"><a class="nav-link head-link text-white"
+						<li class="nav-item"><a class="nav-link head-link text-white main-font"
 							href="getFaqList.do">공지사항</a></li>
 					</ul>
 
 					<ul class="nav justify-content-end">
-						<li class="nav-item"><a class="nav-link header-link2"
+						<li class="nav-item"><a class="nav-link header-link2 main-font"
 							href="move_to_host_login.do">호스트</a></li>
-						<li class="nav-item"><a class="nav-link header-link2"
+						<li class="nav-item"><a class="nav-link header-link2 main-font"
 							href="user_insert.do">회원가입</a></li>
-						<li class="nav-item"><a class="nav-link header-link2"
+						<li class="nav-item"><a class="nav-link header-link2 main-font"
 							href="user.login.do">로그인</a></li>
 					</ul>
 				</c:otherwise>
@@ -135,28 +146,28 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 						<div class="collapse navbar-collapse" id="collapsibleNavbar">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a
-									class="nav-link head-link text-white" href="u_getRoomList.do">숙소</a>
+									class="nav-link head-link text-white main-font" href="u_getRoomList.do">숙소</a>
 								</li>
 								<li class="nav-item"><a
-									class="nav-link head-link text-white" href="start.do">일정
+									class="nav-link head-link text-white main-font" href="start.do">일정
 										만들기</a></li>
 								<li class="nav-item"><a
-									class="nav-link head-link text-white" href="getFaqList.do">공지사항</a>
+									class="nav-link head-link text-white main-font" href="getFaqList.do">공지사항</a>
 								</li>
-								<li class="nav-item"><a class="nav-link header-link2">${user_name}님
+								<li class="nav-item"><a class="nav-link header-link2 main-font">${user_name}님
 										접속중</a></li>
-								<li class="nav-item"><a class="nav-link header-link2"
+								<li class="nav-item"><a class="nav-link header-link2 main-font"
 									href="move_to_host_login.do">호스트</a></li>
-								<li class="nav-item"><a class="nav-link header-link2"
+								<li class="nav-item"><a class="nav-link header-link2 main-font"
 									href="user_logout.do">로그아웃</a></li>
 								<div id="header-mydiv" class="dropdown">
 									<button id="header-btn" type="button" class="btn btn-primary"
 										data-toggle="dropdown">내 정보</button>
 									<div id="header-menu-div" class="dropdown-menu">
-										<a class="dropdown-item" href="myinfo.do">정보 수정</a> <a
-											class="dropdown-item" href="getReservationList.do">결제 목록</a>
-										<a class="dropdown-item" href="likeslist.do">좋아요(like)</a> <a
-											class="dropdown-item" href="plannerlist.do">나의 여행</a>
+										<a class="dropdown-item main-font" href="myinfo.do">정보 수정</a> <a
+											class="dropdown-item main-font" href="getReservationList.do">결제 목록</a>
+										<a class="dropdown-item main-font" href="likeslist.do">좋아요(like)</a> <a
+											class="dropdown-item main-font" href="plannerlist.do">나의 여행</a>
 									</div>
 								</div>
 							</ul>

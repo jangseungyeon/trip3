@@ -23,8 +23,9 @@ background-color : #f0f0f0;
 	width: 450px;
 	display: inline-block;
 	margin-top: 30px;
-	margin-left: 10%;
 	margin-bottom: 30px;
+	margin-left:3%;
+	margin-right:3%;
 	position: relative;
 	overflow: hidden;
 	border: solid 1px  #e1e1e1;
@@ -38,8 +39,13 @@ background-color : #f0f0f0;
 }
 
 .like{
-	margin-left: 85px;
     text-align: right;
+}
+
+.left{
+text-align: left;
+display: block;
+margin-bottom:5px;
 }
 
 .title{
@@ -106,12 +112,15 @@ function submit(num){
 	
 </script>
 <body>
-
-<div style="margin-top:2%; margin-left:10%; margin-right:10%;">
-<h1 style="margin-top:8%; margin-bottom:4%;">다양한 여행일정을 체크해보세요 <i class="bi bi-check-lg"></i></h1>
+<div class="row">
+<div class="col-sm-2">
+<div></div>
+</div>
+<div class="col-sm-8" style="text-align: -webkit-center;">
+<h1 style="margin-top:8%; margin-bottom:4%;" class="left">다양한 여행일정을 체크해보세요 <i class="bi bi-check-lg"></i></h1>
 <div style="text-align: right;">
-<form action="selectPlanner.do">
-<select class='delete form-select form-select-sm' aria-label='.form-select-sm example' style='width: 100px; box-shadow: none; display: inline-block; margin-right:10%' name="select" onchange="this.form.submit()">
+<form action="selectPlanner.do" style="margin-right:150px">
+<select class='delete form-select form-select-sm' aria-label='.form-select-sm example' style='width: 100px; box-shadow: none; display: inline-block;' name="select" onchange="this.form.submit()">
  <option value="new">최신순</option>
  <option value="popul" 
  <c:if test="${check eq 2}">
@@ -133,13 +142,13 @@ style="display:none"
 <form action="plannerDP.do">
 <input type="hidden" name="planner_no" value="${planner.planner_no}">
 <input type="hidden" name="user_id" value="${planner.user_id}">
- <img src="resources/img/city-7085073_960_720.jpg" style="width:200px; height:210px; float: left;" class="listImg"> 
+<img src="resources/img/${planner.planner_areaNum}.jpg" style="width:200px; height:210px; float: left;" class="listImg"> 
 <div style=" padding-top: 28px;">
-<span style="font-size:18px" class="title">${planner.planner_area}</span> <br>
-<span style="font-size:18px; font-weight:550; color:#fa8100" class="title main">${planner.planner_title}</span><br>
-<span style="font-size:15px" class="comment">${planner.planner_start}~${planner.planner_end}</span><br>
-<span style="font-size:15px" class="comment">${planner.planner_day}일 여행</span><br>
-<span style="font-size:15px" class="comment">작성자 ${planner.user_id}</span><span class="like"><i class="bi bi-heart-fill" style="color:black;"></i> ${planner.planner_like}&nbsp;</span>
+<span style="font-size:18px" class="title left">${planner.planner_area}</span>
+<span style="font-size:18px; font-weight:550; color:#fa8100" class="title main left">${planner.planner_title}</span>
+<span style="font-size:15px" class="comment left">${planner.planner_start}~${planner.planner_end}</span>
+<span style="font-size:15px" class="comment left">${planner.planner_day}일 여행</span>
+<span style="font-size:15px" class="comment left">작성자 ${planner.user_id} <i class="bi bi-heart-fill like" style="color:black; margin-left:20%"></i> ${planner.planner_like}&nbsp;</span>
 </div>
 </form>
 </div>
@@ -150,5 +159,10 @@ style="display:none"
 </div>
 </div>
 </div>
+<div class="col-sm-2">
+<div></div>
+</div>
+</div>
+
 </body>
 </html>

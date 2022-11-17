@@ -1,16 +1,27 @@
+
 ul.head-ul {
 	justify-content: space-around; /* space-evenly도 가능 */
 	font-size: 30px;
 }
 
 a.head-link {
-	color: black !important;
+	color:#626262 !important;
+	background-color: #f9fcff;
+}
+
+a.head-link:hover {
+	color:#ff8e15 !important;
 	background-color: #f9fcff;
 }
 
 a.header-link2.nav-link {
 	background-color: #f9fcff;
-	color: black;
+	color:#626262;
+}
+
+a.header-link2.nav-link:hover {
+	background-color: #f9fcff;
+	color:#ff8e15;
 }
 
 a.nav-link.head-link.text-white.header-logo {
@@ -79,14 +90,14 @@ ul.nav.justify-content-end.bg-success {
 
 .main-div1 {
 	color: #19558c;
-	font-size: 50px;
-	margin-bottom: 15px;
+	font-size: 28px;
+	margin-bottom: 0;
 	display: inline;
 }
 
 .main-div2 {
 	color: #ff8e15;
-	font-size: 70px;
+	font-size: 100px;
 	font-weight: bold;
 	/*     font-family: 'Do Hyeon', sans-serif; */
 	/*     font-family: 'B612', sans-serif; */
@@ -138,9 +149,10 @@ body {
 /* 푸터 부분 */
 footer {
 	width: 100%;
-	background: #23263b;
+	background: #f9fcff;
 	padding-left: 1%;
 	margin-top: 50px;
+	border-top: solid 1px #e9e9e9;
 }
 
 .mt-auto {
@@ -167,8 +179,8 @@ footer {
 
 .footer_row {
 	margin-bottom: 10px;
-	color: #ffffff;
-	font-size: 12px;
+	color: #5c5c5c;
+	font-size: 11px;
 	font-weight: normal;
 }
 

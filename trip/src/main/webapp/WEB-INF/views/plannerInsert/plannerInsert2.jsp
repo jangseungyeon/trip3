@@ -352,7 +352,7 @@ function test00(tval) {
 				}
 				
  				if(this.firstimage == ""){
- 					img = "./resources/img/undraw_Trip_re_f724.png";
+ 					img = "./resources/img/map.png";
  				}else{
  				 	img = this.firstimage
  				}

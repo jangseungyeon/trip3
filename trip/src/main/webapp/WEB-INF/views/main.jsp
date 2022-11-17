@@ -34,6 +34,12 @@ button.main-icon-div3:hover span:nth-child(1) {
 button.main-icon-div3:hover span:nth-child(2) {
     display: block;
 }
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 </style>
 <!-- 집아이콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -43,7 +49,7 @@ button.main-icon-div3:hover span:nth-child(2) {
 <div class="footer-div">
 
      <div class="container main-top-div"> 
-     <div class="main-div1">숙소 예매와 </div> <div class="main-div1">플래너 작성을 한번에</div>
+    <div class="main-div1" style="font-family: 'Pretendard-Regular'">숙소 예매와 </div> <div class="main-div1" style="font-family: 'Pretendard-Regular'">플래너 작성을 한번에</div>
      <div class="main-div2">tripONplan</div><br>
      </div> <br>
  <div class="container-fluid main-img-div">
