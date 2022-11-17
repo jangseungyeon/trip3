@@ -2,6 +2,7 @@ package com.springbook.view.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -199,13 +200,13 @@ public class UserController {
 				out.println("location.href='myinfo.do'");
 				out.println("</script>");
 				out.flush();
-				return "WEB-INF/views/my/my_Check.jsp";
+				return "WEB-INF/views/my_Check.jsp";
 			}
 		}
 	
 	@RequestMapping("/myinfo.do")
 	public String mycheck(UserVO vo, HttpSession session) {
-		return "WEB-INF/views/my/my_Check.jsp";
+		return "WEB-INF/views/my_Check.jsp";
 	}
 	
 //	내 정보 확인
@@ -226,7 +227,7 @@ public class UserController {
 			model.addAttribute("user_phone", vo.getUser_phone());
 			model.addAttribute("user_address1", vo.getUser_address1());
 			model.addAttribute("user_address2", vo.getUser_address2());
-			return "WEB-INF/views/my/my_info.jsp";
+			return "WEB-INF/views/my_info.jsp";
 		} else {
 			return "index.jsp";
 		}
@@ -268,10 +269,12 @@ public class UserController {
 	public String user_find(UserVO vo, Model model) {
 		vo.setUser_type("own");
 		System.out.println("아이디찾기" + vo);
-		vo = userService.find(vo);
-		System.out.println("찾은결과: " + vo);
-		if (vo != null) {
-			model.addAttribute("user", vo.getUser_id());
+		List<UserVO> user =  userService.find(vo);
+		System.out.println("찾은결과: " + user);
+		if (user != null) {
+//			for(UserVO vo1 : user) {
+			model.addAttribute("user", user);
+//			}
 			return "WEB-INF/views/user_find.jsp";
 		} else {
 			return "WEB-INF/views/user_find.jsp";
@@ -290,10 +293,10 @@ public class UserController {
 	public String user_pwfind(UserVO vo, Model model) {
 		vo.setUser_type("own");
 		System.out.println("비밀번호찾기" + vo);
-		vo = userService.find(vo);
+		List<UserVO> user = (List<UserVO>) userService.find(vo);
 		System.out.println("찾은결과: " + vo);
-		if (vo != null) {
-			model.addAttribute("user", vo.getUser_id());
+		if (user != null) {
+			model.addAttribute("user", user);
 			return "WEB-INF/views/user_pwfind.jsp";
 		} else {
 			return "WEB-INF/views/user_pwfind.jsp";

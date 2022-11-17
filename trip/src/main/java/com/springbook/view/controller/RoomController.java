@@ -2,6 +2,10 @@ package com.springbook.view.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -40,6 +45,9 @@ public class RoomController {
 	
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private ReservationService reservationService;
 	
 
 	//(호스트) 업주용 숙박 목록, 업주용 숙박 상세 페이지 제목 라벨링
@@ -84,10 +92,10 @@ public class RoomController {
 		MultipartFile uploadFile4 = rvo.getRoom_img_no4_multi();
 		MultipartFile uploadFile5 = rvo.getRoom_img_no5_multi();
 		
-		//String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
+		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
 		
 		//위는 테스트용, 아래는 실제 서버에 올리면 써야하는 경로 구하는 법 (컨트롤러 안에 어떤 request.getParameter가 들어가면 안됨)
-		String realPath = request.getSession().getServletContext().getRealPath("/resources/room_img/");
+		//String realPath = request.getSession().getServletContext().getRealPath("/resources/room_img/");
 		
 		String room_img_no1 = uploadFile1.getOriginalFilename();
 		String room_img_no2 = uploadFile2.getOriginalFilename();
@@ -152,9 +160,7 @@ public class RoomController {
 		MultipartFile uploadFile4 = rvo.getRoom_img_no4_multi();
 		MultipartFile uploadFile5 = rvo.getRoom_img_no5_multi();
 		
-		//String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
-
-		String realPath = request.getSession().getServletContext().getRealPath("/resources/room_img/");
+		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
 		
 		String room_img_no1 = uploadFile1.getOriginalFilename();
 		String room_img_no2 = uploadFile2.getOriginalFilename();
@@ -242,10 +248,10 @@ public class RoomController {
 	// HttpSession session) throws IllegalStateException, IOException {
 	public String deleteRoom(RoomVO rvo, HttpSession session) {
 		System.out.println("숙소 삭제 시작");
-		//String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
+		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
 		// 위는 테스트용, 아래는 실제 서버에 올리면 써야하는 경로 구하는 법 (컨트롤러 안에 어떤 request.getParameter가 들어가면 안됨)
 		// String realPath =
-		request.getSession().getServletContext().getRealPath("/resources/room_img/");
+		// request.getSession().getServletContext().getRealPath("/resources/room_img/");
 		rvo = roomService.getRoom(rvo);
 		
 		//숙소 이미지 모두 삭제

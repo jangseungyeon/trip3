@@ -1,5 +1,7 @@
 package com.springbook.biz.user.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
 		return userDAO.user_login(vo);
 	}
 	@Override
-	public UserVO find(UserVO vo) {
+	public List<UserVO> find(UserVO vo) {
 		System.out.println("user_find");
 		return userDAO.user_find(vo);
 	}

@@ -1,5 +1,7 @@
 package com.springbook.biz.user.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -56,9 +58,9 @@ public class UserDAOMybatis {
 	}
 	
 	
-	public UserVO user_find(UserVO vo) {
+	public List<UserVO> user_find(UserVO vo) {
 		System.out.println("user_find: " + vo);
-		return mybatis.selectOne("UserDAO.find", vo);
+		return mybatis.selectList("UserDAO.find", vo);
 	}
 	
 	public int user_change(UserVO vo) {
