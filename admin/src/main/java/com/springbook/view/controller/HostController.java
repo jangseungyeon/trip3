@@ -24,13 +24,13 @@ public class HostController {
 	@Autowired
 	private HostService hostService;
 
-	// 관리자 업주 가입 폼 이동
+	// 관리자 호스트 가입 폼 이동
 	@RequestMapping("/manage_hostInsertForm.do")
 	public String manage_hostInsertForm(ModelAndView mv) {
 		return "WEB-INF/views/manage_hostInsert.jsp";
 	}
 
-	// 관리자 업주 등록
+	// 관리자 호스트 등록
 	@RequestMapping("/manage_hostInsert.do")
 	public String manage_hostInsert(@ModelAttribute HostVO vo) {
 		System.out.println("manage_hostInsert");
@@ -38,7 +38,7 @@ public class HostController {
 		return "redirect:manage_hostList.do";
 	}
 
-	// 관리자 업주 정보 수정
+	// 관리자 호스트 정보 수정
 	@RequestMapping("/manage_hostUpdate.do")
 	public String manage_hostUpdate(@ModelAttribute HostVO vo, HttpSession session) {
 		System.out.println("컨트롤러 입장");
@@ -62,11 +62,11 @@ public class HostController {
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<String, String>();
 		conditionMap.put("아이디", "ID");
-		conditionMap.put("업소명", "BIZNAME");
+		conditionMap.put("숙소명", "BIZNAME");
 		return conditionMap;
 	}
 
-	// 관리자 업주 조회
+	// 관리자 호스트 조회
 	@RequestMapping("/manage_hostList.do")
 	public String manage_hostList(HostVO vo, String nowPageBtn, Model model) {
 
@@ -89,7 +89,7 @@ public class HostController {
 		return "WEB-INF/views/manage_hostList.jsp";
 	}
 
-	// 관리자 업주 상세 조회
+	// 관리자 호스트 상세 조회
 	@RequestMapping("/manage_hostInfo.do")
 	public String manage_hostInfo(HostVO vo, Model model) {
 		model.addAttribute("HostVO", hostService.manage_hostInfo(vo));

@@ -25,7 +25,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
-<title>Admin Dashboard</title>
+<title>tripONplan</title>
 </head>
 <body>
 	<div class="wrapper">
@@ -48,7 +48,7 @@
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"

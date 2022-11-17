@@ -3,11 +3,35 @@
 <%@page import="com.springbook.biz.host.HostVO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ include file="header.jsp"%>
 
 <!doctype html>
 <html lang="ko">
-<title>공지 상세</title>
+<head>
+<%@ include file="header.jsp"%>
+<meta charset="UTF-8">
+<style>
+input {
+	height: 45px;
+	border-radius: 15px;
+	border: 1px solid #aaa;
+	padding: 12px;
+	margin-top: 10px;
+}
+
+input#btnDelete {
+	margin: 10px;
+}
+
+.submitbutton {
+	/* 	margin: 10px 5px; */
+	color: white;
+	border-radius: 7px;
+	background-color: #19558c;
+	border: none;
+	width: 130px;
+	margin-top: 30px;
+}
+</style>
 </head>
 <body class="info-body">
 	<script>
@@ -51,7 +75,7 @@
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트
 							관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
@@ -107,65 +131,51 @@
 
 			<div class="content">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-12">
+					<div class="faqInfo-div1">공지사항</div>
+					<hr class="faqInfo-hr">
 
-							<div class="card strpied-tabled-with-hover">
-								<div class="card-header ">
-									<h4 class="card-title">공지 사항</h4>
-								</div>
-								<div class="card-body table-full-width table-responsive">
-									<form name="manage_faqInfo" method="post">
-										<table class="table table-hover table-striped">
-											<thead>
-												<tr>
-													<td>번호</td>
-													<td><input name="faq_no" value="${FaqVO.faq_no}"
-														readonly></td>
-												</tr>
-												<tr>
-													<td>제목</td>
-													<td><input name="faq_title" value="${FaqVO.faq_title}"></td>
-												</tr>
-												<tr>
-													<td>내용</td>
-													<td><input name="faq_content"
-														value="${FaqVO.faq_content}"></td>
-												</tr>
-												<tr>
-													<td>작성일</td>
-													<td><input name="faq_regdate"
-														value="${FaqVO.faq_regdate}"></td>
-												</tr>
-												<tr>
-													<td>작성자</td>
-													<td><input name="faq_writer"
-														value="${FaqVO.faq_writer}"></td>
-												</tr>
-												<tr>
-													<td>조회수</td>
-													<td><input name="faq_cnt" value="${FaqVO.faq_cnt}"></td>
-												</tr>
-												<tr>
-													<td>파일</td>
-													<td><input name="filename" value="${FaqVO.filename}"></td>
-												</tr>
-
-												<tr>
-													<td colspan="2" align="center"><input type="button"
-														value="수정" id="btnUpdate"> <input type="button"
-														value="삭제" id="btnDelete"></td>
-												</tr>
-										</table>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
+					<form name="manage_faqInfo" id="manage_faqInfo" method="post">
+						<table class="faqInfo-table container">
+							<tr>
+								<th class="faqInfo-th">번호</th>
+								<td><input name="faq_no" value="${FaqVO.faq_no}" readonly></td>
+							</tr>
+							<tr>
+								<th class="faqInfo-th">제목</th>
+								<td><input name="faq_title" value="${FaqVO.faq_title}"></td>
+							</tr>
+							<tr>
+								<th class="faqInfo-th">내용</th>
+								<td><input name="faq_content" value="${FaqVO.faq_content}"></td>
+							</tr>
+							<tr>
+								<th class="faqInfo-th">작성일</th>
+								<td><input name="faq_regdate" value="${FaqVO.faq_regdate}"></td>
+							</tr>
+							<tr>
+								<th class="faqInfo-th">작성자</th>
+								<td><input name="faq_writer" value="${FaqVO.faq_writer}"></td>
+							</tr>
+							<tr>
+								<th class="faqInfo-th">조회수</th>
+								<td><input name="faq_cnt" value="${FaqVO.faq_cnt}"></td>
+							</tr>
+							<tr>
+								<th class="faqInfo-th">파일</th>
+								<td><input name="filename" value="${FaqVO.filename}"></td>
+							</tr>
+							<tr>
+								<th></th>
+								<td><input type="button" class="submitbutton" value="수정"
+									id="btnUpdate"> <input type="button"
+									class="submitbutton" value="삭제" id="btnDelete"></td>
+							</tr>
+						</table>
+					</form>
 				</div>
 			</div>
-
 		</div>
+	</div>
 </body>
 <%@ include file="footer.jsp"%>
 </html>

@@ -8,6 +8,29 @@
 <!doctype html>
 <html lang="ko">
 <title>정보 수정</title>
+<style>
+input {
+	height: 45px;
+	border-radius: 15px;
+	border: 1px solid #aaa;
+	padding: 12px;
+	margin-top: 10px;
+}
+
+input#btnDelete {
+	margin: 10px;
+}
+
+.submitbutton {
+	/* 	margin: 10px 5px; */
+	color: white;
+	border-radius: 7px;
+	background-color: #19558c;
+	border: none;
+	width: 130px;
+	margin-top: 30px;
+}
+</style>
 </head>
 <body class="info-body">
 	<script>
@@ -43,22 +66,28 @@
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원 관리
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너 관리
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약 관리
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="qna_admin_list.do"> <i class="nc-icon nc-send"></i>문의 응답
@@ -102,62 +131,65 @@
 
 			<div class="content">
 				<div class="container-fluid">
-					<h2>회원정보 상세</h2>
-					<form name="manage_userInfo" method="post">
-						<table border="1">
+					<div class="userInfo-div1">회원정보</div>
+					<hr class="userInfo-hr">
+
+					<form name="manage_userInfo" id="manage_userInfo" method="post">
+						<table class="userInfo-table container">
 							<tr>
-								<td>아이디</td>
-								<td><input name="user_id" value="${UserVO.user_id}"></td>
+								<th class="userInfo-th">아이디</th>
+								<td><input name="user_id" value="${UserVO.user_id}"
+									readonly></td>
 							</tr>
 							<tr>
-								<td>이름</td>
+								<th class="userInfo-th">이름</th>
 								<td><input name="user_name" value="${UserVO.user_name}"></td>
 							</tr>
 							<tr>
-								<td>비밀번호</td>
+								<th class="userInfo-th">비밀번호</th>
 								<td><input type="password" name="user_password"
 									value="${UserVO.user_password}"></td>
 							</tr>
 							<tr>
-								<td>생년월일</td>
-								<td><input name="user_birth" value="${UserVO.user_birth}"></td>
+								<th class="userInfo-th">생년월일</th>
+								<td><input type="date" name="user_birth"
+									value="${UserVO.user_birth}"></td>
 							</tr>
 							<tr>
-								<td>성별</td>
+								<th class="userInfo-th">성별</th>
 								<td><input name="user_gender" value="${UserVO.user_gender}"></td>
 							</tr>
 							<tr>
-								<td>이메일주소</td>
+								<th class="userInfo-th">이메일주소</th>
 								<td><input name="user_email" value="${UserVO.user_email}"></td>
 							</tr>
 							<tr>
-								<td>전화번호</td>
+								<th class="userInfo-th">전화번호</th>
 								<td><input name="user_phone" value="${UserVO.user_phone}"></td>
 							</tr>
 							<tr>
-								<td>주소</td>
+								<th class="userInfo-th">주소</th>
 								<td><input name="user_address1"
 									value="${UserVO.user_address1}"></td>
 							</tr>
 							<tr>
-								<td>상세주소</td>
+								<th class="userInfo-th">상세주소</th>
 								<td><input name="user_address2"
 									value="${UserVO.user_address2}"></td>
 							</tr>
 							<tr>
-								<td>상태</td>
+								<th class="userInfo-th">상태</th>
 								<td><input name="user_status" value="${UserVO.user_status}"></td>
 							</tr>
 							<tr>
-								<td>타입</td>
+								<th class="userInfo-th">타입</th>
 								<td><input name="user_type" value="${UserVO.user_type}"></td>
 							</tr>
-
-
 							<tr>
-								<td colspan="2" align="center"><input type="button"
-									value="수정" id="btnUpdate"> <input type="button"
-									value="삭제" id="btnDelete"></td>
+								<th></th>
+								<td><input type="button" class="submitbutton" value="수정"
+									id="btnUpdate"> <input type="button"
+									class="submitbutton" value="삭제" id="btnDelete"></td>
 							</tr>
 						</table>
 					</form>

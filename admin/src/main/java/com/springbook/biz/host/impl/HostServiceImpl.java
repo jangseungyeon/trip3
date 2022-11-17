@@ -15,38 +15,38 @@ public class HostServiceImpl implements HostService {
 	@Autowired
 	private HostDAOMybatis hostDAO;
 
-//	관리자 업주 등록
+//	관리자 호스트 등록
 	@Override
 	public int manage_hostInsert(HostVO vo) {
-		System.out.println("업주 등록");
+		System.out.println("호스트 등록");
 		return hostDAO.manage_hostInsert(vo);
 	}
 
-// 관리자 업주 수정
+// 관리자 호스트 수정
 	@Override
 	public void manage_hostUpdate(HostVO vo) {
 		hostDAO.manage_hostUpdate(vo);
 	}
 
-//	관리자 업주 삭제
+//	관리자 호스트 삭제
 	@Override
 	public void manage_hostDelete(HostVO vo) {
 		hostDAO.manage_hostDelete(vo);
 	}
 
-// 	관리자 업주 조회
+// 	관리자 호스트 조회
 	@Override
 	public List<HostVO> manage_hostList(HostVO vo) {
 		return hostDAO.manage_hostList(vo);
 	}
 
-//	관리자 업주 상세
+//	관리자 호스트 상세
 	@Override
 	public HostVO manage_hostInfo(HostVO vo) {
 		return hostDAO.manage_hostInfo(vo);
 	}
 
-//	관리자 업주 개수
+//	관리자 호스트 개수
 	@Override
 	public int totalHostListCnt(HostVO vo) {
 		return hostDAO.totalHostListCnt(vo);

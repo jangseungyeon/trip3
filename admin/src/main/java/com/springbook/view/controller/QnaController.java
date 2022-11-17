@@ -151,4 +151,17 @@ public class QnaController {
 		return "redirect:qna_admin_views.do?qna_num=" + vo.getQna_num();
 	}
 
+	// 관리자 게시물 삭제
+		@RequestMapping(value = "/qna_admin_delete.do") // URL
+		public String qna_admin_deleteQna(QnaVO vo) {
+			System.out.println("deleteuser : " + vo);
+			if (qnaService.myQnaDelete(vo) > 0)
+				System.out.println("삭제되었습니다.");
+			else
+				System.out.println("삭제할 내역이 없습니다.");
+
+			return "redirect:qna_admin_list.do";
+
+		}
+	
 }

@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="header.jsp"%>
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8" />
-<title>Admin Dashboard</title>
+<%@ include file="header.jsp"%>
+<meta charset="UTF-8">
 </head>
 
 <body>
@@ -29,7 +28,7 @@
 						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트 관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리

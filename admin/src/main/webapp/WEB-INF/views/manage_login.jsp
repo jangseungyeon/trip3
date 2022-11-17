@@ -20,7 +20,7 @@
 
 <link href="resources/css/style.css" rel="stylesheet">
 
-<title>manage login</title>
+<title>tripONplan</title>
 </head>
 
 <style>

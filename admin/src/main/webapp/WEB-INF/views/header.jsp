@@ -36,7 +36,7 @@ String manage_id = session.getAttribute("manage_id") != null ? session.getAttrib
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'name='viewport' />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>header</title>
+<title>tripONplan</title>
 <link rel="apple-touch-icon" sizes="76x76" href="resources/assets/img/apple-icon.png">
 <link rel="icon" type="image/png" href="resources/assets/img/favicon.ico">
 </head>

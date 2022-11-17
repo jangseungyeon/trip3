@@ -8,6 +8,30 @@
 <!doctype html>
 <html lang="ko">
 <title>정보 수정</title>
+
+<style>
+input {
+	height: 45px;
+	border-radius: 15px;
+	border: 1px solid #aaa;
+	padding: 12px;
+	margin-top: 10px;
+}
+
+input#btnDelete {
+	margin: 10px;
+}
+
+.submitbutton {
+	/* 	margin: 10px 5px; */
+	color: white;
+	border-radius: 7px;
+	background-color: #19558c;
+	border: none;
+	width: 130px;
+	margin-top: 30px;
+}
+</style>
 </head>
 <body class="info-body">
 	<script>
@@ -43,22 +67,28 @@
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원 관리
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
+							관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너 관리
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약 관리
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="qna_admin_list.do"> <i class="nc-icon nc-send"></i>문의 응답
@@ -101,94 +131,95 @@
 
 			<div class="content">
 				<div class="container-fluid">
+					<div class="roomInfo-div1">숙소정보</div>
+					<hr class="roomInfo-hr">
 
-					<h2>회원정보 상세</h2>
-					<form name="manage_roomInfo" method="post">
-						<table border="1">
+					<form name="manage_roomInfo" id="manage_roomInfo" method="post">
+						<table class="roomInfo-table container">
+
+
 							<tr>
-								<td>숙소명</td>
-								<td><input name="room_name" value="${RoomVO.room_name}"></td>
+								<th class="roomInfo-th">숙소명</th>
+								<td><input name="room_name" value="${RoomVO.room_name}"
+									readonly></td>
 							</tr>
 							<tr>
-								<td>주소</td>
+								<th class="roomInfo-th">주소</th>
 								<td><input name="room_addr" value="${RoomVO.room_addr}"></td>
 							</tr>
 							<tr>
-								<td>상세주소</td>
+								<th class="roomInfo-th">상세주소</th>
 								<td><input name="room_addr_detail"
 									value="${RoomVO.room_addr_detail}"></td>
 							</tr>
 							<tr>
-								<td>설명</td>
+								<th class="roomInfo-th">설명</th>
 								<td><input name="room_desc" value="${RoomVO.room_desc}"></td>
 							</tr>
 							<tr>
-								<td>숙소 아이디</td>
+								<th class="roomInfo-th">숙소아이디</th>
 								<td><input name="room_id" value="${RoomVO.room_id}"></td>
 							</tr>
 							<tr>
-								<td>업주 아이디</td>
+								<th class="roomInfo-th">호스트아이디</th>
 								<td><input name="host_id" value="${RoomVO.host_id}"></td>
 							</tr>
 							<tr>
-								<td>가격</td>
+								<th class="roomInfo-th">가격</th>
 								<td><input name="room_price" value="${RoomVO.room_price}"></td>
 							</tr>
 							<tr>
-								<td>이미지</td>
+								<th class="roomInfo-th">이미지</th>
 								<td><input name="room_img_no1"
 									value="${RoomVO.room_img_no1}"></td>
 							</tr>
 							<tr>
-								<td>마일리지</td>
-								<td><input name="room_points" value="${RoomVO.room_points}"></td>
-							</tr>
-							<tr>
-								<td>최대인원</td>
+								<th class="roomInfo-th">최대인원</th>
 								<td><input name="room_max" value="${RoomVO.room_max}"></td>
 							</tr>
 							<tr>
-								<td>테마</td>
+								<th class="roomInfo-th">테마</th>
 								<td><input name="room_theme" value="${RoomVO.room_theme}"></td>
 							</tr>
 							<tr>
-								<td>카테고리</td>
+								<th class="roomInfo-th">카테고리</th>
 								<td><input name="room_cat" value="${RoomVO.room_cat}"></td>
 							</tr>
 							<tr>
-								<td>와이파이</td>
+								<th class="roomInfo-th">와이파이</th>
 								<td><input name="room_wifi" value="${RoomVO.room_wifi}"></td>
 							</tr>
 							<tr>
-								<td>동물</td>
+								<th class="roomInfo-th">동물</th>
 								<td><input name="room_pet" value="${RoomVO.room_pet}"></td>
 							</tr>
 							<tr>
-								<td>조식</td>
+								<th class="roomInfo-th">조식</th>
 								<td><input name="room_meal" value="${RoomVO.room_meal}"></td>
 							</tr>
 							<tr>
-								<td>주차</td>
+								<th class="roomInfo-th">주차</th>
 								<td><input name="room_parking"
 									value="${RoomVO.room_parking}"></td>
 							</tr>
 							<tr>
-								<td>수영장</td>
+								<th class="roomInfo-th">수영장</th>
 								<td><input name="room_swpool" value="${RoomVO.room_swpool}"></td>
 							</tr>
 							<tr>
-								<td>좋아요</td>
+								<th class="roomInfo-th">좋아요</th>
 								<td><input name="room_likes" value="${RoomVO.room_likes}"></td>
 							</tr>
 							<tr>
-								<td>별점</td>
+								<th class="roomInfo-th">별점</th>
 								<td><input name="room_stars" value="${RoomVO.room_stars}"></td>
 							</tr>
 
 							<tr>
-								<td colspan="2" align="center"><input type="button"
-									value="수정" id="btnUpdate"> <input type="button"
-									value="삭제" id="btnDelete"></td>
+								<th></th>
+								<td><input type="button" class="submitbutton" value="수정"
+									id="btnUpdate"> <input type="button"
+									class="submitbutton" value="삭제" id="btnDelete"></td>
 							</tr>
 						</table>
 					</form>

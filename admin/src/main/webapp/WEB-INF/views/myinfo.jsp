@@ -5,10 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html lang="ko">
+<head>
 <%@ include file="header.jsp"%>
-
-<title>회원가입</title>
-
 </head>
 <body class="info-body">
 	<script>

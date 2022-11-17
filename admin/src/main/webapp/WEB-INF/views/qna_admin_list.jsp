@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>관리자 리스트 페이지</title>
 <%@ include file="header.jsp"%>
+<title>관리자 리스트 페이지</title>
 <meta charset="utf-8">
 
 <script>
@@ -37,7 +37,7 @@
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -95,8 +95,8 @@
 				<div class="container-fluid">
 
 					<div class="container">
-						<h2>회원 질문 목록</h2>
-						<p>회원의 질문에 대한 관리자 답변</p>
+						<h2>1:1 문의 목록</h2>
+						<p>회원의 문의에 대한 관리자 답변</p>
 						<table class="table table-bordered">
 							<thead>
 								<tr>

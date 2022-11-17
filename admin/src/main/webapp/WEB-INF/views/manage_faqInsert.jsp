@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="header.jsp"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%
@@ -9,8 +8,44 @@ request.setCharacterEncoding("UTF-8");
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>공지등록</title>
+<%@ include file="header.jsp"%>
+<meta charset="UTF-8">
+
+<style>
+input {
+	height: 45px;
+	border-radius: 15px;
+	border: 1px solid #aaa;
+	padding-left: 12px;
+	padding-right: 12px;
+	margin-top: 10px;
+}
+
+#phoneChk, button {
+	margin: 10px 5px;
+	color: white;
+	border-radius: 7px;
+	background-color: #19558c;
+	border: none;
+	width: 130px;
+	height: 35px;
+}
+
+textarea#faq_content {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+input#uploadFile {
+    padding-top: 7px;
+}
+
+button.submitbutton {
+	margin-top: 30px;
+}
+
+</style>
+
 <script>
 	
 <%if (request.getParameter("manage_faqInsert") != null) {%>
@@ -51,7 +86,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");%>
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트
 							관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
@@ -107,19 +142,51 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");%>
 
 			<div class="content">
 				<div class="container-fluid">
-					<h3>공지 등록</h3>
+					<div class="faqInsert-div1">공지등록</div>
+					<hr class="faqInsert-hr">
 					<form action="manage_faqInsert.do" method="post"
 						id="manage_faqInsert" enctype="multipart/form-data">
 
-						<input type="text" name="faq_writer" id="faq_writer" value="관리자" readonly><br>
-						<!-- <input type="password" name="host_password" id="host_password" placeholder='비밀번호'><br> -->
-						<input type="date" name="faq_regdate" value="<%=sf.format(nowTime)%>"><br> 
-						<input type="text" name="faq_title" placeholder='제목'><br>
-						<textarea name="faq_content" id="faq_content" placeholder='내용'></textarea><br> 
-						<input type="hidden" name="faq_cnt" id="faq_cnt" value="0"> 
-						<input type="file" name="uploadFile"><br>
+						<table class="faqInsert-table container">
+							<tr>
+								<th class="faqInsert-th"></th>
+								<td><input type="hidden" name="faq_writer" id="faq_writer"
+									value="관리자"></td>
+							</tr>
+							<tr>
+								<th class="faqInsert-th"></th>
+								<td><input type="hidden" name="faq_cnt" id="faq_cnt"
+									value="0"></td>
+							</tr>
+							<tr>
+								<th class="faqInsert-th">작성일자</th>
+								<td><input type="date" name="faq_regdate"
+									value="<%=sf.format(nowTime)%>"></td>
+							</tr>
+							<tr>
+								<th class="faqInsert-th">제목</th>
+								<td><input type="text" name="faq_title" id="faq_title"
+									placeholder='제목' required></td>
+							</tr>
+							<tr>
+								<th class="faqInsert-th">내용</th>
+								<td><textarea class="form-control" rows="10"
+										id="faq_content" name="faq_content" placeholder='내용'></textarea></td>
+							</tr>
+							<tr>
+								<th class="faqInsert-th">파일첨부</th>
+								<td><input type="file" name="uploadFile" id="uploadFile"></td>
+							</tr>
 
-						<button type="button" class="submitbutton" onclick="check()">공지등록</button>
+							<tr>
+								<th></th>
+								<td><button type="button" class="submitbutton"
+										onclick="check()">공지등록</button>
+									<button type="reset" class="submitbutton faqInsert-resetbtn">되돌리기</button>
+								</td>
+							</tr>
+
+						</table>
 					</form>
 
 				</div>

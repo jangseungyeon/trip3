@@ -43,7 +43,7 @@ public class UserDAOMybatis {
 		return mybatis.selectOne("UserDAO.manage_userInfo", vo);
 	}
 
-//	관리자 업주 개수
+//	관리자 호스트 개수
 	public int totalUserListCnt(UserVO vo) {
 		System.out.println("totalUserListCnt() 기능처리");
 		return mybatis.selectOne("UserDAO.totalUserListCnt", vo);

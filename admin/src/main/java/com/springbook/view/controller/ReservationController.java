@@ -31,7 +31,7 @@ public class ReservationController {
 //	@Autowired
 //	private UserService userService;
 
-	// 관리자 예약 수정 (새션에 저장한 업주 호스트 아이디와 숙소 상세 페이지의 아이디와 일치해야 수정, 그 후 예약 목록으로 돌아감)
+	// 관리자 예약 수정 (새션에 저장한 호스트 호스트 아이디와 숙소 상세 페이지의 아이디와 일치해야 수정, 그 후 예약 목록으로 돌아감)
 	@RequestMapping(value = "/manage_reservUpdate.do")
 	public String manage_reservUpdate(@ModelAttribute ReservationVO rvo, HttpSession session) {
 		System.out.println("예약 수정 시작");
@@ -40,7 +40,7 @@ public class ReservationController {
 		return "manage_reservList.do";
 	}
 
-	// 관리자 예약 삭제 (숙소 이미지 파일 먼저 삭제 후 숙소 조회 후 가지고 온 업주 호스트 아이디와 세션의 업주 호스트 아이디가 일치하면
+	// 관리자 예약 삭제 (숙소 이미지 파일 먼저 삭제 후 숙소 조회 후 가지고 온 호스트 호스트 아이디와 세션의 호스트 호스트 아이디가 일치하면
 	// 삭제, 그후 숙소 목록으로 돌아감)
 	@RequestMapping(value = "/manage_reservDelete.do")
 	public String manage_reservDelete(ReservationVO rvo, HttpSession session) {

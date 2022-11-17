@@ -4,14 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>관리자 상세보기 페이지</title>
 <%@ include file="header.jsp"%>
+<title>관리자 상세보기 페이지</title>
 <meta charset="utf-8">
-
+<style>
+span.input-group-text {
+	background-color: transparent;
+	border: none;
+}
+</style>
 <script>
 function deleteOne(num){
 		if(confirm("삭제 하시겠습니까?")){
-		location.href="qna_delete.do?qna_num="+num;
+		location.href="qna_admin_delete.do?qna_num="+num;
 	}
 };
 
@@ -19,8 +24,13 @@ $(function() {
 	var answer = document.getElementById("qna_views").value;
 	console.log(answer);
 	
-	if(answer == 1){
-		$("#amd-btn").hide();
+	if(answer == 1){//"1"이면 답변버튼 숨기기, "0"이면 수정버튼 숨기기 
+		$("#amd-btn").hide();//"1"이면 답변버튼 숨기기
+		$("#and-btn").show();//"0"이면 수정버튼 숨기기 
+	}else{
+		$("#amd-btn").show();//"0"이면 답변버튼 보이기
+		$("#and-btn").hide();//"1"이면 답변버튼 숨기기
+
 	}
 });
 
@@ -48,7 +58,7 @@ $(function() {
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -104,71 +114,63 @@ $(function() {
 
 			<div class="content">
 				<div class="container-fluid">
-
+					<div class="container-fluid">
+						<h3>1:1 문의</h3>
+						<p>회원의 문의에 대한 관리자 답변</p>
+					</div>
 					<form action="qna_admin_update.do" method="POST">
-						<div class="container-fluid p-3 my-3 bg-dark text-white">
-							<h1>관리자 상세 보기</h1>
-							<p>상세 보기 페이지 입니다.</p>
-						</div>
-						<div class="row">
-							<div class="col-sm-3">번호</div>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="qna_num"
-									name="qna_num" value="${qnaOne.qna_num}" readonly>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">질문번호</span>
 							</div>
-						</div>
-						<br>
-
-						<div class="row">
-							<div class="col-sm-3">제목</div>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="qna_title"
-									name="qna_title" value="${qnaOne.qna_title}" disabled>
-								<!-- disabled : 비활성화 속성 -->
-							</div>
-						</div>
-						<br>
-
-						<div class="row">
-							<div class="col-sm-3">날짜</div>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="qna_regdate"
-									name="qna_regdate" value="${qnaOne.qna_regdate}" disabled>
-								<!-- disabled : 비활성화 속성 -->
-							</div>
-						</div>
-						<br>
-
-						<div class="row">
-							<div class="col-sm-3" style="padding-top: 10%;">질문내용</div>
-							<div class="col-sm-9">
-								<textarea class="form-control" rows="5" id="qna_content"
-									name="qna_content">${qnaOne.qna_content}</textarea>
-							</div>
+							<input type="text" class="form-control" id="qna_num"
+								name="qna_num" value="${qnaOne.qna_num}" readonly>
 						</div>
 
-						<div class="row">
-							<div class="col-sm-3">답변여부</div>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="qna_views"
-									name="qna_views" value="${qnaOne.qna_views}" disabled>
-								<!-- disabled : 비활성화 속성 -->
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">질문제목</span>
 							</div>
-						</div>
-						<br>
-
-						<div class="row">
-							<div class="col-sm-3" style="padding-top: 10%;">답글입력</div>
-							<div class="col-sm-9">
-								<textarea class="form-control" rows="5" id="qna_answer"
-									name="qna_answer">${qnaOne.qna_answer}</textarea>
-							</div>
+							<input type="text" class="form-control" id="qna_title"
+								name="qna_title" value="${qnaOne.qna_title}" disabled>
 						</div>
 
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">질문날짜</span>
+							</div>
+							<input type="text" class="form-control" id="qna_regdate"
+								name="qna_regdate" value="${qnaOne.qna_regdate}" readonly>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">질문내용</span>
+							</div>
+							<textarea class="form-control" rows="5" id="qna_content"
+								name="qna_content">${qnaOne.qna_content}</textarea>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">답변여부</span>
+							</div>
+							<input type="text" class="form-control" id="qna_views"
+								name="qna_views" value="${qnaOne.qna_views}" disabled>
+						</div>
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">답글입력</span>
+							</div>
+							<textarea class="form-control" rows="5" id="qna_answer"
+								name="qna_answer">${qnaOne.qna_answer}</textarea>
+						</div>
 
 						<div class="row">
 							<div class="col-sm-12 pt-3" style="text-align: center;">
 								<button id="amd-btn" type="submit" class="btn btn-primary">답변하기</button>
+								<button id="and-btn" type="submit" class="btn btn-primary">수정하기</button>
 								<!-- <a href="qna_update.jsp" class="btn btn-primary">수정하기</a> -->
 								<!-- <button type="button" onclick="alert('삭제하시겠습니까?')" class="btn btn-primary">삭제하기</button> -->
 								<button type="button" onclick="deleteOne(${qnaOne.qna_num});"

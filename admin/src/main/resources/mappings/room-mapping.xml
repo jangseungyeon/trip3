@@ -68,7 +68,7 @@
 	<!-- #{room_likes}, #{room_stars}); -->
 	<!-- </insert> -->
 
-	<!-- 숙소 아이디와 업주 호스트 아이디 모두가 일치하는 경우 숙소 수정 -->
+	<!-- 숙소 아이디와 호스트 호스트 아이디 모두가 일치하는 경우 숙소 수정 -->
 	<!-- <update id="updateRoom"> -->
 	<!-- UPDATE ROOM SET -->
 	<!-- ROOM_NAME=#{room_name}, -->
@@ -85,14 +85,14 @@
 	<!-- ROOM_ID=#{room_id} and HOST_ID=#{host_id} -->
 	<!-- </update> -->
 
-	<!-- 숙소 아이디와 업주 호스트 아이디 일치할때 숙소 데이터 삭제 -->
+	<!-- 숙소 아이디와 호스트 호스트 아이디 일치할때 숙소 데이터 삭제 -->
 
 	<!-- <delete id="deleteRoom"> -->
 	<!-- DELETE FROM ROOM WHERE ROOM_ID=#{room_id} and -->
 	<!-- HOST_ID=#{host_id} -->
 	<!-- </delete> -->
 
-	<!-- 숙소 아이디와 업주 호스트 아이디 일치하는 숙소 데이터 한 줄 끌어오기 -->
+	<!-- 숙소 아이디와 호스트 호스트 아이디 일치하는 숙소 데이터 한 줄 끌어오기 -->
 
 	<!-- <select id="getRoom" resultType="room"> -->
 	<!-- SELECT * FROM ROOM WHERE -->

@@ -1340,6 +1340,7 @@ a:focus, a:active, button::-moz-focus-inner, input::-moz-focus-inner,
 }
 
 .input-lg {
+	width: 576px;
 	height: 55px;
 	padding: 14px 30px;
 }
@@ -1573,7 +1574,8 @@ thead {
 }
 
 tr:nth-child(even) td {
-	background: #eaeaed;
+	background: #F7F7F8;
+/* 	background: #eaeaed; */
 }
 
 .table .radio, .table .checkbox {

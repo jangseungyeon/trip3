@@ -39,7 +39,7 @@ public class RoomController {
 //		return roomListHeadMap;
 //	}
 
-	// 관리자 숙소 수정 (새션에 저장한 업주 호스트 아이디와 숙소 상세 페이지의 아이디와 일치해야 수정, 그 후 숙소 목록으로 돌아감)
+	// 관리자 숙소 수정 (새션에 저장한 호스트 호스트 아이디와 숙소 상세 페이지의 아이디와 일치해야 수정, 그 후 숙소 목록으로 돌아감)
 	@RequestMapping(value = "/manage_roomUpdate.do")
 	public String manage_roomUpdate(@ModelAttribute RoomVO vo, HttpSession session) {
 		System.out.println("숙소 수정 시작");
@@ -48,7 +48,7 @@ public class RoomController {
 		return "manage_roomList.do";
 	}
 
-	// 관리자 숙소 삭제 (숙소 이미지 파일 먼저 삭제 후 숙소 조회 후 가지고 온 업주 호스트 아이디와 세션의 업주 호스트 아이디가 일치하면
+	// 관리자 숙소 삭제 (숙소 이미지 파일 먼저 삭제 후 숙소 조회 후 가지고 온 호스트 호스트 아이디와 세션의 호스트 호스트 아이디가 일치하면
 	// 삭제, 그후 숙소 목록으로 돌아감)
 	@RequestMapping(value = "/manage_roomDelete.do")
 	public String manage_roomDelete(RoomVO vo, HttpSession session) {
@@ -101,7 +101,7 @@ public class RoomController {
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<String, String>();
 		conditionMap.put("숙소 아이디", "ROOMID");
-		conditionMap.put("업주 아이디", "HOSTID");
+		conditionMap.put("호스트 아이디", "HOSTID");
 		return conditionMap;
 	}
 	

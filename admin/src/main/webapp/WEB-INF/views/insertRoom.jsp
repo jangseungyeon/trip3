@@ -194,7 +194,7 @@ document.getElementById("room_addr_search").addEventListener("click", function()
 <br>
 <br>
 
-<!-- 업주 아이디는 DB에서 혹은 세션에서 불러와서 아래 해당 input에 값으로만 세팅해놓고 안보이게 처리할것임 (hidden이라도 form 데이터 전송할때 값은 전송됨) -->
+<!-- 호스트 아이디는 DB에서 혹은 세션에서 불러와서 아래 해당 input에 값으로만 세팅해놓고 안보이게 처리할것임 (hidden이라도 form 데이터 전송할때 값은 전송됨) -->
 <div id="host_id_Box">
 <input name="host_id" type="hidden" id="host_id" value=""/>
 </div>

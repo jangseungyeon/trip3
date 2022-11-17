@@ -30,7 +30,7 @@
 						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트 관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
@@ -107,7 +107,7 @@
 								<th>이름</th>
 								<th>전화번호</th>
 								<!-- 								<th>이메일</th> -->
-								<!-- 								<th>업주아이디</th> -->
+								<!-- 								<th>호스트아이디</th> -->
 								<!-- 								<th>숙소아이디</th> -->
 								<th>숙소명</th>
 								<!-- 								<th>이미지</th> -->

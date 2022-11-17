@@ -31,7 +31,7 @@
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트
 							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -107,7 +107,7 @@
 						<thead>
 							<tr>
 								<th>숙소ID</th>
-								<th>업주ID</th>
+								<th>호스트ID</th>
 								<th>이름</th>
 								<th>주소</th>
 								<th>상세주소</th>

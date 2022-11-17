@@ -8,6 +8,29 @@
 <!doctype html>
 <html lang="ko">
 <title>정보 수정</title>
+<style>
+input {
+	height: 45px;
+	border-radius: 15px;
+	border: 1px solid #aaa;
+	padding: 12px;
+	margin-top: 10px;
+}
+
+input#btnDelete {
+	margin: 10px;
+}
+
+.submitbutton {
+	/* 	margin: 10px 5px; */
+	color: white;
+	border-radius: 7px;
+	background-color: #19558c;
+	border: none;
+	width: 130px;
+	margin-top: 30px;
+}
+</style>
 </head>
 <body class="info-body">
 	<script>
@@ -88,22 +111,28 @@
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원 관리
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너 관리
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
+							관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약 관리
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="qna_admin_list.do"> <i class="nc-icon nc-send"></i>문의 응답
@@ -146,98 +175,99 @@
 
 			<div class="content">
 				<div class="container-fluid">
-					<h2>예약정보 상세</h2>
-					<form name="manage_reservInfo" method="post">
-						<table border="1">
+					<div class="reservInfo-div1">예약정보</div>
+					<hr class="reservInfo-hr">
+					<form name="manage_reservInfo" id="manage_reservInfo" method="post">
+						<table class="reservInfo-table container">
 							<tr>
-								<td>예약번호</td>
-								<td><input name="res_id" value="${ReservationVO.res_id}"></td>
+								<th class="reservInfo-th">예약번호</th>
+								<td><input name="res_id" value="${ReservationVO.res_id}"
+									readonly></td>
 							</tr>
 							<tr>
-								<td>회원아이디</td>
+								<th class="reservInfo-th">회원아이디</th>
 								<td><input name="user_id" value="${ReservationVO.user_id}"></td>
 							</tr>
 							<tr>
-								<td>imp_uid</td>
+								<th class="reservInfo-th">imp_uid</th>
 								<td><input name="imp_uid" value="${ReservationVO.imp_uid}"></td>
 							</tr>
 							<tr>
-								<td>merchant_uid</td>
+								<th class="reservInfo-th">merchant_uid</th>
 								<td><input name="merchant_uid"
 									value="${ReservationVO.merchant_uid}"></td>
 							</tr>
 							<tr>
-								<td>이름</td>
+								<th class="reservInfo-th">이름</th>
 								<td><input name="res_name"
 									value="${ReservationVO.res_name}"></td>
 							</tr>
 							<tr>
-								<td>전화번호</td>
+								<th class="reservInfo-th">전화번호</th>
 								<td><input name="res_tel" value="${ReservationVO.res_tel}"></td>
 							</tr>
 							<tr>
-								<td>이메일</td>
+								<th class="reservInfo-th">이메일</th>
 								<td><input name="res_email"
 									value="${ReservationVO.res_email}"></td>
 							</tr>
 							<tr>
-								<td>업주아이디</td>
+								<th class="reservInfo-th">호스트아이디</th>
 								<td><input name="host_id" value="${ReservationVO.host_id}"></td>
 							</tr>
 							<tr>
-								<td>숙소아이디</td>
+								<th class="reservInfo-th">숙소아이디</th>
 								<td><input name="room_id" value="${ReservationVO.room_id}"></td>
 							</tr>
 							<tr>
-								<td>숙소명</td>
+								<th class="reservInfo-th">숙소명</th>
 								<td><input name="room_name"
 									value="${ReservationVO.room_name}"></td>
 							</tr>
 							<tr>
-								<td>이미지</td>
+								<th class="reservInfo-th">이미지</th>
 								<td><input name="room_img"
 									value="${ReservationVO.room_img}"></td>
 							</tr>
 							<tr>
-								<td>결제일자</td>
+								<th class="reservInfo-th">결제일자</th>
 								<td><input name="pay_date"
 									value="${ReservationVO.pay_date}"></td>
 							</tr>
 							<tr>
-								<td>결제금액</td>
+								<th class="reservInfo-th">결제금액</th>
 								<td><input name="pay_amount"
 									value="${ReservationVO.pay_amount}"></td>
 							</tr>
 							<tr>
-								<td>예약인원</td>
+								<th class="reservInfo-th">예약인원</th>
 								<td><input name="res_num" value="${ReservationVO.res_num}"></td>
 							</tr>
 							<tr>
-								<td>변경가능횟수</td>
+								<th class="reservInfo-th">변경가능횟수</th>
 								<td><input name="res_count"
 									value="${ReservationVO.res_count}"></td>
 							</tr>
 							<tr>
-								<td>예약상태</td>
+								<th class="reservInfo-th">예약상태</th>
 								<td><input name="res_status"
 									value="${ReservationVO.res_status}"></td>
 							</tr>
 							<tr>
-								<td>체크인</td>
+								<th class="reservInfo-th">체크인</th>
 								<td><input name="res_checkin"
 									value="${ReservationVO.res_checkin}"></td>
 							</tr>
 							<tr>
-								<td>체크아웃</td>
+								<th class="reservInfo-th">체크아웃</th>
 								<td><input name="res_checkout"
 									value="${ReservationVO.res_checkout}"></td>
 							</tr>
-
 							<tr>
-								<td colspan="2" align="center"><input type="button"
-									value="환불" id="btnUpdate"
-									onclick="cancelPay('${ReservationVO.merchant_uid}')"> <input
-									type="button" value="삭제" id="btnDelete"></td>
+								<th></th>
+								<td><input type="button" class="submitbutton" value="수정"
+									id="btnUpdate"> <input type="button"
+									class="submitbutton" value="삭제" id="btnDelete"></td>
 							</tr>
 						</table>
 					</form>

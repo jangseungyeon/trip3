@@ -4,14 +4,14 @@
 
 <mapper namespace="HostDAO">
 
-	<!-- 관리자 업주 등록 -->
+	<!-- 관리자 호스트 등록 -->
 	<insert id="manage_hostInsert">
 		INSERT INTO
 		HOST(HOST_ID,HOST_BIZNAME,HOST_PW,HOST_NAME,HOST_BIRTH,HOST_EMAIL,HOST_PHONE,HOST_ADDR1,HOST_ADDR2,HOST_STATUS,HOST_BIZNUM,HOST_BIZIMG,HOST_BANK,HOST_BANKNUM)
 		VALUES(#{host_id},#{host_bizname},#{host_pw},#{host_name},#{host_birth},#{host_email},#{host_phone},#{host_addr1},#{host_addr2},#{host_status},#{host_biznum},#{host_bizimg},#{host_bank},#{host_banknum});
 	</insert>
 
-	<!-- 관리자 업주 수정 -->
+	<!-- 관리자 호스트 수정 -->
 	<update id="manage_hostUpdate">
 		UPDATE HOST SET
 		HOST_BIZNAME =#{host_bizname},
@@ -30,12 +30,12 @@
 		HOST_ID=#{host_id}
 	</update>
 
-	<!-- 관리자 업주 삭제 -->
+	<!-- 관리자 호스트 삭제 -->
 	<delete id="manage_hostDelete">
 		DELETE FROM HOST WHERE HOST_ID = #{host_id}
 	</delete>
 
-	<!-- 관리자 업주 조회 -->
+	<!-- 관리자 호스트 조회 -->
 	<select id="manage_hostList" resultType="host">
 		SELECT * FROM HOST WHERE 1=1
 		<if test="searchCondition == 'ID' "> AND HOST_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
@@ -44,7 +44,7 @@
 		ORDER BY HOST_BIZNAME DESC LIMIT 10 OFFSET #{offset}
 	</select>
 
-	<!-- 관리자 업주 상세 -->
+	<!-- 관리자 호스트 상세 -->
 	<select id="manage_hostInfo" resultType="host">
 		SELECT *
 		FROM HOST WHERE

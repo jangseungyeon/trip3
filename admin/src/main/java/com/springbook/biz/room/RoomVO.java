@@ -8,7 +8,7 @@ public class RoomVO {
 	private String room_addr_detail;	//숙소 상세 주소
 	private String room_desc;	//숙소 설명
 	private String room_id;		//숙소 아이디
-	private String host_id;		//업주 아이디
+	private String host_id;		//호스트 아이디
 	private String room_price;	//숙소 1박 가격
 	private String room_img_no1;	//숙소 대표 이미지
 	private String room_img_no2;	//숙소 서브 이미지 1

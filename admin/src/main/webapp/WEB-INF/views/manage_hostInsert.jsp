@@ -1,14 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="header.jsp"%>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
 <!doctype html>
 <html lang="ko">
 <head>
+<%@ include file="header.jsp"%>
 <meta charset="utf-8">
-<title>업주가입</title>
+<title>호스트가입</title>
+<style>
+input {
+	height: 45px;
+	border-radius: 15px;
+	border: 1px solid #aaa;
+	padding: 12px;
+	margin-top: 10px;
+}
+
+#phoneChk, button {
+	margin: 10px 5px;
+	color: white;
+	border-radius: 7px;
+	background-color: #19558c;
+	border: none;
+	width: 130px;
+	height: 35px;
+}
+
+button.submitbutton {
+	margin-top: 30px;
+}
+</style>
 <script>
 	
 <%if (request.getParameter("manage_hostInsert") != null) {%>
@@ -218,22 +241,28 @@ request.setCharacterEncoding("UTF-8");
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원 관리
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
+							관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>호스트
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너 관리
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약 관리
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="qna_admin_list.do"> <i class="nc-icon nc-send"></i>문의 응답
@@ -245,7 +274,7 @@ request.setCharacterEncoding("UTF-8");
 			<!-- Navbar -->
 			<nav class="navbar navbar-expand-lg " color-on-scroll="500">
 				<div class="container-fluid">
-					<a class="navbar-brand"> 업주 관리 </a>
+					<a class="navbar-brand"> 호스트 관리 </a>
 					<button href="" class="navbar-toggler navbar-toggler-right"
 						type="button" data-toggle="collapse"
 						aria-controls="navigation-index" aria-expanded="false"
@@ -276,34 +305,53 @@ request.setCharacterEncoding("UTF-8");
 
 			<div class="content">
 				<div class="container-fluid">
-					<h3>업주가입</h3>
+					<div class="hostInsert-div1">호스트가입</div>
+					<hr class="hostInsert-hr">
 					<form action="manage_hostInsert.do" method="post"
 						id="manage_hostInsert">
-						<input type="text" name="host_id" id="host_id" placeholder='아이디'
-							required>
-						<button type="button" id="idCheck">아이디중복체크</button>
-						<br> <input type="password" name="host_password"
-							id="host_password" placeholder='비밀번호'><br> <input
-							type="password" name="host_passwordCheck" id="host_passwordCheck"
-							placeholder='비밀번호재확인'><br> <input type="text"
-							name="host_name" placeholder='이름'><br> <input
-							type="text" name="host_phone" id="host_phone" placeholder='핸드폰'><br>
-						<input type="text" name="host_email" id="host_email"
-							placeholder='이메일'>
-						<button type="button" class="submitbutton" onclick="check()">업주가입</button>
+
+						<table class="hostInsert-table container">
+							<tr>
+								<th class="hostInsert-th">아이디</th>
+								<td><input type="text" name="host_id" id="host_id"
+									placeholder='아이디' required>
+									<button type="button" id="idCheck">아이디중복체크</button></td>
+							</tr>
+							<tr>
+								<th class="hostInsert-th">비밀번호</th>
+								<td><input type="password" name="host_password"
+									id="host_password" placeholder='비밀번호' required></td>
+							</tr>
+							<tr>
+								<th class="hostInsert-th">비밀번호</th>
+								<td><input type="password" name="host_passwordCheck"
+									id="host_passwordCheck" placeholder='비밀번호 재확인' required></td>
+							</tr>
+							<tr>
+								<th class="hostInsert-th">이름</th>
+								<td><input type="text" name="host_name" id="host_name"
+									placeholder='이름' required></td>
+							</tr>
+							<tr>
+								<th class="hostInsert-th">핸드폰</th>
+								<td><input type="text" name="host_phone" id="host_phone"
+									placeholder='핸드폰' required></td>
+							</tr>
+							<tr>
+								<th class="hostInsert-th">이메일</th>
+								<td><input type="text" name="host_email" id="host_email"
+									placeholder='이메일' required></td>
+							</tr>
+
+							<tr>
+								<th></th>
+								<td><button type="button" class="submitbutton"
+										onclick="check()">호스트가입</button>
+									<button type="reset" class="submitbutton hostInsert-resetbtn">되돌리기</button>
+								</td>
+							</tr>
+						</table>
 					</form>
-					<!-- <button type="button" id="phoneconfig" onclick="phoneconfig()">전화번호 인증하기</button> -->
-
-
-					<!-- <div id="config1" style="display: none"> -->
-					<!-- 	<input id="phone" type="text" name="phone" title="전화번호 입력" /> <span -->
-					<!-- 		id="phoneChk" class="doubleChk">인증번호 보내기</span> <br /> <input -->
-					<!-- 		id="phone2" type="text" name="phone2" title="인증번호 입력" disabled /> <span -->
-					<!-- 		id="phoneChk2" class="doubleChk">인증확인</span> <span -->
-					<!-- 		class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span> <input -->
-					<!-- 		type="hidden" id="phoneDoubleChk" /> -->
-					<!-- </div> -->
-
 				</div>
 			</div>
 		</div>

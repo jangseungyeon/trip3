@@ -8,7 +8,7 @@ public class ReservationVO {
 	private String res_name; // 손님 이름
 	private String res_tel; // 손님 전화번호
 	private String res_email; // 손님 이메일
-	private String host_id; // 업주 아이디
+	private String host_id; // 호스트 아이디
 	private String room_id; // 숙소 아이디
 	private String room_name; // 숙소명
 	private String room_img; // 숙소 이미지 파일명
