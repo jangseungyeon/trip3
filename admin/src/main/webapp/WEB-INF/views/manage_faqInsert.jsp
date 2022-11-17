@@ -21,7 +21,6 @@ request.setCharacterEncoding("UTF-8");
 		$('#manage_faqInsert').submit();
 
 	}
-	
 <%Date nowTime = new Date();
 SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");%>
 	
@@ -44,22 +43,28 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");%>
 							<i class="nc-icon nc-chart-pie-35"></i>Dashboard
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원 관리
+						href="manage_userList.do"> <i class="nc-icon nc-circle-09"></i>회원
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소 관리
+						href="manage_roomList.do"> <i class="nc-icon nc-istanbul"></i>숙소
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주 관리
+						href="manage_hostList.do"> <i class="nc-icon nc-satisfied"></i>업주
+							관리
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항 관리
+						href="manage_faqList.do"> <i class="nc-icon nc-single-copy-04"></i>공지사항
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너 관리
+						href="manage_plannerList.do"> <i class="nc-icon nc-map-big"></i>플래너
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약 관리
+						href="manage_reservList.do"> <i class="nc-icon nc-money-coins"></i>예약
+							관리
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="qna_admin_list.do"> <i class="nc-icon nc-send"></i>문의 응답
@@ -106,14 +111,12 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");%>
 					<form action="manage_faqInsert.do" method="post"
 						id="manage_faqInsert" enctype="multipart/form-data">
 
-						<input type="text" name="faq_writer" id="faq_writer" value="관리자"
-							readonly><br>
+						<input type="text" name="faq_writer" id="faq_writer" value="관리자" readonly><br>
 						<!-- <input type="password" name="host_password" id="host_password" placeholder='비밀번호'><br> -->
-						<input type="date" name="faq_regdate"
-							value="<%=sf.format(nowTime)%>"><br> <input
-							type="text" name="faq_title" placeholder='제목'><br> <input
-							type="text" name="faq_content" id="faq_content" placeholder='내용'><br>
-						<input type="hidden" name="faq_cnt" id="faq_cnt" value="0">
+						<input type="date" name="faq_regdate" value="<%=sf.format(nowTime)%>"><br> 
+						<input type="text" name="faq_title" placeholder='제목'><br>
+						<textarea name="faq_content" id="faq_content" placeholder='내용'></textarea><br> 
+						<input type="hidden" name="faq_cnt" id="faq_cnt" value="0"> 
 						<input type="file" name="uploadFile"><br>
 
 						<button type="button" class="submitbutton" onclick="check()">공지등록</button>

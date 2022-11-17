@@ -7,9 +7,8 @@
 	<!-- 관리자 공지 등록 -->
 	<insert id="manage_faqInsert">
 		INSERT INTO
-		FAQ (FAQ_NO, FAQ_TITLE, FAQ_REGDATE,
-		FAQ_WRITER, FAQ_CONTENT, FAQ_CNT, FILENAME)
-		VALUES(#{faq_no},#{faq_title},#{faq_regdate},#{faq_writer},#{faq_content},#{faq_cnt},#{filename});
+		FAQ (FAQ_TITLE, FAQ_WRITER, FAQ_CONTENT, FAQ_REGDATE, FAQ_CNT, FILENAME)
+		VALUES(#{faq_title}, #{faq_writer}, #{faq_content}, #{faq_regdate}, #{faq_cnt}, #{filename});
 	</insert>
 
 	<!-- 관리자 공지 수정 -->

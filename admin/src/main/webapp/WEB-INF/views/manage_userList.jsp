@@ -83,7 +83,7 @@
 				<div class="container-fluid">
 					<!-- Search -->
 					<nav id="searchNav" class="navbar navbar-expand-sm navbar-dark">
-						<form class="form-inline" action="manage_hostList.do"
+						<form class="form-inline" action="manage_userList.do"
 							method="post">
 							<select class="form-control" id="sel1" name="searchCondition"
 								style="display: inline-block !important; margin-right: 10px;">
