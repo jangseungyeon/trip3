@@ -352,7 +352,7 @@ function test00(tval) {
 				}
 				
  				if(this.firstimage == ""){
- 					img = "./resources/img/map.png";
+ 					img = "${pageContext.request.contextPath}/resources/img/map.png";
  				}else{
  				 	img = this.firstimage
  				}

@@ -142,7 +142,7 @@ style="display:none"
 <form action="plannerDP.do">
 <input type="hidden" name="planner_no" value="${planner.planner_no}">
 <input type="hidden" name="user_id" value="${planner.user_id}">
-<img src="resources/img/${planner.planner_areaNum}.jpg" style="width:200px; height:210px; float: left;" class="listImg"> 
+<img src="${pageContext.request.contextPath}/resources/img/${planner.planner_areaNum}.jpg" style="width:200px; height:210px; float: left;" class="listImg"> 
 <div style=" padding-top: 28px;">
 <span style="font-size:18px" class="title left">${planner.planner_area}</span>
 <span style="font-size:18px; font-weight:550; color:#fa8100" class="title main left">${planner.planner_title}</span>
