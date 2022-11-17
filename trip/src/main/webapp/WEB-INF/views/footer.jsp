@@ -13,7 +13,7 @@
 	<!-- 푸터 내비 닫음 -->
 	<div class="container">
 		<div class="footer_info">
-			<div class="inner">
+			<div class="inner" style="margin-top:2%">
 				<ul class="footer_row">
 			
 						<li class="footer-li">교육용으로 만든 홈페이지로 실제 사용 하실 수 없습니다.</li>

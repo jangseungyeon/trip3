@@ -68,7 +68,7 @@ button.main-icon-div3:hover span:nth-child(2) {
 </button><br>
 <button class="main-icon-div3" onclick="location.href='start.do'">
 <span class="material-symbols-outlined" style="color: white; font-size: 50px;">edit_calendar</span>
-<span class="main-icon-span1">플래너<br>쓰기</span>
+<span class="main-icon-span1">일정<br>만들기</span>
 </button>
 </div>
 </div>
