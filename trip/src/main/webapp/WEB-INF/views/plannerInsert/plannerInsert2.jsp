@@ -196,7 +196,7 @@ input#key:focus {
   			<input type="hidden" value="N" name="planner_show" id="show_c" onclick="show()">
   			<label class="form-check-label" for="flexSwitchCheckDefault" id="test">비공개</label>
 			</div>
-	<textarea onkeydown="return captureReturnKey(event);" id="title"  placeholder="여행 제목을 정해주세요 (최대 40자)" name="planner_title" class="input" maxlength="40"></textarea><br>
+	<textarea onkeydown="return captureReturnKey(event);" id="title"  placeholder="여행 제목을 정해주세요 (최대 40자)" name="planner_title" class="input" maxlength="40" required></textarea><br>
 	<a id="h2" style="display: inline-block; margin-bottom:10px"><%= session.getAttribute("areaname") %></a>
 	<a><%= session.getAttribute("start") %> ~ <%= session.getAttribute("end") %></a>
 	<% for(int i=1; i<=Integer.parseInt((String)session.getAttribute("date")) + 1; i ++){ %>

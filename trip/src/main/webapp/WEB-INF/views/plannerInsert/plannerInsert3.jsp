@@ -112,6 +112,7 @@ input#key {
 input#key:focus {
    outline: none;
 }
+
 </style>
 <body>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -205,7 +206,7 @@ input#key:focus {
 						</c:when>
 					</c:choose>
 			</div>
-	<textarea onkeydown="return captureReturnKey(event);" id="title" name="planner_title" class="input" maxlength="40">${planner.planner_title}</textarea><br>
+	<textarea onkeydown="return captureReturnKey(event);" id="title" name="planner_title" class="input" maxlength="40" required>${planner.planner_title}</textarea><br>
 	<a id="h2" style="display: inline-block; margin-bottom:10px">${planner.planner_area}</a>
 	<a>${planner.planner_start} ~ ${planner.planner_end}</a>
 		<c:forEach begin="1" end="${planner.planner_day}" step="1" varStatus="status">
