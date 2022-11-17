@@ -114,6 +114,8 @@ $(document).ready(function(){
 			
 			$("#room_img_main").attr("src", room_imgs_src[idx]);
 			
+			if(room_imgs_src[3] != null) {
+			
 			if(idx == 0) {
 				
 				document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
@@ -137,13 +139,64 @@ $(document).ready(function(){
 				document.getElementById("room_img_sub4").style.border = "4px solid #ff8e15";
 			}
 			
+			}
+			
+			if(room_imgs_src[2] != null) {
+				
+				if(idx == 0) {
+					
+					document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
+				}
+				if(idx == 1) {
+					
+					document.getElementById("room_img_sub1").style.border = "";
+					
+					document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
+				}
+				if(idx == 2) {
+					
+					document.getElementById("room_img_sub2").style.border = "";
+					
+					document.getElementById("room_img_sub3").style.border = "4px solid #ff8e15";
+				}
+				
+				}
+			
+			if(room_imgs_src[1] != null) {
+				
+				if(idx == 0) {
+					
+					document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
+				}
+				if(idx == 1) {
+					
+					document.getElementById("room_img_sub1").style.border = "";
+					
+					document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
+				}
+				
+				}
+			
+			if(room_imgs_src[0] != null) {
+				
+				if(idx == 0) {
+					
+					document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
+					
+					document.getElementById("changeAfter").style.cursor = "default";
+					
+					document.getElementById("changeBefore").style.cursor = "default";
+				}
+				
+				}
+			
 			idx++;
 			
 			if(idx >= (room_imgs_src.length - 1)) {
 				
 				idx = (room_imgs_src.length - 1);
 				
-				document.getElementById("changeAfter").style.cursor = "default";
+				$("#changeBefore").attr("pointer-events", "none");
 			}
 			
 		});
@@ -156,6 +209,9 @@ $(document).ready(function(){
 				idx--;
 				
 				$("#room_img_main").attr("src", room_imgs_src[idx]);
+				
+				if(room_imgs_src[3] != null) {
+					
 				
 				if(idx == 0) {
 					
@@ -181,6 +237,59 @@ $(document).ready(function(){
 				}
 				
 				document.getElementById("changeAfter").style.cursor = "pointer";
+				
+				}
+				
+				if(room_imgs_src[2] != null) {
+					
+					if(idx == 0) {
+						
+						document.getElementById("room_img_sub2").style.border = "";
+						
+						document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
+					}
+					if(idx == 1) {
+						
+						document.getElementById("room_img_sub3").style.border = "";
+						
+						document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
+					}
+					if(idx == 2) {
+						
+						document.getElementById("room_img_sub4").style.border = "";
+						
+						document.getElementById("room_img_sub3").style.border = "4px solid #ff8e15";
+					}
+					
+					document.getElementById("changeAfter").style.cursor = "pointer";
+					
+					}
+				
+				if(room_imgs_src[1] != null) {
+					
+					if(idx == 0) {
+						
+						document.getElementById("room_img_sub2").style.border = "";
+						
+						document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
+					}
+					if(idx == 1) {
+						
+						document.getElementById("room_img_sub3").style.border = "";
+						
+						document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
+					}
+			
+			}
+				
+				if(room_imgs_src[0] != null) {
+					
+					if(idx == 0) {
+						
+						document.getElementById("room_img_sub2").style.border = "";
+						
+						document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
+					}
 			
 			}
 			
@@ -190,9 +299,11 @@ $(document).ready(function(){
 				
 				$("#room_img_main").attr("src", room_imgs_src[idx]);
 				
-				document.getElementById("changeBefore").style.cursor = "default";
+				$("#changeBefore").attr("pointer-events", "none");
 				
 			}
+			
+		}
 			
 		});
 		
@@ -339,13 +450,13 @@ $(document).ready(function(){
 			
 			if('${rsvo.res_id}' == "") {
 				
-				alert("해당 방에 대해 예약한 내역이 없습니다.\예약 후 체크아웃 뒤 리뷰 등록이 가능합니다.");
+				alert("해당 방에 대해 예약한 내역이 없습니다.\n예약 후 체크아웃 뒤 리뷰 등록이 가능합니다.");
 				
 				return;
 				
-				if('${rsvo.res_co_ok}' == "false" {
+				if('${rsvo.res_co_ok}' == "false") {
 				
-					alert("아직 체크아웃 날짜가 지나지 않았습니다.\체크 아웃 날짜 이후 리뷰 등록이 가능합니다.");
+					alert("아직 체크아웃 날짜가 지나지 않았습니다.\n체크 아웃 날짜 이후 리뷰 등록이 가능합니다.");
 					
 					return;
 				}
@@ -504,6 +615,11 @@ function drawStar() {
 
 
 function f_heart(room_id, room_name) {
+	if("${user_id}" == "") {
+		alert("로그인 이후 이용 가능합니다.");
+		
+		location.href = "user.login.do";
+	}
 	$.ajax({
 		method: "POST",
 		url: "likeinsertRoom.do",
@@ -658,7 +774,6 @@ function f_moveInsertRes() {
 	border: 2px solid black;
 	border-radius: 5px;
 	outline: none;
-  	box-shadow: 2px 3px 0 rgb(0,0,0,0.5);
 }
 
 #changeBefore {
@@ -675,7 +790,6 @@ function f_moveInsertRes() {
 
 #changeBefore:active {
 
-	box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
 	position: relative;
 	top:2px;
 
@@ -683,7 +797,6 @@ function f_moveInsertRes() {
 
  #changeAfter:active {
  
- 	box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
 	position: relative;
 	top:2px;
  	
@@ -770,8 +883,8 @@ function f_moveInsertRes() {
 .heart {
 	position: relative;
 	text-align: left;
-	width: 20px;
-	height: 20px;
+	width: 25px;
+	height: 25px;
 	background: #bbb3b3;
 	transform: rotate(45deg);
 	display: inline-block;
@@ -801,9 +914,10 @@ function f_moveInsertRes() {
 }
 
 .heartChecked {
-	position: relative;
-	width: 20px;
-	height: 20px;
+position: relative;
+	text-align: left;
+	width: 25px;
+	height: 25px;
 	background: red;
 	transform: rotate(45deg);
 	display: inline-block;
@@ -963,9 +1077,9 @@ svg {
 	<div id="u_room_img_box">
 	
 	<div id="u_room_img_main">
-	<c:if test="${not empty u_room.room_img_no2}"><img id="room_img_main" src="resources/room_img/${u_room.room_img_no1}" alt="숙소 대표 이미지" title="숙소 대표 이미지" width="460" height="400" /></c:if>
+	<c:if test="${not empty u_room.room_img_no2}"><img id="room_img_main" src="resources/room_img/${u_room.room_img_no1}" alt="숙소 대표 이미지" title="숙소 대표 이미지" width="460" height="400" onerror="this.style.display='none';"/></c:if>
 	
-	<c:if test="${empty u_room.room_img_no2}"><img id="room_img_main" src="resources/room_img/${u_room.room_img_no1}" alt="숙소 대표 이미지" title="숙소 대표 이미지" width="460" height="525" /></c:if>
+	<c:if test="${empty u_room.room_img_no2}"><img id="room_img_main" src="resources/room_img/${u_room.room_img_no1}" alt="숙소 대표 이미지" title="숙소 대표 이미지" width="460" height="525" onerror="this.style.display='none';"/></c:if>
 	</div>
 	<br>
 	
@@ -975,25 +1089,25 @@ svg {
 	
 	<c:if test="${not empty u_room.room_img_no2}">
 	
-	<div><img id ="room_img_sub1" src="resources/room_img/${u_room.room_img_no2}" alt="숙소 서브1 이미지" title="숙소 서브1 이미지" width="70" height="70" /></div>
+	<div><img id ="room_img_sub1" src="resources/room_img/${u_room.room_img_no2}" alt="숙소 서브1 이미지" title="숙소 서브1 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
 	
 	</c:if>
 	
 	<c:if test="${not empty u_room.room_img_no3}">
 	
-	<div><img id ="room_img_sub2" src="resources/room_img/${u_room.room_img_no3}" alt="숙소 서브2 이미지" title="숙소 서브2 이미지" width="70" height="70" /></div>
+	<div><img id ="room_img_sub2" src="resources/room_img/${u_room.room_img_no3}" alt="숙소 서브2 이미지" title="숙소 서브2 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
 	
 	</c:if>
 	
 	<c:if test="${not empty u_room.room_img_no4}">
 	
-	<div><img id ="room_img_sub3" src="resources/room_img/${u_room.room_img_no4}" alt="숙소 서브3 이미지" title="숙소 서브3 이미지" width="70" height="70" /></div>
+	<div><img id ="room_img_sub3" src="resources/room_img/${u_room.room_img_no4}" alt="숙소 서브3 이미지" title="숙소 서브3 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
 	
 	</c:if>
 	
 	<c:if test="${not empty u_room.room_img_no5}">
 	
-	<div><img id ="room_img_sub4" src="resources/room_img/${u_room.room_img_no5}" alt="숙소 서브4 이미지" title="숙소 서브4 이미지" width="70" height="70" /></div>
+	<div><img id ="room_img_sub4" src="resources/room_img/${u_room.room_img_no5}" alt="숙소 서브4 이미지" title="숙소 서브4 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
 	
 	</c:if>
 	

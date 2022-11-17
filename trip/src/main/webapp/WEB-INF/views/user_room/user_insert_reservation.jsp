@@ -49,7 +49,7 @@ $(document).ready(function(){
 			buyer_tel: $("#res_tel_ipt").val(),
 // 			buyer_addr: $("#uaddr").val() ,
 // 			buyer_postcode: '123-456',
-			m_redirect_url: 'http://localhost:8090/MobilePaymentComplete.do'
+			m_redirect_url: 'http://triponplan.ga/MobilePaymentComplete.do'
 			}, function (rsp) {
 				console.log(rsp);
 				if (rsp.success) {

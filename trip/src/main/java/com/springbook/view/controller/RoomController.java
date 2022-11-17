@@ -419,9 +419,11 @@ public class RoomController {
 		lvo = new LikeVO();
 		lvo.setUser_id((String) session.getAttribute("user_id"));
 		rsvo.setUser_id((String) session.getAttribute("user_id"));
+		revo.setRoom_id(u_room.getRoom_id());
 		lvo.setLike_id(u_room.getRoom_id());
 		lvo = Service.likeselectRoom(lvo);
 		List<ReviewVO> revo_list = reviewService.selectReviewForRoom(revo);
+		System.out.println(revo_list);
 		List<ReservationVO> rsvo_list = reservationService.getReservationList(rsvo);
 		
 		//Date 자료형 변수 미리 세팅
