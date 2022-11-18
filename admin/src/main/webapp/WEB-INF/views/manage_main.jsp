@@ -89,9 +89,9 @@
 							<li class="nav-item"><a class="nav-link" href="#pablo">
 									<span class="no-icon">${manage_id}님 접속중</span>
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#pablo">
-									<span class="no-icon">Account</span>
-							</a></li>
+<!-- 							<li class="nav-item"><a class="nav-link" href="#pablo"> -->
+<!-- 									<span class="no-icon">Account</span> -->
+<!-- 							</a></li> -->
 							<li class="nav-item"><a class="nav-link"
 								href="manage_logout.do"> <span class="no-icon">Log
 										out</span>
