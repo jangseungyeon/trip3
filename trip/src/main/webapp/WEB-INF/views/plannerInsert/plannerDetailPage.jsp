@@ -75,6 +75,11 @@ width: 95%;
 border: solid 1px #c5c5c5;
 outline: none;
 }
+
+.col-sm-6 {
+    height: 800px;
+    overflow: overlay;
+}
 </style>
 <script>
 function like(num){ // num = like (좋아요 누름)  num = unlike (좋아요 해제)   
@@ -405,6 +410,8 @@ function area(num){
 </div>
 </div>
 </div>
+<br>
+<br>
 <i class="bi bi-heart-fill unlike" onclick="like('unlike')" class="unlike"></i>
 <i class="bi bi-heart like" onclick="like('like')" class="like"></i>
 <span> 추천수 ${planner.planner_like}&nbsp </span> 

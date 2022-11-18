@@ -54,6 +54,10 @@ background-color: #cccccc;
   right: 0;
   top: 0;
 }
+.col-sm-6 {
+    height: 800px;
+    overflow: overlay;
+}
 </style>
 <script>
 
