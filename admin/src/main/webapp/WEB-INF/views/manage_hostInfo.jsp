@@ -10,6 +10,7 @@
 <%@ include file="header.jsp"%>
 <style>
 input {
+	width: 500px;
 	height: 45px;
 	border-radius: 15px;
 	border: 1px solid #aaa;
@@ -143,7 +144,7 @@ input#btnDelete {
 							<tr>
 								<th class="hostInfo-th">숙소명</th>
 								<td><input name="host_bizname"
-									value="${HostVO.host_bizname}" readonly></td>
+									value="${HostVO.host_bizname}"></td>
 							</tr>
 							<tr>
 								<th class="hostInfo-th">이름</th>
@@ -166,10 +167,6 @@ input#btnDelete {
 								<td><input name="host_addr1" value="${HostVO.host_addr1}"></td>
 							</tr>
 							<tr>
-								<th class="hostInfo-th">주소</th>
-								<td><input name="host_addr1" value="${HostVO.host_addr1}"></td>
-							</tr>
-							<tr>
 								<th class="hostInfo-th">상세주소</th>
 								<td><input name="host_addr2" value="${HostVO.host_addr2}"></td>
 							</tr>
@@ -181,10 +178,10 @@ input#btnDelete {
 								<th class="hostInfo-th">사업자번호</th>
 								<td><input name="host_biznum" value="${HostVO.host_biznum}"></td>
 							</tr>
-							<tr>
-								<th class="hostInfo-th">이미지</th>
-								<td><input name="host_bizimg" value="${HostVO.host_bizimg}"></td>
-							</tr>
+							<!-- 							<tr> -->
+							<!-- 								<th class="hostInfo-th">이미지</th> -->
+							<%-- 								<td><input name="host_bizimg" value="${HostVO.host_bizimg}"></td> --%>
+							<!-- 							</tr> -->
 							<tr>
 								<th class="hostInfo-th">은행</th>
 								<td><input name="host_bank" value="${HostVO.host_bank}"></td>

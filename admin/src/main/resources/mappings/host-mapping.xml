@@ -23,7 +23,7 @@
 		HOST_ADDR2=#{host_addr2},
 		HOST_STATUS=#{host_status},
 		HOST_BIZNUM=#{host_biznum},
-		HOST_BIZIMG=#{host_bizimg},
+<!-- 		HOST_BIZIMG=#{host_bizimg}, -->
 		HOST_BANK=#{host_bank},
 		HOST_BANKNUM=#{host_banknum}
 		WHERE

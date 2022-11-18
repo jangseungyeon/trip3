@@ -11,6 +11,7 @@
 
 <style>
 input {
+	width: 500px;
 	height: 45px;
 	border-radius: 15px;
 	border: 1px solid #aaa;
@@ -140,8 +141,7 @@ input#btnDelete {
 
 							<tr>
 								<th class="roomInfo-th">숙소명</th>
-								<td><input name="room_name" value="${RoomVO.room_name}"
-									readonly></td>
+								<td><input name="room_name" value="${RoomVO.room_name}"></td>
 							</tr>
 							<tr>
 								<th class="roomInfo-th">주소</th>
@@ -158,24 +158,26 @@ input#btnDelete {
 							</tr>
 							<tr>
 								<th class="roomInfo-th">숙소아이디</th>
-								<td><input name="room_id" value="${RoomVO.room_id}"></td>
+								<td><input name="room_id" value="${RoomVO.room_id}"
+									readonly></td>
 							</tr>
 							<tr>
 								<th class="roomInfo-th">호스트아이디</th>
-								<td><input name="host_id" value="${RoomVO.host_id}"></td>
+								<td><input name="host_id" value="${RoomVO.host_id}"
+									readonly></td>
 							</tr>
 							<tr>
 								<th class="roomInfo-th">가격</th>
 								<td><input name="room_price" value="${RoomVO.room_price}"></td>
 							</tr>
-							<tr>
-								<th class="roomInfo-th">이미지</th>
-								<td><input name="room_img_no1"
-									value="${RoomVO.room_img_no1}"></td>
-							</tr>
+							<!-- 							<tr> -->
+							<!-- 								<th class="roomInfo-th">이미지</th> -->
+							<!-- 								<td><input name="room_img_no1" -->
+							<%-- 									value="${RoomVO.room_img_no1}"></td> --%>
+							<!-- 							</tr> -->
 							<tr>
 								<th class="roomInfo-th">최대인원</th>
-								<td><input name="room_max" value="${RoomVO.room_max}"></td>
+								<td><input name="room_max" value="${RoomVO.room_max}" readonly></td>
 							</tr>
 							<tr>
 								<th class="roomInfo-th">테마</th>

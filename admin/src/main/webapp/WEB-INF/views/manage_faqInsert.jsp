@@ -13,6 +13,7 @@ request.setCharacterEncoding("UTF-8");
 
 <style>
 input {
+	width: 500px;
 	height: 45px;
 	border-radius: 15px;
 	border: 1px solid #aaa;
@@ -32,18 +33,18 @@ input {
 }
 
 textarea#faq_content {
-    margin-top: 15px;
-    margin-bottom: 5px;
+	margin-top: 15px;
+	margin-bottom: 5px;
 }
 
 input#uploadFile {
-    padding-top: 7px;
+	padding-top: 7px;
+	background-color: white;
 }
 
 button.submitbutton {
 	margin-top: 30px;
 }
-
 </style>
 
 <script>
@@ -160,7 +161,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");%>
 							</tr>
 							<tr>
 								<th class="faqInsert-th">작성일자</th>
-								<td><input type="date" name="faq_regdate"
+								<td><input type="date" name="faq_regdate" readonly
 									value="<%=sf.format(nowTime)%>"></td>
 							</tr>
 							<tr>

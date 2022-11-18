@@ -8,13 +8,17 @@
 	<update id="manage_roomUpdate">
 		UPDATE ROOM SET
 		ROOM_NAME=#{room_name},
-		ROOM_ADDR=#{room_addr}, ROOM_ADDR_DETAIL=#{room_addr_detail},
-		ROOM_DESC=#{room_desc}, ROOM_ID=#{room_id}, HOST_ID=#{host_id},
-		ROOM_PRICE=#{room_price}, ROOM_IMG_NO1=#{room_img_no1},
-<!-- 		ROOM_POINTS=#{room_points}, -->
+		ROOM_ADDR=#{room_addr},
+		ROOM_ADDR_DETAIL=#{room_addr_detail},
+		ROOM_DESC=#{room_desc},
+		ROOM_ID=#{room_id}, HOST_ID=#{host_id},
+		ROOM_PRICE=#{room_price},
+		<!-- ROOM_IMG_NO1=#{room_img_no1}, -->
+		<!-- ROOM_POINTS=#{room_points}, -->
 		ROOM_MAX=#{room_max},
 		ROOM_THEME=#{room_theme},
-		ROOM_CAT=#{room_cat}, ROOM_WIFI=#{room_wifi},
+		ROOM_CAT=#{room_cat},
+		ROOM_WIFI=#{room_wifi},
 		ROOM_PET=#{room_pet},
 		ROOM_MEAL=#{room_meal},
 		ROOM_PARKING=#{room_parking}, ROOM_SWPOOL=#{room_swpool},

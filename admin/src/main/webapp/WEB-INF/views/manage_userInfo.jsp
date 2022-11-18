@@ -10,6 +10,7 @@
 <title>정보 수정</title>
 <style>
 input {
+	width: 500px;	
 	height: 45px;
 	border-radius: 15px;
 	border: 1px solid #aaa;
@@ -52,6 +53,7 @@ input#btnDelete {
 				}
 			});
 		});
+		
 	</script>
 
 	<div class="wrapper">
@@ -143,18 +145,18 @@ input#btnDelete {
 							</tr>
 							<tr>
 								<th class="userInfo-th">이름</th>
-								<td><input name="user_name" value="${UserVO.user_name}"></td>
+								<td><input name="user_name" value="${UserVO.user_name}" required="required"></td>
 							</tr>
 							<tr>
 								<th class="userInfo-th">비밀번호</th>
 								<td><input type="password" name="user_password"
 									value="${UserVO.user_password}"></td>
 							</tr>
-							<tr>
-								<th class="userInfo-th">생년월일</th>
-								<td><input type="date" name="user_birth"
-									value="${UserVO.user_birth}"></td>
-							</tr>
+<!-- 							<tr> -->
+<!-- 								<th class="userInfo-th">생년월일</th> -->
+<!-- 								<td><input type="date" name="user_birth" -->
+<%-- 									value="${UserVO.user_birth} required"></td> --%>
+<!-- 							</tr> -->
 							<tr>
 								<th class="userInfo-th">성별</th>
 								<td><input name="user_gender" value="${UserVO.user_gender}"></td>
@@ -187,9 +189,8 @@ input#btnDelete {
 							</tr>
 							<tr>
 								<th></th>
-								<td><input type="button" class="submitbutton" value="수정"
-									id="btnUpdate"> <input type="button"
-									class="submitbutton" value="삭제" id="btnDelete"></td>
+								<td><input type="button" class="submitbutton" value="수정" id="btnUpdate"> 
+									<input type="button" class="submitbutton" value="삭제" id="btnDelete"></td>
 							</tr>
 						</table>
 					</form>

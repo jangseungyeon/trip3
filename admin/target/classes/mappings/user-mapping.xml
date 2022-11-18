@@ -19,7 +19,7 @@
 		SET
 		USER_PASSWORD =#{user_password},
 		USER_NAME=#{user_name},
-		USER_BIRTH=#{user_birth},
+<!-- 		USER_BIRTH=#{user_birth}, -->
 		USER_GENDER=#{user_gender},
 		USER_EMAIL=#{user_email},
 		USER_PHONE=#{user_phone},

@@ -10,9 +10,10 @@
 	<update id="manage_reservUpdate">
 		UPDATE RESERVATION
 		SET
-		RES_STATUS = 1
-		WHERE RES_ID =
-		#{res_id} AND USER_ID = #{user_id}
+		RES_NAME = #{res_name}, RES_TEL = #{res_tel}, RES_EMAIL = #{res_email}
+		WHERE RES_ID = #{res_id} AND
+		USER_ID = #{user_id} AND RES_STATUS = "0"
+
 	</update>
 
 	<!-- 관리자 예약 삭제 -->
@@ -27,7 +28,7 @@
 		SELECT * FROM RESERVATION WHERE 1=1
 		<if test="searchCondition == 'RESID' "> AND RES_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
 		<if test="searchCondition == 'NAME' "> AND RES_NAME LIKE CONCAT('%', #{searchKeyword}, '%')</if>
-<!-- 		<if test='res_id != null'>AND RES_ID = #{res_id}</if> -->
+		<!-- <if test='res_id != null'>AND RES_ID = #{res_id}</if> -->
 		ORDER BY RES_ID DESC LIMIT 10 OFFSET #{offset}
 	</select>
 
@@ -38,7 +39,7 @@
 		RESERVATION WHERE
 		RES_ID=#{res_id}
 	</select>
-	
+
 	<!-- 관리자 예약 개수 -->
 	<select id="totalReservationListCnt" resultType="_int">
 		SELECT COUNT(*) FROM RESERVATION WHERE 1=1

@@ -10,6 +10,7 @@
 <title>정보 수정</title>
 <style>
 input {
+	width: 500px;	
 	height: 45px;
 	border-radius: 15px;
 	border: 1px solid #aaa;
@@ -224,11 +225,11 @@ input#btnDelete {
 								<td><input name="room_name"
 									value="${ReservationVO.room_name}"></td>
 							</tr>
-							<tr>
-								<th class="reservInfo-th">이미지</th>
-								<td><input name="room_img"
-									value="${ReservationVO.room_img}"></td>
-							</tr>
+<!-- 							<tr> -->
+<!-- 								<th class="reservInfo-th">이미지</th> -->
+<!-- 								<td><input name="room_img" -->
+<%-- 									value="${ReservationVO.room_img}"></td> --%>
+<!-- 							</tr> -->
 							<tr>
 								<th class="reservInfo-th">결제일자</th>
 								<td><input name="pay_date"
@@ -265,9 +266,9 @@ input#btnDelete {
 							</tr>
 							<tr>
 								<th></th>
-								<td><input type="button" class="submitbutton" value="수정"
-									id="btnUpdate"> <input type="button"
-									class="submitbutton" value="삭제" id="btnDelete"></td>
+								<td>
+<!-- 								<input type="button" class="submitbutton" value="수정" id="btnUpdate">  -->
+									<input type="button" class="submitbutton" value="삭제" id="btnDelete"></td>
 							</tr>
 						</table>
 					</form>

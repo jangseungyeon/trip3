@@ -10,6 +10,7 @@
 <title>정보 수정</title>
 <style>
 input {
+	width: 500px;	
 	height: 45px;
 	border-radius: 15px;
 	border: 1px solid #aaa;
@@ -178,7 +179,7 @@ input#btnDelete {
 							<tr>
 								<th class="plannerInfo-th">여행기간</th>
 								<td><input name="planner_day"
-									value="${PlannerVO.planner_day}"></td>
+									value="${PlannerVO.planner_day}" readonly></td>
 							</tr>
 							<tr>
 								<th></th>

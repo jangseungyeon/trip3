@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <style>
 input {
+	width: 500px;
 	height: 45px;
 	border-radius: 15px;
 	border: 1px solid #aaa;
@@ -20,6 +21,16 @@ input {
 
 input#btnDelete {
 	margin: 10px;
+}
+
+textarea#faq_content {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+input#uploadFile {
+	padding-top: 7px;
+	background-color: white;
 }
 
 .submitbutton {
@@ -134,7 +145,7 @@ input#btnDelete {
 					<div class="faqInfo-div1">공지사항</div>
 					<hr class="faqInfo-hr">
 
-					<form name="manage_faqInfo" id="manage_faqInfo" method="post">
+					<form name="manage_faqInfo" id="manage_faqInfo" method="post" enctype="multipart/form-data">
 						<table class="faqInfo-table container">
 							<tr>
 								<th class="faqInfo-th">번호</th>
@@ -146,7 +157,8 @@ input#btnDelete {
 							</tr>
 							<tr>
 								<th class="faqInfo-th">내용</th>
-								<td><input name="faq_content" value="${FaqVO.faq_content}"></td>
+								<td><textarea class="form-control" rows="10"
+										id="faq_content" name="faq_content">${FaqVO.faq_content}</textarea></td>
 							</tr>
 							<tr>
 								<th class="faqInfo-th">작성일</th>
@@ -160,10 +172,14 @@ input#btnDelete {
 								<th class="faqInfo-th">조회수</th>
 								<td><input name="faq_cnt" value="${FaqVO.faq_cnt}"></td>
 							</tr>
-							<tr>
-								<th class="faqInfo-th">파일</th>
-								<td><input name="filename" value="${FaqVO.filename}"></td>
-							</tr>
+<!-- 							<tr> -->
+<!-- 								<th class="faqInfo-th">파일첨부</th> -->
+<!-- 								<td><input type="file" name="uploadFile" id="uploadFile"></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<th class="faqInfo-th">파일</th> -->
+<%-- 								<td><input name="filename" value="${FaqVO.filename}"></td> --%>
+<!-- 							</tr> -->
 							<tr>
 								<th></th>
 								<td><input type="button" class="submitbutton" value="수정"

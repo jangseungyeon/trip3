@@ -1340,7 +1340,6 @@ a:focus, a:active, button::-moz-focus-inner, input::-moz-focus-inner,
 }
 
 .input-lg {
-	width: 576px;
 	height: 55px;
 	padding: 14px 30px;
 }
