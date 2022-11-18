@@ -268,7 +268,6 @@ function memo(num){
   $("#content").val($("#val"+num).val());
 }
 function area(){
-    alert($("#areaNum").val())
 	var areanum = $("#areaNum").val();
 	$.ajax({
 		url:"areaNum.do",
@@ -281,7 +280,7 @@ function area(){
 			$("#areaNumber").val(data.area_num);
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		    mapOption = { 
-		        center: new kakao.maps.LatLng(data.mapy, data.mapx), // 지도의 중심좌표
+		        center: new kakao.maps.LatLng(data.area_mapy, data.area_mapy), // 지도의 중심좌표
 		        level: 10 // 지도의 확대 레벨
 		    };
 			var map = new kakao.maps.Map(mapContainer, mapOption);
