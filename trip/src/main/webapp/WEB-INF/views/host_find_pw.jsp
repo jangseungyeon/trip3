@@ -158,7 +158,7 @@
 <span class="main-div2" style="font-size:60px; line-height:40%;">tripONplan</span>
 <br><span style="color:#19558c; font-size:30px"><br>호스트 비밀번호 찾기</span><br>
 </div>
-
+<br>
 <div align=center style="width:50%" class="host-find-id">
 <input type='radio' name='findPw' value='email' onclick='emailconfig()'>이메일로 찾기 &nbsp;&nbsp;
 <input type='radio' name='findPw' value='phone' onclick='phoneconfig()'>휴대폰으로 찾기
@@ -178,20 +178,34 @@
 	<span id="phoneChk2" class="sub1">인증확인</span><br>
 	<span class="successPhoneChk"></span>
 	<input type="hidden" id="phoneDoubleChk" />
+	<br><div align=center class="complete"></div>
 </div>
 </div>
 </div>
 
-<%if(request.getAttribute("host")!=null){ %>
+<!-- 휴대폰 인증 성공하면 host 객체에 값이 생겨서 아래 태그가 나타난다. -->
+ <c:if test="${host ne null}">
+<%-- <%if(request.getAttribute("host")!=null){ %> --%>
+<div align=center>
 <form action="host_change.do" id="pwchange" method="post">
-<input type=hidden name="host_id" id="host_id" value="${host_id}">
-<input type="password" name="host_pw"
-		id="host_pw" placeholder='비밀번호'><br>
-	<input type="password" name="host_pw2"
-		id="host_pw2" placeholder='비밀번호재확인'><br>
-		<button type="button" onclick="change()">변경하기</button>
+<input type=text name="host_id" id="host_id" value="${host}" class="input1" disabled><br>
+<input type="password" name="host_pw" id="host_pw" placeholder='새 비밀번호를 입력해주세요.' class="input1"><br>
+	<input type="password" name="host_pw2" id="host_pw2" placeholder='비밀번호를 한번 더 입력해주세요.'  class="input1"><br><br>
+	<button type="button" onclick="change()" class="sub1">변경하기</button>
+	
 </form>
-<%} %>
+</div></c:if>
+<%-- <%} %> --%>
+
+<script>
+$(function(){
+	<% if (request.getParameter("complete") == "1") { %>
+	$(".complete").text("비밀번호가 변경되었습니다.");
+	<%} %>
+});
+</script>
+
+
 
 
 <script
@@ -219,7 +233,7 @@
 							} else {
 								$("#phone2").attr("disabled", false);
 								$("#phoneChk2").css("display", "inline-block");
-								$(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
+								$(".successPhoneChk").text("인증번호 입력 후 인증확인을 눌러주세요.");
 								$(".successPhoneChk").css("color", "green");
 								$("#phone").attr("readonly", true);
 								code2 = data;
@@ -234,9 +248,9 @@
 				$(".successPhoneChk").css("color", "green");
 				$("#phoneDoubleChk").val("true");
 				$("#phone2").attr("disabled", true);
-				$('#user_phone').val($("#phone").val());
-				$("#user_findform").attr("action", "host_find_pw_form.do?host_find=phone");
-				$('#user_findform').submit();
+				$('#host_phone').val($("#phone").val());
+				$("#host_findform").attr("action", "host_find_pw_form.do?host_find=phone");
+				$('#host_findform').submit();
 
 			} else {
 				$(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");

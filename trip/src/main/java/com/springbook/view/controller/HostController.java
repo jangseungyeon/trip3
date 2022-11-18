@@ -45,6 +45,8 @@ public class HostController {
 		System.out.println(vo);
 		return hostService.idCheck(vo);
 	}
+	
+	
 
 
 
@@ -257,7 +259,7 @@ public class HostController {
 	@RequestMapping("/host_change.do")
 	public String host_change(HostVO vo, Model model) {
 		int a = hostService.change(vo);
-		return "WEB-INF/views/host_find_pw.jsp";
+		return "WEB-INF/views/host_find_pw.jsp?complete=1";
 	}
 
 
