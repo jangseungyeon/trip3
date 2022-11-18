@@ -173,6 +173,8 @@ $(document).ready(function(){
 		
 		<tr><td> ${room.room_addr} <c:if test="${not empty room.room_addr_detail}">&nbsp;${room.room_addr_detail}</c:if></td></tr>
 		
+		<tr><td><input type="hidden" name="room_name" value="${room.room_name}"/></td></tr>
+		
 		<tr><td><input type="hidden" name="user_id" value="${userInfo.user_id}" /></td></tr>
 		
 		<tr><td><input type="hidden" name="host_id" value="${room.host_id}" /></td></tr>
@@ -180,6 +182,10 @@ $(document).ready(function(){
 		<tr><td><input type="hidden" name="room_id" value="${room.room_id}" /></td></tr>
 		
 		<tr><td><input type="hidden" name="room_img" value="${room.room_img_no1}" /></td></tr>
+		
+		<tr><td><input type="hidden" name="imp_uid" id="imp_uid" /></td></tr>
+		
+		<tr><td><input type="hidden" name="merchant_uid" id="merchant_uid" /></td></tr>
 	
 		<tr><td>이름: <input id="res_name_ipt" name="res_name" type="text" value="${userInfo.user_name}" /></td></tr>
 		

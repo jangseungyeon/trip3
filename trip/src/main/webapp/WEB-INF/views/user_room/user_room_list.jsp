@@ -421,8 +421,7 @@ justify-content: space-evenly;
 	text-align: right; 
 	width: 70px; 
 	position:fixed; 
-	bottom: 0; 
-	z-index: 999;
+	bottom: 0;
 }
 
 select {
@@ -497,6 +496,7 @@ select {
 	.wrap {
 	margin: 0 auto;
 	word-break: keep-all;
+	position: relative;
 }
 
 .searchRoomfrmDiv {
@@ -687,22 +687,24 @@ justify-content: space-evenly;
 	border-radius: 15px;
 	top:50%;
 	left:50%;
-	width: 95%;
+	width: 85%;
 	height: 95%;
 	transform: translate(-50%, -50%);
 }
 
-span.material-symbols-outlined {
+span.material-symbols-outlined.upward {
 	color: white;
-	font-size: 50px;
+	font-size: 44px;
+	
 }
 
 #moveTopBtn {
-	width: 100%;
+	width: 80px;
 	text-align: right;
 	position:fixed; 
 	bottom: 0; 
 	z-index: 999;
+	left:0;
 }
 
 #roomCardBody {
@@ -756,7 +758,7 @@ button.main-icon-div1:hover span:nth-child(2) {
 <div id="moveTopBtn">
 	<a href="#top">
 	<button class="main-icon-div1">
-	<span class="material-symbols-outlined">arrow_upward</span>
+	<span class="material-symbols-outlined upward">arrow_upward</span>
 	<span class="main-icon-span1">위로<br>아동</span>
 	</button>
 	</a>

@@ -259,7 +259,7 @@ $(function(){
             <div class="review_img">
             	<h4>후기와 같이 올릴 사진을 여기서 업로드 해주세요</h4>
             	<div class="review_img_preivew">
-            	<img id="review_img" src="" alt="리뷰 이미지 미리보기" title="리뷰 이미지" width="100" height="100" onerror="this.style.display='none'"/>
+            	<img id="review_img" src="" alt="리뷰 이미지 미리보기" title="리뷰 이미지" width="100" height="100" onerror="this.style.display='none'" style="border-radius: 5px;"/>
             	<input type="file" name="review_img_uploadFile" class="review_img_ipt" onchange="readThisImg(this);">
             	</div>
             </div>   

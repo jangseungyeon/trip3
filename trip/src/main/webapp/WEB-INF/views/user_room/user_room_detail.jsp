@@ -666,9 +666,20 @@ function f_moveInsertRes() {
 	
 	var oneNightPrice = "${u_room.room_price}";
 	
-	checkInValue = $(checkIn).val();
+	var checkInValue = $(checkIn).val();
 	
-	checkOutValue = $(checkOut).val();
+	var checkOutValue = $(checkOut).val();
+	
+	var peopleValue = $(people).val();
+	
+	if('${user_id}' != null) {
+		
+		if (checkInValue == "" || checkOutValue == "" || peopleValue == "") {
+			
+			alert("체크인 날짜, 체크 아웃 날짜, 예약 인원을 지정하지 않으셨습니다\n 확인후 다시 시도해주세요.");
+			
+			return;
+		}
 	
 	var checkInValue_arr = checkInValue.split("-");
 	
@@ -679,8 +690,6 @@ function f_moveInsertRes() {
 	checkOutValue = new Date(checkOutValue_arr[0], checkOutValue_arr[1], checkOutValue_arr[2]);
 	
 	var period = ( checkOutValue.getTime() - checkInValue.getTime() ) / (1000*60*60*24);
-	
-	peopleValue = $(people).val();
 	
 	oneNightPrice = parseInt(oneNightPrice);
 	
@@ -701,6 +710,15 @@ function f_moveInsertRes() {
 	
 	location.href = "pay.do?room_id=" + "${u_room.room_id}" + "&res_checkin=" 
 			+ checkInValue + "&res_checkout=" + checkOutValue + "&res_num=" + peopleValue + "&pay_amount=" + price_result;
+	
+	
+	} else {
+		
+		alert("로그인 후 사용 가능합니다.");
+		
+		location.href="user.login.do";
+		
+	} 
 }
 
 </script>
@@ -734,7 +752,7 @@ function f_moveInsertRes() {
 }
 
 #u_room_detail_top div {
-	margin-bottom: 13px;
+	margin-bottom: 7px;
 }
 
 #u_room_img_box {
@@ -771,8 +789,6 @@ function f_moveInsertRes() {
 	align-items: center;
 	font-weight: 600;
 	cursor: pointer;
-	border: 2px solid black;
-	border-radius: 5px;
 	outline: none;
 }
 
@@ -822,12 +838,12 @@ function f_moveInsertRes() {
 
 #u_room_infosPaybtn {
 	display: flex;
-	flex-basis: 470px;
-	max-width: 470px;
+	flex-basis: 300px;
+	max-width: 400px;
 	flex-direction: column;
 	flex-wrap: wrap;
-	width: 30%;
 	height: 100vh;
+	text-align: left;
 }
 
 #u_room_sml_desc {
@@ -868,7 +884,7 @@ function f_moveInsertRes() {
     border-radius: 7px;
     height: 40px;
     font-weight: bold;
-    width: 100%;
+    width: 60%;
 }
 
 #InsertResBtn:hover {
@@ -1126,19 +1142,19 @@ svg {
 	<div>
 	<div><h4 style="font-weight: 600;">${u_room.room_name}</h4></div>
 	<div><a href="#" onclick="f_searchAddr('${u_room.room_addr}')">${u_room.room_addr}</a></div>
-	<div><textarea style=" font-size: 0.9rem; font-weight: 600; resize:none; text-align: center; word-break: keep-all; border: none;" readonly rows="2" cols="45">${u_room.room_desc}</textarea></div>
+	<div><textarea style=" font-size: 0.9rem; font-weight: 600; resize:none; text-align: center; word-break: keep-all; border: none; text-align: left;" readonly rows="2" cols="45">${u_room.room_desc}</textarea></div>
 	</div>
 	
 	<div class="head">
 		<div id="heartDiv" class="heart" style="height: 10px; width: 10px;" onclick="f_heart('${u_room.room_id}','${u_room.room_name}')"></div>
 		<input type="hidden" name="status" value="">
 		&nbsp;${u_room.room_likes}
-		<div>
+	</div>
+	<div>
 		<span class="star1">
 		★★★★★<span id="room_stars">★★★★★</span>
 		</span>
 		<span style="margin-left:7px;">${u_room.room_stars}</span>
-		</div>
 	</div>
 	
 	</div>
@@ -1149,7 +1165,7 @@ svg {
 	
 	<div id="u_room_numbers">
 	
-	<div id="u_room_calander_box" style="display: flex; flex-direction: row; gap: 5px; justify-content: center;">
+	<div id="u_room_calander_box" style="display: flex; flex-direction: row; gap: 5px; justify-content: flex-start;">
 	<div style="font-size: 1.1rem;"><div>체크인 날짜</div>
 	<input id="u_room_checkin" type="date" name="res_checkin" onchange="checkoutLimit(event)" oninput="checkinVal(event)"/>
 	</div>
@@ -1160,6 +1176,7 @@ svg {
 	
 	<div id="res_num_box">
 	<input id="res_num" type="number" name="res_num" min="0"/>&nbsp;명
+	<div style="font-weight: 500; margin-bottom: 5px;">(최대 인원 ${u_room.room_max}명)</div>
 	</div>
 	
 	<div id="u_room_results">
@@ -1169,7 +1186,10 @@ svg {
 	<div id="finalAmount">총 결제 금액: &nbsp;&nbsp;</div>
 	</div>
 	
+	<div style="text-align: left;">
 	<button id="InsertResBtn" onclick="f_moveInsertRes()">예약하기</button>
+	</div>
+	
 	</div>
 	
 	</div>
@@ -1268,7 +1288,7 @@ svg {
          		<input type="hidden" name="review_id" value="<%=review_id%>">
 				<div id="review">
 				<div id="review_img_Box">
-				<img id="review_img" class="review_img" src="resources/review_img/<%=review_img%>" width="150" height="100" alt="리뷰 이미지" title="리뷰 이미지">
+				<img id="review_img" class="review_img" src="resources/review_img/<%=review_img%>" width="150" height="100" alt="리뷰 이미지" title="리뷰 이미지" style="border-radius: 5px;">
 				</div>
 				<input type="file" name="review_img_uploadFile" class="review_img_ipt" onchange="readThisImg(this);">
 				<div class="review_desc">
@@ -1298,7 +1318,7 @@ svg {
 			<div id="reviews">
 			<div class="review_box">
 				<div id="review">
-				<div><img class="review_img" src="resources/review_img/<%=review_img%>" width="150" height="100" alt="리뷰 이미지" title="리뷰 이미지"></div>
+				<div><img class="review_img" src="resources/review_img/<%=review_img%>" width="150" height="100" alt="리뷰 이미지" title="리뷰 이미지" onerror="this.style.display='none';" style="border-radius: 5px;"></div>
 				<div class="review_desc">
 				<div>
 				<span class="star">★★★★★
