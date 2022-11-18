@@ -185,6 +185,7 @@ text-decoration:underline;
 }
 }
 
+
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
@@ -202,6 +203,16 @@ $(document).ready(function(){
 	    format: 'yyyy-mm-dd',
 	    autoclose: true
 	});
+	
+	if($( window ).width() <= 450){
+		$("#dateCh").html("&nbsp&nbsp여행 날짜 선택");
+		$("#areaCh").html("&nbsp&nbsp지역 선택");
+		$("#peopleCh").html("&nbsp&nbsp인원수 선택");
+		$("#area").css("margin-left" , "0");
+		$("#buttonCh").css("margin-left" , "0");
+		$(".brDelete").remove();
+	}
+	
 	});
 	
 	function check() {
@@ -305,17 +316,23 @@ $(document).ready(function(){
 		}
 
 	}
+
+function old(){
+	$(".disabled").addClass("old");
+}
+
+  
 </script>
 <body>
 <form action="start.do" onsubmit="return last(20)">
 <p class="1"></p><br>
 <div class="container px-1 px-sm-5 mx-auto con" >
 <hr id="hr1" style="float:left; transition-property: width; transition-duration: 2s; width:0%">
-      <h2>&nbsp&nbsp여행 날짜를 선택해주세요</h2> <br><br><br><br>
+      <h2 id="dateCh">&nbsp&nbsp여행 날짜를 선택해주세요</h2> <br><br><br><br>
       <input type="hidden" name="date" id="date">
     <div class="flex-row d-flex justify-content-center">
       <div class="col-lg-6 col-11">
-        <div class="input-group input-daterange">
+        <div class="input-group input-daterange" onclick="old()" onchange="old()">
           <input type="text" class="form-control input1 input start" name="start" placeholder="시작일" readonly>
           <input type="text" class="form-control input2 input end" name="end" placeholder="종료일" readonly onchange="change()"><br>
         </div>
@@ -327,22 +344,22 @@ $(document).ready(function(){
 	<div class="container px-1 px-sm-5 mx-auto">
 		<hr id="hr2" style="float:left; transition-property: width; transition-duration: 2s; width:0%">
 		
-			<h2>&nbsp&nbsp지역을 선택해주세요</h2>
+			<h2 id="areaCh">&nbsp&nbsp지역을 선택해주세요</h2>
 			<%@ include file="map.jsp" %>
 			 </div>
 			<p class="3" style="margin-bottom:3%"></p>
 			<div class="container px-1 px-sm-5 mx-auto">
   <hr id="hr3" style="float:left; transition-property: width; transition-duration: 2s; width:0%">
- <h2>&nbsp&nbsp인원수를 선택해주세요</h2>
+ <h2 id="peopleCh">&nbsp&nbsp인원수를 선택해주세요</h2>
       <br>
-      <br>
-      <br>
+      <br class="brDelete">
+      <br class="brDelete">
       <input type="number" class="form-control input1 input" name="numPeople" style="width:150px; margin:0 auto; margin-bottom:10%;" value="0" onclick="last()" id="numP" min="0" max="20">
         </div>
 <div style="text-align: center; margin-bottom:20%;">
 	     <input type="hidden" value="ok" name="check" >
 	    <a class="btn btn-light btn-lg"href="javascript:history.go(-1)">이전</a>
-       <input type="submit" value="선택" class="btn btn-lg button" style="margin-left:250px">
+       <input type="submit" value="선택" class="btn btn-lg button" id="buttonCh" style="margin-left:250px">
         </div>
         </form>
 </body>

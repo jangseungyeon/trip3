@@ -122,6 +122,24 @@ function f_move_to_insert_review(room_id) {
     display: none;
   }
 }
+
+/*20221118_영미 추가*/
+span.spanTitle {font-weight:bold;}
+.row {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.vTd {
+    text-align: center;
+}
+table {width:100%;height:100%;}
+td.vTable {vertical-align:middle;}
+div.firstDiv {background-color:#19558c; color: #fff;text-align:center; }
+div.bottomDiv{position:absolute;bottom:10px;}
+/* button.review-btn {width:120px; height:40px;} */
+/*20221118_영미 추가*/
 </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -131,49 +149,77 @@ function f_move_to_insert_review(room_id) {
 <div class="container">
 <div class="reslist-div1">결제 숙소 목록</div>
 <hr class="reslist-hr">
-<div class="row list-grid-div">
-<table class="table table-hover reslist-table" id="re_table">
-    <thead class="btn-primary">
-      <tr>
-       <th id="myres-img" class="col-sm-3 myreslint-th">숙소 이미지</th>
-        <th class="col-sm-2 myreslint-th">숙소명</th>
-          <th class="col-sm-1 myreslint-th">결제금액</th>
-          <th id="myres-num1" class="col-sm-1 myreslint-th">예약인원</th>
-          <th id="mycheckin1" class="col-sm-1 myreslint-th">체크인</th>
-          <th id="checkout1" class="col-sm-1 myreslint-th">체크아웃</th>
-          <th class="col-sm-1 myreslint-th">결제</th>
-          <th class="col-sm-1 myreslint-th">상세정보</th>
-          <th class="col-sm-1 myreslint-th">리뷰</th>
-      </tr>
-    </thead>
-    <tbody>
+<div class="row firstDiv">
+<!-- <table class="table table-hover reslist-table" id="re_table"> -->
+<!--     <thead class="btn-primary"> -->
+<!--       <tr> -->
+      <!-- 20221118_영미 수정 -->
+<!--        <th id="myres-img" class="col-sm-3 myreslint-th">숙소 이미지</th> -->
+<!--         <th class="col-sm-9 myreslint-th" colspan="2">정보</th> -->
+       <div class="col-md-0 col-lg-3">숙소 이미지</div>
+        <div class="col-md-12 col-lg-9">정보</div>
+<!--         <th class="col-sm-2 myreslint-th">숙소명</th> -->
+<!--           <th class="col-sm-1 myreslint-th">결제금액</th> -->
+<!--           <th id="myres-num1" class="col-sm-1 myreslint-th">예약인원</th> -->
+<!--           <th id="mycheckin1" class="col-sm-1 myreslint-th">체크인</th> -->
+<!--           <th id="checkout1" class="col-sm-1 myreslint-th">체크아웃</th> -->
+<!--           <th class="col-sm-1 myreslint-th">결제</th> -->
+<!--           <th class="col-sm-1 myreslint-th">상세정보</th> -->
+<!--           <th class="col-sm-1 myreslint-th">리뷰</th> -->
+<!--       </tr> -->
+<!--     </thead> -->
+</div>
+<!--     <tbody> -->
 <c:forEach var="i" items="${reservationList}" varStatus="status">
-			<tr align="center">
-				<td id="myres-img"><img style="width: 300px; height:200px" src="resources/room_img/${i.room_img}"></td>
-				<td>${i.room_name}</td>
-				<td>${i.pay_amount}</td>
-				<td id="myres-num">${i.res_num}</td>
-				<td style="display: none" class="status">${i.res_status}</td>
-				<td id="mycheckin" class="myreslcheckin">${i.res_checkin}</td>
-				<td id="checkout" class="checkout">${i.res_checkout}</td>
-				<td id="daybefore${status.index}"><button class="reserlist-btn" onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제<br>취소</button></td>
-				<td id="ing${status.index}" style="display: none"><span>취소<br>완료</span></td>
-				<td id="myresl-end${status.index}" style="display: none"><span>이용<br>완료</span></td>
-				<td id="myreslredey${status.index}" style="display: none"><span>예약<br>완료</span></td>
-				<td><button class="reserlist-btn" onclick="reservationtr('${i.res_id}')">상세<br>정보</button></td>
-				<td id="dayafter${status.index}" class="dayafter${status.index}"><button class="reserlist-btn" onclick="f_move_to_insert_review('${i.room_id}')">리뷰<br>쓰기</button></td>
-				<td id="ing2${status.index}" style="display: none"><span>작성<br>대기</span></td>
+<!-- 			<tr align="center"> -->
+			<!-- 20221118_영미 수정 -->
+<div class="row">
+				<div class="col-md-3 col-lg-3"><img style="width: 100%; height:100%;border-radius:7px;" src="resources/room_img/${i.room_img}"></div>
+				<div class="conTd col-md-5 col-lg-5">
+				<table><tr><td class="vTable">
+					<span class="spanTitle">숙소명:</span> ${i.room_name} <br>
+					<span class="spanTitle">결제금액:</span> ${i.pay_amount} <br>
+					<span class="spanTitle">예약인원:</span> ${i.res_num} <br>
+					<span class="spanTitle">체크인:</span> ${i.res_checkin} <br>
+					<span class="spanTitle">체크아웃:</span> ${i.res_checkout} <br>
+				</td></tr></table>
+				<br>
+<!-- 				<div class="bottomDiv"> -->
+<%-- 				<button  class="reserlist-btn review-btn" onclick="f_move_to_insert_review('${i.room_id}')">리뷰<br>쓰기</button> <br> --%>
+<!-- 				</div> -->
+				</div>
+				<div class="vTd col-md-4 col-lg-4"><table><tr><td class="vTable">
+				<button class="reserlist-btn" onclick="reservationtr('${i.res_id}')">상세<br>정보</button>
+				<button  class="reserlist-btn review-btn" onclick="f_move_to_insert_review('${i.room_id}')">리뷰<br>쓰기</button>
+				<button class="reserlist-btn" onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제<br>취소</button>
+				</td></tr></table>
+				</div>
+				<!-- 20221118_영미 수정 -->
+<%-- 				<td>${i.room_name}</td> --%>
+<%-- 				<td>${i.pay_amount}</td> --%>
+<%-- 				<td id="myres-num">${i.res_num}</td> --%>
+<%-- 				<td style="display: none" class="status">${i.res_status}</td> --%>
+<%-- 				<td id="mycheckin" class="myreslcheckin">${i.res_checkin}</td> --%>
+<%-- 				<td id="checkout" class="checkout">${i.res_checkout}</td> --%>
+<%-- 				<td id="daybefore${status.index}"><button class="reserlist-btn" onclick="f_cancelPay('${i.merchant_uid}', 'resCancelfm_${status.index}')">결제<br>취소</button></td> --%>
+<%-- 				<td id="ing${status.index}" style="display: none"><span>취소<br>완료</span></td> --%>
+<%-- 				<td id="myresl-end${status.index}" style="display: none"><span>이용<br>완료</span></td> --%>
+<%-- 				<td id="myreslredey${status.index}" style="display: none"><span>예약<br>완료</span></td> --%>
+<%-- 				<td><button class="reserlist-btn" onclick="reservationtr('${i.res_id}')">상세<br>정보</button></td> --%>
+<%-- 				<td id="dayafter${status.index}" class="dayafter${status.index}"><button class="reserlist-btn" onclick="f_move_to_insert_review('${i.room_id}')">리뷰<br>쓰기</button></td> --%>
+<%-- 				<td id="ing2${status.index}" style="display: none"><span>작성<br>대기</span></td> --%>
 
-			</tr>
+<!-- 			</tr> -->
 			<form name="resCancelfm_${status.index}">
 			<input type="hidden" name="user_id" value="${user_id}" />
 			<input type="hidden" name="res_id" value="${i.res_id}" />
 			<input type="hidden" name="imp_uid" id="${i.imp_uid}_${status.index}" value="${i.imp_uid}" />
 			<input type="hidden" name="merchant_uid" id="${i.merchant_uid}_${status.index}" value="${i.merchant_uid}" />
 			</form>
+</div>
 		</c:forEach>
-		    </tbody>
-  </table>
+<!-- 		    </tbody> -->
+<!--   </table> -->
   <br><br>
   </div>
   </div>

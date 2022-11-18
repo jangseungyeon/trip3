@@ -141,7 +141,7 @@ input#key:focus {
       <input type="text" class="search-bar__input" type="text" placeholder="검색" id="key" value="">
       <span class="material-symbols-outlined" style="vertical-align: middle; cursor:pointer; " onclick="test00(0)">search</span></div>
         
-         <input type="button" id="12" onclick="test00(12)" value="관광지" class="btn btn-sm test" style="border-color: #4d4d4d;color: #4d4d4d;  margin-left:10%">
+         <input type="button" id="12" onclick="test00(12)" value="관광지" class="btn btn-sm test" style="border-color: #4d4d4d;color: #4d4d4d; margin-left:3%">
 			<input type="button" id="14" onclick="test00(14)" value="문화시설" class="btn btn-sm" style="border-color: #4d4d4d;color: #4d4d4d;">
 			<input type="button" id="15" onclick="test00(15)" value="행사/공연/축제" class="btn btn-sm" style="border-color: #4d4d4d;color: #4d4d4d;">
 			<input type="button" id="38" onclick="test00(38)" value="쇼핑" class="btn btn-sm" style="border-color: #4d4d4d;color: #4d4d4d;">
@@ -150,7 +150,18 @@ input#key:focus {
 		     </div>
           <div class="row">
       <div class="col col2" style="height:500px;">
-      
+      <div class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasLabel">TIP</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+ 		 </div>
+  		<div class="offcanvas-body">
+   			<p><img src="${pageContext.request.contextPath}/resources/img/icon1.png">&nbsp; 검색버튼을 눌러 다양한 관광정보를 확인해보세요</p><br>
+   			<p><img src="${pageContext.request.contextPath}/resources/img/icon3.png">&nbsp; 다른 지역의 관광정보까지 플래너에 담아 볼 수 있습니다</p><br>
+   			<p><img src="${pageContext.request.contextPath}/resources/img/icon4.png">&nbsp; 메모버튼을 눌러 일자별로 메모작성이 가능합니다</p><br>
+   			<p><img src="${pageContext.request.contextPath}/resources/img/icon2.png">&nbsp; 플래너를 다른사람과 공유하고 싶다면 전체공개로 바꿔주세요</p>
+ 		 </div>
+	</div>
                   <div class="wrap-loading" style="text-align-last: right ; margin-top: 120px; display:none">
                   
 <div class="spinner-grow " role="status" style="background-color: #19558c;">
