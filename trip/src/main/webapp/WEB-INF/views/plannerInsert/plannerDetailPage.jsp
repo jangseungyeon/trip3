@@ -162,7 +162,7 @@ function like(num){ // num = like (좋아요 누름)  num = unlike (좋아요 �
 		 success : function(data){
 			 var i = 1;
 			 $(data).each(function(){
-			$("#"+this.planner_date).append("<div style='width:350px; margin-bottom: 1px;' class='day day"+this.planner_date+"' onclick='area("+i+")'><img src='"+this.img+"' class='img'>"+
+			$("#"+this.planner_date).append("<div style='width:450px; overflow: overlay; margin-bottom: 1px;' class='day day"+this.planner_date+"' onclick='area("+i+")'><img src='"+this.img+"' class='img'>"+
 		 	"<span style='vertical-align:top;' class='title'>"+ this.place_name+"</span> <small style='vertical-align:buttom;'>"+ this.addr+"</small>"+
 		 	"<input type='hidden' value='"+this.mapy+"' class='mapy"+this.planner_date+" y"+i+"'> <input type='hidden' value='"+this.mapx+"' class='mapx"+this.planner_date+" x"+i+"'></div><span class='material-symbols-outlined' style='font-weight: 900;'>more_vert</span>")
 		 	 i += 1;
@@ -371,7 +371,7 @@ function area(num){
  <div class="col-sm-6">
 <c:forEach begin="1" end="${planner.planner_day}" varStatus="status">
 <div id="${status.count}" style="text-align: -webkit-center;">
-<h4 style="text-align: initial; margin-left: 23%; margin-bottom: 3%; color:#ff8e15; font-weight: 900;" onclick="memo(${status.count})">DAY - ${status.count}</h4>
+<h4 style="cursor:pointer; text-align: initial; margin-left: 23%; margin-bottom: 3%; color:#ff8e15; font-weight: 900;" onclick="memo(${status.count})">DAY - ${status.count}</h4>
 </div>
 <br>
 </c:forEach> 

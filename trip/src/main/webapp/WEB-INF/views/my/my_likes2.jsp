@@ -21,7 +21,7 @@ if(idcheck_check == 'null') {
 <script>
 function plannertr(val, bal){
 	console.log(val, bal)
-	location.href = "plannerDP.do?planner_no="+bal +"&?user_id="+val;
+	location.href = "plannerDP.do?planner_no="+bal +"&&user_id="+val;
 }
 </script>
 </head>

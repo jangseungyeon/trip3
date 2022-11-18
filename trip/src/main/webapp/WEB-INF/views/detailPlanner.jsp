@@ -70,7 +70,7 @@ background-color: #cccccc;
 	 success : function(data){
 		 var i = 1;
 		 $(data).each(function(){
-		$("#"+this.planner_date).append("<div style='width:450px; margin-bottom: 1px;' class='day day"+this.planner_date+"' onclick='area("+i+")'><img src='"+this.img+"' class='img'>"+
+		$("#"+this.planner_date).append("<div style='width:450px; overflow: overlay; margin-bottom: 1px;' class='day day"+this.planner_date+"' onclick='area("+i+")'><img src='"+this.img+"' class='img'>"+
 	 	"<span style='vertical-align:top;' class='title'>"+ this.place_name+"</span> <small style='vertical-align:buttom;'>"+ this.addr+"</small>"+
 	 	"<input type='hidden' value='"+this.mapy+"' class='mapy"+this.planner_date+" y"+i+"'> <input type='hidden' value='"+this.mapx+"' class='mapx"+this.planner_date+" x"+i+"'></div><span class='material-symbols-outlined' style='font-weight: 900;'>more_vert</span>")
 	 	 i += 1;
