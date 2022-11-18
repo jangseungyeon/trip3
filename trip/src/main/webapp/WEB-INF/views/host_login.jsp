@@ -190,6 +190,7 @@
 		left:50%;
 		transform:translate(-50%, -50%);
 		text-align:center;
+		max-width: 300px;
 	}
 	.input-id-pw{
 		width:100%;
@@ -235,11 +236,13 @@
 		border:none;
 		filter: brightness(80%);
 		cursor : pointer;
+		
 	}
 	.find-id-pw-box{
 		position:absolute;
 		top:85%;
-		left:30%;
+		left:50%;
+		transform: translate(-50%, -50%);
 	}
 	.find-id-pw{
 		text-decoration:none;

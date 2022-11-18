@@ -8,13 +8,108 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <title>Insert title here</title>
+<%@ include file="host_login_header.jsp"%>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=B612:wght@700&family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=B612:wght@700&family=Do+Hyeon&family=RocknRoll+One&display=swap');
+</style>
+
+<style>
+.host-find-id{
+	color:#19558c;
+	font-size:14px;
+}
+
+.input1{
+		width:300px !important;
+		height:30px !important;
+		padding:5px 20px !important;
+		border-radius:20px !important;
+		border:none !important;
+		margin:3px !important;
+		font-size:12px !important;
+}
+
+	.input1:focus{
+		width:300px !important;
+		height:30px !important;
+		padding:5px 20px !important;
+		border-radius:20px !important;
+		border:none !important;
+		margin:3px !important;
+		font-size:12px !important;
+		outline:none !important;
+	}
+
+
+.sub1{
+		width:100px  !important;;
+		height:30px !important;;
+		padding: 5px 20px !important;;
+		border-radius: 5px !important;;
+		font-size:15px !important;;
+		background-color:#ff8e15 !important;; /*주황색*/
+		background-color:#19558c !important;; /*남색*/
+		color:white !important;;
+		border:none !important;;
+		z-index: 2;
+		font-size:12x;
+}
+
+</style>
+
+
+
 </head>
 <body>
+
+
+<br><br>
+
+<div align=center><br>
+<div align=center>
+<span class="main-div2" style="font-size:60px; line-height:40%;">tripONplan</span>
+<br><span style="color:#19558c; font-size:30px"><br>호스트 아이디 찾기</span><br>
+</div>
+
+
+<div align=center style="width:50%" class="host-find-id">
+<input type='radio' name='findId' value='email' onclick='emailconfig()'>이메일로 찾기 &nbsp;&nbsp; 
+<input type='radio' name='findId' value='phone' onclick='phoneconfig()'>휴대폰으로 찾기
+
+	<!-- 회원찾을때 넘어가 form태그 -->
+	<form action="" method="post" id="host_findform">
+		<input type="hidden" name="host_phone" id="host_phone"> <input
+			type="hidden" name="host_email" id="host_email">
+	</form>
+
+
+	<div id="config" style="display: none">
+		<input id="email" class="input1" type="text" placeholder="이메일을 입력해주세요." required autofocus>
+		<button id="sendMail" type="button" class='sub1'>발송하기</button>
+		<input id='emailCheck' type='text' class='input1' required disabled>
+		<button id='check' onclick='emailCheck()' type="button" class='sub1'>인증확인</button>
+	</div>
+	<div id="config1" style="display: none">
+		<input id="phone" type="text" name="phone" title="전화번호 입력" class="input1" placeholder="휴대폰 번호를 입력해주세요.">
+		<span id="phoneChk" class="sub1">발송하기</span> <br>
+		<input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled class="input1">
+		<span id="phoneChk2" class="sub1">인증확인</span><br>
+		<span class="point successPhoneChk"></span>
+		<input type="hidden" id="phoneDoubleChk">
+	</div>
+
+
+</div>
+</div>
+
 
 <script>
 	//휴대폰
@@ -141,35 +236,6 @@
 		$('#config').hide();
 	}
 </script>
-
-<h1>호스트 아이디 찾기</h1>
-
-<input type='radio' name='findId' value='email' onclick='emailconfig()'>이메일로 찾기
-<input type='radio' name='findId' value='phone' onclick='phoneconfig()'>휴대폰으로 찾기
-
-	<!-- 회원찾을때 넘어가 form태그 -->
-	<form action="" method="post" id="host_findform">
-		<input type="hidden" name="host_phone" id="host_phone"> <input
-			type="hidden" name="host_email" id="host_email">
-	</form>
-
-
-	<div id="config" style="display: none">
-		<input id="email" class="text_box" type="text" placeholder="이메일 입력"
-			required autofocus>
-		<button id="sendMail" class="btn btn-primary btn-sm" type="button">발송하기</button>
-		<input id='emailCheck' class='text_box' type='text' required disabled>
-		<button id='check' class='btn btn-primary btn-sm'
-			onclick='emailCheck()' type="button">인증확인</button>
-	</div>
-	<div id="config1" style="display: none">
-		<input id="phone" type="text" name="phone" title="전화번호 입력" /> <span
-			id="phoneChk" class="doubleChk">인증번호 보내기</span> <br /> <input
-			id="phone2" type="text" name="phone2" title="인증번호 입력" disabled /> <span
-			id="phoneChk2" class="doubleChk">인증확인</span> <span
-			class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span> <input
-			type="hidden" id="phoneDoubleChk" />
-	</div>
 
 	<%
 	String pullid = (String) request.getAttribute("host");
