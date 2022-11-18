@@ -1,3 +1,6 @@
+.user_name{
+ color:	#ff8e15 !important;
+}
 
 ul.head-ul {
 	justify-content: space-around; /* space-evenly도 가능 */
