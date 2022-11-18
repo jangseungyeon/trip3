@@ -356,11 +356,12 @@ function old(){
       <br class="brDelete">
       <input type="number" class="form-control input1 input" name="numPeople" style="width:150px; margin:0 auto; margin-bottom:10%;" value="0" onclick="last()" id="numP" min="0" max="20">
         </div>
-<div style="text-align: center; margin-bottom:20%;">
+<div style="text-align: center; margin-bottom:10%;">
 	     <input type="hidden" value="ok" name="check" >
 	    <a class="btn btn-light btn-lg"href="javascript:history.go(-1)">이전</a>
        <input type="submit" value="선택" class="btn btn-lg button" id="buttonCh" style="margin-left:250px">
         </div>
         </form>
+        <%@ include file="../footer.jsp"%>
 </body>
 </html>

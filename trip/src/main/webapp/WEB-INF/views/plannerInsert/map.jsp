@@ -12,6 +12,9 @@
 			.areaP , .num {
 			font-size: 25px;
 			}
+			.TEXT{
+			cursor: pointer;
+			}
 		</style>
 <svg style='overflow:visible'height="800px" xmlns="http://www.w3.org/2000/svg">
 <defs>

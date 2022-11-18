@@ -459,5 +459,6 @@ var mapContainer = document.getElementById('map') // 지도를 표시할 div
     };
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 </script>
+<%@ include file="../footer.jsp"%>
 </body>
 </html>

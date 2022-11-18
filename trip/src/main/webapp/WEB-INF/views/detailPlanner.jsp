@@ -178,6 +178,15 @@ function area(num){
            image : markerImage // 마커 이미지 
        });
 }
+
+  	function deletes(){
+  		
+  	      if (!confirm("일정을 삭제하시겠습니까?")) {
+             return false;
+          } else {
+              return true;
+          }
+  	}
 </script>
 <body>
 <div class="container" style="margin-top:3%">
@@ -227,7 +236,7 @@ function area(num){
 <input type="hidden" value="${planner_area}" name="area">
 <button class="btn delete btn-sm">수정하기</button>
 </form>
-<form action="deletePlanner.do" method="post" style="display:inline-block">
+<form action="deletePlanner.do" method="post" style="display:inline-block" onsubmit="return deletes()">
 <input type="hidden" value="${user_id}" name="user_id">
 <input type="hidden" value="${planner_no}" name="planner_no">
 <button class="btn delete btn-sm">일정 지우기</button>
@@ -246,5 +255,6 @@ var mapContainer = document.getElementById('map') // 지도를 표시할 div
     };
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 </script>
+<%@ include file="footer.jsp"%>
 </body>
 </html>

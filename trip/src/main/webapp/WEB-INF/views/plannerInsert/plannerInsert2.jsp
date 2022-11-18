@@ -158,6 +158,7 @@ input#key:focus {
   		<div class="offcanvas-body">
    			<p><img src="${pageContext.request.contextPath}/resources/img/icon1.png">&nbsp; 검색버튼을 눌러 다양한 관광정보를 확인해보세요</p><br>
    			<p><img src="${pageContext.request.contextPath}/resources/img/icon3.png">&nbsp; 다른 지역의 관광정보까지 플래너에 담아 볼 수 있습니다</p><br>
+   				<p><img src="${pageContext.request.contextPath}/resources/img/icon5.png">&nbsp; 장소선택을 클릭하여 플래너에 직접 장소등록을 해보세요(최대 8개까지)</p><br>
    			<p><img src="${pageContext.request.contextPath}/resources/img/icon4.png">&nbsp; 메모버튼을 눌러 일자별로 메모작성이 가능합니다</p><br>
    			<p><img src="${pageContext.request.contextPath}/resources/img/icon2.png">&nbsp; 플래너를 다른사람과 공유하고 싶다면 전체공개로 바꿔주세요</p>
  		 </div>
@@ -369,7 +370,7 @@ function test00(tval) {
  			console.log(this.mapx);
 
  			$("." + className).append("<div class='delete' style='margin-top:15px'>  <img src='"+img+"' style='width:90px;height:90px; float: left;' class='delete placeimg'>"+
- 					"<span onclick='test("+num+")' id='"+num+"' class='delete span' style='vertical-align:top;'>"+this.title+"</span><br class='delete'> <small id='add"+num+"' class='delete' style='vertical-align:buttom;'>"+this.addr1+"</small><select class='delete form-select form-select-sm' aria-label='.form-select-sm example' id='select' onchange='test("+num+" , value)' style='width: 100px; box-shadow: none;'> <option>장소선택</option>"+str+"</select></div><br class='delete'>" + 
+ 					"<span onclick='test("+num+")' id='"+num+"' class='delete span' style='vertical-align:top;'>"+this.title+"</span><br class='delete'> <small id='add"+num+"' class='delete' style='vertical-align:buttom;'>"+this.addr1+"</small><select class='delete form-select form-select-sm' aria-label='.form-select-sm example' id='select' onchange='test("+num+" , value)' style='width: 101px; box-shadow: none;'> <option>장소선택</option>"+str+"</select></div><br class='delete'>" + 
  					"<input  type='hidden' class='areaData"+num+" delete' value='"+this.title +"==="+ this.addr1 +"==="+ this.mapx +"==="+ this.mapy+"==="+img+"'>"+
  					"<a href='#' onclick='test()' id='x"+num+"' style='display:none;' class='delete'>"+this.mapx+"</a>" + 
  					"<a href='#' onclick='test()' id='y"+num+"' style='display:none;' class='delete'>"+this.mapy+"</a>")
@@ -487,6 +488,7 @@ function room(){
 }
 
 </script>
-</div>		
+</div>	
+<%@ include file="../footer.jsp"%>	
 </body>
 </html>
