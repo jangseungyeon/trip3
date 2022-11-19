@@ -1,0 +1,82 @@
+.likes-th1 {
+	width:20%
+}
+
+.mylikes-div1 {
+	font-size: 40px;
+	background-color: #ff8e15;
+	border-radius: 15px;
+	padding: 5px 20px;
+	color: white;
+}
+
+.mylikes-hr {
+	border: solid 1px #19558c;
+}
+
+.mylike-ul {
+	justify-content: space-around;
+    font-size: 20px;
+    border: none;
+}
+
+a#test, a#test1 {	
+	color: black;
+}
+
+a#test:hover, a#test1:hover {
+	text-decoration:none;
+}
+
+a#test:focus, a#test1:focus {
+	color:#ff8e15;
+}
+
+.mylike-table {
+	text-align: center;
+}
+
+.mylike-th {
+	background-color:#19558c;
+}
+
+
+/* 반응형 숙소*/
+
+@media (max-width: 991px) {
+  #mylike-rimg, #mylike-rimg1 {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  #mylike-rcnt, #mylike-rcnt1 {
+    display: none;
+  }
+}
+
+@media (max-width: 440px) {
+  #mylike-rlike, #mylike-rlike1 {
+    display: none;
+  }
+}
+
+
+/* 반응형 플래너*/
+@media (max-width: 991px) {
+ #mylike-w, #mylike-w1 {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  #mylike-pcnt, #mylike-pcnt1 {
+    display: none;
+  }
+}
+
+@media (max-width: 482px) {
+  #mylike-plike, #mylike-plike1 {
+    display: none;
+  }
+}

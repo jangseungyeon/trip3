@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LikeDAO">
+
+	<insert id="likeinsert">
+	INSERT INTO LIKES 
+	(LIKE_TYPE , LIKE_ID , USER_ID , LIKE_NO)
+	VALUES
+	('1' , #{like_id} , #{user_id} , #{like_no})
+	</insert>
+	
+	<update id="likeupdate">
+	UPDATE LIKES SET
+	LIKE_COUNT = (SELECT MAX(LIKE_COUNT) FROM LIKES WHERE LIKE_TYPE = 1 AND LIKE_ID=#{like_id} AND LIKE_NO=#{like_no}) 
+	<if test="status  == 'like'"> + </if>
+	<if test="status  == 'unlike'"> - </if>
+	1
+	WHERE LIKE_TYPE = 1 AND LIKE_ID=#{like_id} AND LIKE_NO=#{like_no}
+	</update>
+	
+	<delete id="likedelete">
+	DELETE FROM LIKES WHERE LIKE_TYPE = 1 AND LIKE_ID = #{like_id} AND USER_ID = #{user_id} AND LIKE_NO = #{like_no}
+	</delete>
+
+	<!-- 숙소 좋아요 등록 (일단 먼저 데이터 등록) -->
+	<insert id="likeinsertRoom">
+		INSERT INTO LIKES
+		(LIKE_TYPE, LIKE_ID, USER_ID)
+		VALUES
+		(2, #{like_id}, #{user_id})
+	</insert>
+	
+	<!-- 숙소 좋아요 카운트 +-1 업데이트 (status값으로 'like'를 받으면 +1, 'unlike'를 받으면 -1) -->
+	<update id="likeupdateRoom">
+		UPDATE LIKES SET
+		LIKE_COUNT = (SELECT MAX(LIKE_COUNT) FROM LIKES WHERE LIKE_TYPE = 2 AND LIKE_ID = #{like_id})
+		<if test="status  == 'like'"> + </if>
+		<if test="status  == 'unlike'"> - </if>
+		1
+		WHERE LIKE_TYPE = 2 AND LIKE_ID = #{like_id} AND USER_ID=#{user_id}
+	</update>
+	
+	<!-- 유저 아이디와 숙소 아이디 기준으로 숙소 좋아요 데이터 검색후 데이터 반환 (이 반환된 데이터를 숙소 상세보기에서 좋아요를 했는지 안했는지 체크하고 하트 적절히 표시)  -->
+	<select id="likeselectRoom" resultType="like">
+		SELECT * FROM LIKES WHERE LIKE_TYPE = 2 AND LIKE_ID = #{like_id} AND USER_ID = #{user_id}
+	</select>
+	
+	<!--해당 숙소 상세보기 조회시 해당 숙소가 얼마나 좋아요 수를 지금 가지고 있는지 조회 -->
+	<select id="likeselectRoomCnt" resultType="_int">
+		SELECT COUNT(*) FROM LIKES WHERE LIKE_TYPE = 2 AND LIKE_ID = #{like_id}
+	</select>
+	
+	<!-- 좋아요 찜 해제했을때 발동 -->
+	<delete id="likedeleteRoom">
+		DELETE FROM LIKES WHERE LIKE_TYPE = 2 AND LIKE_ID = #{like_id} AND USER_ID = #{user_id}
+	</delete>
+	
+	<select id="likelist" resultType="like">
+		SELECT * FROM likes lt JOIN room rt ON lt.like_id = rt.ROOM_ID WHERE lt.user_id = #{user_id} AND lt.like_type = 2
+	</select>
+	
+	<select id="likelist2" resultType="like">
+		SELECT * FROM likes lt JOIN planner pt ON lt.like_no = pt.planner_no
+		WHERE lt.user_id = #{user_id} AND lt.like_type = 1
+	</select>
+	
+	<select id="selectLike" resultType="int">
+	select count(*) from likes where user_id = #{user_id} and like_no = #{like_no} and like_type = #{like_type}
+	</select>
+
+</mapper>

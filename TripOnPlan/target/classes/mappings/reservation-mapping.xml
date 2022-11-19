@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReservationDAO">
+
+
+	<!-- (회원) 숙소 예약 등록 -->
+	<insert id="insertReservation">
+		INSERT INTO RESERVATION (USER_ID, IMP_UID, MERCHANT_UID, RES_NAME, RES_TEL, RES_EMAIL, HOST_ID, ROOM_ID, ROOM_NAME, ROOM_IMG, PAY_DATE, PAY_AMOUNT, RES_NUM, 
+		RES_CHECKIN, RES_CHECKOUT)
+		VALUES(#{user_id}, #{imp_uid}, #{merchant_uid}, #{res_name}, #{res_tel}, #{res_email}, #{host_id}, #{room_id}, #{room_name}, #{room_img}, #{pay_date}, #{pay_amount}, #{res_num},
+		#{res_checkin}, #{res_checkout})
+	</insert>
+	
+	<!-- (회원) 숙소 예약 상태 수정 (예약자 이름, 전화번호, 이메일 기본정보 수정) -->
+	
+	<update id="updateReservationPost">
+	UPDATE RESERVATION
+	SET RES_NAME = #{res_name}, RES_TEL = #{res_tel}, RES_EMAIL = #{res_email}
+	WHERE RES_ID = #{res_id} AND USER_ID = #{user_id} AND RES_STATUS = "0"
+	</update>
+	
+	<update id="updateReservationDetail">
+	UPDATE RESERVATION
+	SET RES_TEL = #{res_tel}, RES_EMAIL = #{res_email}
+	WHERE RES_ID = #{res_id} AND USER_ID = #{user_id} AND RES_STATUS = '0'
+	</update>
+	
+	<!-- (회원) 숙소 예약 삭제 => 처음 계획했던 일정에서 더 추가 일자로 숙박하거나 더 적게 숙박해야할때 먼저 취소 후 새로 다시 등록 (재예약) -->
+	<delete id="deleteReservation">
+		DELETE FROM RESERVATION WHERE
+		RES_ID = #{res_id} AND USER_ID = #{user_id}
+	</delete>
+	
+	
+		<!-- (회원) 숙소 예약 취소(update 쿼리문으로 RES_STATUS를 "1"로 변경 결제 취소가 먼저 이뤄지고 DB에서 이렇게 변경)-->
+	<update id="updateReservationCancel">
+		UPDATE RESERVATION
+		SET RES_STATUS = '1'
+		WHERE RES_ID = #{res_id} AND USER_ID = #{user_id} AND RES_STATUS = '0'
+	</update>
+	
+	
+	<!-- (회원) 아이디에 맞는 숙소 예약 조회  -->
+	<select id="getReservationList" resultType="reservation">
+		SELECT * FROM RESERVATION
+		<if test="user_id != null"> 
+		WHERE USER_ID = #{user_id}
+		</if>
+		order BY RES_CHECKOUT desc
+		<!-- ORDER BY SEQ DESC  -->
+		<!-- LIMIT 10 OFFSET #{offset} -->
+	</select>
+	
+	
+	<!-- (회원) 아이디에 맞는 숙소 총 예약 갯수 조회 -->
+	<select id="totalReservationListCnt" resultType="_int">
+		SELECT COUNT(*) FROM RESERVATION WHERE USER_ID = #{user_id}
+	</select>
+	
+	
+	<!-- (호스트) 내 숙소의 예약현황 조회 (현성규) -->
+	<select id="getReservationListForHost" resultType="reservation">
+		SELECT * FROM RESERVATION WHERE HOST_ID = #{host_id}
+		<!-- ORDER BY SEQ DESC  -->
+		<!-- LIMIT 10 OFFSET #{offset} -->
+	</select>
+
+
+	<!-- (호스트) 내 숙소의 예약현황 개수 조회 (현성규) -->
+	<select id="totalReservationListcntForHost" resultType="_int">
+		SELECT COUNT(*) FROM RESERVATION WHERE HOST_ID = #{host_id}
+	</select>
+	
+	
+	<!-- (회원) 예약 한 건에 대해 상세 조회 -->
+	<!--  (회원) 예약 한 건에 대해 상세 조회  -->
+	<select id="getReservationOneDetail" resultType="reservation">
+		SELECT * FROM RESERVATION WHERE USER_ID = #{user_id} AND RES_ID = #{res_id}
+	</select>
+	
+	
+</mapper>

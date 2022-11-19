@@ -1,0 +1,70 @@
+.userinsert-div1 {
+	font-size: 40px;
+	background-color: #ff8e15;
+	border-radius: 15px;
+	padding: 5px 20px;
+	color: white;
+}
+
+.userinsert-hr {
+	border: solid 1px #19558c;
+}
+
+.userinsert-th {
+	width:140px;
+}
+
+input#user_id.userinsert-input, input#user_password.userinsert-input, input#user_passwordCheck.userinsert-input, input.userinsert-input, input#user_email.userinsert-input {
+	border-radius: 15px;
+        width: 30%;
+    height: 40px;
+    border: 1px solid #aaa;
+    padding: 12px;
+     margin-bottom: 7px;
+}
+
+input#phone.userinsert-input {
+		border-radius: 15px;
+    width: 30%;
+    height: 40px;
+    border: 1px solid #aaa;
+    padding: 12px;
+   
+}
+
+button#idCheck.userinsert-idbtn, button#phoneChk.doubleChk.userinsert-input {
+	    background-color: white;
+    color: #555;
+    border: 1px solid #555;
+    border-radius: 7px;
+    width: 135px;
+    height: 40px;
+    font-weight: bold;
+}
+
+button#phoneChk2.doubleChk.userinsert-input {
+	    background-color: white;
+    color: #555;
+    border: 1px solid #555;
+    border-radius: 7px;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+button.submitbutton.userinsert-insertbtn, button.submitbutton.userinsert-resetbtn {
+	    background-color: white;
+    color: #555;
+    border: 1px solid #555;
+    border-radius: 7px;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+button.submitbutton.userinsert-insertbtn:hover, button.submitbutton.userinsert-resetbtn:hover {
+	color: #222;
+    border: 1px solid #222;
+}
+

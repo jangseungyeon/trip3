@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="QnaDAO">
+
+	<!-- 사용자의 마이페이지 -->
+	<!-- 내가 질문한 내용들 -->
+	<!-- sql-map-config.xml파일의typeAlias의 alias="qna"와 resultType="qna"일치시킴. -->
+	<select id="myQnaList" resultType="qna">
+		SELECT * FROM QNA WHERE
+		QNA_USER_ID = #{qna_user_id}
+		ORDER BY QNA_NUM DESC
+	</select>
+
+	<!-- 사용자가 질문할 때 사용(=질문 등록) -->
+	<!-- 이동 mybatis.insert("QnaDAO.insertQna", vo); -->
+	<insert id="myQnaInsert">
+		INSERT INTO QNA(QNA_USER_ID, QNA_REGDATE,
+		QNA_CONTENT,QNA_USER_EMAIL,
+		QNA_TITLE)
+		VALUES(#{qna_user_id},NOW(),#{qna_content},#{qna_user_email},
+		#{qna_title})
+	</insert>
+
+	<!-- 사용자가 자기 질문을 수정할때 사용 -->
+	<update id="myQnaUpdate">
+		UPDATE QNA
+		SET QNA_CONTENT =#{qna_content}, QNA_TITLE
+		=#{qna_title}
+		WHERE QNA_NUM = #{qna_num}
+	</update>
+
+	<!-- 사용자가 자기 질문을 삭제할때 사용 -->
+	<delete id="myQnaDelete">
+		DELETE FROM QNA WHERE
+		QNA_NUM = #{qna_num}
+	</delete>
+
+	<!-- 사용자정보가져오기 -->
+<!-- QnaDAOMybatis.java파일 -->
+<!-- 이 한줄에서mybatis.selectOne("QnaDAO.myUserOne", vo); -->
+<!-- QnaDAO는 mapper namespace의"QnaDAO"와 일치-->
+<!-- myUserOne는 id="myUserOne"와 일치-->
+	<select id="myUserOne" resultType="user">
+		SELECT * FROM USER WHERE
+		USER_ID = #{user_id}
+	</select>
+
+	<!-- 관리자 페이지 -->
+	<!-- 전체 리스트 -->
+	<select id="adminQnaAllList" resultType="qna">
+		SELECT * FROM QNA ORDER
+		BY QNA_NUM DESC
+	</select>
+
+	<!-- 답변 완료 리스트 -->
+	<select id="adminQnaAnswerList" resultType="qna">
+		SELECT * FROM QNA
+		WHERE QNA_VIEWS=1 ORDER BY QNA_REGDATE ASC
+	</select>
+
+	<!-- 미답변 리스트 -->
+	<select id="adminQnaNoAnswerList" resultType="qna">
+		SELECT * FROM QNA
+		WHERE QNA_VIEWS=0 ORDER BY QNA_REGDATE ASC
+	</select>
+
+	<!-- 관리자가 사용자 답글 달아줄떄 QNA_VIEWS(답변여부 컬럼: 답변완료 1, 미완료 0) -->
+	<update id="adminQnaAnswerUpdate">
+		UPDATE QNA
+		SET QNA_ADMIN_ID =#{qna_admin_id},
+		QNA_ANSWER
+		=#{qna_answer} , QNA_ANSWER_DATE = NOW() , QNA_VIEWS = 1
+		WHERE QNA_NUM = #{qna_num}
+	</update>
+
+	<!-- 사용자, 관리자 공통으로 사용 -->
+	<!-- 사용자가 질문한 내용 상세보기, 관리자 메뉴의 상세보기 -->
+	<select id="qnaOne" resultType="qna">
+		SELECT * FROM QNA WHERE QNA_NUM =
+		#{qna_num}
+	</select>
+
+<!-- 	<select id="qnaOne" resultType="qna"> -->
+<!-- 		SELECT * FROM QNA WHERE QNA_NUM = -->
+<!-- 		#{qna_num} -->
+<!-- 	</select> -->
+
+	<!-- 게시물 목록 + 페이징 -->
+	<!-- <select id="adminQnaNoAnswerList" resultType="qna"> -->
+	<!-- SELECT -->
+	<!-- QNA_NUM, QNA_USER_ID, QNA_TITLE, QNA_REGDATE, QNA_VIEWS -->
+	<!-- FROM QNA -->
+	<!-- ORDER BY QNA_NUM DESC -->
+	<!-- LIMIT #{displayQna}, #{qnaNum} -->
+	<!-- </select> -->
+
+</mapper>

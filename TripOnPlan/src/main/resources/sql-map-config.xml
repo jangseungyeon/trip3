@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+	
+		<setting name="callSettersOnNulls" value="true" />
+		<setting name="returnInstanceForEmptyRow" value="true" />
+		
+	</settings>
+	
+	<typeAliases>
+	
+		<typeAlias alias="host" type="com.springbook.biz.host.HostVO"/>
+		<typeAlias alias="user" type="com.springbook.biz.user.UserVO" />
+		<typeAlias alias="room" type="com.springbook.biz.room.RoomVO" />
+		<typeAlias alias="reservation" type="com.springbook.biz.reservation.ReservationVO" />
+		<typeAlias alias="planner" type="com.springbook.biz.planner.PlannerVO" />
+		<typeAlias alias="area" type="com.springbook.biz.planner.AreaVO" />
+		<typeAlias alias="place" type="com.springbook.biz.planner.PlaceVO" />
+		<typeAlias alias="like" type="com.springbook.biz.planner.LikeVO" />
+		<typeAlias alias="review" type="com.springbook.biz.review.ReviewVO" />
+		<typeAlias alias="hostChart" type="com.springbook.biz.host.HostChartVO"/>
+		<typeAlias type="com.springbook.biz.planner.CommentVO" alias="comment"/>
+		<typeAlias type="com.springbook.biz.planner.ReplyVO" alias="reply"/>
+		<typeAlias type="com.springbook.biz.planner.PlannerMemoVO" alias="memo"/>
+		<typeAlias type="com.springbook.biz.faq.FaqVO" alias="faq"/>
+		<typeAlias type="com.springbook.biz.host.HostLoginVO" alias="HostLogin"/>
+		<typeAlias alias="qna" type="com.springbook.biz.qna.QnaVO" />
+		
+	</typeAliases>
+	
+	<mappers>
+	
+		<mapper resource="mappings/host-mapping.xml" />
+		<mapper resource="mappings/user-mapping.xml" />
+		<mapper resource="mappings/room-mapping.xml" />
+		<mapper resource="mappings/reservation-mapping.xml" />
+		<mapper resource="mappings/Area_mapping.xml" />
+		<mapper resource="mappings/Place_mapping.xml" />
+		<mapper resource="mappings/Planner_mapping.xml" /> 
+		<mapper resource="mappings/Like_mapping.xml" />
+		<mapper resource="mappings/review-mapping.xml" />
+		<mapper resource="mappings/comment_mapping.xml"/>
+		<mapper resource="mappings/reply_mapping.xml"/>
+		<mapper resource="mappings/memo_mapping.xml"/>
+		<mapper resource="mappings/faq-mapping.xml"/>
+		<mapper resource="mappings/qna-mapping.xml" />
+		
+	</mappers>
+</configuration>
+
+
