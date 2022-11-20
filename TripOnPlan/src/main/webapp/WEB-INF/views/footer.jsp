@@ -22,7 +22,7 @@
 				</ul>
 				
 				<ul class="footer_row">
-					<li class="footer-li">&copy;프로젝트 시작일자 : 2022-09-21 &copy;프로젝트 완료일자 : 2022-11-18</li>
+					<li class="footer-li">&copy;프로젝트 시작일자 : 2022-10-21 &copy;프로젝트 완료일자 : 2022-11-18</li>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				
 					
