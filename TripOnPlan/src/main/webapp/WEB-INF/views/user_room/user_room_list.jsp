@@ -39,11 +39,11 @@ $(window).scroll(function(){
 			var f = (count * page) - (count * (page-1) +1);
 			var m = count * (page-1) +1;
 			if($(".roomCardAllDiv").length > count * (page-1) +1){
-				$("#spinner").css("display" , "");
+				$("#spinner").css("display" , "block");
 				 setTimeout(function() {
 					 $("#spinner").css("display" , "none")
-					 for(var i = 0; i <= f; i ++){
-						 $(".roomCardAllDiv" + m ).css("display" , "");
+					 for(var i = 0; i <= f; i++){
+						 $("#roomCardAllDiv" + m ).css("display" , "block");
 						 m += 1;
 					 }
 					}, 1000);	
@@ -419,6 +419,7 @@ justify-content: space-evenly;
 	width: 70px; 
 	position:fixed; 
 	bottom: 0;
+	z-index: 100;
 }
 
 select {
@@ -700,7 +701,7 @@ span.material-symbols-outlined.upward {
 	text-align: right;
 	position:fixed; 
 	bottom: 0; 
-	z-index: 999;
+	z-index: 100;
 	left:0;
 }
 
@@ -766,7 +767,7 @@ button.main-icon-div1:hover span:nth-child(2) {
 		<h1 id="u_roomListTitle" style="text-align: center;">여행, 떠나세요? 어디로 가실 예정이신가요?</h1>
 		<br>
 		
-		<form name="searchRoomfrm" action="u_searchRoomList.do" method="post" id="u_searchfrm">
+		<form name="searchRoomfrm" action="u_searchRoomList.do" method="get" id="u_searchfrm">
 			
 			<div class="roomBasicCheck">
 				
@@ -813,7 +814,7 @@ button.main-icon-div1:hover span:nth-child(2) {
 			<option value="" selected>제한 없음</option>
 			<option value="30000">3만원</option>
 			<option value="40000">4만원</option>
-			<option value="50000" >5만원</option>
+			<option value="50000">5만원</option>
 			<option value="60000">6만원</option>
 			<option value="70000">7만원</option>
 			<option value="80000">8만원</option>
@@ -945,7 +946,7 @@ button.main-icon-div1:hover span:nth-child(2) {
 
 	<c:forEach var="i" begin="0" end="${u_roomList.size()-1}" step="1" varStatus="status">
 	
-		<div class="roomCardAllDiv roomCardAllDiv${status.index} card mb-3" onclick="f_getRoom('${u_roomList[i].room_id}')" <c:if test="${status.count >= '11'}"> style="display:none;"</c:if> >
+		<div class="roomCardAllDiv card mb-3" id="roomCardAllDiv${status.index}" onclick="f_getRoom('${u_roomList[i].room_id}')" <c:if test="${status.count >= '12'}"> style="display:none;"</c:if> >
   			<div class="row no-gutters">
 	    		<div class="col-md-3" id="roomListImgDiv">
 	      			<img src="resources/room_img/${u_roomList[i].room_img_no1}" alt="${u_roomList[i].room_name} 대표 이미지" title="${u_roomList[i].room_name} 대표 이미지">

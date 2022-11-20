@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`comment_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 samp.comment:~3 rows (대략적) 내보내기
+-- 테이블 데이터 samp.comment:~2 rows (대략적) 내보내기
 DELETE FROM `comment`;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
 INSERT INTO `comment` (`planner_no`, `comment_no`, `user_id`, `comment_content`, `reg_date`) VALUES
@@ -175,11 +175,12 @@ CREATE TABLE IF NOT EXISTS `likes` (
   `like_count` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 samp.likes:~1 rows (대략적) 내보내기
+-- 테이블 데이터 samp.likes:~2 rows (대략적) 내보내기
 DELETE FROM `likes`;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
 INSERT INTO `likes` (`like_type`, `like_id`, `user_id`, `like_no`, `like_count`) VALUES
-	('1', 'user222', 'user222', 9, 1);
+	('1', 'user222', 'user222', 9, 1),
+	('2', 'ROOM027', NULL, NULL, 0);
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 
 -- 테이블 samp.manage 구조 내보내기
@@ -211,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `memo` (
   `memo_content` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 samp.memo:~46 rows (대략적) 내보내기
+-- 테이블 데이터 samp.memo:~47 rows (대략적) 내보내기
 DELETE FROM `memo`;
 /*!40000 ALTER TABLE `memo` DISABLE KEYS */;
 INSERT INTO `memo` (`planner_no`, `user_id`, `memo_day`, `memo_content`) VALUES
@@ -276,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `place` (
   `addr` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 samp.place:~60 rows (대략적) 내보내기
+-- 테이블 데이터 samp.place:~62 rows (대략적) 내보내기
 DELETE FROM `place`;
 /*!40000 ALTER TABLE `place` DISABLE KEYS */;
 INSERT INTO `place` (`planner_no`, `user_id`, `planner_date`, `place_name`, `mapy`, `mapx`, `img`, `addr`) VALUES
@@ -359,7 +360,7 @@ CREATE TABLE IF NOT EXISTS `planner` (
   PRIMARY KEY (`planner_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- 테이블 데이터 samp.planner:~11 rows (대략적) 내보내기
+-- 테이블 데이터 samp.planner:~12 rows (대략적) 내보내기
 DELETE FROM `planner`;
 /*!40000 ALTER TABLE `planner` DISABLE KEYS */;
 INSERT INTO `planner` (`planner_no`, `user_id`, `room_name`, `planner_start`, `planner_end`, `planner_area`, `planner_title`, `planner_show`, `planner_day`, `planner_like`, `planner_areaNum`) VALUES
@@ -929,33 +930,33 @@ CREATE TABLE IF NOT EXISTS `room` (
 DELETE FROM `room`;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
 INSERT INTO `room` (`ROOM_NAME`, `ROOM_ADDR`, `ROOM_ADDR_DETAIL`, `ROOM_AREA`, `ROOM_DESC`, `ROOM_ID`, `HOST_ID`, `ROOM_PRICE`, `ROOM_IMG_NO1`, `ROOM_IMG_NO2`, `ROOM_IMG_NO3`, `ROOM_IMG_NO4`, `ROOM_IMG_NO5`, `ROOM_POINTS`, `ROOM_MAX`, `ROOM_THEME`, `ROOM_CAT`, `ROOM_WIFI`, `ROOM_PET`, `ROOM_MEAL`, `ROOM_PARKING`, `ROOM_SWPOOL`, `ROOM_LIKES`, `ROOM_STARS`) VALUES
-	('민박전문', '경기 안양시 만안구 안양천서로177', '래미안 101동 102호', '경기', '친절히 모시겠습니다.', 'ROOM001', 'host01', '75000', 'MinbakMain1.jpg', 'MinbakSub1.jpg', NULL, NULL, NULL, NULL, 4, 'city', '민박', NULL, 'Y', 'Y', 'Y', NULL, '42', '4'),
-	('강원민박', '강원 홍천군 서면 한치골길 262', '1104-4', '강원', '정성을 다하겠읍니다.', 'ROOM002', 'host01', '80000', 'MinbakMain2.jpg', 'MinbakSub2.jpg', 'MinbakSub7.jpg', 'MinbakSub8.jpg', NULL, NULL, 4, 'mountain,forest,river', '민박', NULL, 'Y', 'Y', 'Y', NULL, '33', '4.5'),
-	('경남민박', '경남 김해시 인제로 197', '1층', '경남', '많이 찾아주시는 현지의 명소', 'ROOM003', 'host01', '64000', 'MinbakMain3.jpg', 'MinbakSub3.jpg', 'MinbakSub2.jpg', 'MinbakSub9.jpg', 'MinbakSub10.jpg', NULL, 4, 'sea', '민박', NULL, 'Y', 'Y', NULL, NULL, '4', '3'),
-	('동해민박', '부산 해운대구 송정해변로 12-8', '508-3', '부산', '밥이 맛있는 곳', 'ROOM004', 'host01', '78000', 'MinbakMain4.jpg', 'MinbakSub4.jpg', 'MinbakSub5.jpg', NULL, NULL, NULL, 4, 'sea,river', '민박', NULL, 'Y', NULL, 'Y', NULL, '3', '3'),
-	('안양민박', '경기 안양시 만안구 삼막로96번길 110', '타워 7층', '안양', '경치가 끝내줘요', 'ROOM005', 'host01', '80000', 'MinbakMain5.jpg', 'MinbakSub5.jpg', NULL, NULL, NULL, NULL, 4, 'city', '민박', NULL, 'Y', 'Y', 'Y', NULL, '7', '4.5'),
-	('창원민박', '강원 동해시 임항로 99', '유원지길 45', '강원', '30년 전통의 민박집입니다.', 'ROOM006', 'host06', '45000', 'MinbakMain6.jpg', 'MinbakSub6.jpg', 'MinbakSub2.jpg', 'MinbakSub11.jpg', 'MinbakSub12.jpg', NULL, 3, 'sea,forest,river', '민박', NULL, NULL, NULL, NULL, 'Y', '66', '4.5'),
-	('마산민박', '경남 남해군 삼동면 양화금로 329-31', '314-84번지', '경남', '남해에서 둘째 가라면 서러워요.', 'ROOM007', 'host07', '90000', 'MinbakMain7.jpg', 'MinbakSub7.jpg', NULL, NULL, NULL, NULL, 3, 'sea', '민박', 'Y', 'Y', 'Y', NULL, 'Y', '54', '3'),
-	('진해민박', '경남 창원시 마산합포구 구산면 해양관광로 1307-111', '활초리 4-21', '경남', '친절과 정성을 다하겠습니다.', 'ROOM008', 'host08', '60000', 'MinbakMain8.jpg', 'MinbakSub8.jpg', NULL, 'MinbakSub11.jpg', 'MinbakMain9.jpg', NULL, 4, 'sea,valley', '민박', 'Y', 'Y', 'Y', NULL, 'Y', '22', '2.5'),
-	('일등펜션', '경남 창원시 마산합포구 구산면 괭이바다길 231-3', '19-2번지', '경남', '안녕하세요? 마산민박입니다.', 'ROOM009', 'host09', '110000', 'pensionMain1.jpg', 'pensionSub1.jpg', 'pensionSub6.jpg', 'pensionSub7.jpg', NULL, NULL, 3, 'sea', '펜션', NULL, 'Y', 'Y', NULL, NULL, '13', '2'),
-	('강남펜션', '경남 창원시 진해구 명제로 324-5', '480번지', '경남', '예약제로 운영됩니다. 전화를 먼저 주세요.', 'ROOM010', 'host10', '96000', 'pensionMain2.jpg', 'pensionSub2.jpg', 'pensionSub8.jpg', 'pensionSub9.jpg', 'pensionSub10.jpg', NULL, 4, 'sea,valley', '펜션', NULL, 'Y', NULL, NULL, 'Y', '8', '4'),
-	('펜션지기', '경북 울릉군 울릉읍 울릉순환로 678', '1층', '경북', '제목 그대로 일등 펜션입니다.', 'ROOM011', 'host11', '150000', 'pensionMain3.jpg', NULL, NULL, NULL, NULL, NULL, 4, 'sea,river', '펜션', NULL, NULL, 'Y', NULL, 'Y', '45', '2'),
-	('가평펜션', '경기 가평군 설악면 어비산길 154', '독채', '경기', '넓고 쾌적한 시설, 즐거운 추억을 만드세요', 'ROOM012', 'host12', '170000', 'pensionMain4.jpg', NULL, NULL, NULL, NULL, NULL, 4, 'city,valley', '펜션', NULL, 'Y', 'Y', 'Y', NULL, '9', '4.5'),
-	('궁평항펜션', '서울 강남구 논현로119길 24', '7층', '서울', '족구장 완비! 단체 환영!!', 'ROOM013', 'host13', '165000', 'pensionMain5.jpg', 'pensionSub3.jpg', 'pensionSub1.jpg', 'pensionSub2.jpg', NULL, NULL, 3, 'city,river', '펜션', 'Y', 'Y', 'Y', 'Y', NULL, '81', '4.5'),
-	('하이펜션', '경기 가평군 청평면 호반로 976', '독채', '경기', '근처에 낚시터가 있어 아주 좋습니다.', 'ROOM014', 'host14', '144000', 'pensionMain6.jpg', NULL, NULL, NULL, NULL, NULL, 6, 'mountain,forest,valley,river', '펜션', 'Y', 'Y', 'Y', 'Y', 'Y', '69', '1'),
-	('감상펜션', '경기 화성시 서신면 궁평고잔길 99', '1층 101호', '경기', '낚시배 운영합니다.', 'ROOM015', 'host15', '150000', 'pensionMain7.jpg', 'pensionSub4.jpg', 'pensionSub3.jpg', NULL, NULL, NULL, 6, 'mountain,forest,valley', '펜션', NULL, 'Y', 'Y', 'Y', NULL, '7', '0.5'),
-	('농촌펜션', '경기 화성시 서신면 궁평고잔길 85-5', '감상펜션', '경기', '방문해주신다면 친절히 모시겠습니다.', 'ROOM016', 'host16', '120000', 'pensionMain8.jpg', NULL, NULL, NULL, NULL, NULL, 6, 'mountain,forest,river', '펜션', 'Y', 'Y', 'Y', NULL, NULL, '1', '5'),
-	('강근처펜션', '경기 양평군 용문면 용문산로 213-5', '농촌펜션', '경기', '산 좋고 물 좋은 곳에 위치한 펜션입니다.', 'ROOM017', 'host17', '130000', 'pensionMain9.jpg', 'pensionSub5.jpg', NULL, NULL, NULL, NULL, 8, 'mountain,forest', '펜션', 'Y', NULL, 'Y', 'Y', NULL, '33', '3'),
-	('시골펜션', '경북 경주시 문무대왕면 송전기곡길 15-1', '43-9번지', '경북', '강 근처에 있어 놀기 아주 편하답니다.', 'ROOM018', 'host18', '145000', 'pensionMain10.jpg', NULL, NULL, NULL, NULL, NULL, 8, 'mountain', '펜션', 'Y', 'Y', 'Y', 'Y', NULL, '5', '3'),
-	('리베라모텔', '강원 철원군 서면 태봉로 465-83', '7번지', '강원', '전 객실 바베큐장 이용이 가능합니다.', 'ROOM019', 'host19', '210000', 'MotelMain1.jpg', 'MotelSub1.jpg', 'MotelSub5.jpg', 'GuestHouseSub1.jpg', 'GuestHouseSub3.jpg', NULL, 2, 'mountain,forest', '모텔', 'Y', 'Y', 'Y', NULL, NULL, '15', '4'),
-	('유림모텔', '전남 해남군 계곡면 비슬안길 185', '7-3번지', '전남', '즐겁게 물놀이 할 수 잇는 유아풀을 동반했습니다.', 'ROOM020', 'host20', '230000', 'MotelMain2.jpg', 'MotelSub2.jpg', 'MotelSub3.jpg', 'GuestHouseSub2.jpg', NULL, NULL, 8, 'mountain,forest', '모텔', 'Y', NULL, 'Y', 'Y', NULL, '88', '4'),
-	('로얄모텔', '경기 안양시 만안구 안양로268번길 41', '303호', '경기', '자연풍경속 작은 궁전. 천상의 휴식을 준비하는 아담한 모텔', 'ROOM021', 'host21', '80000', 'MotelMain3.jpg', 'MotelSub3.jpg', NULL, NULL, NULL, NULL, 2, 'city,river', '모텔', 'Y', NULL, NULL, 'Y', 'Y', '11', '4'),
-	('CNC모텔', '경기 수원시 권선구 구운로85번길 28', 'CNC 모텔', '경기', '몸과 마음을 재충전하는 꽃과 나무들을 선보입니다.', 'ROOM022', 'host22', '120000', 'MotelMain4.jpg', 'MotelSub4.jpg', 'MotelSub2.jpg', 'GuestHouseSub4.jpg', 'GuestHouseSub5.jpg', NULL, 2, 'city,valley,river', '모텔', NULL, 'Y', 'Y', 'Y', NULL, '24', '4'),
-	('샤르망모텔', '경기 수원시 권선구 서부로1934번길 2', '샤르망 모텔', '경기', '신축건물로 전 객식 복층형 단체 모텔입니다.', 'ROOM023', 'host23', '200000', 'MotelMain5.jpg', 'MotelSub5.jpg', 'MotelSub9.jpg', 'GuestHouseSub6.jpg', NULL, NULL, 3, 'city', '모텔', 'Y', 'Y', NULL, 'Y', 'Y', '64', '3'),
-	('일로와모텔', '경기 광주시 경안로 18', '4-33번지', '경기', '고급스러운 방갈로 형태의 독채하우스', 'ROOM024', 'host24', '84000', 'MotelMain6.jpg', 'MotelSub6.jpg', NULL, NULL, NULL, NULL, 4, 'city,valley,river', '모텔', 'Y', 'Y', 'Y', 'Y', 'Y', '32', '2.5'),
-	('SS모텔', '경기 광주시 광주대로 133', '2층 202호', '경기', '가족, 연인, 친구, 동료와 추억을 만드는 공간입니다.', 'ROOM025', 'host25', '66000', 'MotelMain7.jpg', 'MotelSub7.jpg', 'MotelSub10.jpg', 'GuestHouseSub7.jpg', NULL, NULL, 2, 'city', '모텔', 'Y', 'Y', 'Y', NULL, 'Y', '221', '1.5'),
-	('칸타빌모텔', '전북 군산시 소룡1길 5', '칸타빌', '전북', '아름다운 편백숲속에서 천천히 걷기 늦은밤 마음을 열어주는 하늘 별 빛.', 'ROOM026', 'host26', '59000', 'MotelMain8.jpg', 'MotelSub8.jpg', NULL, NULL, NULL, NULL, 4, 'mountain', '모텔', NULL, 'Y', 'Y', 'Y', NULL, '4', '3.5'),
-	('모텔꿈꾸다', '전북 남원시 소리길 120', '꿈꾸다', '전북', '전객실 제트스파, 호텔급', 'ROOM027', 'host27', '89000', 'MotelMain9.jpg', 'MotelSub9.jpg', 'MotelSub4.jpg', 'GuestHouseSub8.jpg', NULL, NULL, 2, 'mountain,river', '모텔', 'Y', 'Y', 'Y', 'Y', NULL, '56', '0');
+	('민박전문', '경기 안양시 만안구 안양천서로177', '래미안 101동 102호', '경기', '친절히 모시겠습니다.', 'ROOM001', 'host01', '75000', 'MinbakMain1.jpg', 'MinbakSub1.jpg', NULL, NULL, NULL, NULL, 4, 'city', 'minbak', NULL, 'Y', 'Y', 'Y', NULL, '42', '4'),
+	('강원민박', '강원 홍천군 서면 한치골길 262', '1104-4', '강원', '정성을 다하겠읍니다.', 'ROOM002', 'host01', '80000', 'MinbakMain2.jpg', 'MinbakSub2.jpg', 'MinbakSub7.jpg', 'MinbakSub8.jpg', NULL, NULL, 4, 'mountain,forest,river', 'minbak', NULL, 'Y', 'Y', 'Y', NULL, '33', '4.5'),
+	('경남민박', '경남 김해시 인제로 197', '1층', '경남', '많이 찾아주시는 현지의 명소', 'ROOM003', 'host01', '64000', 'MinbakMain3.jpg', 'MinbakSub3.jpg', 'MinbakSub2.jpg', 'MinbakSub9.jpg', 'MinbakSub10.jpg', NULL, 4, 'sea', 'minbak', NULL, 'Y', 'Y', NULL, NULL, '4', '3'),
+	('동해민박', '부산 해운대구 송정해변로 12-8', '508-3', '부산', '밥이 맛있는 곳', 'ROOM004', 'host01', '78000', 'MinbakMain4.jpg', 'MinbakSub4.jpg', 'MinbakSub5.jpg', NULL, NULL, NULL, 4, 'sea,river', 'minbak', NULL, 'Y', NULL, 'Y', NULL, '3', '3'),
+	('안양민박', '경기 안양시 만안구 삼막로96번길 110', '타워 7층', '안양', '경치가 끝내줘요', 'ROOM005', 'host01', '80000', 'MinbakMain5.jpg', 'MinbakSub5.jpg', NULL, NULL, NULL, NULL, 4, 'city', 'minbak', NULL, 'Y', 'Y', 'Y', NULL, '7', '4.5'),
+	('창원민박', '강원 동해시 임항로 99', '유원지길 45', '강원', '30년 전통의 민박집입니다.', 'ROOM006', 'host06', '45000', 'MinbakMain6.jpg', 'MinbakSub6.jpg', 'MinbakSub2.jpg', 'MinbakSub11.jpg', 'MinbakSub12.jpg', NULL, 3, 'sea,forest,river', 'minbak', NULL, NULL, NULL, NULL, 'Y', '66', '4.5'),
+	('마산민박', '경남 남해군 삼동면 양화금로 329-31', '314-84번지', '경남', '남해에서 둘째 가라면 서러워요.', 'ROOM007', 'host07', '90000', 'MinbakMain7.jpg', 'MinbakSub7.jpg', NULL, NULL, NULL, NULL, 3, 'sea', 'minbak', 'Y', 'Y', 'Y', NULL, 'Y', '54', '3'),
+	('진해민박', '경남 창원시 마산합포구 구산면 해양관광로 1307-111', '활초리 4-21', '경남', '친절과 정성을 다하겠습니다.', 'ROOM008', 'host08', '60000', 'MinbakMain8.jpg', 'MinbakSub8.jpg', NULL, 'MinbakSub11.jpg', 'MinbakMain9.jpg', NULL, 4, 'sea,valley', 'minbak', 'Y', 'Y', 'Y', NULL, 'Y', '22', '2.5'),
+	('일등펜션', '경남 창원시 마산합포구 구산면 괭이바다길 231-3', '19-2번지', '경남', '안녕하세요? 마산민박입니다.', 'ROOM009', 'host09', '110000', 'pensionMain1.jpg', 'pensionSub1.jpg', 'pensionSub6.jpg', 'pensionSub7.jpg', NULL, NULL, 3, 'sea', 'pension', NULL, 'Y', 'Y', NULL, NULL, '13', '2'),
+	('강남펜션', '경남 창원시 진해구 명제로 324-5', '480번지', '경남', '예약제로 운영됩니다. 전화를 먼저 주세요.', 'ROOM010', 'host10', '96000', 'pensionMain2.jpg', 'pensionSub2.jpg', 'pensionSub8.jpg', 'pensionSub9.jpg', 'pensionSub10.jpg', NULL, 4, 'sea,valley', 'pension', NULL, 'Y', NULL, NULL, 'Y', '8', '4'),
+	('펜션지기', '경북 울릉군 울릉읍 울릉순환로 678', '1층', '경북', '제목 그대로 일등 펜션입니다.', 'ROOM011', 'host11', '150000', 'pensionMain3.jpg', NULL, NULL, NULL, NULL, NULL, 4, 'sea,river', 'pension', NULL, NULL, 'Y', NULL, 'Y', '45', '2'),
+	('가평펜션', '경기 가평군 설악면 어비산길 154', '독채', '경기', '넓고 쾌적한 시설, 즐거운 추억을 만드세요', 'ROOM012', 'host12', '170000', 'pensionMain4.jpg', NULL, NULL, NULL, NULL, NULL, 4, 'city,valley', 'pension', NULL, 'Y', 'Y', 'Y', NULL, '9', '4.5'),
+	('궁평항펜션', '서울 강남구 논현로119길 24', '7층', '서울', '족구장 완비! 단체 환영!!', 'ROOM013', 'host13', '165000', 'pensionMain5.jpg', 'pensionSub3.jpg', 'pensionSub1.jpg', 'pensionSub2.jpg', NULL, NULL, 3, 'city,river', 'pension', 'Y', 'Y', 'Y', 'Y', NULL, '81', '4.5'),
+	('하이펜션', '경기 가평군 청평면 호반로 976', '독채', '경기', '근처에 낚시터가 있어 아주 좋습니다.', 'ROOM014', 'host14', '144000', 'pensionMain6.jpg', NULL, NULL, NULL, NULL, NULL, 6, 'mountain,forest,valley,river', 'pension', 'Y', 'Y', 'Y', 'Y', 'Y', '69', '1'),
+	('감상펜션', '경기 화성시 서신면 궁평고잔길 99', '1층 101호', '경기', '낚시배 운영합니다.', 'ROOM015', 'host15', '150000', 'pensionMain7.jpg', 'pensionSub4.jpg', 'pensionSub3.jpg', NULL, NULL, NULL, 6, 'mountain,forest,valley', 'pension', NULL, 'Y', 'Y', 'Y', NULL, '7', '0.5'),
+	('농촌펜션', '경기 화성시 서신면 궁평고잔길 85-5', '감상펜션', '경기', '방문해주신다면 친절히 모시겠습니다.', 'ROOM016', 'host16', '120000', 'pensionMain8.jpg', NULL, NULL, NULL, NULL, NULL, 6, 'mountain,forest,river', 'pension', 'Y', 'Y', 'Y', NULL, NULL, '1', '5'),
+	('강근처펜션', '경기 양평군 용문면 용문산로 213-5', '농촌펜션', '경기', '산 좋고 물 좋은 곳에 위치한 펜션입니다.', 'ROOM017', 'host17', '130000', 'pensionMain9.jpg', 'pensionSub5.jpg', NULL, NULL, NULL, NULL, 8, 'mountain,forest', 'pension', 'Y', NULL, 'Y', 'Y', NULL, '33', '3'),
+	('시골펜션', '경북 경주시 문무대왕면 송전기곡길 15-1', '43-9번지', '경북', '강 근처에 있어 놀기 아주 편하답니다.', 'ROOM018', 'host18', '145000', 'pensionMain10.jpg', NULL, NULL, NULL, NULL, NULL, 8, 'mountain', 'pension', 'Y', 'Y', 'Y', 'Y', NULL, '5', '3'),
+	('리베라모텔', '강원 철원군 서면 태봉로 465-83', '7번지', '강원', '전 객실 바베큐장 이용이 가능합니다.', 'ROOM019', 'host19', '210000', 'MotelMain1.jpg', 'MotelSub1.jpg', 'MotelSub5.jpg', 'GuestHouseSub1.jpg', 'GuestHouseSub3.jpg', NULL, 2, 'mountain,forest', 'motel', 'Y', 'Y', 'Y', NULL, NULL, '15', '4'),
+	('유림모텔', '전남 해남군 계곡면 비슬안길 185', '7-3번지', '전남', '즐겁게 물놀이 할 수 잇는 유아풀을 동반했습니다.', 'ROOM020', 'host20', '230000', 'MotelMain2.jpg', 'MotelSub2.jpg', 'MotelSub3.jpg', 'GuestHouseSub2.jpg', NULL, NULL, 8, 'mountain,forest', 'motel', 'Y', NULL, 'Y', 'Y', NULL, '88', '4'),
+	('로얄모텔', '경기 안양시 만안구 안양로268번길 41', '303호', '경기', '자연풍경속 작은 궁전. 천상의 휴식을 준비하는 아담한 모텔', 'ROOM021', 'host21', '80000', 'MotelMain3.jpg', 'MotelSub3.jpg', NULL, NULL, NULL, NULL, 2, 'city,river', 'motel', 'Y', NULL, NULL, 'Y', 'Y', '11', '4'),
+	('CNC모텔', '경기 수원시 권선구 구운로85번길 28', 'CNC 모텔', '경기', '몸과 마음을 재충전하는 꽃과 나무들을 선보입니다.', 'ROOM022', 'host22', '120000', 'MotelMain4.jpg', 'MotelSub4.jpg', 'MotelSub2.jpg', 'GuestHouseSub4.jpg', 'GuestHouseSub5.jpg', NULL, 2, 'city,valley,river', 'motel', NULL, 'Y', 'Y', 'Y', NULL, '24', '4'),
+	('샤르망모텔', '경기 수원시 권선구 서부로1934번길 2', '샤르망 모텔', '경기', '신축건물로 전 객식 복층형 단체 모텔입니다.', 'ROOM023', 'host23', '200000', 'MotelMain5.jpg', 'MotelSub5.jpg', 'MotelSub9.jpg', 'GuestHouseSub6.jpg', NULL, NULL, 3, 'city', 'motel', 'Y', 'Y', NULL, 'Y', 'Y', '64', '3'),
+	('일로와모텔', '경기 광주시 경안로 18', '4-33번지', '경기', '고급스러운 방갈로 형태의 독채하우스', 'ROOM024', 'host24', '84000', 'MotelMain6.jpg', 'MotelSub6.jpg', NULL, NULL, NULL, NULL, 4, 'city,valley,river', 'motel', 'Y', 'Y', 'Y', 'Y', 'Y', '32', '2.5'),
+	('SS모텔', '경기 광주시 광주대로 133', '2층 202호', '경기', '가족, 연인, 친구, 동료와 추억을 만드는 공간입니다.', 'ROOM025', 'host25', '66000', 'MotelMain7.jpg', 'MotelSub7.jpg', 'MotelSub10.jpg', 'GuestHouseSub7.jpg', NULL, NULL, 2, 'city', 'motel', 'Y', 'Y', 'Y', NULL, 'Y', '221', '1.5'),
+	('칸타빌모텔', '전북 군산시 소룡1길 5', '칸타빌', '전북', '아름다운 편백숲속에서 천천히 걷기 늦은밤 마음을 열어주는 하늘 별 빛.', 'ROOM026', 'host26', '59000', 'MotelMain8.jpg', 'MotelSub8.jpg', NULL, NULL, NULL, NULL, 4, 'mountain', 'motel', NULL, 'Y', 'Y', 'Y', NULL, '4', '3.5'),
+	('모텔꿈꾸다', '전북 남원시 소리길 120', '꿈꾸다', '전북', '전객실 제트스파, 호텔급', 'ROOM027', 'host27', '89000', 'MotelMain9.jpg', 'MotelSub9.jpg', 'MotelSub4.jpg', 'GuestHouseSub8.jpg', NULL, NULL, 2, 'mountain,river', 'motel', 'Y', 'Y', 'Y', 'Y', NULL, '57', '0');
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 
 -- 테이블 samp.room_seq 구조 내보내기
