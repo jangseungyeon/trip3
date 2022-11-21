@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReservationDAO">
+
+	<!-- 관리자 예약 수정 -->
+	<!-- 예약 변경 가능 상태 => '1' == 예약 변경 가능, '2' == 예약 변경 불가, '3' == 예약 취소 완료, '4' 
+		== 사용 완료 (리뷰 작성 가능) -->
+	<update id="manage_reservUpdate">
+		UPDATE RESERVATION
+		SET
+		RES_NAME = #{res_name}, RES_TEL = #{res_tel}, RES_EMAIL = #{res_email}
+		WHERE RES_ID = #{res_id} AND
+		USER_ID = #{user_id} AND RES_STATUS = "0"
+
+	</update>
+
+	<!-- 관리자 예약 삭제 -->
+	<delete id="manage_reservDelete">
+		DELETE FROM RESERVATION WHERE
+		RES_ID = #{res_id} AND
+		USER_ID = #{user_id}
+	</delete>
+
+	<!-- 관리자 예약 조회 -->
+	<select id="manage_reservList" resultType="reservation">
+		SELECT * FROM RESERVATION WHERE 1=1
+		<if test="searchCondition == 'RESID' "> AND RES_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'NAME' "> AND RES_NAME LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<!-- <if test='res_id != null'>AND RES_ID = #{res_id}</if> -->
+		ORDER BY RES_ID DESC LIMIT 10 OFFSET #{offset}
+	</select>
+
+	<!-- 관리자 예약 상세 -->
+	<select id="manage_reservInfo" resultType="reservation">
+		SELECT *
+		FROM
+		RESERVATION WHERE
+		RES_ID=#{res_id}
+	</select>
+
+	<!-- 관리자 예약 개수 -->
+	<select id="totalReservationListCnt" resultType="_int">
+		SELECT COUNT(*) FROM RESERVATION WHERE 1=1
+		<if test="searchCondition == 'RESID' "> AND RES_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'NAME' "> AND RES_NAME LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+	</select>
+
+
+</mapper>

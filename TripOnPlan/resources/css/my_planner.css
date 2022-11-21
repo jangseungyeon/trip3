@@ -1,0 +1,24 @@
+.myplanner-div1 {
+	font-size: 40px;
+	background-color: #ff8e15;
+	border-radius: 15px;
+	padding: 5px 20px;
+	color: white;
+}
+
+.myplanner-hr {
+	border: solid 1px #19558c;
+}
+
+.myplanner-th {
+	text-align: center;
+	background-color: #19558c;
+}
+
+/* 반응형 */
+
+@media (max-width: 767px) {
+  #myplan-start, #myplan-end, #myplan-start1, #myplan-end1 {
+    display: none;
+  }
+}

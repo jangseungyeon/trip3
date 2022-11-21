@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FaqDAO">
+
+	<!-- 관리자 공지 등록 -->
+	<insert id="manage_faqInsert">
+		INSERT INTO
+		FAQ (FAQ_TITLE, FAQ_WRITER, FAQ_CONTENT, FAQ_REGDATE, FAQ_CNT, FILENAME)
+		VALUES(#{faq_title}, #{faq_writer}, #{faq_content}, #{faq_regdate}, #{faq_cnt}, #{filename});
+	</insert>
+
+	<!-- 관리자 공지 수정 -->
+	<update id="manage_faqUpdate">
+		UPDATE FAQ
+		SET
+		FAQ_TITLE=#{faq_title},
+		FAQ_WRITER=#{faq_writer},
+		FAQ_CONTENT=#{faq_content},
+		FAQ_REGDATE=#{faq_regdate},
+		FAQ_CNT=#{faq_cnt},
+		FILENAME=#{filename}
+		WHERE FAQ_NO=#{faq_no}
+	</update>
+
+	<!-- 관리자 공지 삭제 -->
+	<delete id="manage_faqDelete">
+		DELETE FROM FAQ WHERE FAQ_NO = #{faq_no}
+	</delete>
+
+	<!-- 관리자 공지 조회 -->
+	<select id="manage_faqList" resultType="faq">
+		SELECT * FROM FAQ WHERE 1=1
+		<if test="searchCondition == 'TITLE' "> AND FAQ_TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'CONTENT' "> AND FAQ_CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		ORDER BY FAQ_NO DESC LIMIT 10 OFFSET #{offset}
+	</select>
+
+	<!-- 관리자 공지 상세 -->
+	<select id="manage_faqInfo" resultType="faq">
+		SELECT *
+		FROM FAQ WHERE
+		FAQ_NO=#{faq_no}
+	</select>
+
+	<!-- 관리자 공지 개수 -->
+	<select id="totalFaqListCnt" resultType="_int">
+		SELECT COUNT(*) FROM FAQ WHERE 1=1
+		<if test="searchCondition == 'TITLE' "> AND FAQ_TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'CONTENT' "> AND FAQ_CONTENT LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+	</select>
+
+</mapper>

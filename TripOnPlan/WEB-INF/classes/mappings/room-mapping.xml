@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="RoomDAO">
+	
+	<!-- (업주) 숙소 등록 -->
+	<insert id="insertRoom">
+		INSERT INTO ROOM(ROOM_NAME, ROOM_ADDR, ROOM_ADDR_DETAIL, ROOM_AREA, ROOM_DESC, HOST_ID, ROOM_PRICE, ROOM_IMG_NO1, ROOM_IMG_NO2, ROOM_IMG_NO3, ROOM_IMG_NO4, ROOM_IMG_NO5, ROOM_MAX, ROOM_THEME, ROOM_CAT, ROOM_WIFI, ROOM_PET, ROOM_MEAL, ROOM_PARKING, ROOM_SWPOOL,
+		ROOM_LIKES, ROOM_STARS) VALUES(#{room_name}, #{room_addr}, #{room_addr_detail}, #{room_area}, #{room_desc}, #{host_id}, #{room_price}, #{room_img_no1}, #{room_img_no2}, #{room_img_no3}, #{room_img_no4}, #{room_img_no5}, #{room_max},
+		#{room_theme}, #{room_cat}, #{room_wifi}, #{room_pet}, #{room_meal}, #{room_parking}, #{room_swpool},
+		#{room_likes}, #{room_stars});
+	</insert>
+	
+	
+	<!-- (업주) 숙소 아이디와 업주 호스트 아이디 모두가 일치하는 경우 숙소 수정 -->
+	<update id="updateRoom">
+		UPDATE ROOM SET
+		ROOM_NAME=#{room_name}, ROOM_ADDR=#{room_addr}, ROOM_ADDR_DETAIL=#{room_addr_detail}, ROOM_DESC=#{room_desc}, ROOM_PRICE=#{room_price}, ROOM_IMG_NO1=#{room_img_no1}, ROOM_IMG_NO2=#{room_img_no2}, ROOM_IMG_NO3=#{room_img_no3}, ROOM_IMG_NO4=#{room_img_no4}, ROOM_IMG_NO5=#{room_img_no5}, ROOM_IMG_NO5=#{room_img_no5}, ROOM_MAX=#{room_max},
+		ROOM_THEME=#{room_theme}, ROOM_CAT=#{room_cat}, ROOM_WIFI=#{room_wifi}, ROOM_PET=#{room_pet}, ROOM_MEAL=#{room_meal}, ROOM_PARKING=#{room_parking},
+		ROOM_SWPOOL=#{room_swpool} WHERE ROOM_ID=#{room_id} and HOST_ID=#{host_id}
+	</update>
+	
+	<!-- (업주) 숙소 이미지 삭제 -->
+	<update id="deleteRoomImageOne2">
+		UPDATE ROOM SET ROOM_IMG_NO2 = null WHERE ROOM_ID = #{room_id}
+	</update>
+	
+	<update id="deleteRoomImageOne3">
+		UPDATE ROOM SET ROOM_IMG_NO3 = null WHERE ROOM_ID = #{room_id}
+	</update>
+	
+	<update id="deleteRoomImageOne4">
+		UPDATE ROOM SET ROOM_IMG_NO4 = null WHERE ROOM_ID = #{room_id}
+	</update>
+	
+	<update id="deleteRoomImageOne5">
+		UPDATE ROOM SET ROOM_IMG_NO5 = null WHERE ROOM_ID = #{room_id}
+	</update>
+	
+	
+	<!-- (업주) 숙소 아이디와 업주 호스트 아이디 일치할때 숙소 데이터 삭제 -->
+	<delete id="deleteRoom">
+		DELETE FROM ROOM WHERE ROOM_ID=#{room_id} and HOST_ID=#{host_id}
+	</delete>
+	
+	
+	<!-- (업주, 회원) 숙소 아이디 일치하는 숙소 데이터 한 줄 끌어오기 -->
+	<select id="getRoom" resultType="room">
+		SELECT * FROM ROOM WHERE ROOM_ID=#{room_id}
+	</select>
+	
+	
+	<!-- (업주, 회원) 숙소 여러개 정보 리스트 조회 -->
+	<select id="getRoomList" resultType="room">
+		SELECT * FROM ROOM WHERE 1=1
+			<if test="host_id != null and host_id != ''">AND HOST_ID = #{host_id}</if>
+			<if test="searchCondition == 'RoomName'">AND ROOM_NAME LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'RoomAddr'">AND ROOM_ADDR LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		ORDER BY ROOM_ID DESC 
+<!-- 		LIMIT 10 OFFSET #{offset} -->
+	</select>
+	
+	
+	<!-- 숙소 여러개 정보 리스트의 총 갯수 조회 -->
+	<select id="totalRoomListCnt" resultType="_int">
+		SELECT COUNT(*) FROM ROOM WHERE 1=1
+	<if test="host_id != null and host_id != ''">AND HOST_ID = #{host_id}</if>
+	</select>
+	
+	
+<!-- 장승연 상세검색 -->
+<!-- 상세 검색 조건으로 지정한 숙소 이름, 숙소 최저 가격과 최고 가격 사이, 최대 수용 인원, 숙소 주변 환경 (산/바다/산과 바다), 숙소 카테고리(호텔/모텔/게스트 하우스등), 숙소 무료 와이파이 여부, 숙소 애완견 투숙 가능 여부, 숙소 조식 포함 여부, 숙소 주차 가능 여부, 숙소 수영장 보유 여부에 따라 숙소 목록 전체 조회-->
+	<select id="ugetRoomList" resultType="room">
+		SELECT * FROM ROOM WHERE 1=1 
+		<if test="room_name !=null and room_name !=''"> AND ROOM_NAME LIKE CONCAT('%',#{room_name},'%') </if>
+		<if test="room_area !=null and room_area !=''"> AND ROOM_AREA LIKE CONCAT('%',#{room_area},'%') </if>
+		<if test="room_cat !=null and room_cat != ''"> AND ROOM_CAT =#{room_cat} </if>
+		<if test="room_min_price != '' and room_max_price == ''"> AND ROOM_PRICE &gt;= CONVERT(#{room_min_price}, SIGNED)</if>
+		<if test="room_min_price == '' and room_max_price != ''"> AND ROOM_PRICE &lt;= CONVERT(#{room_max_price}, SIGNED)</if>
+		<if test="room_min_price != '' and room_max_price !=''"> AND ROOM_PRICE BETWEEN #{room_min_price} AND #{room_max_price}</if>
+		<if test="room_max !=null and room_max != ''"> AND ROOM_MAX &gt;= CONVERT(#{room_max}, SIGNED) </if>
+		<if test='room_wifi == "Y"'> AND ROOM_WIFI = #{room_wifi} </if>
+		<if test='room_pet == "Y"'> AND ROOM_PET = #{room_pet} </if>
+		<if test='room_meal == "Y"'> AND ROOM_MEAL = #{room_meal} </if>
+		<if test='room_parking == "Y"'> AND ROOM_PARKING = #{room_parking} </if>
+		<if test='room_swpool == "Y"'> AND ROOM_SWPOOL = #{room_swpool} </if>
+		<if test="room_theme !=null and room_theme !=''"> AND ROOM_THEME LIKE CONCAT('%',#{room_theme},'%') </if>
+		ORDER BY ROOM_ID DESC
+		<!-- LIMIT 10 OFFSET #{offset} -->
+	</select>
+
+		<update id="updateLikeRoom">
+			UPDATE ROOM SET ROOM_LIKES = (SELECT MAX(ROOM_LIKES) FROM ROOM WHERE ROOM_ID = #{room_id} AND ROOM_NAME = #{room_name}) 
+		<if test="status == 'like'"> + </if>
+		<if test="status == 'unlike'"> - </if> 1 
+		WHERE ROOM_ID = #{room_id} AND ROOM_NAME = #{room_name} 
+		</update>
+		
+		<update id="updateStarsRoom">
+		UPDATE ROOM SET ROOM_STARS = #{room_stars}
+		WHERE ROOM_ID = #{room_id}
+		</update>
+	
+	<select id="mainRoomList" resultType="room"> 
+	SELECT * FROM ROOM ORDER BY ROOM_LIKES DESC LIMIT 8;
+	</select>
+	
+	<select id="mainRoomThemeList" resultType="room"> 
+	SELECT * FROM ROOM WHERE ROOM_CAT = #{room_theme} ORDER BY ROOM_LIKES DESC LIMIT 8;
+	</select>
+	
+</mapper>

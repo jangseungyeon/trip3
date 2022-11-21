@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PlannerDAO">
+
+     <insert id="insertPlanner" >
+		INSERT INTO PLANNER (
+		USER_ID , ROOM_NAME , PLANNER_START , PLANNER_END , PLANNER_AREA , PLANNER_TITLE , PLANNER_DAY , PLANNER_SHOW , PLANNER_AREANUM
+		) VALUES (
+		#{user_id} , #{room_name} , #{planner_start} ,#{planner_end} 
+		,#{planner_area} ,#{planner_title} ,#{planner_day} , #{planner_show} , (SELECT AREA_NUM FROM AREA WHERE AREA_NAME = #{planner_area})
+		)
+	</insert>
+
+   <select id="plannerinfo" resultType="planner">
+      SELECT * FROM planner WHERE USER_ID= #{user_id}
+   </select>
+   
+   <select id="detailplanner" resultType="planner">
+      SELECT * FROM planner WHERE USER_ID= #{user_id} AND planner_no = #{planner_no}
+   </select>
+   
+     <select id="plannerPage" resultType="planner">
+     SELECT * FROM PLANNER WHERE PLANNER_SHOW = 'Y' ORDER BY PLANNER_END DESC;
+   </select>
+   
+   <select id="plannerPopular" resultType="planner"> 
+   SELECT * FROM PLANNER WHERE PLANNER_SHOW = 'Y' ORDER BY PLANNER_LIKE DESC;
+   </select>
+   
+   	<select id="mainPlannerList" resultType="planner">
+	SELECT * FROM PLANNER WHERE PLANNER_SHOW = 'Y' ORDER BY PLANNER_LIKE DESC LIMIT 3
+	</select>
+	
+	<delete id="deletePlanner">
+	DELETE FROM PLANNER WHERE PLANNER_NO = #{planner_no}
+	</delete>
+	
+	<update id="updateLike">
+	update planner set planner_like = planner_like 
+	<if test="status  == 'like'"> + </if>
+	<if test="status  == 'unlike'"> - </if>
+	 1 where planner_no = #{planner_no}
+	</update>
+	
+	<update id="updatePlanner">
+	UPDATE PLANNER SET PLANNER_SHOW = #{planner_show} , PLANNER_TITLE = #{planner_title} 
+	WHERE PLANNER_NO = #{planner_no} AND USER_ID = #{user_id}
+	</update>
+   
+
+</mapper>

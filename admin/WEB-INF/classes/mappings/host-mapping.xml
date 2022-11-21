@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="HostDAO">
+
+	<!-- 관리자 호스트 등록 -->
+	<insert id="manage_hostInsert">
+		INSERT INTO
+		HOST(HOST_ID,HOST_BIZNAME,HOST_PW,HOST_NAME,HOST_BIRTH,HOST_EMAIL,HOST_PHONE,HOST_ADDR1,HOST_ADDR2,HOST_STATUS,HOST_BIZNUM,HOST_BIZIMG,HOST_BANK,HOST_BANKNUM)
+		VALUES(#{host_id},#{host_bizname},#{host_pw},#{host_name},#{host_birth},#{host_email},#{host_phone},#{host_addr1},#{host_addr2},#{host_status},#{host_biznum},#{host_bizimg},#{host_bank},#{host_banknum});
+	</insert>
+
+	<!-- 관리자 호스트 수정 -->
+	<update id="manage_hostUpdate">
+		UPDATE HOST SET
+		HOST_BIZNAME =#{host_bizname},
+		HOST_NAME=#{host_name},
+		HOST_BIRTH=#{host_birth},
+		HOST_EMAIL=#{host_email},
+		HOST_PHONE=#{host_phone},
+		HOST_ADDR1=#{host_addr1},
+		HOST_ADDR2=#{host_addr2},
+		HOST_STATUS=#{host_status},
+		HOST_BIZNUM=#{host_biznum},
+<!-- 		HOST_BIZIMG=#{host_bizimg}, -->
+		HOST_BANK=#{host_bank},
+		HOST_BANKNUM=#{host_banknum}
+		WHERE
+		HOST_ID=#{host_id}
+	</update>
+
+	<!-- 관리자 호스트 삭제 -->
+	<delete id="manage_hostDelete">
+		DELETE FROM HOST WHERE HOST_ID = #{host_id}
+	</delete>
+
+	<!-- 관리자 호스트 조회 -->
+	<select id="manage_hostList" resultType="host">
+		SELECT * FROM HOST WHERE 1=1
+		<if test="searchCondition == 'ID' "> AND HOST_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'BIZNAME' "> AND HOST_BIZNAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		ORDER BY HOST_BIZNAME DESC LIMIT 10 OFFSET #{offset}
+	</select>
+
+	<!-- 관리자 호스트 상세 -->
+	<select id="manage_hostInfo" resultType="host">
+		SELECT *
+		FROM HOST WHERE
+		HOST_ID=#{host_id}
+	</select>
+
+	<!-- 관리자 공지 개수 -->
+	<select id="totalHostListCnt" resultType="_int">
+		SELECT COUNT(*) FROM HOST WHERE 1=1
+		<if test="searchCondition == 'ID' "> AND HOST_ID LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'BIZNAME' "> AND HOST_BIZNAME LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+	</select>
+
+	<!-- 아이디 체크 -->
+	<select id="idCheck" resultType="host">
+		SELECT * FROM HOST WHERE
+		HOST_ID=#{host_id}
+	</select>
+
+	<!-- host index 막대형 차트 (최근 10일 일별 매출) -->
+	<select id="hostIndexChartSelect" resultType="hostChart">
+		SELECT
+		DATE_FORMAT(PAY_DATE, '%y-%m-%d') AS chart_date, sum(PAY_AMOUNT) AS
+		chart_sum, COUNT(*) AS chart_count FROM reservation WHERE
+		PAY_DATE
+		BETWEEN DATE_SUB(NOW(), INTERVAL 10
+		DAY) AND NOW() GROUP BY
+		DATE_FORMAT(PAY_DATE, '%y-%m-%d');
+	</select>
+
+	<!-- host index 파이형 차트 (최근 10일 숙소별 매출) -->
+	<select id="hostIndexChart2Select" resultType="hostChart">
+		SELECT ROOM_NAME,
+		sum(PAY_AMOUNT) AS chart_sum2 FROM reservation WHERE
+		pay_date BETWEEN
+		DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW() GROUP BY room_name;
+	</select>
+
+	<!-- host index 운영중인 숙소 -->
+	<select id="indexRoomCount" resultType="hostChart">
+		SELECT COUNT(ROOM_ID)
+		index_room_count FROM room
+	</select>
+
+	<!-- host index 등록된 총 리뷰 -->
+	<select id="indexReviewCount" resultType="hostChart">
+		SELECT COUNT(REVIEW_ID)
+		index_review_count FROM review
+	</select>
+
+	<!-- host index 받은 좋아요 수 -->
+	<select id="indexLikeCount" resultType="hostChart">
+		SELECT COUNT(c.room_id)
+		index_like_count FROM (SELECT * FROM room a RIGHT JOIN likes b ON
+		a.ROOM_ID = b.like_id) c
+	</select>
+
+	<!-- host index 체크아웃(완료) -->
+	<select id="indexCheckout" resultType="hostChart">
+  <![CDATA[SELECT COUNT(c.res_id) index_checkout FROM (SELECT * FROM reservation WHERE res_checkout < DATE_FORMAT(NOW(), '%y-%m-%d')) c]]>
+	</select>
+
+	<!-- host index 오늘 체크인 -->
+	<select id="indexTodayCheckin" resultType="hostChart">
+		SELECT COUNT(c.res_id)
+		index_today_checkin FROM (SELECT * FROM reservation WHERE res_checkin
+		= DATE_FORMAT(NOW(), '%y-%m-%d')) c
+	</select>
+
+	<!-- host index 숙박중 -->
+	<select id="indexStaying" resultType="hostChart">
+   <![CDATA[ SELECT COUNT(c.res_id) index_staying FROM (SELECT * FROM reservation WHERE res_checkin <= DATE_FORMAT(NOW(), '%y-%m-%d') AND res_checkout > DATE_FORMAT(NOW(), '%y-%m-%d')) c]]>
+	</select>
+
+	<!-- host index 체크인 예정 -->
+	<select id="indexCheckinAble" resultType="hostChart">
+		SELECT COUNT(c.res_id)
+		index_checkin_able FROM (SELECT * FROM reservation WHERE res_checkin >
+		DATE_FORMAT(NOW(), '%y-%m-%d')) c
+	</select>
+
+	<!-- host index 인기방, 인기테마 -->
+	<select id="hostIndexRoomSelect" resultType="hostChart">
+		SELECT A.ROOM_ID,
+		COUNT(a.room_id) index_THEME, a.room_name index_room_rank,
+		b.room_theme index_theme_rank, b.room_id FROM reservation a LEFT JOIN
+		room b ON a.room_id = b.room_id GROUP BY A.ROOM_ID ORDER BY
+		INDEX_THEME DESC;
+	</select>
+
+	<!-- host index 하단 차트 3, 이 호스트의 전체 매출 -->
+	<select id="hostIndexChart3Select" resultType="hostChart">
+		SELECT
+		DATE_FORMAT(PAY_DATE, '%y-%m-%d') AS chart_date_all, sum(PAY_AMOUNT)
+		AS chart_sum_all, COUNT(*) AS chart_count_all FROM reservation GROUP
+		BY DATE_FORMAT(PAY_DATE, '%y-%m-%d')
+	</select>
+
+	<!-- host login 전체 호스트 수 -->
+	<select id="hostCount" resultType="hostLogin">
+		SELECT COUNT(*) FROM host
+	</select>
+
+	<!-- host login 호스트들 10일간 평균 매출 -->
+	<select id="hostAvgIncome" resultType="hostLogin">
+		SELECT
+		ROUND(AVG(pay_amount),0) AS host_avg_income FROM reservation WHERE
+		pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW();
+	</select>
+
+	<!-- host login 1등 호스트의 10일간 최고 매출, 0번 배열만 가져갈 것. -->
+	<select id="hostMaxIncome" resultType="hostLogin">
+		SELECT host_id,
+		sum(pay_amount) AS host_max_income FROM reservation WHERE
+		host_id is
+		NOT NULL AND pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10
+		DAY) AND
+		NOW() GROUP BY host_id ORDER BY host_max_income DESC
+	</select>
+
+	<!-- host login 최고 방 매출, 3위까지, 매출+이미지 -->
+	<select id="bestRoomIncome" resultType="hostLogin">
+		SELECT room_id, room_name
+		AS best_room_name, room_img AS best_room_img,
+		sum(pay_amount) AS
+		best_room_income FROM reservation GROUP BY room_id
+		ORDER BY
+		best_room_income DESC
+	</select>
+
+	<!-- 최근 10일간 예약 건수 -->
+	<select id="reservationCountLast10days" resultType="hostLogin">
+		SELECT
+		COUNT(*) AS reservation_count_last10days FROM reservation WHERE
+		pay_date BETWEEN DATE_SUB(NOW(), INTERVAL 10 DAY) AND NOW()
+	</select>
+
+	<!-- 예약 누적 건수 -->
+	<select id="reservationCount" resultType="hostLogin">
+		SELECT COUNT(*) as
+		reservation_count FROM reservation;
+	</select>
+
+</mapper>

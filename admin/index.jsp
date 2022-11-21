@@ -1,0 +1,1 @@
+<% response.sendRedirect("./manage_loginForm.do");%>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PlannerDAO">
+
+	<!-- 관리자 플레너 등록 -->
+	<insert id="manage_plannerInsert">
+		INSERT INTO PLANNER(
+		USER_ID, ROOM_NAME,
+		PLANNER_START, PLANNER_END, PLANNER_AREA, PLANNER_TITLE, PLANNER_DAY,
+		PLANNER_SHOW
+		)VALUES(
+		#{user_id}, #{room_name}, #{planner_start},
+		#{planner_end}, #{planner_area}, #{planner_title}, #{planner_day},
+		#{planner_show}
+	</insert>
+
+	<!-- 관리자 플레너 수정 -->
+	<update id="manage_plannerUpdate">
+		UPDATE PLANNER SET
+		PLANNER_START=#{planner_start},
+		PLANNER_END=#{planner_end},
+		PLANNER_AREA=#{planner_area},
+		PLANNER_TITLE=#{planner_title},
+		PLANNER_DAY=#{planner_day}
+		WHERE
+		PLANNER_NO = #{planner_no}
+	</update>
+
+	<!-- 관리자 플레너 삭제 -->
+	<delete id="manage_plannerDelete">
+		DELETE FROM PLANNER WHERE PLANNER_NO = #{planner_no}
+	</delete>
+
+	<!-- 관리자 플레너 조회 -->
+	<select id="manage_plannerList" resultType="planner">
+		SELECT * FROM PLANNER WHERE 1=1
+		<if test="searchCondition == 'TITLE' "> AND PLANNER_TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'USERID' "> AND USER_ID LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		AND PLANNER_SHOW = 'Y'
+		ORDER BY PLANNER_NO DESC LIMIT 10 OFFSET
+		#{offset}
+	</select>
+
+	<!-- 관리자 플레너 상세 -->
+	<select id="manage_plannerInfo" resultType="planner">
+		SELECT *
+		FROM PLANNER
+		WHERE
+		PLANNER_NO = #{planner_no}
+	</select>
+
+	<!-- 관리자 플레너 개수 -->
+	<select id="totalPlannerListCnt" resultType="_int">
+		SELECT COUNT(*) FROM PLANNER WHERE 1=1
+		<if test="searchCondition == 'TITLE' "> AND PLANNER_TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="searchCondition == 'USERID' "> AND USER_ID LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+	</select>
+
+</mapper>

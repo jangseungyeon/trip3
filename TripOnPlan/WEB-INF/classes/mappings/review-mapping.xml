@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="ReviewDAO">
+  
+<!-- 리뷰 생성 -->
+  <insert id="insertReview">
+INSERT INTO review (ROOM_NAME, ROOM_ID, HOST_ID, USER_ID, REVIEW_CONTENT, REVIEW_IMG, STAR_POINT) VALUES (#{room_name}, #{room_id}, #{host_id}, #{user_id}, #{review_content}, #{review_img}, #{star_point});
+  </insert>
+
+<!-- 리뷰 수정 -->
+  <update id="updateReview">
+	UPDATE REVIEW SET REVIEW_CONTENT=#{review_content}, REVIEW_IMG=#{review_img}, STAR_POINT=#{star_point} 
+	WHERE ROOM_ID=#{room_id} AND HOST_ID=#{host_id} AND USER_ID=#{user_id} AND REVIEW_ID = #{review_id}
+  </update>
+
+<!-- 리뷰 삭제 -->
+  <delete id="deleteReview">
+DELETE FROM REVIEW WHERE REVIEW_ID=#{review_id} AND USER_ID=#{user_id} AND ROOM_ID = #{room_id}
+  </delete>
+  
+<!-- 리뷰 조회 (호스트용) -->
+  <select id="selectReviewForHost" resultType="review">
+SELECT * FROM REVIEW WHERE HOST_ID = #{host_id} ORDER BY write_date DESC
+  </select>
+  
+<!-- 내 리뷰 개수 총 조회 (호스트용) -->
+	<select id="totalReviewListCntForHost" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW WHERE HOST_ID = #{host_id}
+	</select>
+  
+<!-- 숙소 상세 보기에서 해당 숙소에 대한 리뷰 조회 (회원용) -->
+	<select id="selectReviewForRoom" resultType="review">
+		SELECT * FROM REVIEW WHERE ROOM_ID = #{room_id}	
+	</select>
+  
+<!-- 리뷰 조회 (유저용) -->
+  <select id="selectReviewForUser" resultType="review">
+SELECT * FROM REVIEW WHERE USER_ID = #{user_id}  
+  </select>
+  
+  <!-- 리뷰 그 방에 대해서만 해당 아이디가 진짜 리뷰 쓴건지 조회 -->
+  <select id="selectReviewOneForUser" resultType="review">
+  	SELECT * FROM REVIEW WHERE USER_ID = #{user_id} AND ROOM_ID=#{room_id}
+  </select>
+
+<!-- 리뷰 조회 (관리자용) -->
+  <select id="selectReviewForManager" resultType="review">
+SELECT * FROM REVIEW  
+  </select>
+  
+  </mapper>

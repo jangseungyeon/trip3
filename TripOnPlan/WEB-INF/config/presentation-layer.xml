@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+<!-- 		<mvc:annotation-driven /> -->
+		<!-- component-scan이 긁어오지 못하는 어노테이션 객체 생성, presentation layer에 웬만하면 넣을것, ajax 포함-->
+
+<!-- 		<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
+<!-- 			<property name="maxUploadSize" value="500000"></property> -->
+			<!-- 용량은 1바이트 기준 -->
+<!-- 		</bean>	 -->
+		
+	
+<!-- 	<context:component-scan base-package="com.springbook.view"></context:component-scan> -->
+	
+	<!-- 예외처리관련 , Resolver는 id는 변경 불가능 지정됨-->
+<!-- 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> -->
+<!-- 		<property name="exceptionMappings"> -->
+<!-- 			<props> -->
+<!-- 				<prop key="java.lang.ArithmeticException">/error/errorArithmetic.jsp</prop> -->
+<!-- 				<prop key="java.lang.NullPointerException">/error/errorNullPointer.jsp</prop> -->
+<!-- 				<prop key="java.lang.IllegalArgumentException">/error/errorException.jsp</prop> -->
+<!-- 			</props> -->
+<!-- 		</property> -->
+<!-- 		<property name="defaultErrorView" value="/error/errorException.jsp" /> -->
+<!-- 	</bean> -->
+	
+	<!-- 인터셉터 객체 생성 -->
+	
+<!-- 	<bean id="authenticationInterceptor" class="org.spring.www.interceptor.AuthenticationInterceptor" /> -->
+	
+	<!-- Interceptor 설정 -->
+<!-- 		<mvc:interceptors> -->
+<!-- 			<mvc:interceptor> -->
+<!-- 				<mvc:mapping path="/insertBoard.do" /> -->
+<!-- 				<mvc:mapping path="/getBoard.do" /> -->
+<!-- 				<ref bean="authenticationInterceptor" /> -->
+<!-- 			</mvc:interceptor> -->
+<!-- 		</mvc:interceptors> -->
+
+	<!-- Interceptor 설정 -->
+<!-- 	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/*"/> -->
+			<!-- web.xml 서블릿 컨트롤러에서 설정한.do의 모든 url (컨트롤러가 설정한 url은 인터셉터가 가로챌수 있다) -->
+			<!-- exclude-mapping 먼저 봄, ref 태그의 bean은 bean 객체의 id와 동일 -->
+<!-- 			<mvc:exclude-mapping path="/login.do"/> -->
+<!-- 			<mvc:exclude-mapping path="/logout.do"/> -->
+<!-- 			<mvc:exclude-mapping path="/getBoardList.do"/> -->
+<!-- 			<mvc:exclude-mapping path="/getBoard.do"/> -->
+<!-- 			<ref bean="authenticationInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors> -->
+	
+</beans>

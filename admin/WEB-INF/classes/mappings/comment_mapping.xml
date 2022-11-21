@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="commentDAO">
+
+ 	<insert id="commentInsert">
+	INSERT INTO COMMENT ( PLANNER_NO , USER_ID , COMMENT_CONTENT , REG_DATE) VALUES (#{planner_no} , #{user_id} , #{comment_content}, sysdate())
+	</insert>
+	
+	<delete id="commentDelete">
+		DELETE FROM COMMENT WHERE COMMENT_NO = #{comment_no}
+	</delete> 
+	
+	<select id="selectComment" resultType="comment">
+	SELECT * FROM COMMENT WHERE PLANNER_NO = #{planner_no}; 
+	</select>
+	
+	<update id="commentUpdate">
+	UPDATE COMMENT SET COMMENT_CONTENT = #{comment_content} WHERE COMMENT_NO = #{comment_no}
+	</update>
+
+</mapper>

@@ -1,0 +1,176 @@
+
+
+
+.reslist-div1 {
+	font-size: 40px;
+	background-color: #ff8e15;
+	border-radius: 15px;
+	padding: 5px 20px;
+	color: white;
+}
+
+.reslist-hr {
+	border: solid 1px #19558c;
+}
+
+.list-grid-div {
+	display: grid;
+	text-align: center;
+}
+
+.reserlist-btn {
+	background-color: #f9fcff;
+	color: #777;
+	border: 1px solid #777;
+	border-radius: 7px;
+	width: 60px;
+	height: 60px;
+	font-weight: bold;
+}
+
+.reserlist-btn:hover {
+	color: #222;
+	border: 1px solid #222;
+}
+
+.myreslint-th {
+	background-color: #19558c;
+}
+
+/* 상세페이지 */
+.detail-list-btn {
+	background-color: white;
+	color: #777;
+	border: 1px solid #777;
+	border-radius: 7px;
+	width: 155px;
+	height: 40px;
+	font-weight: bold;
+}
+
+.detail-list-btn:hover {
+	color: #222;
+	border: 1px solid #222;
+}
+
+.myresdti-div3 {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.resd-div {
+	margin: 10px;
+	margin-left: 30px;
+}
+
+fieldset.resd-fieldset1, fieldset.resd-fieldset2 {
+	border-top: 3px black solid;
+	margin: 60px;
+	margin-bottom: 40px;
+}
+
+fieldset.resd-fieldset1 {
+	margin-top: 35px;
+}
+
+legend.resd-legend1 {
+	margin: 10px;
+	padding-left: 15px;
+	margin-left: 60px;
+	width: 135px;
+}
+
+
+legend.resd-legend2 {
+	    margin: 10px;
+    padding-left: 15px;
+    width: 160px;
+    margin-left: 60px;
+}
+
+.detail-input {
+	border-radius: 15px;
+	width: 230px;
+	height: 40px;
+	border: 1px solid #aaa;
+	margin-left: 15px;
+	padding: 10px;
+}
+
+#daybefore, .detail-info-div {
+	text-align: end;
+}
+
+.detail-but {
+	background-color: white;
+	color: #777;
+	border: 1px solid #777;
+	border-radius: 7px;
+	width: 100px;
+	height: 40px;
+	margin: 0 25px 15px 0;
+	font-weight: bold;
+}
+
+.detail-but:hover {
+	color: #222;
+	border: 1px solid #222;
+}
+
+.detail-div1 {
+	font-size: 40px;
+	background-color: #ff8e15;
+	border-radius: 15px;
+	padding: 5px 20px;
+	color: white;
+}
+
+.detail-hr {
+	border: solid 1px #19558c;
+}
+
+/* .reslist-table { */
+/* 	border: 1px solid #19558c; */
+/* } */
+
+/* 리스트 반응형 */
+@media ( max-width : 1200px) {
+	#mycheckin, #mycheckin1, #checkout, #checkout1 {
+		display: none;
+	}
+}
+
+@media ( max-width : 990px) {
+	#myres-img {
+		display: none;
+	}
+}
+
+@media ( max-width : 775px) {
+	#myres-num, #myres-num1 {
+		display: none;
+	}
+}
+
+/* 상세목록 반응형 */
+@media ( max-width : 990px) {
+	.detail-input {
+		width: 40%;
+	}
+}
+
+@media ( max-width : 767px) {
+	.detail-input {
+		width: 60%;
+	}
+}
+
+@media ( max-width : 575px) {
+	.detail-input {
+		width: 230px;
+	}
+	fieldset.resd-fieldset1, fieldset.resd-fieldset2 {
+		margin: 0;
+		margin-bottom: 40px;
+	}
+}

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="RoomDAO">
+
+	<!-- 관리자 숙소 수정 -->
+	<update id="manage_roomUpdate">
+		UPDATE ROOM SET
+		ROOM_NAME=#{room_name},
+		ROOM_ADDR=#{room_addr},
+		ROOM_ADDR_DETAIL=#{room_addr_detail},
+		ROOM_DESC=#{room_desc},
+		ROOM_ID=#{room_id}, HOST_ID=#{host_id},
+		ROOM_PRICE=#{room_price},
+		<!-- ROOM_IMG_NO1=#{room_img_no1}, -->
+		<!-- ROOM_POINTS=#{room_points}, -->
+		ROOM_MAX=#{room_max},
+		ROOM_THEME=#{room_theme},
+		ROOM_CAT=#{room_cat},
+		ROOM_WIFI=#{room_wifi},
+		ROOM_PET=#{room_pet},
+		ROOM_MEAL=#{room_meal},
+		ROOM_PARKING=#{room_parking}, ROOM_SWPOOL=#{room_swpool},
+		ROOM_LIKES=#{room_likes}, ROOM_STARS=#{room_stars}
+		WHERE
+		ROOM_ID=#{room_id} and HOST_ID=#{host_id}
+	</update>
+
+	<!-- 관리자 숙소 삭제 -->
+	<delete id="manage_roomDelete">
+		DELETE FROM ROOM WHERE ROOM_ID=#{room_id} and
+		HOST_ID=#{host_id}
+	</delete>
+
+	<!-- 관리자 숙소 조회 -->
+	<select id="manage_roomList" resultType="room">
+		SELECT * FROM ROOM WHERE 1=1
+		<if test="searchCondition == 'ROOMID' "> AND ROOM_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'HOSTID' "> AND HOST_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		ORDER BY ROOM_ID DESC LIMIT 10 OFFSET #{offset}
+	</select>
+
+	<!-- 관리자 숙소 상세 -->
+	<select id="manage_roomInfo" resultType="room">
+		SELECT * FROM ROOM WHERE
+		ROOM_ID=#{room_id}
+	</select>
+
+	<!-- 관리자 숙소 개수 -->
+	<select id="totalRoomListCnt" resultType="_int">
+		SELECT COUNT(*) FROM ROOM WHERE 1=1
+		<if test="searchCondition == 'ROOMID' "> AND ROOM_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+		<if test="searchCondition == 'HOSTID' "> AND HOST_ID LIKE CONCAT('%', #{searchKeyword}, '%')</if>
+	</select>
+
+
+
+
+
+	<!-- 숙소 등록 -->
+	<!-- <insert id="insertRoom"> -->
+	<!-- INSERT INTO ROOM(ROOM_NAME, ROOM_ADDR, -->
+	<!-- ROOM_ADDR_DETAIL, ROOM_DESC, HOST_ID, ROOM_PRICE, ROOM_IMG, -->
+	<!-- ROOM_POINTS, ROOM_MAX, ROOM_THEME, ROOM_CAT, ROOM_WIFI, ROOM_PET, -->
+	<!-- ROOM_MEAL, ROOM_PARKING, ROOM_SWPOOL, -->
+	<!-- ROOM_LIKES, ROOM_STARS) -->
+	<!-- VALUES(#{room_name}, #{room_addr}, #{room_addr_detail}, #{room_desc}, -->
+	<!-- #{host_id}, #{room_price}, #{room_img}, #{room_points}, #{room_max}, -->
+	<!-- #{room_theme}, #{room_cat}, #{room_wifi}, #{room_pet}, #{room_meal}, -->
+	<!-- #{room_parking}, #{room_swpool}, -->
+	<!-- #{room_likes}, #{room_stars}); -->
+	<!-- </insert> -->
+
+	<!-- 숙소 아이디와 호스트 호스트 아이디 모두가 일치하는 경우 숙소 수정 -->
+	<!-- <update id="updateRoom"> -->
+	<!-- UPDATE ROOM SET -->
+	<!-- ROOM_NAME=#{room_name}, -->
+	<!-- ROOM_ADDR=#{room_addr}, ROOM_ADDR_DETAIL=#{room_addr_detail}, -->
+	<!-- ROOM_DESC=#{room_desc}, ROOM_PRICE=#{room_price}, -->
+	<!-- ROOM_IMG_NO1=#{room_img_no1}, ROOM_POINTS=#{room_points}, -->
+	<!-- ROOM_MAX=#{room_max}, -->
+	<!-- ROOM_THEME=#{room_theme}, ROOM_CAT=#{room_cat}, -->
+	<!-- ROOM_WIFI=#{room_wifi}, ROOM_PET=#{room_pet}, ROOM_MEAL=#{room_meal}, -->
+	<!-- ROOM_PARKING=#{room_parking}, -->
+	<!-- ROOM_SWPOOL=#{room_swpool}, -->
+	<!-- ROOM_LIKES=#{room_likes}, ROOM_STARS=#{room_stars} -->
+	<!-- WHERE -->
+	<!-- ROOM_ID=#{room_id} and HOST_ID=#{host_id} -->
+	<!-- </update> -->
+
+	<!-- 숙소 아이디와 호스트 호스트 아이디 일치할때 숙소 데이터 삭제 -->
+
+	<!-- <delete id="deleteRoom"> -->
+	<!-- DELETE FROM ROOM WHERE ROOM_ID=#{room_id} and -->
+	<!-- HOST_ID=#{host_id} -->
+	<!-- </delete> -->
+
+	<!-- 숙소 아이디와 호스트 호스트 아이디 일치하는 숙소 데이터 한 줄 끌어오기 -->
+
+	<!-- <select id="getRoom" resultType="room"> -->
+	<!-- SELECT * FROM ROOM WHERE -->
+	<!-- ROOM_ID=#{room_id} and HOST_ID=#{host_id} -->
+	<!-- </select> -->
+
+	<!-- 상세 검색 조건으로 지정한 숙소 이름, 숙소 최저 가격과 최고 가격 사이, 최대 수용 인원, 숙소 주변 환경 (산/바다/산과 
+		바다), 숙소 카테고리(호텔/모텔/게스트 하우스등), 숙소 무료 와이파이 여부, 숙소 애완견 투숙 가능 여부, 숙소 조식 포함 여부, 
+		숙소 주차 가능 여부, 숙소 수영장 보유 여부에 따라 숙소 목록 전체 조회 -->
+	<!-- <select id="getRoomList" resultType="room"> -->
+	<!-- SELECT * FROM ROOM WHERE 1=1 -->
+	<!-- <if test='searchRoomName != null'>AND ROOM_NAME LIKE CONCAT('%',#{searchRoomName},'%')</if> -->
+	<!-- <if test='searchRoomAddr != null'>AND ROOM_ADDR LIKE CONCAT('%',#{searchRoomAddr},'%')</if> -->
+	<!-- <if test='searchRoomMinPrice != null and searchRoomMaxPrice != null'>AND 
+		ROOM_PRICE BETWEEN #{searchRoomMinPrice} and #{searchRoomMaxPrice}</if> -->
+	<!-- <if test='searchRoomMax != null'>AND ROOM_MAX &lt;= #{searchRoomMax}</if> -->
+	<!-- <if test='searchRoomTheme == "mountain" or searchRoomTheme == "sea" 
+		or searchRoomTheme == "mountainSea"'>AND ROOM_CAT LIKE CONCAT('%',#{searchRoomTheme},'%')</if> -->
+	<!-- <if test='searchRoomCat != null'>AND ROOM_CAT = #{searchRoomCat}</if> -->
+	<!-- <if test='searchRoomWIFI == "Y"'>AND ROOM_WIFI = 'Y'</if> -->
+	<!-- <if test='searchRoomPet == "Y"'>AND ROOM_PET = 'Y'</if> -->
+	<!-- <if test='searchRoomMeal == "Y"'>AND ROOM_MEAL = 'Y'</if> -->
+	<!-- <if test='searchRoomParking == "Y"'>AND ROOM_PARKING = 'Y'</if> -->
+	<!-- <if test='searchRoomSwpool == "Y"'>AND ROOM_SWPOOL = 'Y'</if> -->
+	<!-- ORDER BY SEQ DESC -->
+	<!-- LIMIT 10 OFFSET #{offset} -->
+	<!-- </select> -->
+
+	<!-- 상세 검색에 따른 숙소 전체 갯수 조회 -->
+
+	<!-- <select id="totalRoomListCnt" resultType="_int"> -->
+	<!-- SELECT COUNT(*) FROM ROOM WHERE 1=1 -->
+	<!-- <if test='searchRoomName != null'>AND ROOM_NAME LIKE CONCAT('%',#{searchRoomName},'%')</if> -->
+	<!-- <if test='searchRoomAddr != null'>AND ROOM_ADDR LIKE CONCAT('%',#{searchRoomAddr},'%')</if> -->
+	<!-- <if test='searchRoomMinPrice != null and searchRoomMaxPrice != null'>AND 
+		ROOM_PRICE BETWEEN #{searchRoomMinPrice} and #{searchRoomMaxPrice}</if> -->
+	<!-- <if test='searchRoomMax != null'>AND ROOM_MAX &lt;= #{searchRoomMax}</if> -->
+	<!-- <if test='searchRoomTheme == "mountain" or searchRoomTheme == "sea" 
+		or searchRoomTheme == "mountainSea"'>AND ROOM_CAT LIKE CONCAT('%',#{searchRoomTheme},'%')</if> -->
+	<!-- <if test='searchRoomCat != null'>AND ROOM_CAT = #{searchRoomCat}</if> -->
+	<!-- <if test='searchRoomWIFI == "Y"'>AND ROOM_WIFI = 'Y'</if> -->
+	<!-- <if test='searchRoomPet == "Y"'>AND ROOM_PET = 'Y'</if> -->
+	<!-- <if test='searchRoomMeal == "Y"'>AND ROOM_MEAL = 'Y'</if> -->
+	<!-- <if test='searchRoomParking == "Y"'>AND ROOM_PARKING = 'Y'</if> -->
+	<!-- <if test='searchRoomSwpool == "Y"'>AND ROOM_SWPOOL = 'Y'</if> -->
+	<!-- </select> -->
+</mapper>
