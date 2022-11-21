@@ -4,6 +4,7 @@
 <%@ include file="header.jsp"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <!DOCTYPE html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -21,6 +22,7 @@ border: solid 1px #e0dfde;
 border-radius: 8px;
 height: 75px;
 overflow: auto;
+cursor: pointer;
 }
 
 .img{
@@ -57,6 +59,9 @@ background-color: #cccccc;
 .col-sm-6 {
     height: 800px;
     overflow: overlay;
+}
+.day:hover{
+	background-color:#f4f4f4;
 }
 </style>
 <script>
@@ -197,7 +202,9 @@ function area(num){
  <div class="col-sm-6">
 <c:forEach begin="1" end="${planner_day}" varStatus="status">
 <div id="${status.count}" style="text-align: -webkit-center;">
-<h4 style="cursor:pointer; text-align: initial; margin-left: 23%; margin-bottom: 3%; color:#ff8e15; font-weight: 900;" onclick="memo(${status.count})">DAY - ${status.count}</h4>
+<h4 style="cursor:pointer; text-align: initial; margin-bottom: 3%; color:#ff8e15; font-weight: 900;" onclick="memo(${status.count})">DAY - ${status.count} <span class="material-symbols-outlined">
+location_on
+</span></h4>
 </div>
 <br>
 </c:forEach> 

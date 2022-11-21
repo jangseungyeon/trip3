@@ -28,6 +28,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>	
 
 <link href="resources/css/style.css" rel="stylesheet">
 <link href="resources/css/my_info.css" rel="stylesheet">
@@ -77,7 +78,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 
 
 					<ul class="nav justify-content-end">
-						<li class="nav-item"><a class="nav-link header-link2 main-font user_name">${user_name}님
+						<li class="nav-item"><a class="nav-link header-link2 main-font user_name" id="userName">${user_name}님
 								접속중</a></li>
 						<li class="nav-item"><a class="nav-link header-link2 main-font"
 							href="move_to_host_login.do">호스트</a></li>
@@ -154,7 +155,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 								<li class="nav-item"><a
 									class="nav-link head-link text-white main-font" href="getFaqList.do">공지사항</a>
 								</li>
-								<li class="nav-item"><a class="nav-link header-link2 main-font user_name">${user_name}님
+								<li class="nav-item" id="userName"><a class="nav-link header-link2 main-font user_name">${user_name}님
 										접속중</a></li>
 								<li class="nav-item"><a class="nav-link header-link2 main-font"
 									href="move_to_host_login.do">호스트</a></li>
