@@ -78,7 +78,7 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 
 
 					<ul class="nav justify-content-end">
-						<li class="nav-item"><a class="nav-link header-link2 main-font user_name" id="userName">${user_name}님
+						<li class="nav-item userName"><a class="nav-link header-link2 main-font user_name">${user_name}님
 								접속중</a></li>
 						<li class="nav-item"><a class="nav-link header-link2 main-font"
 							href="move_to_host_login.do">호스트</a></li>
@@ -155,8 +155,6 @@ String user_id = session.getAttribute("user_id") != null ? session.getAttribute(
 								<li class="nav-item"><a
 									class="nav-link head-link text-white main-font" href="getFaqList.do">공지사항</a>
 								</li>
-								<li class="nav-item" id="userName"><a class="nav-link header-link2 main-font user_name">${user_name}님
-										접속중</a></li>
 								<li class="nav-item"><a class="nav-link header-link2 main-font"
 									href="move_to_host_login.do">호스트</a></li>
 								<li class="nav-item"><a class="nav-link header-link2 main-font"
