@@ -39,6 +39,8 @@ $(document).ready(function(){
 	var IMP = window.IMP; // 생략가능
 	IMP.init('${impKey}');
 	
+	let mobilePayfrm = $("#Reservationfrm").serialize();
+	
 	$("#check_module").click(function () {
 		IMP.request_pay({
 			pg: 'html5_inicis.INIpayTest', // 자신이 설정한 pg사 설정
@@ -51,7 +53,7 @@ $(document).ready(function(){
 			buyer_tel: $("#res_tel_ipt").val(),
 // 			buyer_addr: $("#uaddr").val() ,
 // 			buyer_postcode: '123-456',
-			m_redirect_url: 'MobilePaymentComplete.do'
+			m_redirect_url:"http://triponplan.ga/mobilepaymentcomplete.do?formdata=" + mobilePayfrm
 			}, function (rsp) {
 				console.log(rsp);
 				if (rsp.success) {
@@ -167,7 +169,7 @@ $(document).ready(function(){
 </head>
 <body>
 
-<form name="Reservationfrm">
+<form name="Reservationfrm" id="Reservationfrm">
 
 	<div id="paymentBox">
 		

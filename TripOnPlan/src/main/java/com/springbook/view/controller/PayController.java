@@ -309,49 +309,23 @@ public class PayController {
 		return list; 
 	}
 	
-	@RequestMapping(value="/MobilePaymentComplete.do")
-	public String MobilePaymentComplete(@RequestParam(required = false) String imp_uid, @RequestParam(required = false) String merchant_uid
-			, @RequestParam(required = false) String imp_success, Model model) throws IOException {
+	@RequestMapping(value="/mobilepaymentcomplete.do")
+	public String MobilePaymentComplete(HttpServletRequest request, HttpServletResponse response, Model model, ReservationVO rvo) throws IOException {
 		
-		String mid = merchant_uid;
+		String mid = request.getParameter("merchant_uid");
+		String imp_uid = request.getParameter("imp_uid");
 		String token = getImportToken();
-		
-		Map<String, String> map = new HashMap<String, String>();
-		HttpClient client = HttpClientBuilder.create().build();
-		HttpGet get = new HttpGet(IMPORT_PAYMENTINFO_URL + mid + "/paid");
-		get.setHeader("Authorization", token);
-		try {
-			HttpResponse res = client.execute(get);
-			ObjectMapper mapper = new ObjectMapper();
-			String body = EntityUtils.toString(res.getEntity());
-			JsonNode rootNode = mapper.readTree(body);
-			JsonNode resNode = rootNode.get("response");
-			System.out.println("777: " + resNode);
-			if (resNode.asText().equals("null")) {
-				System.out.println("내역이 없습니다.");
-				map.put("msg", "내역이 없습니다.");
-			} else {
-				map.put("imp_uid", resNode.get("imp_uid").asText());
-				map.put("merchant_uid", resNode.get("merchant_uid").asText());
-				map.put("name", resNode.get("name").asText());
-				map.put("buyer_name", resNode.get("buyer_name").asText());
-				map.put("amount", resNode.get("amount").asText());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		String amount = map.get("amount");
+		String amount = rvo.getPay_amount();
 		setHackCheck(amount, mid, token);
 		
-		ReservationVO rvo = null;
-		
-		rvo = new ReservationVO();
-		
-		rvo.setRes_name(map.get("buyer_name"));
-		rvo.setPay_amount(map.get("amount"));
-		rvo.setMerchant_uid(map.get("merchant_uid"));
-		rvo.setImp_uid(map.get("imp_uid"));
+		rvo.setImp_uid(imp_uid);
+		rvo.setMerchant_uid(mid);
+		String room_id = rvo.getRoom_id();
+		RoomVO rvo_bf = null;
+		rvo_bf = new RoomVO();
+		rvo_bf.setRoom_id(room_id);
+		rvo_bf = roomService.getRoom(rvo_bf);
+		rvo.setRoom_name(rvo_bf.getRoom_name());
 		
 		System.out.println("숙소 예약 등록 시작");
 		System.out.println(rvo);

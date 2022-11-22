@@ -39,10 +39,61 @@ function checkoutVal(e) {
 
 function f_moveBackToImgNo1() {
 	
+	if("${u_room.room_img_no2}" != "") {
+		
+		document.getElementById("room_img_sub1").style.border = "";
+		
+		}
+		
+		if("${u_room.room_img_no3}" != "") {
+		
+		document.getElementById("room_img_sub2").style.border = "";
+		
+		}
+		
+		if("${u_room.room_img_no4}" != "") {
+		
+		document.getElementById("room_img_sub3").style.border = "";
+		
+		}
+		
+		if("${u_room.room_img_no5}" != "") {
+			
+			document.getElementById("room_img_sub4").style.border = "";
+			
+			}
+	
 	$("#room_img_main").attr("src", "resources/room_img/${u_room.room_img_no1}");
 }
 
 $(document).ready(function(){
+	
+	if("${u_room.room_img_no2}" != "") {
+		
+		document.getElementById("room_img_sub1").style.cursor = "pointer";
+		
+		
+	}
+	
+	if("${u_room.room_img_no3}" != "") {
+		
+		document.getElementById("room_img_sub2").style.cursor = "pointer";
+		
+		
+	}
+	
+	
+	if("${u_room.room_img_no4}" != "") {
+		
+		document.getElementById("room_img_sub3").style.cursor = "pointer";
+	}
+		
+	
+	if("${u_room.room_img_no5}" != "") {
+	
+	document.getElementById("room_img_sub4").style.cursor = "pointer";
+	
+	}
 	
 		var room_stars = "${u_room.room_stars}";
 		
@@ -72,240 +123,118 @@ $(document).ready(function(){
 		
 		$("#roomResAmount").text(roomResAmount + "원");
 		
-		var room_img_no2_src = $("#room_img_sub1").attr("src");
-		
-		var room_img_no3_src = $("#room_img_sub2").attr("src");
-		
-		var room_img_no4_src = $("#room_img_sub3").attr("src");
-		
-		var room_img_no5_src = $("#room_img_sub4").attr("src");
-		
-		var room_imgs_src = [];
-		
-		if(room_img_no2_src != "") {
+		$("#room_img_sub1").click(function(){
 			
-			room_imgs_src.push(room_img_no2_src);
+			if("${u_room.room_img_no3}" != "") {
 			
-		} 
-		
-		if (room_img_no3_src != "") {
+			document.getElementById("room_img_sub2").style.border = "";
 			
-			room_imgs_src.push(room_img_no3_src);
-			
-		} 
-		
-		if (room_img_no4_src != "") {
-			
-			room_imgs_src.push(room_img_no4_src);
-			
-		} 
-		
-		if (room_img_no5_src != "") {
-			
-			room_imgs_src.push(room_img_no5_src);
-			
-		}
-		
-		var idx = 0;
-		
-		$("#changeAfter").on("click", function(){
-			
-			document.getElementById("changeBefore").style.cursor = "pointer";
-			
-			$("#room_img_main").attr("src", room_imgs_src[idx]);
-			
-			if(room_imgs_src[3] != null) {
-			
-			if(idx == 0) {
-				
-				document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
 			}
-			if(idx == 1) {
+			
+			if("${u_room.room_img_no4}" != "") {
+			
+			document.getElementById("room_img_sub3").style.border = "";
+			
+			}
+			
+			if("${u_room.room_img_no5}" != "") {
+			
+			document.getElementById("room_img_sub4").style.border = "";
+			
+			}
+			
+			let img_sub1 = $("#room_img_sub1").attr("src");
+			
+			$("#room_img_main").attr("src", img_sub1);
+			
+			document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
+			
+		});
+		
+		$("#room_img_sub2").click(function(){
+			
+			if("${u_room.room_img_no2}" != "") {
 				
 				document.getElementById("room_img_sub1").style.border = "";
 				
-				document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
-			}
-			if(idx == 2) {
+				}
 				
-				document.getElementById("room_img_sub2").style.border = "";
-				
-				document.getElementById("room_img_sub3").style.border = "4px solid #ff8e15";
-			}
-			if(idx == 3) {
+				if("${u_room.room_img_no4}" != "") {
 				
 				document.getElementById("room_img_sub3").style.border = "";
 				
-				document.getElementById("room_img_sub4").style.border = "4px solid #ff8e15";
-			}
-			
-			}
-			
-			if(room_imgs_src[2] != null) {
+				}
 				
-				if(idx == 0) {
-					
-					document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
-				}
-				if(idx == 1) {
-					
-					document.getElementById("room_img_sub1").style.border = "";
-					
-					document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
-				}
-				if(idx == 2) {
-					
-					document.getElementById("room_img_sub2").style.border = "";
-					
-					document.getElementById("room_img_sub3").style.border = "4px solid #ff8e15";
-				}
+				if("${u_room.room_img_no5}" != "") {
+				
+				document.getElementById("room_img_sub4").style.border = "";
 				
 				}
 			
-			if(room_imgs_src[1] != null) {
-				
-				if(idx == 0) {
-					
-					document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
-				}
-				if(idx == 1) {
-					
-					document.getElementById("room_img_sub1").style.border = "";
-					
-					document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
-				}
-				
-				}
+			let img_sub2 = $("#room_img_sub2").attr("src");
 			
-			if(room_imgs_src[0] != null) {
-				
-				if(idx == 0) {
-					
-					document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
-					
-					document.getElementById("changeAfter").style.cursor = "default";
-					
-					document.getElementById("changeBefore").style.cursor = "default";
-				}
-				
-				}
+			$("#room_img_main").attr("src", img_sub2);
 			
-			idx++;
-			
-			if(idx >= (room_imgs_src.length - 1)) {
-				
-				idx = (room_imgs_src.length - 1);
-				
-				$("#changeBefore").attr("pointer-events", "none");
-			}
+			document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
 			
 		});
 		
-		$("#changeBefore").on("click", function(){
+			$("#room_img_sub3").click(function(){
 			
-			
-			if(idx > 0 && idx < room_imgs_src.length) {
-			
-				idx--;
-				
-				$("#room_img_main").attr("src", room_imgs_src[idx]);
-				
-				if(room_imgs_src[3] != null) {
+				if("${u_room.room_img_no2}" != "") {
 					
-				
-				if(idx == 0) {
+					document.getElementById("room_img_sub1").style.border = "";
+					
+					}
+					
+					if("${u_room.room_img_no3}" != "") {
 					
 					document.getElementById("room_img_sub2").style.border = "";
 					
-					document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
-				}
-				if(idx == 1) {
+					}
 					
-					document.getElementById("room_img_sub3").style.border = "";
-					
-					document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
-				}
-				if(idx == 2) {
+					if("${u_room.room_img_no5}" != "") {
 					
 					document.getElementById("room_img_sub4").style.border = "";
 					
-					document.getElementById("room_img_sub3").style.border = "4px solid #ff8e15";
-				}
-				if(idx == 3) {
-					
-					document.getElementById("room_img_sub4").style.border = "4px solid #ff8e15";
-				}
-				
-				document.getElementById("changeAfter").style.cursor = "pointer";
-				
-				}
-				
-				if(room_imgs_src[2] != null) {
-					
-					if(idx == 0) {
-						
-						document.getElementById("room_img_sub2").style.border = "";
-						
-						document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
-					}
-					if(idx == 1) {
-						
-						document.getElementById("room_img_sub3").style.border = "";
-						
-						document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
-					}
-					if(idx == 2) {
-						
-						document.getElementById("room_img_sub4").style.border = "";
-						
-						document.getElementById("room_img_sub3").style.border = "4px solid #ff8e15";
-					}
-					
-					document.getElementById("changeAfter").style.cursor = "pointer";
-					
-					}
-				
-				if(room_imgs_src[1] != null) {
-					
-					if(idx == 0) {
-						
-						document.getElementById("room_img_sub2").style.border = "";
-						
-						document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
-					}
-					if(idx == 1) {
-						
-						document.getElementById("room_img_sub3").style.border = "";
-						
-						document.getElementById("room_img_sub2").style.border = "4px solid #ff8e15";
 					}
 			
-			}
-				
-				if(room_imgs_src[0] != null) {
-					
-					if(idx == 0) {
-						
-						document.getElementById("room_img_sub2").style.border = "";
-						
-						document.getElementById("room_img_sub1").style.border = "4px solid #ff8e15";
-					}
+			let img_sub3 = $("#room_img_sub3").attr("src");
 			
-			}
+			$("#room_img_main").attr("src", img_sub3);
 			
-			if(idx <= 0) {
-				
-				idx = 0;
-				
-				$("#room_img_main").attr("src", room_imgs_src[idx]);
-				
-				$("#changeBefore").attr("pointer-events", "none");
-				
-			}
-			
-		}
+			document.getElementById("room_img_sub3").style.border = "4px solid #ff8e15";
 			
 		});
+			
+			$("#room_img_sub4").click(function(){
+				
+				if("${u_room.room_img_no2}" != "") {
+					
+					document.getElementById("room_img_sub1").style.border = "";
+					
+					}
+					
+					if("${u_room.room_img_no3}" != "") {
+					
+					document.getElementById("room_img_sub2").style.border = "";
+					
+					}
+					
+					if("${u_room.room_img_no4}" != "") {
+					
+					document.getElementById("room_img_sub3").style.border = "";
+					
+					}
+				
+				let img_sub4 = $("#room_img_sub4").attr("src");
+				
+				$("#room_img_main").attr("src", img_sub4);
+				
+				document.getElementById("room_img_sub4").style.border = "4px solid #ff8e15";
+				
+				
+			});
 		
 		$('#res_num').change(function(){
 			
@@ -1116,37 +1045,34 @@ svg {
 	
 	<c:if test="${empty u_room.room_img_no2}"><img id="room_img_main" src="resources/room_img/${u_room.room_img_no1}" alt="숙소 대표 이미지" title="숙소 대표 이미지" width="460" height="525" onerror="this.style.display='none';"/></c:if>
 	</div>
-	<br>
+	
+	<div style="margin-top: 5px; font-weight: 600;"><span>(아래 이미지들을 클릭하시면 해당 이미지로 변경됩니다)</span></div>
 	
 	<div id="u_room_img_subs">
 	
-	<c:if test="${not empty u_room.room_img_no2}"><div id="changeBefore">&lt;</div></c:if>
-	
 	<c:if test="${not empty u_room.room_img_no2}">
 	
-	<div><img id ="room_img_sub1" src="resources/room_img/${u_room.room_img_no2}" alt="숙소 서브1 이미지" title="숙소 서브1 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
+	<div><img id="room_img_sub1" src="resources/room_img/${u_room.room_img_no2}" alt="숙소 서브1 이미지" title="숙소 서브1 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
 	
 	</c:if>
 	
 	<c:if test="${not empty u_room.room_img_no3}">
 	
-	<div><img id ="room_img_sub2" src="resources/room_img/${u_room.room_img_no3}" alt="숙소 서브2 이미지" title="숙소 서브2 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
+	<div><img id="room_img_sub2" src="resources/room_img/${u_room.room_img_no3}" alt="숙소 서브2 이미지" title="숙소 서브2 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
 	
 	</c:if>
 	
 	<c:if test="${not empty u_room.room_img_no4}">
 	
-	<div><img id ="room_img_sub3" src="resources/room_img/${u_room.room_img_no4}" alt="숙소 서브3 이미지" title="숙소 서브3 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
+	<div><img id="room_img_sub3" src="resources/room_img/${u_room.room_img_no4}" alt="숙소 서브3 이미지" title="숙소 서브3 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
 	
 	</c:if>
 	
 	<c:if test="${not empty u_room.room_img_no5}">
 	
-	<div><img id ="room_img_sub4" src="resources/room_img/${u_room.room_img_no5}" alt="숙소 서브4 이미지" title="숙소 서브4 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
+	<div><img id="room_img_sub4" src="resources/room_img/${u_room.room_img_no5}" alt="숙소 서브4 이미지" title="숙소 서브4 이미지" width="70" height="70" onerror="this.style.display='none';"/></div>
 	
 	</c:if>
-	
-	<c:if test="${not empty u_room.room_img_no2}"><div id="changeAfter">&gt;</div></c:if>
 	
 	</div>
 	
