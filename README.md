@@ -138,6 +138,6 @@
 
 ---
 
-![프로젝트 마이 페이지](/ReadMeImg/TripOnPlan_Manage.gif)
+![프로젝트 마이 페이지](/ReadMeImg/TripOnPlan_Admin.gif)
 
 <br/>
