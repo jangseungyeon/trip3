@@ -30,13 +30,13 @@
 
 <br/>
 
-* **한국 관광공사 공식 API를 통해 약 5만개의 관광명소 정보 제공 및 검색**
+* **한국 관광공사 공식 API를 통해 약 5만개의 실제 관광명소 정보 제공 및 검색**
 
 * **나만의 여행 계획 작성 가능 (원하는 여행 지역 선택, 일정마다 메모 작성)**
 
 * **작성한 여행 계획을 게시판에 공유 가능 (자유롭게 좋아요, 댓글 가능)**
 
-* **숙박 시설 조건별 검색/상세 조회/예약 가능 (좋아요, 리뷰 가능)**
+* **숙박 시설 조건별 검색/상세 조회/실제 결제 후 예약 가능 (좋아요, 리뷰 가능)**
 
 * **로그인 (전화번호 인증, 소셜 로그인 API, ID/PW 찾기)**
 
@@ -70,24 +70,74 @@
 
 ## 🛫 업무 분류 체계 WBS
 
-![프로젝트 WBS 사진](/ReadMeImg/project_WBS.png)
+![프로젝트 WBS 사진](/ReadMeImg/TripOnPlan_WBS.png)
 
 <br/>
 
 ## 🛫 사이트 이용자 구조 분석 UML
 
-![프로젝트 UML 사진](/ReadMeImg/project_uml.png)
+![프로젝트 UML 사진](/ReadMeImg/TripOnPlan_uml.png)
 
 <br/>
 
 ## 🛫 데이터베이스 모델 ERD
 
-![프로젝트 ERD 사진](/ReadMeImg/project_erd.png)
+![프로젝트 ERD 사진](/ReadMeImg/TripOnPlan_erd.png)
 
 <br/>
 
 ## 🛫 기술 스택
 
-![프로젝트 사용된 기술들 사진](/ReadMeImg/project_tech.png)
+![프로젝트 사용된 기술들 사진](/ReadMeImg/TripOnPlan_tech.png)
+
+<br/>
+
+## 🛫 웹사이트 시연 스크린샷
+
+### ▶ 회원가입 (소셜)로그인 회원정보 수정
+
+---
+
+![프로젝트 회원가입 (소셜)로그인 회원정보 수정](/ReadMeImg/TripOnPlan_Login.gif)
+
+<br/>
+
+### ▶ 메인 페이지 및 여행 계획 세우기
+
+---
+
+![프로젝트 메인 페이지 및 여행 계획](/ReadMeImg/TripOnPlan_Planner.gif)
+
+<br/>
+
+### ▶ 숙소 조건별 검색, 상세페이지, 실제 결제후 예약하기 
+
+---
+
+![프로젝트 숙소 조건별 검색, 상세페이지, 실제 결제후 예약](/ReadMeImg/TripOnPlan_Motel.gif)
+
+<br/>
+
+### ▶ 호스트 전용 페이지 (숙박 시설 예약 현황 및 트렌드 표시, 숙박 시설 CRUD, 리뷰 검색 등)
+
+---
+
+![프로젝트 호스트 전용 페이지](/ReadMeImg/TripOnPlan_Host.gif)
+
+<br/>
+
+### ▶ 마이 페이지 (나의 예약 결제 현황, 숙소/여행 계획 좋아요 표시 목록, 1대1 문의 등)
+
+---
+
+![프로젝트 마이 페이지](/ReadMeImg/TripOnPlan_MyPage.gif)
+
+<br/>
+
+### ▶ 관리자 페이지 (회원/숙박시설/호스트/공지사항/여행 계획/예약/1대1 문의 모두 관리)
+
+---
+
+![프로젝트 마이 페이지](/ReadMeImg/TripOnPlan_Manage.gif)
 
 <br/>
