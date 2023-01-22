@@ -2,7 +2,7 @@
 
 ## 🛫 프로젝트 기획 의도
 
-![프로젝트 기획 의도 뉴스 사진](/ReadMeImg/project_purpose.png)
+![프로젝트 기획 의도 뉴스 사진](/ReadMeImg/TripOnPlan_purpose.png)
 
 <br/>
 
@@ -12,9 +12,9 @@
 
 <br/>
 
-![프로젝트 기획 의도 이름1](/ReadMeImg/project_name1.png)
+![프로젝트 기획 의도 이름1](/ReadMeImg/TripOnPlan_name1.png)
 
-![프로젝트 기획 의도 이름1](/ReadMeImg/project_name2.png)
+![프로젝트 기획 의도 이름1](/ReadMeImg/TripOnPlan_name2.png)
 
 **그래서 전국 관광명소 데이터들을 기반으로 여행 계획 세우기 기능과** 
 
