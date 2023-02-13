@@ -96,50 +96,74 @@
 
 ## 🛫 웹사이트 시연 스크린샷
 
+<div align="center">
+
 ### ▶ 메인 페이지 및 회원가입 (소셜)로그인 회원정보 수정
 
----
+<br/>
 
-![프로젝트 회원가입 (소셜)로그인 회원정보 수정](/ReadMeImg/TripOnPlan_Login.gif)
+<img src="./ReadMeImg/TripOnPlan_Login.gif" width="500" max-width="100%" alt="메인 페이지 및 회원가입 (소셜)로그인 회원정보 수정 스크린샷" title="메인 페이지 및 회원가입 (소셜)로그인 회원정보 수정 스크린샷"/>
+
+</div>
 
 <br/>
+
+<div align="center">
 
 ### ▶ 여행 계획 세우기
 
----
+<br/>
 
-![프로젝트 메인 페이지 및 여행 계획](/ReadMeImg/TripOnPlan_Planner.gif)
+<img src="./ReadMeImg/TripOnPlan_Planner.gif" width="500" max-width="100%" alt="여행 계획 세우기 스크린샷" title="여행 계획 세우기 스크린샷"/>
+
+</div>
 
 <br/>
 
-### ▶ 숙소 조건별 검색, 상세페이지, 실제 결제후 예약하기 
+<div align="center">
 
----
-
-![프로젝트 숙소 조건별 검색, 상세페이지, 실제 결제후 예약](/ReadMeImg/TripOnPlan_Motel.gif)
+### ▶ 숙소 조건별 검색, 상세페이지, 실제 결제후 예약하기
 
 <br/>
+
+<img src="./ReadMeImg/TripOnPlan_Motel.gif" width="500" max-width="100%" alt="숙소 조건별 검색, 상세페이지, 실제 결제후 예약하기 스크린샷" title="숙소 조건별 검색, 상세페이지, 실제 결제후 예약하기 스크린샷"/>
+
+</div>
+
+<br/>
+
+<div align="center">
 
 ### ▶ 호스트 전용 페이지 (숙박 시설 예약 현황 및 트렌드 표시, 숙박 시설 CRUD, 리뷰 검색 등)
 
----
+<br/>
 
-![프로젝트 호스트 전용 페이지](/ReadMeImg/TripOnPlan_Host.gif)
+<img src="./ReadMeImg/TripOnPlan_Host.gif" width="500" max-width="100%" alt="호스트 전용 페이지 (숙박 시설 예약 현황 및 트렌드 표시, 숙박 시설 CRUD, 리뷰 검색 등) 스크린샷" title="호스트 전용 페이지 (숙박 시설 예약 현황 및 트렌드 표시, 숙박 시설 CRUD, 리뷰 검색 등) 스크린샷" />
+
+</div>
 
 <br/>
+
+<div align="center">
 
 ### ▶ 마이 페이지 (나의 예약 결제 현황, 숙소/여행 계획 좋아요 표시 목록, 1대1 문의 등)
 
----
+<br/>
 
-![프로젝트 마이 페이지](/ReadMeImg/TripOnPlan_MyPage.gif)
+<img src="./ReadMeImg/TripOnPlan_MyPage.gif" width="500" max-width="100%" alt="마이 페이지 (나의 예약 결제 현황, 숙소/여행 계획 좋아요 표시 목록, 1대1 문의 등) 스크린샷" title="마이 페이지 (나의 예약 결제 현황, 숙소/여행 계획 좋아요 표시 목록, 1대1 문의 등) 스크린샷"/>
+
+</div>
 
 <br/>
 
+<div align="center">
+
 ### ▶ 관리자 페이지 (회원/숙박시설/호스트/공지사항/여행 계획/예약/1대1 문의 모두 관리)
 
----
+<br/>
 
-![프로젝트 마이 페이지](/ReadMeImg/TripOnPlan_Admin.gif)
+<img src="./ReadMeImg/TripOnPlan_Admin.gif" width="500" max-width="100%" alt="관리자 페이지 (회원/숙박시설/호스트/공지사항/여행 계획/예약/1대1 문의 모두 관리) 스크린샷" title="관리자 페이지 (회원/숙박시설/호스트/공지사항/여행 계획/예약/1대1 문의 모두 관리) 스크린샷"/>
+
+</div>
 
 <br/>
