@@ -51,32 +51,31 @@ public class tourSearchAjaxController{
 				pageNO = page(pageNum , page);
 			}
 				if(keyword.isEmpty()) {
-					apiToururl = "http://apis.data.go.kr/B551011/KorService/areaBasedList?"
+					apiToururl = "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?"
 							+ "numOfRows=8"
 							+ "&pageNo="+pageNO
 							+ "&MobileOS=ETC"
 							+ "&MobileApp=AppTest"
-							+ "&ServiceKey=CYndID2JHrOzK1Pr%2FAgioaNHSEKM3ql%2FiYRsxfTe9iJ6XXTbTF1H0oo%2FMYBEdb8iViimIILo%2FbsY63MXYjTZ6g%3D%3D"
+							+ "&ServiceKey=TZlNwcxgb64EgSQc5VKkCnB1kwMWqodvX%2BoRwAtKTYEsUAq95jQNYb8W52KEKbLTJpJZ6NDfuoNi0DBBhoBPQQ%3D%3D"
 							+ "&listYN=Y"
 							+ "&arrange=A&"
 							+ "&ContentTypeId=" + contentTypeId
 							+ "&areaCode="+ areaCode
 							+ "&_type=json";	
 				}else {
-					apiToururl = "http://apis.data.go.kr/B551011/KorService/searchKeyword?"
+					apiToururl = "http://apis.data.go.kr/B551011/KorService1/searchKeyword1?"
 							+ "numOfRows=8"
 							+ "&pageNo="+pageNO
 							+ "&MobileOS=ETC"
 							+ "&MobileApp=AppTest"
 							+ "&contentTypeId=" + contentTypeId
 							+ "&_type=json"
-							+ "&areaCode=" + areaCode
-							+ "&ServiceKey=CYndID2JHrOzK1Pr%2FAgioaNHSEKM3ql%2FiYRsxfTe9iJ6XXTbTF1H0oo%2FMYBEdb8iViimIILo%2FbsY63MXYjTZ6g%3D%3D"
+							+ "&areaCode1=" + areaCode
+							+ "&ServiceKey=TZlNwcxgb64EgSQc5VKkCnB1kwMWqodvX%2BoRwAtKTYEsUAq95jQNYb8W52KEKbLTJpJZ6NDfuoNi0DBBhoBPQQ%3D%3D"
 							+"&keyword=";
 					keyword = URLEncoder.encode(keyword, "UTF-8");
 					apiToururl = apiToururl+keyword;
 				}
-					
 				URL url = new URL(apiToururl);
 				InputStream in = url.openStream();                            
 		        ByteArrayOutputStream bos1 = new ByteArrayOutputStream();        
