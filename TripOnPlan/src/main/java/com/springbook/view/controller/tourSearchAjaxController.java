@@ -70,7 +70,7 @@ public class tourSearchAjaxController{
 							+ "&MobileApp=AppTest"
 							+ "&contentTypeId=" + contentTypeId
 							+ "&_type=json"
-							+ "&areaCode1=" + areaCode
+							+ "&areaCode=" + areaCode
 							+ "&ServiceKey=TZlNwcxgb64EgSQc5VKkCnB1kwMWqodvX%2BoRwAtKTYEsUAq95jQNYb8W52KEKbLTJpJZ6NDfuoNi0DBBhoBPQQ%3D%3D"
 							+"&keyword=";
 					keyword = URLEncoder.encode(keyword, "UTF-8");
