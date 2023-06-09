@@ -4,7 +4,7 @@
 
 <div align="center">
 
-### 🗺 프로젝트 웹사이트 주소: [triponplan.ga](http://www.triponplan.ga "숙박 예약, 여행 계획을 동시에! TripOnPlan 웹사이트 주소") 🗺 ###
+### 🗺 프로젝트 웹사이트 주소: [triponplan.shop](http://www.triponplan.shop "숙박 예약, 여행 계획을 동시에! TripOnPlan 웹사이트 주소") 🗺 ###
 
 </div>
 
