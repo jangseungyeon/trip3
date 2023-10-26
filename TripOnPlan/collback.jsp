@@ -21,7 +21,7 @@
     var contextPath = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 
 		var clientId = "k1TZnT_MhISa1RyzPuW8";
-		var callbackUrl = "http://triponplan.ga/"+contextPath+"/collback.jsp";
+		var callbackUrl = "http://triponplan.shop/"+contextPath+"/collback.jsp";
 		var naver_id_login = new naver_id_login(clientId, callbackUrl);
 		// 접근 토큰 값 출력
 

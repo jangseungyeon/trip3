@@ -53,7 +53,7 @@ $(document).ready(function(){
 			buyer_tel: $("#res_tel_ipt").val(),
 // 			buyer_addr: $("#uaddr").val() ,
 // 			buyer_postcode: '123-456',
-			m_redirect_url:"http://triponplan.ga/mobilepaymentcomplete.do?formdata=" + mobilePayfrm
+			m_redirect_url:"http://triponplan.shop/mobilepaymentcomplete.do?formdata=" + mobilePayfrm
 			}, function (rsp) {
 				console.log(rsp);
 				if (rsp.success) {

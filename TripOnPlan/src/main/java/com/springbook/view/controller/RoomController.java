@@ -92,10 +92,10 @@ public class RoomController {
 		MultipartFile uploadFile4 = rvo.getRoom_img_no4_multi();
 		MultipartFile uploadFile5 = rvo.getRoom_img_no5_multi();
 		
-		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
+//		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
 		
 		//위는 테스트용, 아래는 실제 서버에 올리면 써야하는 경로 구하는 법 (컨트롤러 안에 어떤 request.getParameter가 들어가면 안됨)
-		//String realPath = request.getSession().getServletContext().getRealPath("/resources/room_img/");
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/room_img/");
 		
 		String room_img_no1 = uploadFile1.getOriginalFilename();
 		String room_img_no2 = uploadFile2.getOriginalFilename();
@@ -160,7 +160,9 @@ public class RoomController {
 		MultipartFile uploadFile4 = rvo.getRoom_img_no4_multi();
 		MultipartFile uploadFile5 = rvo.getRoom_img_no5_multi();
 		
-		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
+//		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
+		
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/room_img/");
 		
 		String room_img_no1 = uploadFile1.getOriginalFilename();
 		String room_img_no2 = uploadFile2.getOriginalFilename();
@@ -244,14 +246,13 @@ public class RoomController {
 	//(호스트) 숙소 삭제 (숙소 이미지 파일 먼저 삭제 후 숙소 조회 후 가지고 온 업주 호스트 아이디와 세션의 업주 호스트 아이디가 일치하면 삭제, 
 	// 그 후 숙소 목록으로 돌아감)
 	@RequestMapping(value = "/deleteRoom.do")
-	// public String deleteRoom(MultipartHttpServletRequest request, RoomVO rvo,
-	// HttpSession session) throws IllegalStateException, IOException {
-	public String deleteRoom(RoomVO rvo, HttpSession session) {
+	 public String deleteRoom(MultipartHttpServletRequest request, RoomVO rvo,
+	 HttpSession session) throws IllegalStateException, IOException {
+//	public String deleteRoom(RoomVO rvo, HttpSession session) {
 		System.out.println("숙소 삭제 시작");
-		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
+//		String realPath = "c:/Swork/trip/src/main/webapp/resources/room_img/";
 		// 위는 테스트용, 아래는 실제 서버에 올리면 써야하는 경로 구하는 법 (컨트롤러 안에 어떤 request.getParameter가 들어가면 안됨)
-		// String realPath =
-		// request.getSession().getServletContext().getRealPath("/resources/room_img/");
+		 String realPath = request.getSession().getServletContext().getRealPath("/resources/room_img/");
 		rvo = roomService.getRoom(rvo);
 		
 		//숙소 이미지 모두 삭제
